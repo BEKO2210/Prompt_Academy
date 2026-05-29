@@ -38,6 +38,25 @@ export function scrollToTop() {
   else if (typeof window !== "undefined") window.scrollTo(0, 0);
 }
 
+/** Smooth-scroll to an in-page anchor (Lenis-aware). Retries for a few frames
+ *  so it still works right after a route change, when the target section may
+ *  not be mounted yet (e.g. /library → /#categories). The loop self-terminates
+ *  once the element is found or the retry budget runs out. */
+export function scrollToHash(hash: string, offset = -80) {
+  if (typeof document === "undefined") return;
+  let tries = 0;
+  const tick = () => {
+    const el = document.querySelector(hash);
+    if (el) {
+      if (activeLenis) activeLenis.scrollTo(el as HTMLElement, { offset });
+      else el.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    if (tries++ < 40) requestAnimationFrame(tick); // ~0.65s budget
+  };
+  requestAnimationFrame(tick);
+}
+
 /** Lock/unlock page scroll — pauses Lenis (which bypasses body overflow) AND
  *  native scroll, so background content stays put behind modals/drawers. */
 export function setScrollLock(locked: boolean) {

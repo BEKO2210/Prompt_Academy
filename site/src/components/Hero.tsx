@@ -191,7 +191,7 @@ export function Hero({ stats }: { stats: Stats | null }) {
             transition={{ duration: 0.9, delay: 0.6 }}
             className="glass holo-border relative overflow-hidden rounded-3xl py-6"
           >
-            <h3 className="kicker mb-4 px-7">Powered by · echte Frameworks</h3>
+            <p className="kicker mb-4 px-7">Powered by · echte Frameworks</p>
             <div className="mask-fade-x relative flex overflow-hidden">
               <div className="flex animate-marquee gap-10 whitespace-nowrap px-5">
                 {[...frameworks, ...frameworks].map((fw, i) => (

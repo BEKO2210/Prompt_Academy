@@ -7,10 +7,14 @@ import { cn } from "../lib/cn";
 import { Button } from "./ui/Button";
 import { setScrollLock } from "../lib/useLenis";
 
-const LINKS = [
-  { label: "Kategorien", href: "/#categories" },
-  { label: "Features", href: "/#features" },
-  { label: "Tech", href: "/#tech" },
+// Each link is either an in-page section (hash, lives on "/") or a route (to).
+// Hash links MUST go through React Router (Link `to`) so the app's basename
+// (/Prompt_Academy/ on GitHub Pages) is preserved — a plain <a href="/#x">
+// navigates to the domain root and unloads the SPA.
+type NavLink = { label: string; hash?: string; to?: string };
+const LINKS: NavLink[] = [
+  { label: "Kategorien", hash: "#categories" },
+  { label: "Features", hash: "#features" },
   { label: "Bibliothek", to: "/library" },
 ];
 
@@ -65,25 +69,15 @@ export function Navbar() {
 
         {/* Desktop links */}
         <div className="hidden items-center gap-1 md:flex">
-          {LINKS.map((l) =>
-            l.to ? (
-              <Link
-                key={l.label}
-                to={l.to}
-                className="rounded-full px-3.5 py-2 text-sm text-slate-300 transition-colors duration-200 hover:bg-white/5 hover:text-white"
-              >
-                {l.label}
-              </Link>
-            ) : (
-              <a
-                key={l.label}
-                href={l.href}
-                className="rounded-full px-3.5 py-2 text-sm text-slate-300 transition-colors duration-200 hover:bg-white/5 hover:text-white"
-              >
-                {l.label}
-              </a>
-            ),
-          )}
+          {LINKS.map((l) => (
+            <Link
+              key={l.label}
+              to={l.to ?? `/${l.hash}`}
+              className="rounded-full px-3.5 py-2 text-sm text-slate-300 transition-colors duration-200 hover:bg-white/5 hover:text-white"
+            >
+              {l.label}
+            </Link>
+          ))}
         </div>
 
         <div className="hidden md:block">
@@ -127,31 +121,25 @@ export function Navbar() {
               transition={{ duration: 0.25 }}
               className="absolute inset-x-4 top-20 z-50 overflow-hidden rounded-2xl border border-white/10 bg-ink-900 p-3 shadow-card md:hidden"
             >
-              {LINKS.map((l) =>
-                l.to ? (
-                  <Link
-                    key={l.label}
-                    to={l.to}
-                    className="block rounded-xl px-4 py-3 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"
-                  >
-                    {l.label}
-                  </Link>
-                ) : (
-                  <a
-                    key={l.label}
-                    href={l.href}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-xl px-4 py-3 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"
-                  >
-                    {l.label}
-                  </a>
-                ),
-              )}
+              {LINKS.map((l) => (
+                <Link
+                  key={l.label}
+                  to={l.to ?? `/${l.hash}`}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-xl px-4 py-3 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"
+                >
+                  {l.label}
+                </Link>
+              ))}
               <div className="mt-2 border-t border-white/10 pt-3">
-                <Button to="/library" className="w-full">
+                <Link
+                  to="/library"
+                  onClick={() => setOpen(false)}
+                  className="group inline-flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-holo bg-[length:200%_auto] px-6 text-sm font-semibold text-ink-950 shadow-glow transition-all duration-300 hover:bg-[position:100%] hover:shadow-glow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-holo-cyan/70"
+                >
                   Explore
                   <ArrowUpRight className="h-4 w-4" />
-                </Button>
+                </Link>
               </div>
             </motion.div>
           </>
