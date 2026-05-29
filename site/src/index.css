@@ -14,11 +14,20 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* Constrain the layout viewport: without this on <html> (not just <body>),
+       any element wider than the screen lets mobile browsers expand the layout
+       viewport to the content width — which activates the lg: breakpoints and
+       renders the desktop layout clipped on phones. */
+    overflow-x: hidden;
+    max-width: 100%;
   }
 
   body {
     @apply bg-ink-950 font-sans text-slate-300 antialiased;
     margin: 0;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
     text-rendering: optimizeLegibility;
   }
