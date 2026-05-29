@@ -29,19 +29,23 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
-      {/* Blurred backdrop so page content scrolling under the header stays
-          legible (no text-over-text). Fades out toward the bottom. */}
+      {/* Frosted backdrop: everything scrolling behind the header is strongly
+          blurred (no readable text-over-text). Fades out toward the bottom. */}
       <div
         aria-hidden
-        className="mask-fade-b pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink-950/70 to-transparent backdrop-blur-md"
+        className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-ink-950/85 via-ink-950/50 to-transparent backdrop-blur-2xl [mask-image:linear-gradient(to_bottom,#000_0%,#000_62%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_0%,#000_62%,transparent_100%)]"
       />
       <motion.nav
         initial={{ y: -28, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
-          "flex w-full max-w-container items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-300",
-          scrolled ? "glass-strong shadow-card" : "border border-transparent",
+          "relative z-10 flex w-full max-w-container items-center justify-between rounded-2xl px-4 py-2.5 transition-all duration-300",
+          // Solid, crisp bar when scrolled — the blur affects the background
+          // BEHIND the header, never the header itself.
+          scrolled
+            ? "border border-white/10 bg-ink-900/95 shadow-card"
+            : "border border-transparent",
         )}
       >
         <Link to="/" className="group flex items-center" aria-label="Prompt Library 10000 — Startseite">
