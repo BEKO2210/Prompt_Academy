@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DatasetManifest",
+  "type": "object",
+  "required": [
+    "dataset_name", "version", "total_prompts",
+    "categories", "format", "schema", "created_for", "quality_gates"
+  ],
+  "properties": {
+    "dataset_name": { "type": "string" },
+    "version": { "type": "string" },
+    "total_prompts": { "type": "integer", "minimum": 10000 },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["category", "file", "count"],
+        "properties": {
+          "category": { "type": "string" },
+          "file": { "type": "string" },
+          "count": { "type": "integer", "minimum": 1000 }
+        }
+      }
+    },
+    "format": { "type": "string", "enum": ["jsonl"] },
+    "schema": { "type": "string" },
+    "created_for": { "type": "string" },
+    "quality_gates": {
+      "type": "object",
+      "required": [
+        "json_valid", "schema_valid", "duplicates_removed",
+        "minimum_total_reached", "minimum_per_category_reached"
+      ],
+      "properties": {
+        "json_valid": { "type": "boolean" },
+        "schema_valid": { "type": "boolean" },
+        "duplicates_removed": { "type": "boolean" },
+        "minimum_total_reached": { "type": "boolean" },
+        "minimum_per_category_reached": { "type": "boolean" }
+      }
+    }
+  }
+}

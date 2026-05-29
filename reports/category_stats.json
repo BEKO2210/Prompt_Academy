@@ -1,0 +1,280 @@
+{
+  "landing_pages": {
+    "count": 1000,
+    "difficulty_distribution": {
+      "expert": 137,
+      "intermediate": 321,
+      "advanced": 445,
+      "beginner": 97
+    },
+    "language_distribution": {
+      "de": 78,
+      "en": 922
+    },
+    "unique_subcategories": 20,
+    "unique_industries": 25,
+    "unique_visual_styles": 20,
+    "unique_motion_styles": 20,
+    "unique_layout_styles": 15,
+    "audience_distribution": {
+      "frontend_developer": 332,
+      "product_designer": 170,
+      "fullstack_developer": 184,
+      "designer": 161,
+      "founder": 153
+    },
+    "avg_specificity_score": 8.62,
+    "avg_originality_score": 8.72,
+    "avg_implementation_clarity_score": 8.9,
+    "avg_website_readiness_score": 9.58
+  },
+  "ui_components": {
+    "count": 1000,
+    "difficulty_distribution": {
+      "expert": 152,
+      "intermediate": 295,
+      "advanced": 452,
+      "beginner": 101
+    },
+    "language_distribution": {
+      "en": 930,
+      "de": 70
+    },
+    "unique_subcategories": 20,
+    "unique_industries": 20,
+    "unique_visual_styles": 86,
+    "unique_motion_styles": 54,
+    "unique_layout_styles": 77,
+    "audience_distribution": {
+      "frontend_developer": 799,
+      "founder": 69,
+      "designer": 72,
+      "product_designer": 60
+    },
+    "avg_specificity_score": 9.01,
+    "avg_originality_score": 8.49,
+    "avg_implementation_clarity_score": 9.05,
+    "avg_website_readiness_score": 9.5
+  },
+  "saas_dashboards": {
+    "count": 1000,
+    "difficulty_distribution": {
+      "intermediate": 299,
+      "advanced": 455,
+      "expert": 142,
+      "beginner": 104
+    },
+    "language_distribution": {
+      "en": 901,
+      "de": 99
+    },
+    "unique_subcategories": 20,
+    "unique_industries": 15,
+    "unique_visual_styles": 40,
+    "unique_motion_styles": 27,
+    "unique_layout_styles": 28,
+    "audience_distribution": {
+      "founder": 123,
+      "fullstack_developer": 253,
+      "designer": 122,
+      "frontend_developer": 362,
+      "product_designer": 140
+    },
+    "avg_specificity_score": 9.01,
+    "avg_originality_score": 8.52,
+    "avg_implementation_clarity_score": 8.96,
+    "avg_website_readiness_score": 9.01
+  },
+  "ecommerce": {
+    "count": 1000,
+    "difficulty_distribution": {
+      "intermediate": 300,
+      "advanced": 446,
+      "beginner": 114,
+      "expert": 140
+    },
+    "language_distribution": {
+      "en": 894,
+      "de": 106
+    },
+    "unique_subcategories": 20,
+    "unique_industries": 1,
+    "unique_visual_styles": 43,
+    "unique_motion_styles": 27,
+    "unique_layout_styles": 30,
+    "audience_distribution": {
+      "frontend_developer": 1000
+    },
+    "avg_specificity_score": 8.5,
+    "avg_originality_score": 8.5,
+    "avg_implementation_clarity_score": 8.5,
+    "avg_website_readiness_score": 9.02
+  },
+  "portfolio_personal_brand": {
+    "count": 1000,
+    "difficulty_distribution": {
+      "beginner": 100,
+      "intermediate": 300,
+      "advanced": 450,
+      "expert": 150
+    },
+    "language_distribution": {
+      "en": 933,
+      "de": 67
+    },
+    "unique_subcategories": 20,
+    "unique_industries": 20,
+    "unique_visual_styles": 32,
+    "unique_motion_styles": 26,
+    "unique_layout_styles": 20,
+    "audience_distribution": {
+      "frontend_developer": 831,
+      "founder": 46,
+      "product_designer": 49,
+      "content_creator": 39,
+      "designer": 35
+    },
+    "avg_specificity_score": 8.48,
+    "avg_originality_score": 8.54,
+    "avg_implementation_clarity_score": 8.53,
+    "avg_website_readiness_score": 8.98
+  },
+  "ai_tools_agents": {
+    "count": 1000,
+    "difficulty_distribution": {
+      "intermediate": 282,
+      "advanced": 476,
+      "expert": 160,
+      "beginner": 82
+    },
+    "language_distribution": {
+      "en": 917,
+      "de": 83
+    },
+    "unique_subcategories": 20,
+    "unique_industries": 12,
+    "unique_visual_styles": 30,
+    "unique_motion_styles": 20,
+    "unique_layout_styles": 24,
+    "audience_distribution": {
+      "ai_builder": 219,
+      "fullstack_developer": 82,
+      "frontend_developer": 416,
+      "designer": 100,
+      "product_designer": 89,
+      "founder": 94
+    },
+    "avg_specificity_score": 8.97,
+    "avg_originality_score": 8.56,
+    "avg_implementation_clarity_score": 8.99,
+    "avg_website_readiness_score": 8.99
+  },
+  "education_learning": {
+    "count": 1000,
+    "difficulty_distribution": {
+      "beginner": 100,
+      "intermediate": 300,
+      "advanced": 450,
+      "expert": 150
+    },
+    "language_distribution": {
+      "en": 900,
+      "de": 100
+    },
+    "unique_subcategories": 20,
+    "unique_industries": 5,
+    "unique_visual_styles": 25,
+    "unique_motion_styles": 25,
+    "unique_layout_styles": 25,
+    "audience_distribution": {
+      "teacher": 625,
+      "frontend_developer": 375
+    },
+    "avg_specificity_score": 8.97,
+    "avg_originality_score": 8.49,
+    "avg_implementation_clarity_score": 8.99,
+    "avg_website_readiness_score": 9.0
+  },
+  "mobile_apps": {
+    "count": 1000,
+    "difficulty_distribution": {
+      "beginner": 100,
+      "intermediate": 300,
+      "advanced": 460,
+      "expert": 140
+    },
+    "language_distribution": {
+      "de": 100,
+      "en": 900
+    },
+    "unique_subcategories": 20,
+    "unique_industries": 1,
+    "unique_visual_styles": 20,
+    "unique_motion_styles": 20,
+    "unique_layout_styles": 20,
+    "audience_distribution": {
+      "frontend_developer": 334,
+      "designer": 167,
+      "product_designer": 167,
+      "founder": 332
+    },
+    "avg_specificity_score": 8.47,
+    "avg_originality_score": 8.55,
+    "avg_implementation_clarity_score": 8.51,
+    "avg_website_readiness_score": 8.98
+  },
+  "games_interactive": {
+    "count": 1000,
+    "difficulty_distribution": {
+      "beginner": 100,
+      "intermediate": 301,
+      "advanced": 449,
+      "expert": 150
+    },
+    "language_distribution": {
+      "de": 50,
+      "en": 950
+    },
+    "unique_subcategories": 20,
+    "unique_industries": 1,
+    "unique_visual_styles": 28,
+    "unique_motion_styles": 22,
+    "unique_layout_styles": 23,
+    "audience_distribution": {
+      "game_developer": 1000
+    },
+    "avg_specificity_score": 8.51,
+    "avg_originality_score": 8.55,
+    "avg_implementation_clarity_score": 8.51,
+    "avg_website_readiness_score": 8.99
+  },
+  "data_visualization": {
+    "count": 1000,
+    "difficulty_distribution": {
+      "expert": 153,
+      "intermediate": 310,
+      "advanced": 438,
+      "beginner": 99
+    },
+    "language_distribution": {
+      "en": 896,
+      "de": 104
+    },
+    "unique_subcategories": 20,
+    "unique_industries": 30,
+    "unique_visual_styles": 53,
+    "unique_motion_styles": 54,
+    "unique_layout_styles": 53,
+    "audience_distribution": {
+      "fullstack_developer": 180,
+      "ai_builder": 73,
+      "frontend_developer": 579,
+      "designer": 76,
+      "product_designer": 92
+    },
+    "avg_specificity_score": 8.64,
+    "avg_originality_score": 7.53,
+    "avg_implementation_clarity_score": 8.69,
+    "avg_website_readiness_score": 8.54
+  }
+}

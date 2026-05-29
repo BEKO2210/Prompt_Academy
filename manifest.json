@@ -1,0 +1,67 @@
+{
+  "dataset_name": "Prompt Library 10000",
+  "version": "1.0.0",
+  "total_prompts": 10000,
+  "categories": [
+    {
+      "category": "landing_pages",
+      "file": "data/01_landing_pages.jsonl",
+      "count": 1000
+    },
+    {
+      "category": "ui_components",
+      "file": "data/02_ui_components.jsonl",
+      "count": 1000
+    },
+    {
+      "category": "saas_dashboards",
+      "file": "data/03_saas_dashboards.jsonl",
+      "count": 1000
+    },
+    {
+      "category": "ecommerce",
+      "file": "data/04_ecommerce.jsonl",
+      "count": 1000
+    },
+    {
+      "category": "portfolio_personal_brand",
+      "file": "data/05_portfolio_personal_brand.jsonl",
+      "count": 1000
+    },
+    {
+      "category": "ai_tools_agents",
+      "file": "data/06_ai_tools_agents.jsonl",
+      "count": 1000
+    },
+    {
+      "category": "education_learning",
+      "file": "data/07_education_learning.jsonl",
+      "count": 1000
+    },
+    {
+      "category": "mobile_apps",
+      "file": "data/08_mobile_apps.jsonl",
+      "count": 1000
+    },
+    {
+      "category": "games_interactive",
+      "file": "data/09_games_interactive.jsonl",
+      "count": 1000
+    },
+    {
+      "category": "data_visualization",
+      "file": "data/10_data_visualization.jsonl",
+      "count": 1000
+    }
+  ],
+  "format": "jsonl",
+  "schema": "schema/prompt.schema.json",
+  "created_for": "website_prompt_library",
+  "quality_gates": {
+    "json_valid": true,
+    "schema_valid": true,
+    "duplicates_removed": true,
+    "minimum_total_reached": true,
+    "minimum_per_category_reached": true
+  }
+}

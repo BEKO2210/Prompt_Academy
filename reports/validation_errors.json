@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-05-29T00:00:00Z",
+  "total_prompts": 10000,
+  "total_categories": 10,
+  "invalid_lines": 0,
+  "total_errors": 0,
+  "duplicate_ids": 0,
+  "duplicate_slugs": 0,
+  "duplicate_titles": 0,
+  "first5_duplicates": 0,
+  "category_counts": {
+    "landing_pages": 1000,
+    "ui_components": 1000,
+    "saas_dashboards": 1000,
+    "ecommerce": 1000,
+    "portfolio_personal_brand": 1000,
+    "ai_tools_agents": 1000,
+    "education_learning": 1000,
+    "mobile_apps": 1000,
+    "games_interactive": 1000,
+    "data_visualization": 1000
+  },
+  "difficulty_distribution": {
+    "expert": 1474,
+    "intermediate": 3008,
+    "advanced": 4521,
+    "beginner": 997
+  },
+  "language_distribution": {
+    "de": 857,
+    "en": 9143
+  },
+  "errors": [],
+  "overall_result": "PASS"
+}

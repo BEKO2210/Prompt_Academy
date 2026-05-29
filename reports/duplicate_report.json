@@ -1,0 +1,840 @@
+{
+  "timestamp": "2026-05-29T00:00:00Z",
+  "total_prompts_analyzed": 10000,
+  "exact_fingerprint_duplicates": {
+    "count": 0,
+    "details": []
+  },
+  "duplicate_titles": {
+    "count": 0,
+    "details": []
+  },
+  "duplicate_slugs": {
+    "count": 0,
+    "details": []
+  },
+  "duplicate_first_sentences": {
+    "count": 26,
+    "details": [
+      {
+        "sentence": "Develop a pricing page using an asymmetric bento grid with mixed-size cells for plans, feature compa",
+        "ids": [
+          "PRM-000067",
+          "PRM-000087"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Map out a waitlist page with a hero signup section followed by scroll-reveal feature teaser cards",
+        "ids": [
+          "PRM-000107",
+          "PRM-000127"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Flesh out a waitlist page with a large circular progress ring in the center showing how close the pr",
+        "ids": [
+          "PRM-000111",
+          "PRM-000131"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Pull together an agency landing page with parallax team portraits where each member's photo has dept",
+        "ids": [
+          "PRM-000218",
+          "PRM-000238"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Construct a vertical SaaS homepage tailored to a specific industry with industry terminology, compli",
+        "ids": [
+          "PRM-000270",
+          "PRM-000290"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Tailor a community-first startup landing page with a member wall, community stats, discussion highli",
+        "ids": [
+          "PRM-000306",
+          "PRM-000326"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Prototype a charity gala event landing page with donation tiers, sponsor recognition, event details,",
+        "ids": [
+          "PRM-000378",
+          "PRM-000398"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Prototype a careers landing page with a culture video hero, value proposition cards, and an open rol",
+        "ids": [
+          "PRM-000501",
+          "PRM-000541"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Launch a careers page with a team matching preview showing potential teammates, team culture fit ind",
+        "ids": [
+          "PRM-000520",
+          "PRM-000540"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Structure a senior living community page with lifestyle photography, care level options, floor plans",
+        "ids": [
+          "PRM-000614",
+          "PRM-000634"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Orchestrate a sports performance training page with athlete assessments, program tiers by sport, per",
+        "ids": [
+          "PRM-000708",
+          "PRM-000728"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Draw up a fitness franchise opportunity page with investment details, territory map, franchisee test",
+        "ids": [
+          "PRM-000719",
+          "PRM-000739"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Produce a flight booking landing page with a search form, popular destinations grid, fare comparison",
+        "ids": [
+          "PRM-000754",
+          "PRM-000794"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Build out a law firm page with an AI legal assistant chatbot, case evaluation tool, appointment book",
+        "ids": [
+          "PRM-000871",
+          "PRM-000892"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Put together a map visualizations interface for the fashion industry",
+        "ids": [
+          "PRM-009134",
+          "PRM-009141"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Realize a real time data displays interface for the fintech industry",
+        "ids": [
+          "PRM-009372",
+          "PRM-009389"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Put together a gauge displays interface for the real estate industry",
+        "ids": [
+          "PRM-009551",
+          "PRM-009584"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Craft a gauge displays interface for the agriculture industry",
+        "ids": [
+          "PRM-009570",
+          "PRM-009596"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Design a flow diagrams interface for the gaming industry",
+        "ids": [
+          "PRM-009652",
+          "PRM-009653"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Fashion a hierarchical visuals interface for the retail industry",
+        "ids": [
+          "PRM-009703",
+          "PRM-009726"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Prototype a hierarchical visuals interface for the travel industry",
+        "ids": [
+          "PRM-009716",
+          "PRM-009735"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Conceive a 3d data visuals interface for the government industry",
+        "ids": [
+          "PRM-009763",
+          "PRM-009792"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Craft a interactive filters interface for the aerospace industry",
+        "ids": [
+          "PRM-009820",
+          "PRM-009837",
+          "PRM-009842"
+        ],
+        "occurrences": 3
+      },
+      {
+        "sentence": "Design a survey result displays interface for the ecommerce industry",
+        "ids": [
+          "PRM-009919",
+          "PRM-009934"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Tune a survey result displays interface for the logistics industry",
+        "ids": [
+          "PRM-009924",
+          "PRM-009937"
+        ],
+        "occurrences": 2
+      },
+      {
+        "sentence": "Reimagine a financial charts interface for the insurance industry",
+        "ids": [
+          "PRM-009956",
+          "PRM-009998"
+        ],
+        "occurrences": 2
+      }
+    ]
+  },
+  "overused_first5_patterns": {
+    "count": 0,
+    "details": []
+  },
+  "high_similarity_pairs": {
+    "count": 9846,
+    "pairs": [
+      {
+        "id1": "PRM-000001",
+        "id2": "PRM-000021",
+        "similarity": 0.716,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000001",
+        "id2": "PRM-000041",
+        "similarity": 0.711,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000003",
+        "id2": "PRM-000043",
+        "similarity": 0.739,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000005",
+        "id2": "PRM-000045",
+        "similarity": 0.711,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000006",
+        "id2": "PRM-000046",
+        "similarity": 0.709,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000007",
+        "id2": "PRM-000027",
+        "similarity": 0.705,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000007",
+        "id2": "PRM-000047",
+        "similarity": 0.71,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000011",
+        "id2": "PRM-000031",
+        "similarity": 0.768,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000012",
+        "id2": "PRM-000032",
+        "similarity": 0.713,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000015",
+        "id2": "PRM-000035",
+        "similarity": 0.782,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000019",
+        "id2": "PRM-000039",
+        "similarity": 0.814,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000020",
+        "id2": "PRM-000040",
+        "similarity": 0.748,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000021",
+        "id2": "PRM-000041",
+        "similarity": 0.71,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000022",
+        "id2": "PRM-000042",
+        "similarity": 0.713,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000023",
+        "id2": "PRM-000043",
+        "similarity": 0.702,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000024",
+        "id2": "PRM-000044",
+        "similarity": 0.786,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000025",
+        "id2": "PRM-000045",
+        "similarity": 0.773,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000026",
+        "id2": "PRM-000046",
+        "similarity": 0.743,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000028",
+        "id2": "PRM-000048",
+        "similarity": 0.796,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000051",
+        "id2": "PRM-000071",
+        "similarity": 0.739,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000053",
+        "id2": "PRM-000093",
+        "similarity": 0.709,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000060",
+        "id2": "PRM-000100",
+        "similarity": 0.733,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000064",
+        "id2": "PRM-000084",
+        "similarity": 0.766,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000068",
+        "id2": "PRM-000088",
+        "similarity": 0.763,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000101",
+        "id2": "PRM-000141",
+        "similarity": 0.704,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000102",
+        "id2": "PRM-000142",
+        "similarity": 0.704,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000103",
+        "id2": "PRM-000123",
+        "similarity": 0.707,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000103",
+        "id2": "PRM-000143",
+        "similarity": 0.763,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000108",
+        "id2": "PRM-000128",
+        "similarity": 0.745,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000108",
+        "id2": "PRM-000148",
+        "similarity": 0.736,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000114",
+        "id2": "PRM-000134",
+        "similarity": 0.734,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000118",
+        "id2": "PRM-000138",
+        "similarity": 0.724,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000121",
+        "id2": "PRM-000141",
+        "similarity": 0.757,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000122",
+        "id2": "PRM-000142",
+        "similarity": 0.833,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000123",
+        "id2": "PRM-000143",
+        "similarity": 0.714,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000126",
+        "id2": "PRM-000146",
+        "similarity": 0.786,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000127",
+        "id2": "PRM-000147",
+        "similarity": 0.74,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000128",
+        "id2": "PRM-000148",
+        "similarity": 0.745,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000151",
+        "id2": "PRM-000171",
+        "similarity": 0.701,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000155",
+        "id2": "PRM-000175",
+        "similarity": 0.755,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000155",
+        "id2": "PRM-000195",
+        "similarity": 0.723,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000161",
+        "id2": "PRM-000181",
+        "similarity": 0.755,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000162",
+        "id2": "PRM-000182",
+        "similarity": 0.704,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000166",
+        "id2": "PRM-000186",
+        "similarity": 0.755,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000175",
+        "id2": "PRM-000195",
+        "similarity": 0.771,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000202",
+        "id2": "PRM-000222",
+        "similarity": 0.773,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000202",
+        "id2": "PRM-000242",
+        "similarity": 0.737,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000205",
+        "id2": "PRM-000225",
+        "similarity": 0.899,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000205",
+        "id2": "PRM-000245",
+        "similarity": 0.781,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000206",
+        "id2": "PRM-000226",
+        "similarity": 0.717,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000207",
+        "id2": "PRM-000247",
+        "similarity": 0.718,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000209",
+        "id2": "PRM-000229",
+        "similarity": 0.75,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000209",
+        "id2": "PRM-000249",
+        "similarity": 0.73,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000212",
+        "id2": "PRM-000232",
+        "similarity": 0.724,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000214",
+        "id2": "PRM-000234",
+        "similarity": 0.729,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000217",
+        "id2": "PRM-000237",
+        "similarity": 0.738,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000218",
+        "id2": "PRM-000238",
+        "similarity": 0.727,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000221",
+        "id2": "PRM-000241",
+        "similarity": 0.738,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000222",
+        "id2": "PRM-000242",
+        "similarity": 0.762,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000225",
+        "id2": "PRM-000245",
+        "similarity": 0.773,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000227",
+        "id2": "PRM-000247",
+        "similarity": 0.776,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000228",
+        "id2": "PRM-000248",
+        "similarity": 0.739,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000229",
+        "id2": "PRM-000249",
+        "similarity": 0.787,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000230",
+        "id2": "PRM-000250",
+        "similarity": 0.722,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000254",
+        "id2": "PRM-000274",
+        "similarity": 0.727,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000254",
+        "id2": "PRM-000294",
+        "similarity": 0.724,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000255",
+        "id2": "PRM-000275",
+        "similarity": 0.747,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000255",
+        "id2": "PRM-000295",
+        "similarity": 0.726,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000256",
+        "id2": "PRM-000276",
+        "similarity": 0.73,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000257",
+        "id2": "PRM-000297",
+        "similarity": 0.75,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000258",
+        "id2": "PRM-000278",
+        "similarity": 0.753,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000258",
+        "id2": "PRM-000298",
+        "similarity": 0.714,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000259",
+        "id2": "PRM-000279",
+        "similarity": 0.765,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000260",
+        "id2": "PRM-000300",
+        "similarity": 0.709,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000261",
+        "id2": "PRM-000281",
+        "similarity": 0.785,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000263",
+        "id2": "PRM-000283",
+        "similarity": 0.761,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000264",
+        "id2": "PRM-000284",
+        "similarity": 0.753,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000265",
+        "id2": "PRM-000285",
+        "similarity": 0.713,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000268",
+        "id2": "PRM-000288",
+        "similarity": 0.792,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000270",
+        "id2": "PRM-000290",
+        "similarity": 0.75,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000271",
+        "id2": "PRM-000291",
+        "similarity": 0.713,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000272",
+        "id2": "PRM-000292",
+        "similarity": 0.755,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000273",
+        "id2": "PRM-000293",
+        "similarity": 0.773,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000274",
+        "id2": "PRM-000294",
+        "similarity": 0.709,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000275",
+        "id2": "PRM-000295",
+        "similarity": 0.722,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000280",
+        "id2": "PRM-000300",
+        "similarity": 0.745,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000301",
+        "id2": "PRM-000321",
+        "similarity": 0.706,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000301",
+        "id2": "PRM-000341",
+        "similarity": 0.737,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000302",
+        "id2": "PRM-000342",
+        "similarity": 0.742,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000303",
+        "id2": "PRM-000323",
+        "similarity": 0.737,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000303",
+        "id2": "PRM-000343",
+        "similarity": 0.72,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000304",
+        "id2": "PRM-000344",
+        "similarity": 0.747,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000305",
+        "id2": "PRM-000345",
+        "similarity": 0.701,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000306",
+        "id2": "PRM-000326",
+        "similarity": 0.719,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000306",
+        "id2": "PRM-000346",
+        "similarity": 0.702,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000307",
+        "id2": "PRM-000327",
+        "similarity": 0.752,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000308",
+        "id2": "PRM-000328",
+        "similarity": 0.719,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000309",
+        "id2": "PRM-000349",
+        "similarity": 0.747,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000311",
+        "id2": "PRM-000331",
+        "similarity": 0.72,
+        "category": "landing_pages"
+      },
+      {
+        "id1": "PRM-000312",
+        "id2": "PRM-000332",
+        "similarity": 0.707,
+        "category": "landing_pages"
+      }
+    ]
+  },
+  "overall_status": "NEEDS_REVIEW"
+}

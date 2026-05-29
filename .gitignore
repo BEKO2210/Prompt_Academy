@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+site/dist/
+dist/
+
+# Generated site data (rebuilt from data/*.jsonl by `npm run data`)
+site/public/data/
+
+# Logs / env / OS
+*.log
+.DS_Store
+.env
+.env.*
+
+# Local virtualenvs / tooling
+qavenv/
+.venv/
+
+# Local Claude Code config (machine-specific)
+.claude/
