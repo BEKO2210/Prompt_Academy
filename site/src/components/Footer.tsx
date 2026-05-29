@@ -9,7 +9,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <img
-              src={`${import.meta.env.BASE_URL}brand-logo.png`}
+              src={`${import.meta.env.BASE_URL}logo.png`}
               alt="Prompt Library 10000"
               className="h-16 w-auto"
             />

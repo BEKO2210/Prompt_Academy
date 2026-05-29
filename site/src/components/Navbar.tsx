@@ -57,7 +57,7 @@ export function Navbar() {
       >
         <Link to="/" className="group flex items-center" aria-label="Prompt Library 10000 — Startseite">
           <img
-            src={`${import.meta.env.BASE_URL}brand-logo.png`}
+            src={`${import.meta.env.BASE_URL}logo.png`}
             alt="Prompt Library 10000"
             className="h-10 w-auto transition-transform duration-300 group-hover:scale-[1.03]"
           />
