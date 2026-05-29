@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { cn } from "../lib/cn";
 import { Button } from "./ui/Button";
+import { setScrollLock } from "../lib/useLenis";
 
 const LINKS = [
   { label: "Kategorien", href: "/#categories" },
@@ -26,6 +27,12 @@ export function Navbar() {
   }, []);
 
   useEffect(() => setOpen(false), [pathname]);
+
+  // Lock background scroll while the mobile sheet is open.
+  useEffect(() => {
+    setScrollLock(open);
+    return () => setScrollLock(false);
+  }, [open]);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
@@ -97,36 +104,57 @@ export function Navbar() {
         </button>
       </motion.nav>
 
-      {/* Mobile sheet */}
+      {/* Mobile sheet + full-screen backdrop. The backdrop dims and blurs the
+          whole page behind, and the sheet itself is fully opaque, so the menu
+          text is never overlaid by page content showing through. */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25 }}
-            className="glass-strong absolute inset-x-4 top-20 z-50 rounded-2xl p-3 md:hidden"
-          >
-            {LINKS.map((l) =>
-              l.to ? (
-                <Link
-                  key={l.label}
-                  to={l.to}
-                  className="block rounded-xl px-4 py-3 text-sm text-slate-200 hover:bg-white/5"
-                >
-                  {l.label}
-                </Link>
-              ) : (
-                <a
-                  key={l.label}
-                  href={l.href}
-                  className="block rounded-xl px-4 py-3 text-sm text-slate-200 hover:bg-white/5"
-                >
-                  {l.label}
-                </a>
-              ),
-            )}
-          </motion.div>
+          <>
+            <motion.button
+              type="button"
+              aria-label="Menü schließen"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setOpen(false)}
+              className="fixed inset-0 z-0 cursor-default bg-ink-950/80 backdrop-blur-xl md:hidden"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
+              className="absolute inset-x-4 top-20 z-50 overflow-hidden rounded-2xl border border-white/10 bg-ink-900 p-3 shadow-card md:hidden"
+            >
+              {LINKS.map((l) =>
+                l.to ? (
+                  <Link
+                    key={l.label}
+                    to={l.to}
+                    className="block rounded-xl px-4 py-3 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"
+                  >
+                    {l.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={l.label}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="block rounded-xl px-4 py-3 text-base font-medium text-slate-200 transition-colors hover:bg-white/5 hover:text-white"
+                  >
+                    {l.label}
+                  </a>
+                ),
+              )}
+              <div className="mt-2 border-t border-white/10 pt-3">
+                <Button to="/library" className="w-full">
+                  Explore
+                  <ArrowUpRight className="h-4 w-4" />
+                </Button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

@@ -30,7 +30,7 @@ export function StatBand({ stats }: { stats: Stats | null }) {
 
   return (
     <section className="container-px py-10">
-      <Reveal className="glass holo-border overflow-hidden rounded-3xl p-8 sm:p-10">
+      <Reveal className="glass holo-border overflow-hidden rounded-3xl p-6 sm:p-10">
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           {/* Big numbers */}
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:border-r lg:border-white/10 lg:pr-8">
