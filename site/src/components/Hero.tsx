@@ -31,8 +31,8 @@ export function Hero({ stats }: { stats: Stats | null }) {
   ];
 
   return (
-    <section className="relative overflow-hidden pt-36 pb-16 sm:pt-44">
-      <div className="container-px grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+    <section className="relative overflow-hidden pt-28 pb-16 sm:pt-44">
+      <div className="container-px grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
         {/* --- LEFT --- */}
         <motion.div
           initial="hidden"
@@ -49,7 +49,7 @@ export function Hero({ stats }: { stats: Stats | null }) {
           <motion.h1
             variants={itemV}
             custom={1}
-            className="text-balance text-5xl font-bold leading-[0.95] tracking-tightest sm:text-6xl lg:text-7xl"
+            className="text-balance text-[2.5rem] font-bold leading-[1.05] tracking-tightest sm:text-6xl sm:leading-[0.95] lg:text-7xl"
           >
             Generiere Interfaces aus{" "}
             <span className="holo-text-anim text-glow">10.000</span>{" "}
@@ -113,7 +113,7 @@ export function Hero({ stats }: { stats: Stats | null }) {
             initial={{ opacity: 0, y: 40, rotateX: 10 }}
             animate={{ opacity: 1, y: 0, rotateX: 0 }}
             transition={{ duration: 0.9, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="glass-strong holo-border relative overflow-hidden rounded-3xl p-7 shadow-card"
+            className="glass-strong holo-border relative overflow-hidden rounded-3xl p-5 shadow-card sm:p-7"
           >
             <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-holo-violet/20 blur-3xl" />
             <div className="relative">
