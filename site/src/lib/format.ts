@@ -37,8 +37,8 @@ export const DIFFICULTY: Record<Difficulty, DifficultyMeta> = {
   },
   expert: {
     label: "Expert",
-    className: "border-holo-magenta/30 bg-holo-magenta/10 text-holo-magenta",
-    dot: "bg-holo-magenta",
+    className: "border-holo-amber/40 bg-holo-amber/10 text-holo-amber",
+    dot: "bg-holo-amber",
   },
 };
 

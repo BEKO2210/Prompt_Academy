@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
+// Active Lenis instance, so overlays (e.g. the prompt drawer) can pause it.
+let activeLenis: Lenis | null = null;
+
 /** Cinematic smooth scrolling. Auto-disabled when prefers-reduced-motion. */
 export function useSmoothScroll(enabled = true) {
   useEffect(() => {
@@ -12,6 +15,7 @@ export function useSmoothScroll(enabled = true) {
       smoothWheel: true,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
+    activeLenis = lenis;
 
     let raf = 0;
     const loop = (time: number) => {
@@ -23,6 +27,19 @@ export function useSmoothScroll(enabled = true) {
     return () => {
       cancelAnimationFrame(raf);
       lenis.destroy();
+      if (activeLenis === lenis) activeLenis = null;
     };
   }, [enabled]);
+}
+
+/** Lock/unlock page scroll — pauses Lenis (which bypasses body overflow) AND
+ *  native scroll, so background content stays put behind modals/drawers. */
+export function setScrollLock(locked: boolean) {
+  if (activeLenis) {
+    if (locked) activeLenis.stop();
+    else activeLenis.start();
+  }
+  if (typeof document !== "undefined") {
+    document.body.style.overflow = locked ? "hidden" : "";
+  }
 }

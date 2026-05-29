@@ -14,10 +14,11 @@ export default {
         holo: {
           cyan: "#22D3EE",
           sky: "#38BDF8",
-          violet: "#8B5CF6",
-          iris: "#A78BFA",
-          magenta: "#E879F9",
+          violet: "#2DD4BF", // teal (kept name for legacy refs — no purple)
+          iris: "#5EEAD4", // light teal
+          magenta: "#34D399", // emerald (kept name for legacy refs — no purple)
           mint: "#34F5C5",
+          amber: "#FBBF24", // warm accent
         },
       },
       fontFamily: {
@@ -32,15 +33,15 @@ export default {
         container: "1240px",
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(255,255,255,0.06), 0 8px 40px -8px rgba(139,92,246,0.35)",
+        glow: "0 0 0 1px rgba(255,255,255,0.06), 0 8px 40px -8px rgba(45,212,191,0.35)",
         "glow-cyan": "0 0 40px -6px rgba(34,211,238,0.45)",
-        "glow-lg": "0 0 80px -10px rgba(139,92,246,0.5)",
+        "glow-lg": "0 0 80px -10px rgba(45,212,191,0.5)",
         card: "0 1px 0 0 rgba(255,255,255,0.05) inset, 0 20px 60px -20px rgba(0,0,0,0.7)",
       },
       backgroundImage: {
-        holo: "linear-gradient(110deg, #22D3EE 0%, #8B5CF6 50%, #E879F9 100%)",
+        holo: "linear-gradient(110deg, #22D3EE 0%, #38BDF8 50%, #34F5C5 100%)",
         "holo-soft":
-          "linear-gradient(110deg, rgba(34,211,238,0.18), rgba(139,92,246,0.18), rgba(232,121,249,0.18))",
+          "linear-gradient(110deg, rgba(34,211,238,0.18), rgba(56,189,248,0.18), rgba(52,245,197,0.18))",
         "grid-fade": "linear-gradient(to bottom, rgba(5,6,10,0) 0%, #05060A 80%)",
       },
       keyframes: {

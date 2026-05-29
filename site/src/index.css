@@ -29,7 +29,7 @@
   }
 
   ::selection {
-    background: rgba(139, 92, 246, 0.35);
+    background: rgba(45, 212, 191, 0.35);
     color: #fff;
   }
 
@@ -42,12 +42,12 @@
     background: #05060a;
   }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(#22d3ee55, #8b5cf655);
+    background: linear-gradient(#22d3ee55, #34f5c555);
     border-radius: 999px;
     border: 2px solid #05060a;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(#22d3ee, #8b5cf6);
+    background: linear-gradient(#22d3ee, #34f5c5);
   }
 }
 
@@ -101,8 +101,8 @@
     background: linear-gradient(
       130deg,
       rgba(34, 211, 238, 0.6),
-      rgba(139, 92, 246, 0.15),
-      rgba(232, 121, 249, 0.6)
+      rgba(56, 189, 248, 0.15),
+      rgba(52, 245, 197, 0.6)
     );
     -webkit-mask:
       linear-gradient(#fff 0 0) content-box,
@@ -160,7 +160,7 @@
   }
 
   .text-glow {
-    text-shadow: 0 0 30px rgba(139, 92, 246, 0.45);
+    text-shadow: 0 0 30px rgba(34, 211, 238, 0.45);
   }
 }
 

@@ -1,6 +1,7 @@
 // PromptDrawer — slide-in detail panel showing the full prompt record.
 // Glass + holo language from 21st.dev, wired to fetchPromptById.
 import { useEffect, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Copy, Check, Ban, ListChecks, Palette, Cpu } from "lucide-react";
 import type { IndexItem, FullPrompt } from "../lib/data";
@@ -8,6 +9,7 @@ import { fetchPromptById } from "../lib/data";
 import { categoryMeta } from "../lib/categories";
 import { difficultyMeta, humanize } from "../lib/format";
 import { useClipboard } from "../lib/useClipboard";
+import { setScrollLock } from "../lib/useLenis";
 import { cn } from "../lib/cn";
 
 interface Props {
@@ -53,22 +55,22 @@ export function PromptDrawer({ item, onClose }: Props) {
     };
   }, [item]);
 
-  // Close on Escape + lock scroll
+  // Close on Escape + lock scroll (pauses Lenis so the background stays put)
   useEffect(() => {
     if (!item) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
+    setScrollLock(true);
     return () => {
       window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
+      setScrollLock(false);
     };
   }, [item, onClose]);
 
   const cat = item ? categoryMeta(item.c) : null;
   const diff = item ? difficultyMeta(item.d) : null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {item && (
         <>
@@ -77,14 +79,14 @@ export function PromptDrawer({ item, onClose }: Props) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-[60] bg-ink-950/70 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] bg-ink-950/85 backdrop-blur-2xl"
           />
           <motion.aside
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 260, damping: 32 }}
-            className="glass-strong fixed inset-y-0 right-0 z-[61] flex w-full max-w-xl flex-col border-l border-white/10"
+            className="fixed inset-y-0 right-0 z-[61] flex w-full max-w-xl flex-col border-l border-white/10 bg-ink-950/95 backdrop-blur-2xl shadow-[-20px_0_60px_-20px_rgba(0,0,0,0.8)]"
           >
             {/* Header */}
             <div className="flex items-start justify-between gap-4 border-b border-white/10 p-6">
@@ -281,6 +283,7 @@ export function PromptDrawer({ item, onClose }: Props) {
           </motion.aside>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
