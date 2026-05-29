@@ -59,11 +59,15 @@ export function Navbar() {
             : "border border-transparent",
         )}
       >
-        <Link to="/" className="group flex items-center" aria-label="Prompt Library 10000 — Startseite">
+        {/* The link keeps a 40px layout height (h-10), so the header bar does
+            NOT grow taller or wider. The logo itself is rendered 40% larger
+            (h-14 = 56px) and centered, overflowing symmetrically into the bar's
+            existing vertical padding. */}
+        <Link to="/" className="group flex h-10 items-center" aria-label="Prompt Library 10000 — Startseite">
           <img
             src={`${import.meta.env.BASE_URL}logo.png`}
             alt="Prompt Library 10000"
-            className="h-10 w-auto transition-transform duration-300 group-hover:scale-[1.03]"
+            className="block h-14 w-auto shrink-0 transition-transform duration-300 group-hover:scale-[1.03]"
           />
         </Link>
 
