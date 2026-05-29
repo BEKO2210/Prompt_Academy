@@ -20,7 +20,11 @@ export function Counter({
   className,
 }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  // Negative margin only on the bottom edge. A symmetric "-60px" also insets the
+  // left/right edges, which created a dead zone: the observed span initially holds
+  // just "0" (a few px wide), so left-column counters near the viewport edge never
+  // intersected and stayed stuck at 0 on mobile. Bottom-only avoids that.
+  const inView = useInView(ref, { once: true, margin: "0px 0px -80px 0px" });
   const reduce = useReducedMotion();
   const [val, setVal] = useState(0);
 

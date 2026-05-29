@@ -17,8 +17,12 @@
     /* Constrain the layout viewport: without this on <html> (not just <body>),
        any element wider than the screen lets mobile browsers expand the layout
        viewport to the content width — which activates the lg: breakpoints and
-       renders the desktop layout clipped on phones. */
-    overflow-x: hidden;
+       renders the desktop layout clipped on phones.
+       Use `clip` (not `hidden`): `hidden` forces the cross axis (overflow-y) to
+       compute to `auto`, turning the page into a nested scroll container — that
+       breaks the IntersectionObserver-driven Counters (numbers stuck at 0) and
+       smooth scrolling. `clip` keeps overflow-y `visible`. */
+    overflow-x: clip;
     max-width: 100%;
   }
 
@@ -28,7 +32,7 @@
     position: relative;
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
     text-rendering: optimizeLegibility;
   }
 
