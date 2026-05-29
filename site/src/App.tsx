@@ -23,7 +23,7 @@ export default function App() {
   }, [hash, pathname]);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen w-full overflow-x-hidden">
       <AuroraBackground />
       <Navbar />
       <main className="relative z-10">
