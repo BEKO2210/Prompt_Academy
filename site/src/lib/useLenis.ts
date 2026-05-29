@@ -32,6 +32,12 @@ export function useSmoothScroll(enabled = true) {
   }, [enabled]);
 }
 
+/** Jump to the top of the page (Lenis-aware), e.g. on route change. */
+export function scrollToTop() {
+  if (activeLenis) activeLenis.scrollTo(0, { immediate: true });
+  else if (typeof window !== "undefined") window.scrollTo(0, 0);
+}
+
 /** Lock/unlock page scroll — pauses Lenis (which bypasses body overflow) AND
  *  native scroll, so background content stays put behind modals/drawers. */
 export function setScrollLock(locked: boolean) {

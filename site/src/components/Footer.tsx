@@ -8,14 +8,11 @@ export function Footer() {
       <div className="container-px py-16">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-holo">
-                <span className="font-display text-base font-bold text-ink-950">P</span>
-              </span>
-              <span className="font-display text-sm font-semibold text-slate-100">
-                Prompt Library <span className="holo-text font-bold">10000</span>
-              </span>
-            </div>
+            <img
+              src={`${import.meta.env.BASE_URL}brand-logo.png`}
+              alt="Prompt Library 10000"
+              className="h-16 w-auto"
+            />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">
               10.000 produktionsreife KI-Prompts für Websites, UI-Komponenten,
               Dashboards, Apps & interaktive Experiences — kuratiert,
@@ -57,10 +54,16 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-slate-500 sm:flex-row">
-          <p>© {new Date().getFullYear()} Prompt Library 10000. Dataset v1.0.0.</p>
-          <p className="font-mono">
-            Built with React · Tailwind · Framer Motion · 21st.dev
-          </p>
+          <p>© {new Date().getFullYear()} Prompt Library 10000 · Belkis Aslani</p>
+          <div className="flex items-center gap-5">
+            <Link to="/impressum" className="transition-colors hover:text-white">
+              Impressum
+            </Link>
+            <Link to="/datenschutz" className="transition-colors hover:text-white">
+              Datenschutz
+            </Link>
+          </div>
+          <p className="font-mono">Built with React · Tailwind · 21st.dev</p>
         </div>
       </div>
     </footer>

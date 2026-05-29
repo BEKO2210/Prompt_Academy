@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Opt JS actions into Node.js 24 now (Node 20 runtime is deprecated; forced June 2026).
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # Allow the GITHUB_TOKEN to deploy to Pages and read the repo.
 permissions:
   contents: read
@@ -29,7 +33,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: site/package-lock.json
 

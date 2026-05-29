@@ -29,6 +29,12 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
+      {/* Blurred backdrop so page content scrolling under the header stays
+          legible (no text-over-text). Fades out toward the bottom. */}
+      <div
+        aria-hidden
+        className="mask-fade-b pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink-950/70 to-transparent backdrop-blur-md"
+      />
       <motion.nav
         initial={{ y: -28, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -38,14 +44,12 @@ export function Navbar() {
           scrolled ? "glass-strong shadow-card" : "border border-transparent",
         )}
       >
-        <Link to="/" className="group flex items-center gap-2.5">
-          <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-holo shadow-glow-cyan">
-            <span className="font-display text-base font-bold text-ink-950">P</span>
-          </span>
-          <span className="font-display text-sm font-semibold tracking-tight text-slate-100">
-            Prompt Library
-            <span className="ml-1 holo-text font-bold">10000</span>
-          </span>
+        <Link to="/" className="group flex items-center" aria-label="Prompt Library 10000 — Startseite">
+          <img
+            src={`${import.meta.env.BASE_URL}brand-logo.png`}
+            alt="Prompt Library 10000"
+            className="h-10 w-auto transition-transform duration-300 group-hover:scale-[1.03]"
+          />
         </Link>
 
         {/* Desktop links */}

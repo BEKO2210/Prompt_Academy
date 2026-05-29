@@ -129,8 +129,9 @@ export function PromptDrawer({ item, onClose }: Props) {
               </button>
             </div>
 
-            {/* Body */}
-            <div className="flex-1 overflow-y-auto p-6">
+            {/* Body — data-lenis-prevent lets the mouse wheel scroll the drawer
+                natively while Lenis keeps the page behind locked. */}
+            <div data-lenis-prevent className="flex-1 overflow-y-auto overscroll-contain p-6">
               {loading && (
                 <div className="space-y-3">
                   {[...Array(5)].map((_, i) => (
