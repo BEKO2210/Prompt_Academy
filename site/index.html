@@ -2,14 +2,92 @@
 <html lang="de" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05060A" />
+
+    <!-- SPA redirect: decode the path the 404.html fallback encoded as ?/…,
+         so deep links (e.g. /Prompt_Academy/library) work on GitHub Pages.
+         No-op on a normal homepage load. -->
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+
+    <!-- Primary SEO -->
+    <title>Prompt Library 10000 — 10.000 kuratierte KI-Prompts für Web & Apps</title>
     <meta
       name="description"
-      content="Prompt Library 10000 — eine cinematische Bibliothek aus 10.000 produktionsreifen KI-Prompts für Websites, UI-Komponenten, Dashboards, Apps und mehr."
+      content="10.000 production-ready KI-Prompts für Landing Pages, UI-Komponenten, Dashboards, Apps, Games & Data-Visualization — schema-validiert, qualitätsbewertet (Ø 9,06/10) und sofort kopierbar."
     />
-    <title>Prompt Library 10000 — Cinematic Prompt Engine</title>
+    <meta
+      name="keywords"
+      content="KI-Prompts, AI Prompts, Prompt Library, UI Prompts, Landing Page Prompts, Dashboard Prompts, React, Vue, Svelte, Next.js, Prompt Engineering"
+    />
+    <meta name="author" content="Belkis Aslani" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="canonical" href="https://beko2210.github.io/Prompt_Academy/" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp, …) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Prompt Library 10000" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:url" content="https://beko2210.github.io/Prompt_Academy/" />
+    <meta property="og:title" content="Prompt Library 10000 — 10.000 kuratierte KI-Prompts" />
+    <meta
+      property="og:description"
+      content="Production-ready Prompts für Landing Pages, UI, Dashboards, Apps, Games & Data-Viz — schema-validiert, qualitätsbewertet (Ø 9,06/10) und sofort einsetzbar."
+    />
+    <meta property="og:image" content="https://beko2210.github.io/Prompt_Academy/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Prompt Library 10000 — 10.000 kuratierte KI-Prompts" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Prompt Library 10000 — 10.000 kuratierte KI-Prompts" />
+    <meta
+      name="twitter:description"
+      content="Production-ready KI-Prompts für Web, UI, Dashboards, Apps & mehr — schema-validiert und qualitätsbewertet (Ø 9,06/10)."
+    />
+    <meta name="twitter:image" content="https://beko2210.github.io/Prompt_Academy/og-image.jpg" />
+    <meta name="twitter:image:alt" content="Prompt Library 10000 — 10.000 kuratierte KI-Prompts" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Prompt Library 10000",
+        "alternateName": "Prompt Library 10000 — Cinematic Prompt Engine",
+        "url": "https://beko2210.github.io/Prompt_Academy/",
+        "inLanguage": "de",
+        "description": "10.000 production-ready KI-Prompts für Landing Pages, UI-Komponenten, Dashboards, Apps, Games & Data-Visualization — schema-validiert und qualitätsbewertet.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Prompt Library 10000",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://beko2210.github.io/Prompt_Academy/logo.png"
+          }
+        }
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
