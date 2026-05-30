@@ -115,19 +115,36 @@ export function BentoFeatures({ stats }: { stats: Stats | null }) {
 
         {/* Quality */}
         <Cell className="md:col-span-1 md:row-span-1">
-          <IconBadge>
-            <Gauge className="h-5 w-5" />
-          </IconBadge>
-          <h3 className="font-display text-base font-semibold text-white">
-            Qualitätsbewertet
-          </h3>
-          <div className="mt-auto flex items-end gap-1">
-            <span className="font-display text-4xl font-bold text-white">
-              <Counter to={readiness} decimals={2} />
-            </span>
-            <span className="mb-1 font-mono text-sm text-holo-cyan">/10</span>
+          {/* Decorative render, bled to the card edges on the right and faded
+              into the dark glass with a radial vignette. Sits behind the text. */}
+          <img
+            src={`${import.meta.env.BASE_URL}Qualität.png`}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="pointer-events-none absolute -bottom-6 -right-6 -top-6 z-0 w-[62%] object-cover opacity-70"
+            style={{
+              WebkitMaskImage:
+                "radial-gradient(ellipse 78% 82% at 64% 50%, #000 26%, transparent 76%)",
+              maskImage:
+                "radial-gradient(ellipse 78% 82% at 64% 50%, #000 26%, transparent 76%)",
+            }}
+          />
+          <div className="relative z-10 flex h-full flex-col">
+            <IconBadge>
+              <Gauge className="h-5 w-5" />
+            </IconBadge>
+            <h3 className="font-display text-base font-semibold text-white">
+              Qualitätsbewertet
+            </h3>
+            <div className="mt-auto flex items-end gap-1">
+              <span className="font-display text-4xl font-bold text-white">
+                <Counter to={readiness} decimals={2} />
+              </span>
+              <span className="mb-1 font-mono text-sm text-holo-cyan">/10</span>
+            </div>
+            <p className="text-xs text-slate-500">Ø Website-Readiness</p>
           </div>
-          <p className="text-xs text-slate-500">Ø Website-Readiness</p>
         </Cell>
 
         {/* Big statistic */}
