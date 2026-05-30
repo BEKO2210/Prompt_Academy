@@ -124,10 +124,16 @@ export function BentoFeatures({ stats }: { stats: Stats | null }) {
             loading="lazy"
             className="pointer-events-none absolute -bottom-6 -right-6 -top-6 z-0 w-[62%] object-cover opacity-70"
             style={{
+              // Two intersected mask layers so the render fades out on EVERY
+              // edge — the radial gives the soft vignette, the vertical linear
+              // guarantees the top/bottom go fully transparent (no hard line
+              // where the card clips the image).
               WebkitMaskImage:
-                "radial-gradient(ellipse 78% 82% at 64% 50%, #000 26%, transparent 76%)",
+                "radial-gradient(ellipse 80% 78% at 64% 50%, #000 26%, transparent 80%), linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%)",
+              WebkitMaskComposite: "source-in",
               maskImage:
-                "radial-gradient(ellipse 78% 82% at 64% 50%, #000 26%, transparent 76%)",
+                "radial-gradient(ellipse 80% 78% at 64% 50%, #000 26%, transparent 80%), linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%)",
+              maskComposite: "intersect",
             }}
           />
           <div className="relative z-10 flex h-full flex-col">
