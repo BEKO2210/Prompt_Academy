@@ -80,6 +80,21 @@ export interface EvaluationResult {
 export type HumanVerdicts = Readonly<Record<string, "pass" | "fail">>;
 
 /**
+ * Drop UNCERTAIN judgements before they reach the evaluator.
+ *
+ * An uncertain proposition is unjudged, so the check stays `unresolved` and the
+ * task stays `pending`. Coercing it to either verdict would violate the frozen
+ * missing-measurement rule at the last step, where it is least visible.
+ */
+export function withheldUncertain(
+  raw: Readonly<Record<string, "pass" | "fail" | "uncertain">>,
+): HumanVerdicts {
+  const out: Record<string, "pass" | "fail"> = {};
+  for (const [k, v] of Object.entries(raw)) if (v !== "uncertain") out[k] = v;
+  return out;
+}
+
+/**
  * THE FROZEN COMBINATION RULE.
  *
  * Written here, once, before any arm has been run, and identical for every arm.

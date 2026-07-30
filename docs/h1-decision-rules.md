@@ -66,3 +66,41 @@ Four of these six lead to building **less** than planned, and one to stopping. T
   such, as the four ENG-015 fixes were.
 - `E_concat` is concatenation. If it wins, that justifies investigating composition; it does not
   validate a compiler that has not been built.
+
+---
+
+# Capacity gate — written before any capacity call (ENG-017 §6)
+
+## What it is for
+
+The pilot produced 1 passing task out of 40 cells. Two very different worlds explain that:
+
+- **(A)** a 7B local model does not clear the bar these tasks set
+- **(B)** *nothing* clears it, because the tasks, the output contract, the output budget or the
+  evaluation design cap what any model can score
+
+Only (B) is a reason to change the instrument. Telling them apart requires a stronger model, run on
+the already-spent `DEV_PILOT` tasks, arm A only. It is **not an H1 arm** and never enters the model
+comparison.
+
+## The threshold, fixed in advance
+
+"Significantly better" uses the same effect scale as the decision tree above, on the **secondary**
+metric because the primary is the one suspected of flooring:
+
+| reference model vs qwen2.5-coder:7b-16k | reading |
+|---|---|
+| Task-Normalized Compliance **+0.20 or more** | **PASS.** The instrument has measurable headroom; clean-DEV H1 may proceed with the 7B model. |
+| between +0.10 and +0.20 | **INCONCLUSIVE.** Report and decide explicitly; do not treat as a pass. |
+| **less than +0.10**, or Independent Task Success still ≤ 1/10 | **FAIL.** Do not start clean-DEV H1. Investigate task difficulty, output contract, output budget and evaluation design first. |
+
+Independent Task Success is reported alongside but does not decide the gate on its own: at 1/10 it
+has too little resolution to move meaningfully.
+
+## What the capacity result may NOT be used for
+
+- **Not** to relax a check because the strong model missed it. The only admissible reason to change
+  a check remains the one used for the four ENG-015 fixes: the check and its criterion objectively
+  contradict each other.
+- **Not** as evidence about any H1 hypothesis. Arm A only, on tasks already spent.
+- **Not** to reselect tasks.

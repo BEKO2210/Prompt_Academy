@@ -18,6 +18,8 @@ import { ELIGIBILITY_VERSION } from "../core/eligibility.ts";
 import { REVIEW_PROTOCOL_VERSION } from "../core/humanReview.ts";
 import { FIELD_SPLIT_VERSION } from "../core/fieldSplit.ts";
 import { FORMULATION_VERSION, MIN_DOCUMENT_FREQUENCY } from "../core/queryFormulation.ts";
+import { METRICS_VERSION } from "../core/metrics.ts";
+import { DEDUP_VERSION, INTRA_RATER_DUPLICATE_SHARE, INTRA_RATER_PROTOCOL_VERSION } from "../core/humanReview.ts";
 import { MATCHING_VERSION } from "../../site/src/lib/search.ts";
 import { RANKING_VERSION } from "../../site/src/lib/ranking.ts";
 import { OllamaProvider } from "../providers/ollama.ts";
@@ -79,6 +81,9 @@ const base = {
     matching: MATCHING_VERSION,
     ranking: RANKING_VERSION,
     formulation: FORMULATION_VERSION,
+    metrics: METRICS_VERSION,
+    dedup: DEDUP_VERSION,
+    intraRaterProtocol: INTRA_RATER_PROTOCOL_VERSION,
   },
   model: {
     provider: info.provider, model: info.model, modelVersion: info.modelVersion,
@@ -92,6 +97,10 @@ const extra = {
   splitAlgorithmVersion: splits.version,
   splitSeed: splits.seed,
   devTasks: splits.dev.length,
+  devPilotIds: splits.dev_pilot,
+  devCleanIds: splits.dev_clean,
+  devPilotPolicy: splits.dev_pilot_policy,
+  devCleanPolicy: splits.dev_clean_policy,
   holdoutTasks: splits.holdout.length,
   holdoutIds: splits.holdout,
   holdoutPolicy:
@@ -102,7 +111,35 @@ const extra = {
   armSemantics: ARM_SEMANTICS,
   notImplementedArms: NOT_IMPLEMENTED_ARMS,
   seedPolicy: "seed=7 on every call. Ollama does not guarantee determinism from it; measured, not assumed.",
-  repetitionPolicy: "set from the measured noise floor — see reports/eng-016-readiness.md",
+  repetitionPolicy: "n=3, argued from the measured noise floor — see reports/eng-016-readiness.md",
+  primaryMetric: "independentTaskSuccess (frozen before the pilot, unchanged)",
+  secondaryMetric: {
+    name: "taskNormalisedIndependentCriterionCompliance",
+    version: METRICS_VERSION,
+    definition:
+      "per task, passed / RESOLVED independent criteria; unresolved and uncertain excluded from " +
+      "both numerator and denominator; repetitions averaged per task first; then an equal-weight " +
+      "mean over tasks, so a task with 14 criteria does not outweigh one with 4",
+  },
+  humanDeduplication: {
+    version: DEDUP_VERSION,
+    rule: "reuse a judgement only across units identical in task_id, output_hash, criterion_id, " +
+          "criterion_version and rubric_version. Similar outputs are never deduplicated.",
+  },
+  intraRaterProtocol: {
+    version: INTRA_RATER_PROTOCOL_VERSION,
+    duplicateShare: INTRA_RATER_DUPLICATE_SHARE,
+    rule: "covert duplicates at ~10% of the sample, same output and criteria, different packet id, " +
+          "position set by the shuffle. Reported as INTRA-rater consistency; kappa withheld when " +
+          "the sample or class distribution cannot support it. Inter-rater reliability is never claimed.",
+  },
+  capacityGateRule:
+    "reference model on DEV_PILOT, arm A only, non-H1: PASS at >= +0.20 secondary compliance over " +
+    "qwen2.5-coder:7b-16k; INCONCLUSIVE between +0.10 and +0.20; FAIL below +0.10 or if Independent " +
+    "Task Success stays <= 1/10. See docs/h1-decision-rules.md.",
+  modelReferencePolicy:
+    "local ollama only. No hosted API, because it would create unplanned cost. No model may be " +
+    "pulled without explicit approval. If no stronger local model exists, report rather than improvise.",
 };
 
 // Seal AFTER merging: hashing the base and then appending fields would leave
