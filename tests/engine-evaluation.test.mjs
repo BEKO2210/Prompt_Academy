@@ -14,7 +14,7 @@ import { fileURLToPath } from "node:url";
 
 import { evaluate, combineVerdicts, EVALUATOR_VERSION } from "../engine/core/evaluator.ts";
 import { DETERMINISTIC_KINDS, CHECKS_VERSION, runCheck } from "../engine/core/checks.ts";
-import { loadEvaluation } from "../engine/core/evaluation.ts";
+import { loadEvaluation, validateEvaluationSet } from "../engine/core/evaluation.ts";
 import { loadTasksForAssembly } from "../engine/core/taskset.ts";
 import { assessEligibility, summarise } from "../engine/core/eligibility.ts";
 import {
@@ -82,9 +82,12 @@ test("no task contains logically contradictory requirements", () => {
   // arm, invisible in a cross-arm table.
   for (const t of taskSet.tasks) {
     const ev = evalSet.evaluations[t.task_id];
+    const ABSENCE = new Set(["absent", "regex_absent", "import_absent"]);
     for (const f of ev.forbidden ?? []) {
       const fl = f.toLowerCase();
       for (const a of ev.assertions ?? []) {
+        // An absence check naming the same string agrees with `forbidden`.
+        if (ABSENCE.has(a.kind)) continue;
         assert.ok(
           !a.value.toLowerCase().includes(fl),
           `${t.task_id}: forbidden "${f}" is required by ${a.id}`,
@@ -388,6 +391,65 @@ test("every automated check records the criterion it came from", () => {
     for (const a of evalSet.evaluations[t.task_id].assertions ?? []) {
       if (a.cls === "B" && a.kind !== "human" && !a.id.startsWith("art")) {
         assert.ok(a.criterion, `${t.task_id}.${a.id} automates something with no recorded source`);
+      }
+    }
+  }
+});
+
+// --- ENG-015: defects the provider pilot exposed --------------------------
+
+test("a complete HTML document counts as a component artifact", async () => {
+  // The pilot returned working HTML pages that the artifact check rejected,
+  // because it required export/<template>/@Component — an unstated assumption
+  // that the answer would use a JavaScript framework. The tasks never said so,
+  // and the rejection hit every arm, adding noise rather than signal.
+  const { runCheck } = await import("../engine/core/checks.ts");
+  const html = '<!DOCTYPE html>\n<html lang="en"><head><style>.t{}</style></head>' +
+    '<body><div class="toast"></div><script>function show(){}</script></body></html>';
+  assert.equal(runCheck(html, { id: "a", kind: "artifact", value: "component" }).status, "pass");
+  // And prose still fails.
+  assert.equal(
+    runCheck("I would build this with a clean design.", { id: "a", kind: "artifact", value: "component" }).status,
+    "fail",
+  );
+});
+
+test("a prohibition is tested as a violation, not as a requirement", async () => {
+  // "Secrets are referenced, never written into the file" was automated as a
+  // pattern that had to be PRESENT, so an answer containing no secret at all —
+  // which commits no violation — was failed.
+  const { runCheck } = await import("../engine/core/checks.ts");
+  const spec = { id: "a", kind: "regex_absent", value: "(sk_live|AKIA[0-9A-Z]{8})" };
+  assert.equal(runCheck('const key = process.env.STRIPE_KEY', spec).status, "pass");
+  assert.equal(runCheck('const key = "sk_live_abc123"', spec).status, "fail");
+  assert.equal(runCheck("nothing relevant here", spec).status, "pass", "no violation must pass");
+});
+
+test("an absence check may name the same string as `forbidden`", () => {
+  // The contradiction detector fired on T049 because a regex_absent pattern
+  // legitimately names the strings `forbidden` also lists. For an absence check
+  // that overlap is agreement.
+  const problems = validateEvaluationSet(
+    { version: "x", evaluations: { TX: {
+      assertions: [{ id: "a1", kind: "regex_absent", value: "sk_live" }],
+      forbidden: ["sk_live"], required_artifacts: [], notes: "",
+    } } },
+    ["TX"],
+    { TX: "write a config" },
+  );
+  assert.deepEqual(problems, [], problems.join("; "));
+});
+
+test("every comma-coordinated compound criterion has a human residual", () => {
+  // The first residual pass only looked for "and"/"only"/... and missed clauses
+  // joined by a comma ("Secrets are referenced, never written into the file").
+  for (const t of taskSet.tasks) {
+    const as = evalSet.evaluations[t.task_id].assertions ?? [];
+    const residuals = new Set(as.map((a) => a.residual_of).filter(Boolean));
+    for (const a of as) {
+      if (a.kind === "human" || !a.criterion) continue;
+      if (/,| and | or /i.test(a.criterion)) {
+        assert.ok(residuals.has(a.id), `${t.task_id}.${a.id} is compound with no human residual`);
       }
     }
   }

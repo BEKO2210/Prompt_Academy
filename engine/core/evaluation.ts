@@ -113,11 +113,18 @@ export function validateEvaluationSet(
       }
     }
 
-    // A forbidden string that an assertion also requires makes the task
+    // A forbidden string that an assertion also REQUIRES makes the task
     // unpassable in every arm.
+    //
+    // Absence-kind checks are excluded: their value describes the prohibited
+    // thing, so an overlap with `forbidden` is agreement, not contradiction.
+    // Without this the detector fired on T049, where the secret-literal pattern
+    // legitimately names the same strings as `forbidden`.
+    const ABSENCE_KINDS = new Set(["absent", "regex_absent", "import_absent"]);
     for (const f of ev.forbidden ?? []) {
       const fl = f.toLowerCase();
       for (const a of ev.assertions ?? []) {
+        if (ABSENCE_KINDS.has(a.kind)) continue;
         if (a.value.toLowerCase().includes(fl)) {
           problems.push(`${id}: forbidden "${f}" is required by assertion ${a.id} — unpassable`);
         }

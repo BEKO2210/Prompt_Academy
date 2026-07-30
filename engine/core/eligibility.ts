@@ -92,9 +92,13 @@ export function assessEligibility(input: EligibilityInput): Eligibility[] {
     }
     if (det === 0 && hum === 0) reasons.push("no_evaluable_check");
 
+    // Absence-kind checks name the prohibited thing on purpose; an overlap with
+    // `forbidden` is agreement, not contradiction.
+    const ABSENCE_KINDS = new Set(["absent", "regex_absent", "import_absent"]);
     for (const f of ev.forbidden ?? []) {
       const fl = f.toLowerCase();
-      if ((ev.assertions ?? []).some((a) => a.value.toLowerCase().includes(fl))) {
+      if ((ev.assertions ?? []).some(
+        (a) => !ABSENCE_KINDS.has(a.kind) && a.value.toLowerCase().includes(fl))) {
         reasons.push("contradictory_ground_truth");
         break;
       }

@@ -1,0 +1,424 @@
+{
+ "armsUnderTest": [
+  "A",
+  "B",
+  "D",
+  "E"
+ ],
+ "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+ "tasks": [
+  "T014",
+  "T018",
+  "T022",
+  "T025",
+  "T031",
+  "T033",
+  "T039",
+  "T040",
+  "T047",
+  "T049"
+ ],
+ "prompts": [
+  {
+   "taskId": "T014",
+   "arm": "A",
+   "recordIds": [],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "95273a16f763e415fa3fedd53b030e9b4eee23e6168718867374dc698e8e1ee5",
+   "contextChars": 0
+  },
+  {
+   "taskId": "T014",
+   "arm": "B",
+   "recordIds": [
+    "PRM-003428"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "f12534fbcacbe6eda40ffb6dcc47894b7ca19680d33168e48d9489bc3f14d016",
+   "contextChars": 1492
+  },
+  {
+   "taskId": "T014",
+   "arm": "D",
+   "recordIds": [
+    "PRM-003428"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "83da4cda54bc855bfe3b820a8d3944126c09c2a487eafe75578bc04dd60dd66c",
+   "contextChars": 685
+  },
+  {
+   "taskId": "T014",
+   "arm": "E",
+   "recordIds": [
+    "PRM-003428",
+    "PRM-003712",
+    "PRM-003786"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "49bde723fd3cff9dc9b8d2ecbe58577f6a44463d8af613e84a1a078292b0ed1f",
+   "contextChars": 1546
+  },
+  {
+   "taskId": "T018",
+   "arm": "A",
+   "recordIds": [],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "5a430d7af46eb19a8fa2492e1769f2dbab75d1982f9e4bc3d102cfef459eb02e",
+   "contextChars": 0
+  },
+  {
+   "taskId": "T018",
+   "arm": "B",
+   "recordIds": [
+    "PRM-003648"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "cb4a7128717ab954ee47bba069ba42eb58512f6e3774c0aa10d8f73781b6cd6d",
+   "contextChars": 1585
+  },
+  {
+   "taskId": "T018",
+   "arm": "D",
+   "recordIds": [
+    "PRM-003648"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "ae28e5eaf5f1fe21b69a7f7cdce0f01904c1b3484a6726278303fec6ed7bdff2",
+   "contextChars": 623
+  },
+  {
+   "taskId": "T018",
+   "arm": "E",
+   "recordIds": [
+    "PRM-003648",
+    "PRM-000310",
+    "PRM-000330"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "cbd48227e9680871f1487e899e71fe0cdc7f0d4cbf5e5193e68ce72c9431c056",
+   "contextChars": 1196
+  },
+  {
+   "taskId": "T022",
+   "arm": "A",
+   "recordIds": [],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "e8cedb2fd5e53d4b34a0e2ea10013ab9c4d915563ced2e0c46c36d2c6db67fd8",
+   "contextChars": 0
+  },
+  {
+   "taskId": "T022",
+   "arm": "B",
+   "recordIds": [
+    "PRM-001308"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "17a62851157de03128c76049a7f0dca2051edd29b7ced9af3e3122f87dd82127",
+   "contextChars": 1516
+  },
+  {
+   "taskId": "T022",
+   "arm": "D",
+   "recordIds": [
+    "PRM-001308"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "d1998a559223f773cc72e5cd8228a4271620eec2b7fc8a2cf21c326bb513e507",
+   "contextChars": 615
+  },
+  {
+   "taskId": "T022",
+   "arm": "E",
+   "recordIds": [
+    "PRM-001308",
+    "PRM-001314",
+    "PRM-001577"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "b9e75b0e4e280eb8ebd134b6cfc0be0a8345f15ab2f4a6e1eaa6fe036c517948",
+   "contextChars": 1409
+  },
+  {
+   "taskId": "T025",
+   "arm": "A",
+   "recordIds": [],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "47e88c968cab3b43c4778cf211c3311ce81b8d8081b4265644d2a21e77419a96",
+   "contextChars": 0
+  },
+  {
+   "taskId": "T025",
+   "arm": "B",
+   "recordIds": [
+    "PRM-003215"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "bbb721ab8f807a4c4a45aff03a4aa707f1cb954f8ca84ef4c868ac3b3b0f670b",
+   "contextChars": 1428
+  },
+  {
+   "taskId": "T025",
+   "arm": "D",
+   "recordIds": [
+    "PRM-003215"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "a773874e2dfcc8b05b279cb264133d40adb62345dc05e12e71a7e1be176a590d",
+   "contextChars": 652
+  },
+  {
+   "taskId": "T025",
+   "arm": "E",
+   "recordIds": [
+    "PRM-003215",
+    "PRM-003232",
+    "PRM-001509"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "c8b068cf23bb01fae5c658bbb0ba716ceddb47834240fe31cdf5d6a9caa11935",
+   "contextChars": 1887
+  },
+  {
+   "taskId": "T031",
+   "arm": "A",
+   "recordIds": [],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "4575688d516c53824b1c4e3362abd43af4c896fa1cacb3ee16709e14b4c55237",
+   "contextChars": 0
+  },
+  {
+   "taskId": "T031",
+   "arm": "B",
+   "recordIds": [
+    "PRM-001540"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "a3239dc3001b9535796590daf58f80b94b97fb7716889afbf360d2a12910f76a",
+   "contextChars": 1721
+  },
+  {
+   "taskId": "T031",
+   "arm": "D",
+   "recordIds": [
+    "PRM-001540"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "68ceb9c2d39f01661d496c0e215dca21b5e10b9034a5f57509b3888123e4f9b0",
+   "contextChars": 879
+  },
+  {
+   "taskId": "T031",
+   "arm": "E",
+   "recordIds": [
+    "PRM-001540",
+    "PRM-003250",
+    "PRM-003509"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "a47cad9866231bc1e3a4a91143764acae5a7717aa7c1e9704d332fa4ab9a5dd3",
+   "contextChars": 1644
+  },
+  {
+   "taskId": "T033",
+   "arm": "A",
+   "recordIds": [],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "f5400d860b5a465cd5c343688c134a2d740e565d4ba6723158406d1149161790",
+   "contextChars": 0
+  },
+  {
+   "taskId": "T033",
+   "arm": "B",
+   "recordIds": [
+    "PRM-000509"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "48383123472cec76203482c97fb4e108062f389e86e408721acdad8c510f3146",
+   "contextChars": 1453
+  },
+  {
+   "taskId": "T033",
+   "arm": "D",
+   "recordIds": [
+    "PRM-000509"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "a28e61bfa0b6e5b42a5df90844a6ebe56d92edf6986d79af60fea7e77049a20c",
+   "contextChars": 478
+  },
+  {
+   "taskId": "T033",
+   "arm": "E",
+   "recordIds": [
+    "PRM-000509",
+    "PRM-000529",
+    "PRM-000549"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "0b011d34de544d508a1c4607e2af00fed7fc000f56a64beef92299a5c8e98087",
+   "contextChars": 937
+  },
+  {
+   "taskId": "T039",
+   "arm": "A",
+   "recordIds": [],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "4b1331d491a28a8758f10d8135da30c1c95b26becb4085868bbecfa1153c2922",
+   "contextChars": 0
+  },
+  {
+   "taskId": "T039",
+   "arm": "B",
+   "recordIds": [
+    "PRM-006216"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "ba49c9fced3fb3c80754c7604a12d7081bef4c5b5f45badaaa8bfe7c4b29fbde",
+   "contextChars": 1255
+  },
+  {
+   "taskId": "T039",
+   "arm": "D",
+   "recordIds": [
+    "PRM-006216"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "90689bc7b6b190fb75dfbcac09bb04cf647df60bdeedb45b39e435a753b1c65c",
+   "contextChars": 464
+  },
+  {
+   "taskId": "T039",
+   "arm": "E",
+   "recordIds": [
+    "PRM-006216",
+    "PRM-006293",
+    "PRM-006961"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "62853636e7743cefe3200a93d8c47283dca0070b29c6b71be99b3f12776156e6",
+   "contextChars": 1113
+  },
+  {
+   "taskId": "T040",
+   "arm": "A",
+   "recordIds": [],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "6f46dc197fc131fa772f322ddf50e175f224350fdc8d7ccfe28fdda350df023f",
+   "contextChars": 0
+  },
+  {
+   "taskId": "T040",
+   "arm": "B",
+   "recordIds": [
+    "PRM-006156"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "0165661bbaca8c5d2d74fb76eaf4929a62ecf12f71c78f9edb55bcccc2d386c3",
+   "contextChars": 1266
+  },
+  {
+   "taskId": "T040",
+   "arm": "D",
+   "recordIds": [
+    "PRM-006156"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "55273311623bcce9093e9f3121aaa06fe0532417f044e2a6120871a7d336c83d",
+   "contextChars": 471
+  },
+  {
+   "taskId": "T040",
+   "arm": "E",
+   "recordIds": [
+    "PRM-006156",
+    "PRM-006042",
+    "PRM-006148"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "81ce5dcdfbe072adc987437ba4c905588ab6965d74ef084f161d4cf1c0654028",
+   "contextChars": 1218
+  },
+  {
+   "taskId": "T047",
+   "arm": "A",
+   "recordIds": [],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "44778e5f308df8e44ef0ad7d48665f4dddc90852daaea1e45447cf30c9350d4b",
+   "contextChars": 0
+  },
+  {
+   "taskId": "T047",
+   "arm": "B",
+   "recordIds": [
+    "PRM-006606"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "a259e3a324c05d69b82f1d8d9a136e57e796bd5390f61f03a47513c5b9f9de75",
+   "contextChars": 1260
+  },
+  {
+   "taskId": "T047",
+   "arm": "D",
+   "recordIds": [
+    "PRM-006606"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "467893b9c05e2dce0cecddb972ac46d16c1b49c79a75a11eaba8f8e6962686ef",
+   "contextChars": 471
+  },
+  {
+   "taskId": "T047",
+   "arm": "E",
+   "recordIds": [
+    "PRM-006606",
+    "PRM-006180",
+    "PRM-006186"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "6b9546ebb135168e33253d3ac0a913121d7824b732d25001f3a2dc2ad78e00e2",
+   "contextChars": 1042
+  },
+  {
+   "taskId": "T049",
+   "arm": "A",
+   "recordIds": [],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "06a63739b7a9faceee369bea1f100d2c6f7b02baa8f1eed52e750781e4640410",
+   "contextChars": 0
+  },
+  {
+   "taskId": "T049",
+   "arm": "B",
+   "recordIds": [
+    "PRM-005920"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "ff29d55cf7219eb7fb5f22e740b998da272137958a0e450a555f43e0779087e0",
+   "contextChars": 1420
+  },
+  {
+   "taskId": "T049",
+   "arm": "D",
+   "recordIds": [
+    "PRM-005920"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "44b83dd9a6baa256e55da8ef1cfb254dc7bf0a0c76d7d2842433496bc5f6d3f1",
+   "contextChars": 674
+  },
+  {
+   "taskId": "T049",
+   "arm": "E",
+   "recordIds": [
+    "PRM-005920",
+    "PRM-005940",
+    "PRM-004996"
+   ],
+   "systemHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "userHash": "5349cc2e08f71e63bec36b2f34cc5579c623894d3caedb8dc950ea808213ca4c",
+   "contextChars": 1659
+  }
+ ],
+ "problems": []
+}

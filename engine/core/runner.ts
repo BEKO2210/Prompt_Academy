@@ -56,6 +56,14 @@ export interface RunConfig {
   retrievalK: number;
   /** Conjuncts in a formulated query. Changes which record every arm receives. */
   maxQueryTerms: number;
+  /**
+   * Which arms to run. Defaults to all of them.
+   *
+   * Exists so a pilot can exercise the infrastructure on a subset without
+   * anything pilot-specific being built into the harness. Recorded per run, so
+   * a partial matrix cannot be mistaken for a full one.
+   */
+  arms?: readonly Arm[];
   /** Runs per (task, arm). n = 1 is permitted but must be reported as n = 1. */
   nRuns: number;
   taskOrderSeed: number;
@@ -86,6 +94,12 @@ export interface RunRecord {
   retrievedRecordIds: string[];
   /** The query formulation actually produced, so a run states it rather than implying it. */
   retrievalQuery: string;
+  /** Content hash of each retrieved record, so a dataset edit is detectable. */
+  recordHashes: string[];
+  /** Hash of the assembled prompt, before the provider touches it. */
+  promptHash: string;
+  /** Which arms ran at all — a partial matrix must not look like a full one. */
+  armsInRun: string[];
   formulationVersion: string;
   minDocumentFrequency: number;
   taskOrderSeed: number;
@@ -200,7 +214,8 @@ export async function runBenchmark(
       continue;
     }
 
-    for (const arm of shuffle(ARMS, cfg.armOrderSeed) as Arm[]) {
+    const armsInRun = (cfg.arms ?? ARMS) as readonly Arm[];
+    for (const arm of shuffle(armsInRun, cfg.armOrderSeed) as Arm[]) {
       const prompt = buildPrompt(arm, task, r.primary, r.additional);
       for (let i = 0; i < cfg.nRuns; i++) {
         const res = await provider.generate({
@@ -228,6 +243,10 @@ export async function runBenchmark(
           evaluationHash: cfg.evaluationHash,
           retrievedRecordIds: prompt.recordIds,
           retrievalQuery: f.query,
+          recordHashes: prompt.recordIds.map((id) =>
+            hashString(JSON.stringify(corpus.byId.get(id) ?? null))),
+          promptHash: hashString(prompt.system + "\u0000" + prompt.user),
+          armsInRun: [...armsInRun],
           formulationVersion: FORMULATION_VERSION,
           minDocumentFrequency: MIN_DOCUMENT_FREQUENCY,
           taskOrderSeed: cfg.taskOrderSeed,

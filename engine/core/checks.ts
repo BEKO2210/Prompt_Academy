@@ -49,6 +49,7 @@ export type CheckKind =
   | "import_absent"
   | "artifact"
   | "any_of"
+  | "regex_absent"
   | "human";
 
 export interface CheckSpec {
@@ -175,7 +176,13 @@ function artifactPresent(src: string, kind: string): boolean {
   // evidence rather than passing through one language's idea of code.
   switch (kind) {
     case "component":
-      return /export\s+(?:default\s+)?(?:function|const|class)|<template|<script|@Component|function\s+[A-Z]\w*\s*\(|const\s+[A-Z]\w*\s*=/.test(src);
+      // A COMPLETE HTML DOCUMENT is a component artifact. Requiring
+      // export/`<template>`/`@Component` encoded an unstated assumption that the
+      // answer would use a JavaScript framework — the tasks never said so, and
+      // the pilot returned working HTML pages that this rejected (ENG-015).
+      // That failed valid answers in every arm for a reason unrelated to the
+      // experimental variable, adding noise rather than signal.
+      return /export\s+(?:default\s+)?(?:function|const|class)|<template|<script|@Component|function\s+[A-Z]\w*\s*\(|const\s+[A-Z]\w*\s*=|<!DOCTYPE\s+html|<html\b/i.test(src);
     case "test":
       return /\b(?:describe|it|test|expect|assert)\s*\(/.test(src);
     case "workflow":
@@ -242,6 +249,19 @@ export function runCheck(output: string, c: CheckSpec): CheckOutcome {
       return ok(artifactPresent(output, c.value), `${c.value} artifact present`, `no ${c.value} artifact`);
     case "any_of":
       return ok(anyOf(output, c.value), "an alternative matched", "no alternative matched");
+    case "regex_absent": {
+      // For criteria phrased as a PROHIBITION. Testing the positive instead
+      // fails an output that commits no violation, which is backwards: an
+      // answer containing no secret at all satisfies "secrets are never written
+      // into the file". Found in the pilot (ENG-015).
+      let rx: RegExp;
+      try {
+        rx = new RegExp(c.value, "i");
+      } catch {
+        return { id: c.id, kind: c.kind, status: "unresolved", detail: "invalid pattern in Layer 2" };
+      }
+      return ok(!rx.test(output), "no violation found", "a violation is present");
+    }
   }
 }
 
@@ -249,4 +269,5 @@ export function runCheck(output: string, c: CheckSpec): CheckOutcome {
 export const DETERMINISTIC_KINDS: ReadonlySet<CheckKind> = new Set<CheckKind>([
   "contains", "absent", "regex", "element", "attribute",
   "handler", "count_min", "breakpoint", "import_absent", "artifact", "any_of",
+  "regex_absent",
 ]);
