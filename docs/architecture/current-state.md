@@ -189,18 +189,33 @@ so they cannot be used to prove current dataset state.
 
 Ordered by significance.
 
-### D1 — `index.json` is 6.9 MB (measured)
+### D1 — `index.json` is 6.9 MB; the cost is parse and heap, not transfer
 
-Reconstructing the compact index exactly as `build_site_data.mjs` does yields
-**6,908,075 bytes** of minified JSON. Every visitor to the Library page downloads and parses all
-of it before seeing results.
+**Updated 2026-07-30 with ENG-002 measurements** (`reports/baseline-2026-07-30.json`). The original
+framing of this finding was partly wrong and is corrected here.
 
-Gzip/Brotli over the wire will reduce transfer substantially (`UNMEASURED` — GitHub Pages does
-serve compressed), but the **parse cost and heap cost are not compressible**, and the
-per-keystroke search re-scans all 10,000 records with a string concat + `includes`.
+The built index is **6,908,069 bytes** of minified JSON. Every Library visitor downloads and parses
+all of it before seeing results.
 
-This is the most consequential existing performance issue and it directly constrains any
-retrieval work: adding *more* per-record data to the index makes it worse.
+What was `UNMEASURED` and is now measured:
+
+| | Measured |
+|---|---|
+| Transfer as actually served (gzip) | **738,038 bytes** — 9.36x compression |
+| Encodings GitHub Pages offers | **gzip only** — no brotli, no zstd, no deflate |
+| `JSON.parse` cost | p50 **15.7 ms**, p95 **25.2 ms** |
+| Heap attributable to the parsed index | **13.97 MB** |
+| JS heap after Library load | **24.4 MB** |
+| Time to first rendered result | **294–360 ms** (local prod build and warm CDN) |
+
+**Correction:** transfer is not the problem. ~738 KB over the wire is unremarkable. The costs that
+matter are the **parse of the full 6.9 MB** and the **~14 MB of retained heap** — neither of which
+compression reduces. The original claim that this is "the most consequential existing performance
+issue" overstated it: at ~300 ms to first result on desktop, the page is acceptable today.
+
+The constraint on retrieval work still holds, and for the original reason: adding per-record data to
+this index increases parse time and heap directly, with no compression relief. Mobile CPU is
+`UNMEASURED` and would be materially worse.
 
 ### D2 — No `capabilities` vocabulary
 
@@ -209,10 +224,49 @@ Capability-based routing — the core idea of the target architecture — has no
 `tags`, `subcategory`, and `use_case` are the closest proxies but are presentation-oriented and
 were not designed as a controlled vocabulary.
 
-### D3 — Retrieval is binary substring matching
+### D3 — Retrieval is binary substring matching, and it silently fails on ordinary queries
 
-See §4. There is no ranking signal to improve, only a filter to replace. Positively: this is a
-very low baseline, so improvement should be easy to demonstrate — *provided* a measurement exists.
+See §4. There is no ranking signal to improve, only a filter to replace.
+
+**Measured 2026-07-30 (ENG-002).** This is worse than "unranked" — it returns nothing for queries a
+user would plausibly type:
+
+| Query | Hits |
+|---|---|
+| `dashboard` | 3,391 |
+| `accessible dashboard` | **0** |
+| `stripe checkout` | **0** |
+| `barrierefrei` | **0** |
+| `dunkelmodus` | **0** |
+| `d` | 10,000 |
+
+**Cause:** the filter is one substring test against a single joined string
+(`Library.tsx:76`), so a multi-word query matches only if those words appear *adjacently in that
+order* in the concatenation. There is no term-wise matching. German queries fail additionally because
+the corpus is ~91% English while the UI is German.
+
+Severity: **high**. A two-word query returning an empty result set, while one of its words returns
+3,391 records, is a defect rather than a ranking shortfall. It is also the clearest justification for
+ENG-006, and the German failures are the strongest concrete argument for the embeddings ablation
+(arm R7) rather than assuming lexical retrieval suffices.
+
+### D3b — Search cost is re-derivation, not matching
+
+Measured 2026-07-30. `haystack()` is called **inside** the filter predicate (`Library.tsx:76`), so up
+to 10,000 array joins plus `toLowerCase()` are redone on every keystroke; nothing is precomputed or
+memoised per record.
+
+| | Measured |
+|---|---|
+| Filter-only search | p50 **6.97 ms**, p95 8.08 ms |
+| `haystack()` construction alone | p50 **5.79 ms** — ~83% of the above |
+| Facet-only (no text) | p50 **0.64 ms** — ~11x cheaper |
+| Keystroke → paint (browser) | p50 **49.9 ms**, p95 50.6 ms |
+
+Two consequences: precomputing the haystack is a real win available **independently of any ranking
+change**; and since the full keystroke cost is ~7x the filter cost, React re-render of the 48 visible
+cards dominates, so optimising the filter alone addresses roughly one seventh of what the user feels.
+There is no debounce on the input.
 
 ### D4 — No tests, no CI gates
 
@@ -243,6 +297,46 @@ Contains no project-specific information.
 
 `reports/duplicate_report.json` records 26 duplicate first-sentences (pairs) — IDs are listed.
 Exact/title/slug duplicates are 0. This is minor and *not* urgent.
+
+### D10 — Third-party font request (privacy, not performance)
+
+Measured 2026-07-30. Both pages request `fonts.googleapis.com` at runtime (22,494 bytes decoded,
+32–104 ms — the slowest resource on the landing page). This sends every visitor's IP address to
+Google.
+
+The site ships **Impressum and Datenschutz pages**, which makes this a GDPR consideration rather than
+a performance one. Out of ENG-002's scope; recorded because it was observed and because it is
+cheaply fixable by self-hosting the fonts. Severity: medium (legal/privacy).
+
+### D11 — 1.49 MB incompressible image drives landing LCP
+
+`site/public/Qualität.png` is **1,490,614 bytes** and compresses to 1,480,042 — effectively not at
+all. It is ~85% of the landing page's 1,753,242-byte transfer and is what sets its LCP
+(380–412 ms vs. a 180–196 ms first contentful paint).
+
+The filename also contains a non-ASCII character, which is a portability smell (it is served
+URL-encoded as `Qualit%C3%A4t.png`).
+
+Severity: low-medium, but it is the single largest easy win in the repo and is unrelated to any
+retrieval work.
+
+### D12 — Build environment is unpinned and the system Node cannot build
+
+Measured 2026-07-30. System `node` is **v18.19.1**; Vite 8 requires `>=20.19` or `>=22.12`. There is
+no `.nvmrc`, no `engines` field, and no documentation of the requirement, so a fresh checkout on this
+machine fails to build with a version error. CI uses Node 22 and works.
+
+Related: `vite.config.ts` applies `base: '/Prompt_Academy/'` only when `command === 'build'`, so
+`vite preview` serves a production build at `/` while its assets request `/Prompt_Academy/` — preview
+404s its own assets. Local verification of a production build therefore needs a custom server
+(`scripts/baseline/serve_dist.mjs`).
+
+Severity: low individually; collectively they are a guaranteed stumble for a new contributor.
+
+> **Retraction.** A draft of this finding also claimed `site/public/data/` was not gitignored. That
+> was wrong: the **root** `.gitignore` covers it at line 10 with an explicit comment. The error came
+> from reading only `site/.gitignore`. Verified with `git check-ignore -v`. Noted rather than deleted
+> so the claim is not reintroduced.
 
 ---
 
@@ -326,14 +420,32 @@ decorative. See `docs/architecture/target-state.md` and `docs/roadmap.md`.
 Per the master prompt's "Measured > Assumed", these are **not yet measured** and are prerequisites
 for claiming any improvement:
 
+**Updated 2026-07-30: the performance rows are now measured (ENG-002).**
+
 | Baseline | Status |
 |---|---|
-| Library page load time / TTI | `UNMEASURED` |
-| `index.json` transfer size (compressed) | `UNMEASURED` |
-| `index.json` parse time | `UNMEASURED` |
-| Per-keystroke search latency at 10k records | `UNMEASURED` |
-| Search result quality (precision/recall vs. any labelled set) | `UNMEASURED` — no labelled set exists |
-| Whether a retrieved prompt improves model output at all | `UNMEASURED` — this is the central unproven premise |
+| Library time to first rendered result | **294–360 ms** (local prod build; warm CDN) |
+| Library first contentful paint | **168–196 ms** |
+| JS heap after Library load | **24.4 MB** |
+| `index.json` transfer size (compressed) | **738,038 bytes** (gzip; brotli not offered) |
+| `index.json` parse time | **p50 15.7 ms / p95 25.2 ms** |
+| Heap attributable to the parsed index | **13.97 MB** |
+| Per-keystroke search latency, filter only | **p50 6.97 ms / p95 8.08 ms** |
+| Per-keystroke latency, keystroke → paint | **p50 49.9 ms / p95 50.6 ms** |
+| Landing LCP | **380–412 ms** (driven by a 1.49 MB PNG — D11) |
+| Search result quality (precision/recall vs. a labelled set) | `UNMEASURED` — no labelled set exists yet (ENG-005) |
+| Whether retrieved context improves model output | `UNMEASURED` — the central unproven premise (ENG-008) |
+
+Full figures, environment, and what was deliberately not measured:
+`reports/baseline-2026-07-30.json`. Method: `reports/baseline-method.md`. Harness:
+`scripts/baseline/`.
+
+**Measured noise floor:** search-path timings vary ~10–15% between sessions on an idle machine at
+this repeat count. A claimed improvement below that margin is not distinguishable from noise and must
+not be reported as one.
+
+The last two rows remain the important ones. The entire value proposition is still unsupported by
+evidence in this repository.
 
 The last row is the important one. The entire value proposition — that selecting the right prompt
 from a library beats simply asking a capable model directly — is currently **an assumption with

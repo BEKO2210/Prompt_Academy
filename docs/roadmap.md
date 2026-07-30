@@ -81,8 +81,8 @@ substring `includes()`. There are **no tests** and CI runs only deploy. There is
 change risks a dataset or site regression that nothing currently catches.
 
 **Scope:**
-- Measure and record the baselines in current-state §11 (page load, `index.json` transfer/parse,
-  search latency, heap). Commit as `reports/baseline-*.json` with real timestamps.
+- ~~Measure and record the baselines in current-state §11~~ **DONE (ENG-002, 2026-07-30)** —
+  `reports/baseline-2026-07-30.json`, `reports/baseline-method.md`, harness in `scripts/baseline/`.
 - CI: run `validate_dataset.py` + `dedupe_dataset.py` + `tsc` + `eslint` on PR and on push.
   Fail the build on dataset schema violations. This closes finding D4.
 - Introduce a test runner and the first tests: dataset invariants, `build_site_data.mjs` output shape.
@@ -310,12 +310,26 @@ Branch:
   Commit 2  docs: add AGENTS.md as agent source of truth, CLAUDE.md as import
 
 Completed:
-  M0 Discovery & Planning — all Phase 0 docs written (architecture, security, benchmark,
-  7 ADRs, 7 tickets) plus AGENTS.md (92 lines) + CLAUDE.md (@AGENTS.md import).
-  Measured: 10,000 records, schema-clean, 200 subcategories / 18 frameworks / 65 industries;
-  acceptance_criteria (3-6) and non-empty negative_prompt on ALL 10,000 records;
-  index.json = 6,908,075 bytes; search = one substring includes() + 5 exact facets;
-  no tests; CI = deploy only; no backend; no capabilities[] field.
+  M0 Discovery & Planning — all Phase 0 docs (architecture, security, benchmark, 7 ADRs,
+  8 tickets) plus AGENTS.md (92 lines) + CLAUDE.md (@AGENTS.md import).
+  Dataset: 10,000 records, schema-clean, 200 subcategories / 18 frameworks / 65 industries;
+  acceptance_criteria (3-6) and non-empty negative_prompt on ALL 10,000 records.
+
+  ENG-002 Baselines — DONE 2026-07-30. reports/baseline-2026-07-30.json +
+  reports/baseline-method.md + scripts/baseline/ (zero-dep harness: Node 22 + Chrome,
+  re-run from committed paths to prove reproducibility).
+
+  MEASURED (was assumed before):
+    index.json          6,908,069 B raw -> 738,038 B gzip AS SERVED (9.36x)
+    GitHub Pages        gzip ONLY. No brotli, no zstd, no deflate.
+    JSON.parse          p50 15.7 ms / p95 25.2 ms
+    heap for index      13.97 MB ; heap after Library load 24.4 MB
+    time to 1st result  294-360 ms  |  FCP 168-196 ms
+    filter-only search  p50 6.97 ms  |  haystack() alone 5.79 ms = ~83% of it
+    facet-only search   p50 0.64 ms  (~11x cheaper than text)
+    keystroke -> paint  p50 49.9 ms / p95 50.6 ms  (React re-render dominates; NO debounce)
+    landing LCP         380-412 ms, driven by Qualität.png (1.49 MB, incompressible)
+    noise floor         ~10-15% session-to-session on search timings at this repeat count
 
 In Progress:
   none
@@ -372,15 +386,52 @@ Important Decisions:
   - AGENTS.md is the single source of truth; CLAUDE.md only imports it (no duplication).
 
 Files Changed:
-  docs/**, AGENTS.md, CLAUDE.md. No source, dataset, site, CI or runtime files touched.
+  docs/**, AGENTS.md, CLAUDE.md, reports/baseline-*, scripts/baseline/**.
+  No dataset, site source, or CI files touched. scripts/baseline/ is measurement-only tooling;
+  nothing in the shipped site or build path was modified.
 
 Next Recommended Ticket:
-  ENG-002 (baselines) -> ENG-004 (content_hash) -> ENG-003 (CI gates) -> ENG-001 (capabilities)
-  -> ENG-005 (labelled query set). Decide ADR-0001 before M3 is planned in detail.
+  ENG-004 (content_hash, XS) -> ENG-003 (CI gates, M) -> ENG-001 (capabilities, M)
+  -> ENG-005 (labelled query set, M). ENG-002 is done.
+
+Findings from ENG-002 that changed the plan:
+  - D1 WAS MIS-FRAMED. Transfer is 738 KB, not 6.9 MB. The uncompressible costs are parse
+    (full 6.9 MB) and ~14 MB heap. At ~300 ms to first result the page is ACCEPTABLE today.
+    ENG-007 is therefore a HEADROOM problem, not a rescue. Bar is "do not regress".
+  - D3 IS A CORRECTNESS DEFECT, not just missing ranking:
+        "dashboard"            -> 3,391 hits
+        "accessible dashboard" -> 0      <-- multi-word queries silently return nothing
+        "stripe checkout"      -> 0
+        "barrierefrei"         -> 0      <-- German query vs ~91% English corpus
+        "dunkelmodus"          -> 0
+    Cause: ONE substring test over a joined string (Library.tsx:76). No term-wise matching;
+    words must appear adjacently in that order. This is the R0 baseline ENG-006 must beat, and
+    the German failures are the strongest concrete argument for actually running arm R7
+    (embeddings) instead of assuming lexical retrieval suffices.
+  - D3b CHEAP INDEPENDENT WIN: haystack() is rebuilt per record per keystroke and is ~83% of
+    filter cost. Precomputing needs no index restructuring and no ranking change.
+    But note keystroke->paint is ~7x the filter cost, so the filter is only ~1/7 of felt cost.
+  - NEW D10 fonts.googleapis.com is requested at runtime on both pages. Site ships Impressum +
+    Datenschutz, so this is GDPR-relevant, not a perf issue. Cheaply fixed by self-hosting.
+  - NEW D11 Qualität.png = 1.49 MB, incompressible, ~85% of landing transfer, sets its LCP.
+    Largest easy win in the repo, unrelated to retrieval.
+  - NEW D12 System node v18 CANNOT build this repo (Vite 8 needs >=20.19/>=22.12). No .nvmrc,
+    no engines field. CI uses 22. Also: `vite preview` serves a prod build at / while assets
+    request /Prompt_Academy/ (base is set only for command==='build'), so preview 404s its own
+    assets -- use scripts/baseline/serve_dist.mjs.
+  - RETRACTED mid-ENG-002: a claim that site/public/data/ was not gitignored. It IS -- root
+    .gitignore line 10, verified with `git check-ignore -v`. Error came from reading only
+    site/.gitignore. Recorded so it is not reintroduced.
 
 Do Not Forget:
-  - index.json is already 6.9 MB and is parsed by every Library visitor. Retrieval enrichment
-    MUST NOT make the page slower (D1). Measure before and after.
+  - Every field added to index.json costs parse time and heap directly, with NO compression
+    relief. Budgets to hold in ENG-007: ttfr <=323 ms, heap <=24.5 MB, transfer <=738,038 B,
+    parse p95 <=25.21 ms, keystroke p95 <=50.6 ms.
+  - Improvements below ~15% are NOT distinguishable from noise at the current repeat count.
+    Either exceed that margin or raise n. Do not report noise as a win.
+  - Mobile CPU and slow networks are UNMEASURED and would be materially worse, especially parse.
+  - NEVER use `pkill -f <pattern>` where the pattern could match the agent's own shell command
+    line -- it kills the session. Use `fuser -k <port>/tcp` or a pidfile instead.
   - quality.*_score is self-reported by the generating agents, never independently validated
     (D6). Not ground truth for ranking, not evidence of output quality.
   - reports/ has rounded/hardcoded timestamps and does NOT prove current state (D5).

@@ -26,7 +26,7 @@ no ticket is here because it is tidy; each one gates something downstream.
 
 | # | ID | Title | M | Cx | Status | Unblocks |
 |---|---|---|---|---|---|---|
-| 1 | [ENG-002](ENG-002-baselines.md) | Measure and commit performance baselines | M1 | S | READY | Any "faster/better" claim; the D1 byte-budget constraint |
+| 1 | [ENG-002](ENG-002-baselines.md) | Measure and commit performance baselines | M1 | S | **DONE** | Any "faster/better" claim; corrected D1 and exposed D3/D3b/D10–D12 |
 | 2 | [ENG-004](ENG-004-content-hash.md) | Per-record `content_hash` | M1 | XS | READY | Cache keys, idempotent import, benchmark traceability |
 | 3 | [ENG-003](ENG-003-ci-gates.md) | CI: dataset validation, typecheck, lint, first tests | M1 | M | READY | Safe iteration on data and site (closes D4) |
 | 4 | [ENG-001](ENG-001-capability-vocabulary.md) | Capability vocabulary + subcategory mapping | M1 | M | READY | Capability ranking signal (R3); the resolver |
@@ -39,6 +39,19 @@ no ticket is here because it is tidy; each one gates something downstream.
 (2), then the safety net that makes everything after it safe (3), then the one schema addition the
 whole architecture routes on (4), then ground truth before the thing it judges (5), then the
 constraint before the feature that would violate it (6 before 7).
+
+**Revised after ENG-002.** Its measurements changed two priorities:
+
+- **ENG-007 is less urgent than assumed.** Transfer is 738 KB, not 6.9 MB; the page reaches first
+  results in ~300 ms. It is a headroom problem, not a live performance problem. It still gates
+  ENG-006, but the bar is "do not regress", not "rescue".
+- **A cheap, independent win appeared.** `haystack()` is ~83% of filter cost because it is rebuilt per
+  record per keystroke (D3b). Precomputing it needs no index restructuring and no ranking change.
+  Worth doing inside ENG-006 or as a standalone follow-up.
+- **ENG-006's justification got stronger and more concrete.** `accessible dashboard` returns **0**
+  results while `dashboard` returns 3,391 (D3). That is a correctness defect, not a ranking
+  shortfall — and German queries returning nothing is the strongest concrete argument for actually
+  running the embeddings ablation (arm R7) rather than assuming lexical retrieval suffices.
 
 **ENG-008 is an exception to "no tickets for contingent milestones".** Its *specification* is frozen
 now, ahead of implementation, because the design decisions — the hidden evaluation layer, the
