@@ -23,6 +23,7 @@ import { CHECKS_VERSION } from "../core/checks.ts";
 import { assessEligibility, ELIGIBILITY_VERSION } from "../core/eligibility.ts";
 import { REVIEW_PROTOCOL_VERSION } from "../core/humanReview.ts";
 import { OllamaProvider } from "../providers/ollama.ts";
+import { OllamaEmbeddings, normalise } from "../providers/ollamaEmbeddings.ts";
 
 const ROOT = fileURLToPath(new URL("../..", import.meta.url));
 const arg = (n, d) => {
@@ -88,6 +89,26 @@ const cfg = {
   taskSetVersion: taskSet.version,
   evaluationHash: evaluationHash(evalsFile),
 };
+
+// --retrieval semantic loads the prebuilt embedding index and embeds the task
+// requests once. The core never embeds anything itself.
+let embeddingIndex, taskVectors;
+if (arg("retrieval", "lexical") === "semantic") {
+  const meta = JSON.parse(readFileSync(join(ROOT, "reports/corpus-embeddings.json"), "utf8"));
+  const raw = readFileSync(join(ROOT, "reports/corpus-embeddings.bin"));
+  embeddingIndex = {
+    vectors: new Float32Array(raw.buffer, raw.byteOffset, raw.length / 4),
+    dim: meta.dim, count: meta.count, ids: meta.ids, model: meta.model,
+  };
+  const emb = new OllamaEmbeddings();
+  const vs = await emb.embed(tasks.map((t) => t.request));
+  taskVectors = Object.fromEntries(tasks.map((t, i) => [t.task_id, normalise(vs[i])]));
+  cfg.embeddingIndex = embeddingIndex;
+  cfg.taskVectors = taskVectors;
+  console.log(`retrieval: semantic (${meta.model}, ${meta.count} vectors)`);
+} else {
+  console.log("retrieval: lexical");
+}
 
 const info = await provider.info();
 console.log(`provider=${info.provider} model=${info.model} version=${info.modelVersion.slice(0, 20)}`);
@@ -172,7 +193,10 @@ console.log("Independent Task Success: pending wherever human checks exist. Pend
 console.log("\nThis is an INFRASTRUCTURE PILOT. No cross-arm inference may be drawn from it.");
 
 if (arg("out", null)) {
-  const p = join(ROOT, arg("out", null));
+  const rel = arg("out", null);
+  // `join(ROOT, "/tmp/x")` yields "<repo>/tmp/x" — an absolute path silently
+  // wrote a 271 MB artifact into the repository once. Respect it instead.
+  const p = rel.startsWith("/") ? rel : join(ROOT, rel);
   mkdirSync(dirname(p), { recursive: true });
   writeFileSync(p, JSON.stringify({
     kind: "infrastructure_pilot",
@@ -180,7 +204,8 @@ if (arg("out", null)) {
     split: splitName,
     pilotSubsetVersion: pilot.version,
     taskSplitVersion: splits.version,
-    config: cfg,
+    config: { ...cfg, embeddingIndex: undefined, taskVectors: undefined },
+    retrieval: cfg.embeddingIndex ? { method: "semantic", model: cfg.embeddingIndex.model, vectors: cfg.embeddingIndex.count } : { method: "lexical" },
     provider: { ...info, host: provider.cfg.host, timeoutMs: provider.cfg.timeoutMs, maxRetries: provider.cfg.maxRetries },
     versions: {
       checks: CHECKS_VERSION, evaluator: EVALUATOR_VERSION,

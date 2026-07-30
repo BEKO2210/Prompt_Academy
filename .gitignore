@@ -25,3 +25,12 @@ qavenv/
 
 # Local Claude Code config (machine-specific)
 .claude/
+
+# Embedding index: 30 MB of derived floats, rebuilt in 55 s by
+# engine/cli/embed-corpus.mjs. The recipe and the model are versioned in
+# reports/corpus-embeddings.json; the vectors themselves are not source.
+reports/corpus-embeddings.bin
+
+# A CLI --out path is joined onto the repo root; an absolute path used to land
+# here. Fixed in run-pilot.mjs, ignored as well so it cannot recur silently.
+tmp/

@@ -23,6 +23,8 @@ import type { AssemblyTask } from "./taskset.ts";
 import type { Corpus } from "./retrieval.ts";
 import { retrieve } from "./retrieval.ts";
 import { FORMULATION_VERSION, MIN_DOCUMENT_FREQUENCY, formulateQuery } from "./queryFormulation.ts";
+import { semanticRetrieve } from "./semanticRetrieval.ts";
+import type { EmbeddingIndex } from "./semanticRetrieval.ts";
 import type { Provider } from "./provider.ts";
 import { createHash } from "node:crypto";
 
@@ -56,6 +58,16 @@ export interface RunConfig {
   retrievalK: number;
   /** Conjuncts in a formulated query. Changes which record every arm receives. */
   maxQueryTerms: number;
+  /**
+   * Semantic retrieval instead of lexical.
+   *
+   * Measured on the same 20 tasks: lexical top-1 was relevant for 2 of them,
+   * semantic for 10. Supplied as an option rather than replacing lexical
+   * outright, so the two remain comparable on identical everything else.
+   */
+  embeddingIndex?: EmbeddingIndex;
+  /** taskId -> unit-normalised query vector. Precomputed; the core embeds nothing. */
+  taskVectors?: Record<string, number[]>;
   /**
    * Which arms to run. Defaults to all of them.
    *
@@ -101,6 +113,7 @@ export interface RunRecord {
   /** Which arms ran at all — a partial matrix must not look like a full one. */
   armsInRun: string[];
   formulationVersion: string;
+  retrievalMethod: string;
   minDocumentFrequency: number;
   taskOrderSeed: number;
   armOrderSeed: number;
@@ -205,10 +218,15 @@ export async function runBenchmark(
   const unretrieved: string[] = [];
 
   for (const task of shuffle(tasks, cfg.taskOrderSeed)) {
-    const f = formulateQuery(corpus, task.request, cfg.maxQueryTerms);
-    const r = f.empty
-      ? { primary: null, additional: [], recordIds: [], matchedCount: 0 }
-      : retrieve(corpus, f.query, cfg.retrievalK);
+    const useSemantic = Boolean(cfg.embeddingIndex && cfg.taskVectors?.[task.task_id]);
+    const f = useSemantic
+      ? { query: "<semantic>", empty: false }
+      : formulateQuery(corpus, task.request, cfg.maxQueryTerms);
+    const r = useSemantic
+      ? semanticRetrieve(corpus, cfg.embeddingIndex!, cfg.taskVectors![task.task_id]!, cfg.retrievalK)
+      : f.empty
+        ? { primary: null, additional: [], recordIds: [], matchedCount: 0 }
+        : retrieve(corpus, f.query, cfg.retrievalK);
     if (!r.primary) {
       unretrieved.push(task.task_id);
       continue;
@@ -248,6 +266,7 @@ export async function runBenchmark(
           promptHash: hashString(prompt.system + "\u0000" + prompt.user),
           armsInRun: [...armsInRun],
           formulationVersion: FORMULATION_VERSION,
+          retrievalMethod: useSemantic ? `semantic:${cfg.embeddingIndex!.model}` : "lexical",
           minDocumentFrequency: MIN_DOCUMENT_FREQUENCY,
           taskOrderSeed: cfg.taskOrderSeed,
           armOrderSeed: cfg.armOrderSeed,
