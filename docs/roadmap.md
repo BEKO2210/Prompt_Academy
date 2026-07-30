@@ -321,10 +321,20 @@ In Progress:
   none
 
 Blocked:
-  M3 — blocked on ADR-0001 (runtime: local CLI vs. self-hosted service vs. cloud vs. BYO-key).
-       Recommendation on record: local CLI against existing ollama, written as a LIBRARY with a
-       thin CLI entry point so later promotion is a deployment change, not a rewrite.
   M4, M5 — contingent on the M3 H1 result.
+
+Unblocked since last handoff:
+  ADR-0001 ACCEPTED. Three-layer structure is binding:
+      Layer 1  core engine library   -- PROVIDER-NEUTRAL: dataset access, retrieval, ranking,
+                                        C/D field split, arm construction, compilation,
+                                        validation, metrics, telemetry, benchmark logic
+      Layer 2  provider adapters     -- Ollama first; knows nothing about layer 1 concerns
+      Layer 3  thin CLI              -- experiment/benchmark surface only
+  Compliance test: core library + its tests must run against a STUB provider with no ollama
+  installed. If removing the ollama adapter breaks retrieval/ranking/benchmark, layering is
+  violated. Ollama is the first provider, NOT the architecture.
+  Backend only when a real requirement appears (multi-user, browser/API, remote execution,
+  job queue, isolation, distributed workers) -- not on H1 succeeding.
 
 Tests:
   None exist. Establishing them is M1 scope (finding D4). CI currently publishes an invalid
@@ -341,6 +351,20 @@ Important Decisions:
       H1b  extraction > bulk injection       (arm D > arm B)   <- load-bearing
       H1c  compilation > single extraction   (arm E > arm D)
     Benchmark arms are now A-E in M3 (F deferred to M4). See benchmark-plan.md §1a and §4.
+  - EVALUATION LEAKAGE CORRECTION (2026-07-30). Injecting a record's acceptance_criteria and
+    then grading with those same fields would make arm D win by construction. Every task now
+    carries TWO separated layers:
+      Layer 1  skill-provided instructions -- may be visible per arm
+      Layer 2  independent evaluation      -- frozen + hashed before the run, authored from the
+                                              task itself, never in ANY prompt, determines success
+    Metrics split accordingly: Independent Task Success (headline) vs. Skill Instruction
+    Compliance (diagnostic only). Never merged. Enforced by a test asserting no Layer 2 string
+    appears in any assembled prompt, and by an arm-blind evaluator.
+  - B/C/D must use the IDENTICAL retrieved record per task (retrieval runs once), so only the
+    context TYPE varies. E is the first arm allowed to vary record count.
+  - Constants held across arms: model, model version, temperature, seed, system wrapper,
+    output budget, tool availability, evaluator, task dataset. Task and arm order randomized
+    with recorded seeds. Harness supports n runs per (task, arm) from the start.
   - Schema evolution additive only; provenance/licence/permissions deferred until data exists.
   - No vector DB. Embeddings deferred pending ablation against BM25 (arm R7).
   - External skill import sequenced last (largest attack-surface increase).
@@ -365,6 +389,11 @@ Do Not Forget:
   - RTX 3070 / 8 GB: one resident local model; ComfyUI contends for VRAM.
   - The C/D field split is the M3 experiment's independent variable. It must be deterministic,
     documented and frozen before the run, never model-decided.
+  - NEVER grade with what was injected. acceptance_criteria/negative_prompt may be Layer 1
+    instructions; they must never be the Layer 2 success score. Structural enforcement, not
+    convention: assembly code must not be able to read Layer 2 at all.
+  - Semantic overlap between a task's Layer 2 and a record's criteria is expected and fine.
+    Leakage is mechanical reuse of the same text as both instruction and grader.
   - Four of seven H1 decision branches lead to building LESS than planned; one leads to stopping.
     That is intended, not a failure mode.
 ```

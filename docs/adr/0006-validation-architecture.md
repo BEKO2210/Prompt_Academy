@@ -43,7 +43,13 @@ Rules:
 2. **`negative_prompt` becomes machine-checkable where possible.** Forbidden packages, forbidden
    patterns. This turns existing prose into deterministic assertions at essentially no cost.
 3. **`acceptance_criteria` are preserved through compilation** (ADR-0004 non-trimmable region) and
-   fed to the validator. The bridge from retrieval to validation runs through these fields.
+   fed to the validator **in product runtime**, where checking output against the injected criteria
+   is a legitimate self-consistency check and drives repair.
+   **In the benchmark this is not a success measure.** Grading with the same fields that were
+   injected as instructions is circular and would make the instruction arms win by construction.
+   The benchmark uses an independent, frozen evaluation layer that never enters any prompt, and
+   reports self-consistency separately as *Skill Instruction Compliance*
+   (`../benchmark-plan.md` §4.0).
 4. **Keyword-presence checking is labelled as a weak proxy**, not as acceptance-criteria
    satisfaction. A criterion "must be keyboard navigable" is not verified by the string "keyboard"
    appearing in output. Reporting it as verified would be a fabricated metric.

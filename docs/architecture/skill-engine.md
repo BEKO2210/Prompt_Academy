@@ -261,10 +261,22 @@ An LLM judge (§25) is a last resort. If used, its agreement with human judgemen
 measured before its verdicts are trusted — an unvalidated judge produces confident noise, which is
 worse than an honest "unknown".
 
-Acceptance criteria from the dataset (3–6 per record, always present) are the natural bridge
-between retrieval and validation: the same record that guided generation supplies the checks.
-This is the strongest structural argument in favour of the whole approach and should be tested
-early.
+Acceptance criteria from the dataset (3–6 per record, always present) connect retrieval to
+validation: the same record that guided generation also supplies checks.
+
+**Two uses, only one of which is legitimate as evidence:**
+
+- **In product runtime — valid.** Checking output against the injected record's acceptance criteria
+  is a useful *self-consistency* check: "did the model do what the selected skill asked?" It drives
+  the repair loop and gives the user a meaningful signal.
+- **In the benchmark — invalid as a success measure.** Grading with the same criteria that were
+  injected as instructions makes the instruction arms win by construction. The benchmark therefore
+  uses an **independent, frozen evaluation layer** that never enters any prompt, and reports
+  self-consistency separately as *Skill Instruction Compliance*. See `benchmark-plan.md` §4.0.
+
+The distinction matters because conflating them would turn the project's most appealing structural
+argument into circular reasoning. What the dataset genuinely provides is a cheap repair signal in
+production — not proof that the approach works.
 
 ---
 

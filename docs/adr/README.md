@@ -10,7 +10,7 @@ Status values: `Proposed` · `Accepted` · `Rejected` · `Superseded by ADR-XXXX
 
 | ADR | Title | Status |
 |---|---|---|
-| [0001](0001-engine-runtime.md) | Engine runtime environment | **Proposed — gates M3, decision required** |
+| [0001](0001-engine-runtime.md) | Engine runtime environment | **Accepted** — local, provider-neutral core + Ollama adapter + thin CLI |
 | [0002](0002-skill-schema-evolution.md) | Additive skill schema evolution | Proposed |
 | [0003](0003-retrieval-architecture.md) | Retrieval architecture: BM25-first, no vector DB | Proposed |
 | [0004](0004-trust-model.md) | Trust model & instruction precedence | Proposed |
@@ -18,5 +18,10 @@ Status values: `Proposed` · `Accepted` · `Rejected` · `Superseded by ADR-XXXX
 | [0006](0006-validation-architecture.md) | Validation architecture: deterministic first | Proposed |
 | [0007](0007-versioning.md) | Skill versioning & provenance | Proposed |
 
-All are `Proposed`. None has been implemented. ADR-0001 is the gating decision for the entire
-engine half of the roadmap and should be decided before M3 is planned in detail.
+ADR-0001 is **Accepted**; the remainder are `Proposed`. **Nothing has been implemented yet.**
+
+ADR-0001's binding constraint: the core engine library is **provider-neutral**. Retrieval, ranking,
+prompt-arm generation, dataset access, metrics and benchmark logic live in the core — never in
+provider-specific or CLI-specific code. Ollama is the first adapter, not the architecture. A backend
+is introduced only when a real requirement demands it (multi-user, browser/API, remote execution, job
+queue, isolation, distributed workers) — not on hypothesis success.

@@ -1,6 +1,6 @@
 # ADR-0001 — Engine runtime environment
 
-**Status:** Proposed — **decision required before M3**
+**Status:** **Accepted** (2026-07-30), with the layering constraint in §Decision as binding
 **Date:** 2026-07-30
 
 ## Context
@@ -29,18 +29,61 @@ The operator's standing preference is for isolated installs that do not bloat th
 
 ## Decision
 
-**Adopt Option A: a local CLI / Node library, run on the operator's machine against the existing
-ollama endpoint.** No hosted service, no public endpoint, no new infrastructure.
+**Adopt Option A: a local experiment runtime on the operator's machine, using the existing ollama
+endpoint as its first provider.** No hosted service, no public endpoint, no new infrastructure.
 
-Two structural requirements attach to this decision:
+**Ollama is the first provider. Ollama is not the architecture.** This distinction is the binding
+part of this decision, and it is enforced by a three-layer structure:
 
-1. The engine is written as a **library** with a thin CLI entry point — not as a web service. This
-   makes a later promotion to a hosted service a deployment change rather than a rewrite.
+```
+┌───────────────────────────────────────────────────────────────┐
+│ LAYER 3 — Thin CLI                                             │
+│   Local experiment / benchmark surface. Argument parsing,       │
+│   run invocation, result printing. No logic worth testing.      │
+└───────────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────┐
+│ LAYER 2 — Provider adapters                                    │
+│   Ollama adapter (first). Implements the provider interface     │
+│   defined by the core. Knows nothing about retrieval, ranking,  │
+│   arms, datasets, metrics or benchmarks.                        │
+└───────────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────────────┐
+│ LAYER 1 — Core engine library  ── PROVIDER-NEUTRAL              │
+│   dataset access · retrieval · ranking · field split (C/D)      │
+│   prompt-arm construction · compilation · context budget        │
+│   validation · metrics · telemetry · benchmark logic            │
+│   Depends only on the provider *interface*, never on a provider.│
+└───────────────────────────────────────────────────────────────┘
+```
+
+**Placement rule (binding):** retrieval, ranking, prompt-arm generation, dataset access, the
+deterministic descriptive/actionable field split, validation, metrics and benchmark logic live in the
+**core library**. None of it may live in provider-specific or CLI-specific code.
+
+Test for compliance: the core library must be usable, and its tests must pass, with a stub provider
+and no ollama installed. If removing the ollama adapter breaks retrieval, ranking or the benchmark,
+the layering has been violated.
+
+Two further structural requirements:
+
+1. The engine is a **library** first; the CLI is a thin entry point, not the program. Later promotion
+   to a service is then a deployment change rather than a rewrite.
 2. The **ranking module is shared** with the static site (one implementation, two consumers), so
    engine behaviour cannot silently diverge from what Library users see.
 
-Revisit this ADR if and only if H1 is supported by M3 evidence *and* there is a concrete reason to
-expose the engine publicly.
+### When a backend becomes justified
+
+Not on H1 succeeding — on a **real requirement** appearing. Concretely, any of:
+
+- multi-user access
+- browser or public API consumption
+- remote execution
+- a job queue (runs that outlive a request)
+- isolation requirements (running untrusted content or third-party scripts)
+- distributed workers
+
+Absent one of these, a backend adds cost, surface and maintenance for no capability the local path
+lacks. Revisit this ADR when one of the above is actually present, not in anticipation of it.
 
 ## Alternatives
 
@@ -89,5 +132,13 @@ worth testing cheaply.
 - Prefer local models specifically because they need no credentials (threat T5).
 
 **Reversibility**
-High, given the library-not-service requirement. Promoting to Option B or C later is a deployment
-and hardening exercise, not a rewrite.
+High, given the library-not-service and provider-neutrality requirements. Promoting to Option B or C
+later is a deployment and hardening exercise, not a rewrite; adding a second provider is an adapter.
+
+**The failure mode this layering prevents**
+The realistic risk is not choosing ollama — it is ollama's shape leaking upward: prompt assembly
+written against its request format, ranking coupled to its tokenizer, benchmark logic entangled with
+its response envelope. Such coupling is invisible while there is one provider and expensive once
+there are two. It would also turn the H2 benchmark (identical compiled prompt across model tiers)
+into a special case rather than a parameter change. The stub-provider test in §Decision exists to
+catch this early and cheaply.

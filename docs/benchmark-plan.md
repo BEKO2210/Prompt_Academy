@@ -179,24 +179,70 @@ negative results.
 
 ## 4. End-to-end benchmark (H1/H2) — M3
 
-### Arms
+### 4.0 Evaluation leakage — the constraint that shapes everything else
+
+**The problem.** Arms C/D/E deliberately inject a record's `acceptance_criteria` and
+`negative_prompt` as instructions. If those same fields were also the success score, arm D would win
+**by construction**: we would be showing the model its own test and then grading it on that test.
+The result would be an artifact of the design, not evidence, and it would be invisible in the
+headline number.
+
+**The rule.** Every benchmark task carries two strictly separated layers:
+
+| | Layer 1 — Skill-provided instructions | Layer 2 — Independent evaluation |
+|---|---|---|
+| Source | the retrieved record(s) | authored per task, **independent of any record** |
+| Visible to model? | yes, depending on arm | **never** — not in any arm, not in any repair prompt |
+| Varies by arm? | yes — that is the experiment | **no** — identical across A–F |
+| Frozen? | no (retrieval selects it) | **yes, before the first run** |
+| Determines success? | **no** | **yes** |
+
+Layer 2 lives in the task-set files. It is authored while writing the task, from the task's own
+requirements, **without looking at which record retrieval will select**. It is committed and hashed
+before any arm executes.
+
+**Enforcement, not convention.** The harness must make leakage structurally impossible:
+
+- Layer 2 assertions are stored in a field the prompt-assembly code cannot read. Assembly receives a
+  task object that does not contain them.
+- A test asserts that no Layer 2 string appears in any assembled prompt for any arm.
+- The evaluator receives the model output and Layer 2 only — never the arm identity, never the
+  selected record. It cannot be arm-aware even accidentally.
+- Repair prompts (arm F) may state *that* a check failed and which output location is implicated,
+  but must not quote Layer 2 assertion text.
+
+**What is still measured from Layer 1.** Skill instruction compliance remains interesting — it just
+is not task success. It answers "did the model follow what we injected?", which is a different and
+useful question, particularly for diagnosing *why* an arm underperformed. Reported separately and
+never combined into the headline figure.
+
+### 4.1 Arms
 
 Refined per §1a to isolate **description vs. instruction vs. compiled instruction**. This replaces a
 simpler A–E ladder that would have confounded "more context" with "better-selected context" — the
 exact confound arXiv:2602.11988 shows matters.
 
+**Same-record isolation (binding for B/C/D):** arms B, C and D must use **the identical retrieved
+record** for a given task. Retrieval runs once per task; B/C/D differ only in which parts of that one
+record are injected. If retrieval were re-run per arm, a B/D difference could come from a different
+record rather than a different context type, and the comparison would be worthless.
+
 | Arm | Configuration | Isolates |
 |---|---|---|
 | **A** | user request → model | the baseline that matters — no library at all |
-| **B** | user request + full best-matching record (verbatim) → model | bulk injection, the paper's condition |
-| **C** | user request + **descriptive parts only** (`prompt` prose, `style`) → model | does description help? |
-| **D** | user request + **actionable parts only** (`acceptance_criteria`, `negative_prompt`, `tech_stack` constraints) → model | does instruction help? |
-| **E** | user request + **compiled instructions from several records** (dedup, conflict resolution, precedence, budget) → model | does compilation beat single-record extraction? |
-| **F** | E + full router/reranker + validation + targeted repair loop | the full mechanism (later; M4) |
+| **B** | user request + **the full record**, verbatim | bulk injection — the paper's condition |
+| **C** | user request + **descriptive part of the same record** (`prompt` prose, `style`) | does description help? |
+| **D** | user request + **actionable part of the same record** (`acceptance_criteria`, `negative_prompt`, `tech_stack` constraints) | does instruction help? |
+| **E** | user request + **compiled actionable instructions from several relevant records** (dedup, conflict resolution, precedence, budget) | does multi-record compilation beat single-record extraction? |
+| **F** | E + full router/reranker + validation + targeted repair loop | the full mechanism (M4 only) |
 
-Arms **A–E run in M3**. Arm **F is deferred to M4** and only exists if M3 justifies it.
+Arms **A–E run in M3**. Arm **F is deferred to M4** and exists only if M3 justifies it.
 
-Interpretation rules, fixed in advance:
+By construction: `B = C ∪ D` over the same record, so B/C/D vary **only the context type** while
+holding the retrieved record, the task, and every model parameter constant. E is the first arm
+permitted to change *how many* records are involved — a deliberate, separate hypothesis.
+
+Interpretation rules, fixed in advance (all against **independent** task success):
 
 - **H1b** holds iff **D > B** beyond noise. This is the load-bearing comparison: it tests whether
   extraction beats the bulk injection the paper found unhelpful.
@@ -209,13 +255,40 @@ Interpretation rules, fixed in advance:
   extraction does"* — consistent with the paper rather than contradicting it, and a stronger
   positioning for the product than a naive "retrieval helps" claim.
 
-Arms C and D must be constructed by a **deterministic, documented split** of the record fields — not
-by a model deciding what counts as "actionable". Otherwise the split becomes an uncontrolled
-variable. The exact field mapping is committed with the harness.
+Arms C and D must be constructed by a **deterministic, documented field split** — not by a model
+deciding what counts as "actionable". Otherwise the split becomes an uncontrolled variable. The exact
+field mapping is committed with the harness and frozen before the first run.
 
 Token accounting matters especially here: D should be substantially *cheaper* than B (fewer tokens,
 prose discarded). If D matches or beats B at lower cost, that is a compound win and the single most
 commercially relevant result the benchmark can produce.
+
+### 4.2 Constants across arms
+
+Anything not listed as the manipulated variable is held **identical** across A–F. The manipulated
+variable is the injected context only.
+
+| Held constant | Note |
+|---|---|
+| Model | same model for all arms in a comparison |
+| Model version | recorded; a mid-run version change invalidates the run |
+| Temperature | fixed |
+| Seed | fixed where the provider supports it |
+| System wrapper / system prompt | byte-identical across arms |
+| Output budget (max tokens) | identical — otherwise arms differ in room to answer |
+| Tool availability | identical (none, in the first slice) |
+| Evaluator | identical, arm-blind (§4.0) |
+| Task dataset + version | identical |
+| Retrieved record (B/C/D) | identical per task (§4.1) |
+
+**Order effects.** Task order is randomized per run, with the shuffle seed recorded. Arm order within
+a task is also randomized. This guards against provider-side drift (thermal throttling, cache warmth,
+model reload) systematically favouring whichever arm happens to run first.
+
+**Non-determinism.** Local models are not reliably deterministic even at temperature 0. The harness is
+therefore designed for **n runs per (task, arm)** from the outset — `n = 1` is permitted for a first
+pass but must be reported as `n = 1`, and the schema must not need changing to raise it. Results
+report mean and spread; a single run is never presented as an arm's result (§7).
 
 ### Model tiers (§43)
 
@@ -251,17 +324,61 @@ prompt separates these.
   (that would test memorization, not generalization).
 - Versioned dataset (§44). Task set version recorded with every result.
 
+**Each task record has two separated layers (§4.0):**
+
+```
+{
+  "task_id": "",
+  "request": "",                  // the user request — goes to the model in every arm
+  "domain": "",
+
+  "evaluation": {                 // LAYER 2 — never enters any prompt, frozen before first run
+    "assertions": [],             // deterministic, checkable, authored from the task itself
+    "forbidden": [],              // packages/patterns that must be absent
+    "required_artifacts": [],     // files/exports that must exist
+    "notes": ""                   // for the human reviewing evaluator behaviour
+  }
+}
+```
+
+Authoring rules for `evaluation`:
+
+- Written **while writing the task**, from the task's own requirements — **not** by copying a
+  record's `acceptance_criteria`, and **without knowing** which record retrieval will select.
+- Deterministically checkable wherever possible (§9 validation tiers). An assertion nobody can check
+  mechanically is either dropped or explicitly flagged as human-only.
+- Frozen and content-hashed before the first arm executes. A change to `evaluation` invalidates all
+  prior results for that task and requires a task-set version bump.
+- Stored in a field the prompt-assembly path structurally cannot read (§4.0).
+
+**Overlap is expected and acceptable.** A task about a pricing page and a record about pricing pages
+will naturally both mention responsive layout. That is convergent authoring, not leakage. Leakage is
+the *mechanical reuse of the same text* as both instruction and grader. The rule is about provenance
+and code paths, not about avoiding all semantic similarity — which would be impossible.
+
 ### Metrics (§45, §46)
 
-Recorded **per arm** (A–F), for every run:
+Recorded **per arm** (A–F), for every run. Note the two-level split from §4.0 — these are different
+questions and are never merged.
 
-**Outcome**
-- task success rate (deterministic validators pass)
-- acceptance-criteria pass rate
-- **first-pass success** (before any repair)
-- final success
-- repair rate, average repairs
+**Outcome — independent (Layer 2, the headline)**
+- **Independent Task Success** — the primary metric. Frozen per-task assertions, never in context.
+- **First-Pass Independent Success** — before any repair
+- **Final Independent Success** — after repair (arm F only)
 - validation failure counts by type (§28 taxonomy)
+
+**Outcome — skill instruction compliance (Layer 1, diagnostic only)**
+- **Skill Instruction Compliance** — did the model follow the injected `acceptance_criteria` /
+  `negative_prompt`? Only meaningful for arms B–F, undefined for A.
+- reported **separately**; never folded into Independent Task Success
+
+The gap between the two is itself informative: high compliance with low independent success means the
+injected instructions were followed but were the *wrong* instructions — a retrieval-quality problem,
+not a model problem. Low compliance with high independent success means the model solved the task
+while ignoring what we injected, which would argue the injection is not doing the work.
+
+**Repair (arm F)**
+- repair rate, average repairs per task
 
 **Cost**
 - input tokens
@@ -278,22 +395,23 @@ Recorded **per arm** (A–F), for every run:
 - success per second
 - router overhead, compiler savings
 
-The cross-arm table that answers the central question is:
+The cross-arm table that answers the central question:
 
 | | A | B | C | D | E |
 |---|---|---|---|---|---|
-| success rate | | | | | |
-| acceptance-criteria pass rate | | | | | |
-| first-pass success | | | | | |
+| **Independent Task Success** | | | | | |
+| First-Pass Independent Success | | | | | |
+| Skill Instruction Compliance | n/a | | | | |
 | input tokens | | | | | |
 | output tokens | | | | | |
 | total cost | | | | | |
 | latency | | | | | |
 | success per 1k tokens | | | | | |
+| n (runs per task) | | | | | |
 
-Empty by design — it is filled only by a recorded run. **D beating B while using fewer input
-tokens** is the outcome to watch for: it would mean the product's job is extraction and compilation,
-not context loading.
+Empty by design — filled only by a recorded run. **D beating B on Independent Task Success while
+using fewer input tokens** is the outcome to watch for: it would mean the product's job is extraction
+and compilation, not context loading.
 
 ### Scoring — deterministic first
 
@@ -323,14 +441,26 @@ which is often not where one expects. Skill gaps feed the demand-driven authorin
 
 ## 6. Anti-patterns this plan forbids
 
-- Reporting a lucky single run as evidence (§48).
+- **Grading with what we injected.** Using a record's `acceptance_criteria` / `negative_prompt` as
+  both Layer 1 instruction and Layer 2 success score. This is the leakage failure (§4.0) and would
+  make arm D win by construction.
+- **Authoring Layer 2 after seeing the retrieved record**, or by copying its fields. Same failure,
+  arrived at by hand.
+- **Letting the evaluator know the arm.** An arm-aware grader can differ across arms for reasons
+  unrelated to output quality.
+- **Re-running retrieval per arm for B/C/D.** Then a B/D difference may be a different record rather
+  than a different context type (§4.1).
+- **Varying any constant from §4.2** between arms — output budget and system wrapper are the easiest
+  to get wrong and the most damaging.
+- Reporting a lucky single run as evidence (§48), or presenting `n = 1` without saying so.
 - Comparing against a strawman baseline. Arm A must be a *fair* attempt: the user's request as they
   would actually write it, to a capable model, with no deliberate handicap.
 - Tuning weights on the same set used to report results. Hold out a test split, or report
   train/test separately.
-- Changing the task set between arms.
+- Changing the task set between arms, or editing `evaluation` mid-run without a version bump.
 - Reporting token savings without the matching quality measurement (a compiler that saves tokens
   while degrading output is a regression).
+- Merging Skill Instruction Compliance into Independent Task Success.
 - Publishing only the arms that worked.
 - Any number not produced by a recorded run.
 
@@ -351,10 +481,21 @@ which is often not where one expects. Skill gaps feed the demand-driven authorin
 Recorded with every result set, without exception:
 
 ```
-model, model_version (where available), provider, temperature, seed,
-engine_config_hash, ranking_weights, dataset_version, task_set_version,
-skill_versions[], timestamp (real, not rounded), hardware, arm
+arm, task_id, run_index, n_runs
+model, model_version (where available), provider
+temperature, seed, output_budget, system_wrapper_hash, tools_available
+engine_config_hash, ranking_weights, field_split_version
+dataset_version, task_set_version, evaluation_hash
+retrieved_record_ids[], skill_versions[]
+task_order_seed, arm_order_seed
+timestamp (real, not rounded), hardware
 ```
+
+Three of these exist specifically to make the §4.0 and §4.2 guarantees auditable after the fact:
+
+- `evaluation_hash` — proves Layer 2 was frozen and unchanged across the arms being compared.
+- `retrieved_record_ids[]` — proves B/C/D used the same record for a given task.
+- `system_wrapper_hash` + `output_budget` — proves the two easiest-to-break constants held.
 
 Note on hardware: results are machine-dependent (RTX 3070 / 8 GB, one resident model). Latency
 numbers do not transfer to other hardware and must be labelled as such.
@@ -366,9 +507,10 @@ numbers do not transfer to other hardware and must be labelled as such.
 | Artifact | Milestone |
 |---|---|
 | `benchmarks/queries/` labelled query set (versioned) | M2 |
-| `benchmarks/tasks/` task set (versioned) | M3 |
+| `benchmarks/tasks/` task set with frozen, hashed `evaluation` layer (versioned) | M3 |
 | Retrieval ablation table R0–R7, incl. negative results | M2 |
-| Documented deterministic field split for arms C and D | M3 |
+| Documented, frozen deterministic field split for arms C and D | M3 |
+| Leakage test: no Layer 2 string appears in any assembled prompt, any arm | M3 |
 | End-to-end results **A–E** × model tiers (the §4 cross-arm table) | M3 |
 | Failure taxonomy breakdown | M3 |
 | Efficiency table | M3 |
@@ -387,7 +529,22 @@ Stated in advance, so results cannot be reinterpreted after the fact.
 |---|---|
 | H0 false | Do not ship the ranking. Investigate the query set and the signals first. |
 
-**H1 (the refined description/instruction/compilation question — see §1a):**
+**Hard stop conditions — abort the run, do not interpret results:**
+
+| Condition | Action |
+|---|---|
+| Any Layer 2 string found in an assembled prompt | **Abort.** Results are invalid. Fix the harness, re-freeze, re-run. |
+| B/C/D used different records for the same task | **Abort** that task's comparison. |
+| A §4.2 constant differed across arms | **Abort** the affected comparison. |
+| `evaluation` edited mid-run without a version bump | **Discard** all results for that task set version. |
+| Model version changed mid-run | **Discard** and re-run. |
+
+These are not warnings. A run that violates one of them produces numbers that look valid and are not,
+which is worse than no numbers.
+
+**H1 (the refined description/instruction/compilation question — see §1a).**
+All comparisons below are on **Independent Task Success** (Layer 2), never on Skill Instruction
+Compliance:
 
 | Outcome | Action |
 |---|---|
@@ -397,6 +554,8 @@ Stated in advance, so results cannot be reinterpreted after the fact.
 | **B ≈ D** | Extraction adds nothing over bulk injection. Drop extraction; simplify to retrieve-and-inject. |
 | **C > D** | Description carries the value, contrary to prior evidence. Stop and re-examine the dataset's value proposition before building anything. |
 | **A ≈ B ≈ C ≈ D ≈ E** | H1 falsified for this corpus and model. **Stop before M4.** Keep the improved library as a browsing product. Document the negative result. |
+| High compliance, low independent success | The injected instructions were followed but were the **wrong** instructions. This is a retrieval-quality problem, not a compiler problem — go back to H0 and the ranking, do not build more pipeline. |
+| Low compliance, high independent success | The model solved the task while largely ignoring the injection. The injection is not doing the work; question whether the mechanism is load-bearing at all. |
 
 **H2 (capability substitution):**
 
