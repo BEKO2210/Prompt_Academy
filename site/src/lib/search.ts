@@ -20,8 +20,8 @@
  * synonyms, no translation, no capability weighting. Which records match —
  * not in which order.
  */
-import type { IndexItem } from "./data";
-import { expandPhrase, expandToken } from "./vocabulary";
+import type { IndexItem } from "./data.ts";
+import { expandPhrase, expandToken } from "./vocabulary.ts";
 
 /** Bump when tokenisation, phrases or the low-information set change. */
 export const MATCHING_VERSION = "1.0.0";

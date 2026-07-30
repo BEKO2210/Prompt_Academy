@@ -1,0 +1,2716 @@
+{
+ "config": {
+  "temperature": 0,
+  "maxTokens": 2048,
+  "seed": 7,
+  "retrievalK": 3,
+  "maxQueryTerms": 3,
+  "nRuns": 1,
+  "taskOrderSeed": 20260730,
+  "armOrderSeed": 20260731,
+  "datasetVersion": "data-jsonl",
+  "taskSetVersion": "task-set-v1-seed",
+  "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a"
+ },
+ "unretrieved": [],
+ "records": [
+  {
+   "arm": "C",
+   "taskId": "T005",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-002139"
+   ],
+   "retrievalQuery": "karten dashboard",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.281Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1009 temperature=0 max_tokens=2048",
+   "inputTokens": 287,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 913,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "pass",
+      "detail": "expected content present"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a dashboard page"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 0,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 1
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T005",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-002139",
+    "PRM-002570",
+    "PRM-002140"
+   ],
+   "retrievalQuery": "karten dashboard",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.282Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1993 temperature=0 max_tokens=2048",
+   "inputTokens": 533,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1897,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "pass",
+      "detail": "expected content present"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a dashboard page"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 0,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 1
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T005",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-002139"
+   ],
+   "retrievalQuery": "karten dashboard",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.282Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=776 temperature=0 max_tokens=2048",
+   "inputTokens": 229,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 680,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "pass",
+      "detail": "expected content present"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a dashboard page"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 0,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 1
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T005",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-002139"
+   ],
+   "retrievalQuery": "karten dashboard",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.282Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1658 temperature=0 max_tokens=2048",
+   "inputTokens": 449,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1562,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "pass",
+      "detail": "expected content present"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a dashboard page"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 0,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 1
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T005",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "karten dashboard",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.282Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=96 temperature=0 max_tokens=2048",
+   "inputTokens": 59,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "pass",
+      "detail": "expected content present"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a dashboard page"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 0,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 1
+   }
+  },
+  {
+   "arm": "C",
+   "taskId": "T008",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001101"
+   ],
+   "retrievalQuery": "confirmation",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.427Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1119 temperature=0 max_tokens=2048",
+   "inputTokens": 314,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 982,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a settings page"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": null
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T008",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001101",
+    "PRM-001114",
+    "PRM-001125"
+   ],
+   "retrievalQuery": "confirmation",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.427Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1875 temperature=0 max_tokens=2048",
+   "inputTokens": 503,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1738,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a settings page"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": null
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T008",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001101"
+   ],
+   "retrievalQuery": "confirmation",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.427Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1024 temperature=0 max_tokens=2048",
+   "inputTokens": 291,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 887,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a settings page"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": null
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T008",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001101"
+   ],
+   "retrievalQuery": "confirmation",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.427Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1975 temperature=0 max_tokens=2048",
+   "inputTokens": 528,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1838,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a settings page"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": null
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T008",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "confirmation",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.427Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=137 temperature=0 max_tokens=2048",
+   "inputTokens": 69,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a settings page"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": null
+   }
+  },
+  {
+   "arm": "C",
+   "taskId": "T002",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001150"
+   ],
+   "retrievalQuery": "login",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.568Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1032 temperature=0 max_tokens=2048",
+   "inputTokens": 293,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 932,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a form component"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0.5
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T002",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001150",
+    "PRM-001302",
+    "PRM-001508"
+   ],
+   "retrievalQuery": "login",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.568Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1768 temperature=0 max_tokens=2048",
+   "inputTokens": 477,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1668,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a form component"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0.5
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T002",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001150"
+   ],
+   "retrievalQuery": "login",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.568Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=748 temperature=0 max_tokens=2048",
+   "inputTokens": 222,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 648,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a form component"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0.5
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T002",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001150"
+   ],
+   "retrievalQuery": "login",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.568Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1649 temperature=0 max_tokens=2048",
+   "inputTokens": 447,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1549,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a form component"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0.5
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T002",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "login",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.568Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=100 temperature=0 max_tokens=2048",
+   "inputTokens": 60,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a form component"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0.5
+   }
+  },
+  {
+   "arm": "C",
+   "taskId": "T003",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-002167"
+   ],
+   "retrievalQuery": "suche tabelle",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.666Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=941 temperature=0 max_tokens=2048",
+   "inputTokens": 270,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 829,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a table component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": null
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T003",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-002167",
+    "PRM-002428",
+    "PRM-002655"
+   ],
+   "retrievalQuery": "suche tabelle",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.666Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1822 temperature=0 max_tokens=2048",
+   "inputTokens": 490,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1710,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a table component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": null
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T003",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-002167"
+   ],
+   "retrievalQuery": "suche tabelle",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.666Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=906 temperature=0 max_tokens=2048",
+   "inputTokens": 261,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 794,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a table component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": null
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T003",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-002167"
+   ],
+   "retrievalQuery": "suche tabelle",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.666Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1704 temperature=0 max_tokens=2048",
+   "inputTokens": 461,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1592,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a table component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": null
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T003",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "suche tabelle",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.666Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=112 temperature=0 max_tokens=2048",
+   "inputTokens": 63,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a table component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": null
+   }
+  },
+  {
+   "arm": "C",
+   "taskId": "T007",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001102"
+   ],
+   "retrievalQuery": "modal",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.765Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1000 temperature=0 max_tokens=2048",
+   "inputTokens": 285,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 889,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a modal component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T007",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001102",
+    "PRM-001103",
+    "PRM-001104"
+   ],
+   "retrievalQuery": "modal",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.765Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1752 temperature=0 max_tokens=2048",
+   "inputTokens": 473,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1641,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a modal component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T007",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001102"
+   ],
+   "retrievalQuery": "modal",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.765Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=938 temperature=0 max_tokens=2048",
+   "inputTokens": 269,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 827,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a modal component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T007",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001102"
+   ],
+   "retrievalQuery": "modal",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.765Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1796 temperature=0 max_tokens=2048",
+   "inputTokens": 484,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1685,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a modal component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T007",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "modal",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.765Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=111 temperature=0 max_tokens=2048",
+   "inputTokens": 62,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a modal component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0
+   }
+  },
+  {
+   "arm": "C",
+   "taskId": "T006",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001112"
+   ],
+   "retrievalQuery": "address",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.935Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=984 temperature=0 max_tokens=2048",
+   "inputTokens": 281,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 850,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden2",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden3",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a checkout step component"
+     }
+    ],
+    "automatedPassed": 4,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": 1
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T006",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001112",
+    "PRM-001138",
+    "PRM-001306"
+   ],
+   "retrievalQuery": "address",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.935Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1663 temperature=0 max_tokens=2048",
+   "inputTokens": 450,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1529,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden2",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden3",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a checkout step component"
+     }
+    ],
+    "automatedPassed": 4,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": 1
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T006",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001112"
+   ],
+   "retrievalQuery": "address",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.935Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=798 temperature=0 max_tokens=2048",
+   "inputTokens": 234,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 664,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden2",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden3",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a checkout step component"
+     }
+    ],
+    "automatedPassed": 4,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": 1
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T006",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001112"
+   ],
+   "retrievalQuery": "address",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.935Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1617 temperature=0 max_tokens=2048",
+   "inputTokens": 439,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1483,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden2",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden3",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a checkout step component"
+     }
+    ],
+    "automatedPassed": 4,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": 1
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T006",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "address",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:53.935Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=134 temperature=0 max_tokens=2048",
+   "inputTokens": 68,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden2",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden3",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a checkout step component"
+     }
+    ],
+    "automatedPassed": 4,
+    "automatedFailed": 0,
+    "unresolved": 4,
+    "structuralSuccess": false,
+    "automatedRate": 1
+   }
+  },
+  {
+   "arm": "C",
+   "taskId": "T001",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-000051"
+   ],
+   "retrievalQuery": "preisseite",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:54.039Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1089 temperature=0 max_tokens=2048",
+   "inputTokens": 307,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 964,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "pass",
+      "detail": "expected content present"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a component file"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 1,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0.6666666666666666
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T001",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-000051",
+    "PRM-000052",
+    "PRM-000053"
+   ],
+   "retrievalQuery": "preisseite",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:54.039Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1514 temperature=0 max_tokens=2048",
+   "inputTokens": 413,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1389,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "pass",
+      "detail": "expected content present"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a component file"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 1,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0.6666666666666666
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T001",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-000051"
+   ],
+   "retrievalQuery": "preisseite",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:54.039Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=663 temperature=0 max_tokens=2048",
+   "inputTokens": 200,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 538,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "pass",
+      "detail": "expected content present"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a component file"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 1,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0.6666666666666666
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T001",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-000051"
+   ],
+   "retrievalQuery": "preisseite",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:54.039Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1596 temperature=0 max_tokens=2048",
+   "inputTokens": 434,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1471,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "pass",
+      "detail": "expected content present"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a component file"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 1,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0.6666666666666666
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T001",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "preisseite",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:54.039Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=125 temperature=0 max_tokens=2048",
+   "inputTokens": 66,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "pass",
+      "detail": "expected content present"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: a component file"
+     }
+    ],
+    "automatedPassed": 2,
+    "automatedFailed": 1,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0.6666666666666666
+   }
+  },
+  {
+   "arm": "C",
+   "taskId": "T004",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001311"
+   ],
+   "retrievalQuery": "file upload drop",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:54.145Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=958 temperature=0 max_tokens=2048",
+   "inputTokens": 274,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 835,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: an upload component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T004",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001311"
+   ],
+   "retrievalQuery": "file upload drop",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:54.145Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=793 temperature=0 max_tokens=2048",
+   "inputTokens": 233,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 670,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: an upload component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T004",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001311"
+   ],
+   "retrievalQuery": "file upload drop",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:54.145Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=793 temperature=0 max_tokens=2048",
+   "inputTokens": 233,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 670,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: an upload component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T004",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [
+    "PRM-001311"
+   ],
+   "retrievalQuery": "file upload drop",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:54.145Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=1597 temperature=0 max_tokens=2048",
+   "inputTokens": 434,
+   "outputTokens": 24,
+   "latencyMs": 0,
+   "contextChars": 1474,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: an upload component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T004",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "stub",
+   "model": "stub",
+   "modelVersion": "stub-1",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 2048,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1-seed",
+   "evaluationHash": "febcb507adcb3c59eb46100f154d8c5ec6b9d81a4a23f13892b6ec15662ee72a",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "file upload drop",
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T17:57:54.145Z",
+   "output": "STUB OUTPUT — no model was called.\nsystem_len=137 user_len=123 temperature=0 max_tokens=2048",
+   "inputTokens": 65,
+   "outputTokens": 23,
+   "latencyMs": 0,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a4",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "artifact0",
+      "status": "unresolved",
+      "detail": "artifact requirement needs human judgement: an upload component"
+     }
+    ],
+    "automatedPassed": 0,
+    "automatedFailed": 2,
+    "unresolved": 3,
+    "structuralSuccess": false,
+    "automatedRate": 0
+   }
+  }
+ ]
+}

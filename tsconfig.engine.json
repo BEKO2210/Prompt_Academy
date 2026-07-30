@@ -25,7 +25,13 @@
     "erasableSyntaxOnly": true,
 
     "strict": true,
-    "noUncheckedIndexedAccess": true,
+    // NOT noUncheckedIndexedAccess. retrieval.ts imports site/src/lib/*.ts by
+    // design (ADR-0001: one ranking implementation, two consumers), and tsc
+    // checks imported files under THIS config. Turning it on would report the
+    // site's own code against a stricter setting than the site is written to,
+    // which is a config conflict rather than a defect. Engine-only strictness
+    // would need the shared modules moved out of site/, which ADR-0001's
+    // "shared with the static site" requirement argues against.
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,

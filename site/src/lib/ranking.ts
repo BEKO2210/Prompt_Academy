@@ -13,9 +13,9 @@
  *   - only MATCHED records are scored, so cost scales with result count,
  *     not with the 10,000-record corpus
  */
-import type { IndexItem } from "./data";
-import type { ParsedQuery } from "./search";
-import { SYNONYM_SCORE_FACTOR } from "./vocabulary";
+import type { IndexItem } from "./data.ts";
+import type { ParsedQuery } from "./search.ts";
+import { SYNONYM_SCORE_FACTOR } from "./vocabulary.ts";
 
 export const RANKING_VERSION = "1.0.0";
 
