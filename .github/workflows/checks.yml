@@ -45,6 +45,11 @@ jobs:
       - name: content_hash manifest is current
         run: python scripts/compute_content_hashes.py --check
 
+      # ENG-001. Deterministic rules — a stale manifest means the rules or the
+      # dataset changed without the labels being regenerated.
+      - name: capability manifest is current
+        run: python scripts/derive_capabilities.py --check
+
   site:
     name: Typecheck, lint, tests
     runs-on: ubuntu-latest

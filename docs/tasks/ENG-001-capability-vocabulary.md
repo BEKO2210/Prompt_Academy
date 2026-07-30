@@ -2,8 +2,30 @@
 
 **Type:** Architecture / Data
 **Milestone:** M1
-**Status:** READY
+**Status:** **DONE** (2026-07-30)
 **Complexity:** M
+
+## Result
+
+| Artifact | |
+|---|---|
+| `schema/capabilities.vocabulary.json` | 28 functional capabilities, v1.0.0 |
+| `schema/capabilities.rules.json` | Deterministic rules, v1.1.0 |
+| `scripts/derive_capabilities.py` | `--check` (CI) · `--sample` (review) |
+| `reports/capabilities.json` | per-record labels, high/medium/uncertain |
+| `reports/capabilities-quality.md` | precision/recall evaluation |
+
+**Measured:** coverage **98.66%** (134 records without any capability), mean **5.24**
+capabilities/record, all 28 terms fire, ~17 s, fully reproducible. **No model was used.**
+
+**Precision 90.6% / recall 90.6%** on review round 1 (seed 7, n=20). Six systematic error
+classes found and fixed in rules 1.1.0; validated on a **fresh** sample (seed 42) with
+**zero false positives** among 47 verified assignments. Full method and caveats in
+`reports/capabilities-quality.md`.
+
+**Verdict: good enough as ONE ranking signal (ablation arm R3), not good enough to route on
+alone, and not ground truth for evaluating retrieval** — that is ENG-005's job and must be
+built independently of these labels.
 
 ## Problem
 

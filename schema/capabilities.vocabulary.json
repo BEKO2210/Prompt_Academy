@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "vocabulary_version": "1.0.0",
+  "created": "2026-07-30",
+  "ticket": "ENG-001",
+
+  "purpose": "Controlled vocabulary of FUNCTIONAL capabilities a prompt provides. Used by the capability resolver and as ranking signal R3. Deliberately small: 28 terms, no near-duplicates, no term finer than routing can act on.",
+
+  "design_decisions": {
+    "functional_only": "Capabilities describe what a prompt makes the output DO, not what artifact it is. Artifact type is already carried by `category` (10 values) and `subcategory` (200 values) and is already a ranking facet — restating it here would duplicate data and inflate the vocabulary without adding a signal.",
+    "no_umbrella_terms": "No `a11y.wcag` alongside `a11y.keyboard`/`a11y.screen_reader`/`a11y.contrast`: an umbrella that is implied by its own members is a near-duplicate and makes overlap analysis meaningless. The specific mechanisms are kept, the umbrella is not.",
+    "merged_where_indistinguishable": "sort merged into `data.filter_sort` (co-stated in ~all sources, 6.6% alone). CSV/PDF/JSON merged into `data.export`. WebSocket merged into `data.realtime`. Checkout and payment merged into `commerce.checkout` (they co-occur and no source distinguishes them usefully).",
+    "excluded_as_too_rare": {
+      "commerce.subscription": "1.1% of records — below the level at which a routing signal is useful, and it is nearly always accompanied by commerce.checkout.",
+      "i18n.generic": "2.6% — `layout.rtl` covers the concrete, checkable part of localization. Generic i18n claims are too vague to verify."
+    },
+    "kept_despite_low_coverage": {
+      "media.upload": "1.7% — retained because rarity makes it MORE discriminative for retrieval, not less. A query for a file-upload component should have a capability signal to match on."
+    }
+  },
+
+  "confidence_levels": {
+    "high": "Matched an explicit acceptance_criterion, or implied by a subcategory whose artifact IS the capability. Acceptance criteria are explicit promises about the output, so they are the strongest available evidence.",
+    "medium": "Matched only in prompt text, negative_prompt or tags. Descriptive rather than promised.",
+    "uncertain": "Pattern matched but the evidence is ambiguous or the term is known to produce false positives. Emitted into a SEPARATE list and never treated as an assigned capability."
+  },
+
+  "capabilities": [
+    {
+      "id": "a11y.keyboard",
+      "label": "Keyboard operability",
+      "definition": "Output is fully operable by keyboard: tab order, visible focus indication, focus trapping in overlays, escape-to-close.",
+      "not": "Does not cover screen-reader semantics — that is a11y.screen_reader."
+    },
+    {
+      "id": "a11y.screen_reader",
+      "label": "Screen-reader support",
+      "definition": "ARIA roles, labels, live regions or semantic markup so assistive technology can announce the interface.",
+      "not": "Does not cover keyboard operation or colour contrast."
+    },
+    {
+      "id": "a11y.contrast",
+      "label": "Colour contrast",
+      "definition": "Colour contrast explicitly meeting a stated threshold (typically WCAG AA).",
+      "not": "Generic mentions of 'accessible colours' without a threshold are uncertain, not this."
+    },
+    {
+      "id": "a11y.reduced_motion",
+      "label": "Reduced-motion fallback",
+      "definition": "Honours prefers-reduced-motion by disabling or reducing non-essential animation."
+    },
+    {
+      "id": "layout.responsive",
+      "label": "Responsive layout",
+      "definition": "Adapts across mobile, tablet and desktop breakpoints."
+    },
+    {
+      "id": "layout.dark_mode",
+      "label": "Dark/light theming",
+      "definition": "Provides both dark and light colour schemes, typically with a toggle or system-preference detection."
+    },
+    {
+      "id": "layout.rtl",
+      "label": "Right-to-left support",
+      "definition": "Supports RTL text direction with mirrored layout adaptation."
+    },
+    {
+      "id": "motion.animation",
+      "label": "Animation and transitions",
+      "definition": "Non-trivial motion: entrance/exit transitions, scroll-driven effects, physics or orchestrated timelines.",
+      "not": "A single CSS hover colour change is not this. See the rules file for the threshold applied."
+    },
+    {
+      "id": "forms.input",
+      "label": "Form input",
+      "definition": "Collects structured user input through form controls."
+    },
+    {
+      "id": "forms.validation",
+      "label": "Input validation",
+      "definition": "Validates input and surfaces inline errors or success feedback."
+    },
+    {
+      "id": "data.search",
+      "label": "Search",
+      "definition": "Free-text search over content or datasets, including result highlighting or debounced input."
+    },
+    {
+      "id": "data.filter_sort",
+      "label": "Filtering and sorting",
+      "definition": "Narrows or reorders a result set by facets, ranges or column sort."
+    },
+    {
+      "id": "data.pagination",
+      "label": "Pagination and virtualization",
+      "definition": "Splits or windows large result sets: paging, infinite scroll, or virtual scrolling."
+    },
+    {
+      "id": "data.table",
+      "label": "Tabular data",
+      "definition": "Presents data in rows and columns as the primary display."
+    },
+    {
+      "id": "data.charts",
+      "label": "Charts and visualization",
+      "definition": "Graphical data representation: charts, graphs, maps, diagrams, gauges."
+    },
+    {
+      "id": "data.export",
+      "label": "Export and download",
+      "definition": "Exports data or artifacts to a file — CSV, PDF, JSON, image."
+    },
+    {
+      "id": "data.realtime",
+      "label": "Live/real-time data",
+      "definition": "Updates without a user-initiated reload: websockets, polling, streaming, live metrics."
+    },
+    {
+      "id": "state.loading",
+      "label": "Loading states",
+      "definition": "Explicit loading affordances: skeletons, shimmer, spinners tied to async work."
+    },
+    {
+      "id": "state.empty",
+      "label": "Empty states",
+      "definition": "Explicit zero-data state with guidance on what to do next."
+    },
+    {
+      "id": "state.error",
+      "label": "Error handling",
+      "definition": "User-facing error states with recovery or retry, not just a thrown exception."
+    },
+    {
+      "id": "feedback.notification",
+      "label": "Notifications",
+      "definition": "Transient or queued user feedback: toasts, snackbars, alert banners."
+    },
+    {
+      "id": "feedback.overlay",
+      "label": "Modal overlays",
+      "definition": "Modals, dialogs, drawers or sheets layered over the main content."
+    },
+    {
+      "id": "flow.onboarding",
+      "label": "Onboarding / multi-step flow",
+      "definition": "Guided first-run experience or a multi-step wizard with progress."
+    },
+    {
+      "id": "flow.drag_drop",
+      "label": "Drag and drop",
+      "definition": "Direct manipulation by dragging: reordering, moving between containers, canvas placement."
+    },
+    {
+      "id": "media.upload",
+      "label": "File upload",
+      "definition": "Accepts user files, typically with progress and type/size handling."
+    },
+    {
+      "id": "auth.accounts",
+      "label": "Authentication",
+      "definition": "Login, signup, sessions, password handling or account state."
+    },
+    {
+      "id": "commerce.cart",
+      "label": "Shopping cart",
+      "definition": "Cart state: add, remove, quantity, running total."
+    },
+    {
+      "id": "commerce.checkout",
+      "label": "Checkout and payment",
+      "definition": "Checkout flow and payment capture, including order confirmation."
+    }
+  ]
+}

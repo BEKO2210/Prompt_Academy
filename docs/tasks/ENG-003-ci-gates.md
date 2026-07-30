@@ -76,6 +76,7 @@ CI that blocks a bad dataset or a broken build before it reaches the live site.
   - `python scripts/dedupe_dataset.py`
   - `python scripts/compute_content_hashes.py --check` (ENG-004; fails on a stale manifest)
   - `python scripts/compute_content_hashes.py --self-test` (16 assertions, no dataset needed)
+  - `python scripts/derive_capabilities.py --check` (ENG-001; also catches a label-neutral rules edit via config_hash)
   - `tsc --noEmit` (typecheck, independent of the build)
   - `eslint .`
   - test suite

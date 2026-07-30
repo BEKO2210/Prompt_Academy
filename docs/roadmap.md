@@ -88,8 +88,10 @@ change risks a dataset or site regression that nothing currently catches.
   `deploy.yml` via `checks → build → deploy`. Closes D4; D5 fixed at the root.
 - ~~Introduce a test runner and the first tests~~ **DONE** — 29 tests in `tests/*.test.mjs` on
   Node's built-in runner, zero new dependencies. Includes size budgets guarding the ENG-002 baseline.
-- Author `schema/capabilities.vocabulary.json` — controlled, versioned vocabulary (schema A1).
-- Author the subcategory → capabilities mapping table (200 rows, hand-reviewed).
+- ~~Author `schema/capabilities.vocabulary.json`~~ **DONE (ENG-001)** — 28 functional capabilities.
+- ~~Subcategory → capabilities mapping~~ **DONE** — but only 26 of 200 rows, deliberately: mapping
+  all 200 would encode assumptions ("a dashboard probably has charts") rather than rules. Text
+  evidence carries the rest.
 - ~~Add `content_hash` per record~~ **DONE (ENG-004, 2026-07-30)** —
   `scripts/compute_content_hashes.py` → `reports/content_hashes.json`. 10,000 distinct hashes;
   `--check` and `--self-test` ready for CI.
@@ -408,6 +410,44 @@ Completed:
       retrieval structure must have its budget argued up WITH A MEASUREMENT FIRST, not
       discovered afterwards.
 
+  ENG-001 capability vocabulary — DONE 2026-07-30. NO MODEL USED; deterministic rules only.
+      schema/capabilities.vocabulary.json   28 functional capabilities, v1.0.0
+      schema/capabilities.rules.json        word-boundary regex + 26 subcategory rows, v1.1.0
+      scripts/derive_capabilities.py        --check (CI) | --sample (review)
+      reports/capabilities.json             per record: high / medium / uncertain
+      reports/capabilities-quality.md       the precision/recall evaluation
+    coverage 98.66% | mean 5.24 caps/record | all 28 terms fire | ~17 s | reproducible
+
+  MEASURED QUALITY (this was the point of the ticket):
+    round 1, rules 1.0.0, seed 7, n=20   precision 90.6%  recall 90.6%
+    round 2, rules 1.1.0, seed 42 FRESH  0 false positives among 47 verified assignments
+    Fresh seed on purpose -- validating fixes on the sample they came from proves nothing.
+
+  SIX SYSTEMATIC ERROR CLASSES FOUND AND FIXED (all word-sense, hence rule-fixable):
+    data.export       <- "exported props interface"        (TypeScript, not data)
+    commerce.checkout <- "billing overview"                (SaaS invoicing, not payment)
+    auth.accounts     <- "newsletter signup"               (mailing list, not account)
+    layout.responsive <- "responsive feedback"             (reactive, not breakpoints)
+    layout.dark_mode  <- "gunmetal gray dark mode"         (palette name, not theming)
+    forms.validation  <- "validating web components"       (code, not input)
+  Plus 5 false negatives (word order, tight collocation windows, ARIA phrasings).
+  Net effect corpus-wide: ~2,100 wrong labels removed, ~2,300 missed ones recovered.
+
+  THREE THINGS TO CARRY FORWARD:
+    - motion.animation fires on ~80% of records. Real, but near-useless as a discriminator.
+      Weight it at or near ZERO in ranking or it is noise.
+    - Bare "WCAG 2.1 AA compliance" yields NO a11y capability, by design (no umbrella term).
+      This was the most common false negative in both rounds. A deliberate trade, revisit if
+      capability recall matters more than vocabulary cleanliness.
+    - BOILERPLATE ACCEPTANCE CRITERIA INFLATE CAPABILITIES. A kids' recycling game promising
+      "All data visualizations update dynamically in real-time" gets data.charts + data.realtime
+      + data.search + data.filter_sort. The rule is right; the DATASET is internally
+      inconsistent. This is the biggest risk to the capability signal in the R3 ablation --
+      check it FIRST if R3 underperforms.
+
+  VERDICT: good enough as ONE ranking signal (arm R3). NOT good enough to route on alone, and
+  NOT ground truth for evaluating retrieval -- ENG-005 must be built independently of these labels.
+
 In Progress:
   none
 
@@ -473,7 +513,14 @@ Files Changed:
   nothing in the shipped site or build path was modified.
 
 Next Recommended Ticket:
-  ENG-001 (capability vocabulary) and ENG-005 (labelled query set).
+  ENG-005 (labelled query set). ENG-001 is done.
+
+  ENG-005 discipline, agreed and binding:
+    - Ground truth frozen BEFORE any ranking exists.
+    - Build it INDEPENDENTLY of reports/capabilities.json. Using capability labels to define
+      relevance would make the R3 ablation circular.
+    - Separate tuning queries from final evaluation queries if the set is large enough.
+      Do not optimise a ranker until it memorises the test.
 
   The out-of-band detour is CLOSED. ENG-010 shipped (real user-visible fix), ENG-011 was
   measured and rejected. Work returns to the H1 question as agreed:
