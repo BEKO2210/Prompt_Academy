@@ -1,0 +1,54 @@
+{
+  "version": "task-set-v1-seed",
+  "note": "SEED SET, 8 tasks. ENG-008 §1 targets 100 and permits 50 as an under-powered first pass. This is below both and must be reported as a schema and harness demonstration, NOT as an H1 result. Requests are written as a user would actually write them and are NOT copied from data/*.jsonl — copying would test memorization. The evaluation layer for these tasks lives in evaluation.json and must never appear here.",
+  "tasks": [
+    {
+      "task_id": "T001",
+      "request": "Ich brauche eine Preisseite mit drei Tarifen, monatlich und jährlich umschaltbar. Der mittlere Tarif soll hervorgehoben sein.",
+      "domain": "landing_pages",
+      "language": "de"
+    },
+    {
+      "task_id": "T002",
+      "request": "Build a login form with email and password, an inline error state, and a link to reset the password.",
+      "domain": "auth",
+      "language": "en"
+    },
+    {
+      "task_id": "T003",
+      "request": "Baue mir eine Tabelle, die 500 Zeilen anzeigt, nach Spalten sortierbar ist und eine Suche über alle Spalten hat.",
+      "domain": "ui_components",
+      "language": "de"
+    },
+    {
+      "task_id": "T004",
+      "request": "I need a file upload component that accepts drag and drop, shows upload progress per file, and rejects anything over 10 MB.",
+      "domain": "forms",
+      "language": "en"
+    },
+    {
+      "task_id": "T005",
+      "request": "Ein Dashboard mit vier Kennzahl-Karten oben und darunter ein Liniendiagramm der letzten 30 Tage.",
+      "domain": "dashboards",
+      "language": "de"
+    },
+    {
+      "task_id": "T006",
+      "request": "Make the checkout step where the user reviews their cart, enters a shipping address, and picks a delivery option. No payment step yet.",
+      "domain": "ecommerce",
+      "language": "en"
+    },
+    {
+      "task_id": "T007",
+      "request": "Ich will ein Modal, das mit Escape schließt, den Fokus einfängt und für Screenreader korrekt ausgezeichnet ist.",
+      "domain": "accessibility",
+      "language": "de"
+    },
+    {
+      "task_id": "T008",
+      "request": "Write a settings page with sections for profile, notifications, and a danger zone that asks for confirmation before deleting the account.",
+      "domain": "ui_components",
+      "language": "en"
+    }
+  ]
+}

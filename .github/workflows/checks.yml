@@ -78,6 +78,11 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      # ENG-008. Node strips types in engine/ WITHOUT checking them, so without
+      # this step every annotation there is decoration and a type error ships.
+      - name: Typecheck engine core
+        run: npm run typecheck:engine
+
       # Two pre-existing rules are 'warn' rather than 'error' — see the comment
       # in site/eslint.config.js and ENG-009. New errors still fail this step.
       - name: Lint
