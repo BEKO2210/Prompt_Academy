@@ -2,8 +2,33 @@
 
 **Type:** Measurement / Data
 **Milestone:** M2
-**Status:** READY
+**Status:** **DONE** (2026-07-30) — v1 frozen
 **Complexity:** M
+
+## Result
+
+`retrieval-ground-truth-v1`, frozen. **12 queries annotated, 454 judged query↔record pairs.**
+
+| Artifact | |
+|---|---|
+| `benchmarks/queries/RELEVANCE-GUIDELINE.md` | written **before** any record was judged |
+| `benchmarks/queries/queries.json` | 32 authored; each marked `annotated` or `authored_not_annotated` |
+| `benchmarks/queries/query-expansions.json` | hand-written recall expansions (incl. DE↔EN) |
+| `benchmarks/queries/candidate-pool.json` | 1,197 candidates, 6 sources, blinded + shuffled |
+| `benchmarks/queries/relevance.json` | the frozen ground truth |
+| `benchmarks/queries/COVERAGE.md` | coverage and pooling-bias report |
+| `scripts/pool_candidates.py` | pooling + `--blind` annotator view + `--bias-report` |
+| `scripts/annotate_relevance.py` | the annotator's criteria, auditable |
+| `scripts/validate_query_set.py` | validator, wired into CI |
+| `tests/query-set.test.mjs` | 13 tests incl. the circularity ban |
+
+### Deviation from the original scope
+
+The ticket asked for **100–150 queries**. Annotating that many at genuine quality is not achievable
+by a single annotator in one pass, and the brief was explicit that quality outranks quantity.
+**12 queries are fully annotated; the other 20 are authored and pooled but deliberately ungraded**
+and marked as such. Shipping 150 rushed labels would have produced a ground truth that quietly
+ratified whatever a ranker happened to do.
 
 ## Problem
 

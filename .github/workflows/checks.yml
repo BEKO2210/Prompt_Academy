@@ -50,6 +50,11 @@ jobs:
       - name: capability manifest is current
         run: python scripts/derive_capabilities.py --check
 
+      # ENG-005. Structural integrity of the frozen retrieval ground truth,
+      # including the ban on deriving relevance from capability labels.
+      - name: retrieval ground truth is valid
+        run: python scripts/validate_query_set.py
+
   site:
     name: Typecheck, lint, tests
     runs-on: ubuntu-latest

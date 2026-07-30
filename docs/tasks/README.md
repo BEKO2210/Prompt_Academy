@@ -30,7 +30,7 @@ no ticket is here because it is tidy; each one gates something downstream.
 | 2 | [ENG-004](ENG-004-content-hash.md) | Per-record `content_hash` | M1 | XS | **DONE** | Cache keys, idempotent import, benchmark traceability; `--check` is ready for ENG-003 to wire into CI |
 | 3 | [ENG-003](ENG-003-ci-gates.md) | CI: dataset validation, typecheck, lint, first tests | M1 | M | **DONE** | Safe iteration on data and site (closes D4, fixes D5 at the root) |
 | 4 | [ENG-001](ENG-001-capability-vocabulary.md) | Capability vocabulary + subcategory mapping | M1 | M | **DONE** | Capability ranking signal (R3). 98.66% coverage, precision/recall ~91%, deterministic |
-| 5 | [ENG-005](ENG-005-labelled-query-set.md) | Labelled query set for retrieval benchmark | M2 | M | READY | H0 — makes ranking falsifiable |
+| 5 | [ENG-005](ENG-005-labelled-query-set.md) | Labelled query set for retrieval benchmark | M2 | M | **DONE** | H0 — 12 queries, 454 judged pairs, `retrieval-ground-truth-v1` frozen |
 | 6 | [ENG-007](ENG-007-index-byte-budget.md) | Resolve the 6.9 MB index byte budget | M2 | L | PLANNED | Lets ranking ship without a perf regression |
 | 7 | [ENG-006](ENG-006-ranking-module.md) | Isomorphic ranking module + central config | M2 | L | PLANNED | H0; the retrieval stage reused by the M3 engine |
 | 8 | [ENG-008](ENG-008-benchmark-harness.md) | End-to-end benchmark harness (arms A–E) | M3 | XL | BLOCKED — **spec approved** | H1a/H1b/H1c; gates all of M4 |

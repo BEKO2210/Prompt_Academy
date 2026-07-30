@@ -448,6 +448,43 @@ Completed:
   VERDICT: good enough as ONE ranking signal (arm R3). NOT good enough to route on alone, and
   NOT ground truth for evaluating retrieval -- ENG-005 must be built independently of these labels.
 
+  ENG-005 retrieval ground truth — DONE 2026-07-30. FROZEN as retrieval-ground-truth-v1.
+      benchmarks/queries/RELEVANCE-GUIDELINE.md   written BEFORE any record was judged
+      benchmarks/queries/queries.json             32 authored, each marked annotated / not
+      benchmarks/queries/query-expansions.json    hand-written recall expansions incl. DE<->EN
+      benchmarks/queries/candidate-pool.json      1,197 candidates, 6 sources, blinded+shuffled
+      benchmarks/queries/relevance.json           the frozen ground truth
+      benchmarks/queries/COVERAGE.md              coverage + pooling bias
+      scripts/{pool_candidates,annotate_relevance,validate_query_set}.py
+      tests/query-set.test.mjs                    13 tests incl. the circularity ban
+    12 queries annotated | 454 judged pairs | dev 6 / holdout 6 | en 10 / de 2
+    difficulty easy 2 / medium 5 / hard 5 | 10 distinct query types
+    grades: 3=138 (30.4%)  2=46 (10.1%)  1=82 (18.1%)  0=188 (41.4%)
+
+  DEVIATION: ticket asked for 100-150 queries. Not achievable at genuine quality by one
+  annotator in one pass, and the brief said quality outranks quantity. 12 annotated, the
+  other 20 authored+pooled but DELIBERATELY UNGRADED and marked authored_not_annotated.
+
+  FINDINGS THAT MATTER FOR ENG-006:
+    - The CURRENT search contributed only 57 of 1,197 pooled candidates (16 exclusively).
+      Pooling only from the live search would have left most of the truth unjudged.
+    - Q004 "sign in screen": exactly ONE relevant record in a 56-candidate pool. Vocabulary
+      mismatch (corpus says login/authentication) is the sharpest failure in the set.
+    - Q021 "modal dialog with focus trap": ZERO grade-3. No modal COMPONENT states focus trap,
+      while 15 NON-modal records do -- via the boilerplate acceptance criterion found in
+      ENG-001. The dataset's boilerplate now demonstrably distorts retrieval, not just labels.
+    - Q003 (screen-reader dashboard): ZERO grade-3. The corpus claims accessibility generically
+      but rarely names screen readers. Generic-WCAG boilerplate again.
+    - Q001/Q025 and Q002/Q026 are EN/DE pairs on the same need, same split. The German delta
+      is therefore measurable directly, not inferred.
+    - Both zero-result queries verified corpus-wide (figma plugin / chrome extension = 0).
+
+  MID-ANNOTATION CORRECTION worth remembering: I first graded accessible-dashboard candidates
+  as merely partially relevant, because the 88-char prompt excerpt showed no accessibility.
+  206 dashboards DO have explicit a11y -- in their acceptance_criteria. Refined rule now in the
+  guideline: AC evidence counts when CONSISTENT with the record's subject, and is suspect only
+  when it CONTRADICTS it (the ENG-001 kids-game case).
+
 In Progress:
   none
 
@@ -513,7 +550,8 @@ Files Changed:
   nothing in the shipped site or build path was modified.
 
 Next Recommended Ticket:
-  ENG-005 (labelled query set). ENG-001 is done.
+  The smallest honest retrieval test -- see the recommendation at the end of the ENG-005
+  handoff. NOT a full ranker.
 
   ENG-005 discipline, agreed and binding:
     - Ground truth frozen BEFORE any ranking exists.
