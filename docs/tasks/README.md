@@ -33,12 +33,18 @@ no ticket is here because it is tidy; each one gates something downstream.
 | 5 | [ENG-005](ENG-005-labelled-query-set.md) | Labelled query set for retrieval benchmark | M2 | M | READY | H0 — makes ranking falsifiable |
 | 6 | [ENG-007](ENG-007-index-byte-budget.md) | Resolve the 6.9 MB index byte budget | M2 | L | PLANNED | Lets ranking ship without a perf regression |
 | 7 | [ENG-006](ENG-006-ranking-module.md) | Isomorphic ranking module + central config | M2 | L | PLANNED | H0; the retrieval stage reused by the M3 engine |
+| 8 | [ENG-008](ENG-008-benchmark-harness.md) | End-to-end benchmark harness (arms A–E) | M3 | XL | BLOCKED — **spec approved** | H1a/H1b/H1c; gates all of M4 |
 
 **Sequencing rationale:** measurement before change (1), cheap and irreversible-if-late groundwork
 (2), then the safety net that makes everything after it safe (3), then the one schema addition the
 whole architecture routes on (4), then ground truth before the thing it judges (5), then the
 constraint before the feature that would violate it (6 before 7).
 
-M3+ tickets are deliberately unwritten: M3 is gated on ADR-0001, and its shape now depends on the
-refined H1 arms (`../benchmark-plan.md` §1a). Writing detailed tickets for contingent milestones
-before their gate is decided produces plans that get discarded.
+**ENG-008 is an exception to "no tickets for contingent milestones".** Its *specification* is frozen
+now, ahead of implementation, because the design decisions — the hidden evaluation layer, the
+same-record isolation, the constants — are what make the eventual results interpretable. Specifying
+them after writing the harness would invite fitting the method to the outcome. Implementation remains
+blocked on M1 and M2.
+
+Remaining M3/M4 tickets are deliberately unwritten: their shape depends on the ENG-008 result, and
+detailing contingent work before its gate produces plans that get discarded.
