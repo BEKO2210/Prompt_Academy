@@ -1,0 +1,73 @@
+{
+  "version": "task-set-v1",
+  "note": "50 tasks. ENG-008 §1 targets 100 and permits 50 as an under-powered first pass; this is the permitted first pass and must be reported as under-powered, not as conclusive. Requests are written as a user would actually write them and are NOT copied from data/*.jsonl — copying would test memorization rather than task performance. Language mix is roughly half German, half English, matching the operator's real usage. The evaluation layer for these tasks lives in evaluation.json and must never appear in this file.",
+  "tasks": [
+    { "task_id": "T001", "request": "Ich brauche eine Preisseite mit drei Tarifen, monatlich und jährlich umschaltbar. Der mittlere Tarif soll hervorgehoben sein.", "domain": "landing_pages", "language": "de" },
+    { "task_id": "T002", "request": "Build a login form with email and password, an inline error state, and a link to reset the password.", "domain": "auth", "language": "en" },
+    { "task_id": "T003", "request": "Baue mir eine Tabelle, die 500 Zeilen anzeigt, nach Spalten sortierbar ist und eine Suche über alle Spalten hat.", "domain": "ui_components", "language": "de" },
+    { "task_id": "T004", "request": "I need a file upload component that accepts drag and drop, shows upload progress per file, and rejects anything over 10 MB.", "domain": "file_upload", "language": "en" },
+    { "task_id": "T005", "request": "Ein Dashboard mit vier Kennzahl-Karten oben und darunter ein Liniendiagramm der letzten 30 Tage.", "domain": "dashboards", "language": "de" },
+    { "task_id": "T006", "request": "Make the checkout step where the user reviews their cart, enters a shipping address, and picks a delivery option. No payment step yet.", "domain": "ecommerce", "language": "en" },
+    { "task_id": "T007", "request": "Ich will ein Modal, das mit Escape schließt, den Fokus einfängt und für Screenreader korrekt ausgezeichnet ist.", "domain": "accessibility", "language": "de" },
+    { "task_id": "T008", "request": "Write a settings page with sections for profile, notifications, and a danger zone that asks for confirmation before deleting the account.", "domain": "ui_components", "language": "en" },
+
+    { "task_id": "T009", "request": "Eine Landingpage für eine Handwerker-App: Überschrift, kurzer Nutzen, ein Bild und ein Button zum App-Store.", "domain": "landing_pages", "language": "de" },
+    { "task_id": "T010", "request": "A hero section for a developer tool. Headline, one sentence of value, a code snippet, and two buttons.", "domain": "landing_pages", "language": "en" },
+    { "task_id": "T011", "request": "Baue einen FAQ-Bereich, bei dem immer nur eine Antwort gleichzeitig offen ist.", "domain": "landing_pages", "language": "de" },
+
+    { "task_id": "T012", "request": "A date range picker where the user selects a start and an end date and cannot pick an end before the start.", "domain": "ui_components", "language": "en" },
+    { "task_id": "T013", "request": "Ein Autocomplete-Eingabefeld, das ab drei Zeichen Vorschläge zeigt und mit den Pfeiltasten bedienbar ist.", "domain": "ui_components", "language": "de" },
+    { "task_id": "T014", "request": "Build a toast notification system that stacks messages, auto-dismisses after five seconds, and lets the user dismiss one early.", "domain": "ui_components", "language": "en" },
+    { "task_id": "T015", "request": "Eine Seitenleiste, die auf dem Handy einklappt und auf dem Desktop dauerhaft sichtbar bleibt.", "domain": "ui_components", "language": "de" },
+
+    { "task_id": "T016", "request": "A registration form with password strength feedback and a confirm-password field that must match.", "domain": "auth", "language": "en" },
+    { "task_id": "T017", "request": "Zwei-Faktor-Eingabe: sechs einzelne Ziffernfelder, die beim Tippen automatisch weiterspringen und Einfügen aus der Zwischenablage unterstützen.", "domain": "auth", "language": "de" },
+    { "task_id": "T018", "request": "A session-expired screen that tells the user what happened and offers to sign in again without losing the page they were on.", "domain": "auth", "language": "en" },
+
+    { "task_id": "T019", "request": "Ein mehrstufiges Formular über drei Schritte mit Fortschrittsanzeige, bei dem man zurückgehen kann ohne Eingaben zu verlieren.", "domain": "forms", "language": "de" },
+    { "task_id": "T020", "request": "A contact form that validates on blur rather than on every keystroke, and disables submit while a request is in flight.", "domain": "forms", "language": "en" },
+    { "task_id": "T021", "request": "Ein Adressformular für Deutschland mit Postleitzahl-Prüfung und einem Feld für Adresszusatz.", "domain": "forms", "language": "de" },
+
+    { "task_id": "T022", "request": "An analytics dashboard with a date range filter that all charts on the page respond to.", "domain": "dashboards", "language": "en" },
+    { "task_id": "T023", "request": "Ein Admin-Dashboard mit einer Liste offener Tickets, filterbar nach Status und Zuständigkeit.", "domain": "dashboards", "language": "de" },
+    { "task_id": "T024", "request": "A dashboard empty state for a brand new account: explain what will appear here and what to do first.", "domain": "dashboards", "language": "en" },
+
+    { "task_id": "T025", "request": "Eine Produktdetailseite mit Bildergalerie, Variantenauswahl für Größe und Farbe und einem Button in den Warenkorb.", "domain": "ecommerce", "language": "de" },
+    { "task_id": "T026", "request": "A cart drawer that slides in, shows line items with quantity steppers, and updates the total as quantities change.", "domain": "ecommerce", "language": "en" },
+    { "task_id": "T027", "request": "Eine Bestellbestätigungsseite mit Bestellnummer, Lieferadresse, Artikelliste und voraussichtlichem Lieferdatum.", "domain": "ecommerce", "language": "de" },
+
+    { "task_id": "T028", "request": "A payment form for card details with formatting as the user types and clear validation for expiry and CVC.", "domain": "payments", "language": "en" },
+    { "task_id": "T029", "request": "Eine Auswahl der Zahlungsart mit Rechnung, Lastschrift und PayPal, wobei Lastschrift zusätzlich eine IBAN abfragt.", "domain": "payments", "language": "de" },
+
+    { "task_id": "T030", "request": "An image upload with a crop step before the file is accepted, and a preview of the cropped result.", "domain": "file_upload", "language": "en" },
+    { "task_id": "T031", "request": "Ein CSV-Import mit Vorschau der ersten Zeilen und einer Zuordnung von Spalten zu Feldern.", "domain": "file_upload", "language": "de" },
+
+    { "task_id": "T032", "request": "Ein Portfolio-Startseite für eine Fotografin: großes Bildraster, das beim Klick eine Detailansicht öffnet.", "domain": "portfolio", "language": "de" },
+    { "task_id": "T033", "request": "A personal about page with a short bio, a timeline of previous roles, and links to profiles elsewhere.", "domain": "portfolio", "language": "en" },
+
+    { "task_id": "T034", "request": "A chat interface for an AI assistant with streaming responses, a stop button, and a visible indication when the model is thinking.", "domain": "ai_tools", "language": "en" },
+    { "task_id": "T035", "request": "Eine Oberfläche, in der man einen Prompt eingibt und mehrere Ergebnisvarianten nebeneinander vergleicht.", "domain": "ai_tools", "language": "de" },
+
+    { "task_id": "T036", "request": "Eine Kursübersicht mit Fortschrittsbalken pro Kurs und einer Markierung, welche Lektion als nächstes dran ist.", "domain": "education", "language": "de" },
+    { "task_id": "T037", "request": "A quiz screen with one question at a time, immediate feedback on the answer, and a score at the end.", "domain": "education", "language": "en" },
+
+    { "task_id": "T038", "request": "A mobile bottom navigation with four tabs where the active tab is obvious and the layout respects the safe area.", "domain": "mobile", "language": "en" },
+    { "task_id": "T039", "request": "Eine mobile Listenansicht, bei der man einen Eintrag nach links wischt um ihn zu löschen, mit Rückgängig-Möglichkeit.", "domain": "mobile", "language": "de" },
+
+    { "task_id": "T040", "request": "A memory card game board with a move counter and a timer that stops when all pairs are found.", "domain": "games", "language": "en" },
+    { "task_id": "T041", "request": "Eine Bestenliste für ein Spiel mit Platzierung, Name und Punktzahl, die den eigenen Eintrag hervorhebt.", "domain": "games", "language": "de" },
+
+    { "task_id": "T042", "request": "Ein gestapeltes Balkendiagramm mit Legende, bei dem man einzelne Kategorien über die Legende ein- und ausblenden kann.", "domain": "data_visualization", "language": "de" },
+    { "task_id": "T043", "request": "A chart that shows a helpful message instead of an empty canvas when there is no data for the selected period.", "domain": "data_visualization", "language": "en" },
+
+    { "task_id": "T044", "request": "Eine Tabelle, die auf schmalen Bildschirmen zu Karten wird statt horizontal zu scrollen.", "domain": "accessibility", "language": "de" },
+    { "task_id": "T045", "request": "A form whose error messages are announced to screen readers and whose fields are reachable in a sensible tab order.", "domain": "accessibility", "language": "en" },
+
+    { "task_id": "T046", "request": "Write unit tests for a shopping cart module covering adding, removing, quantity changes and the empty cart case.", "domain": "testing", "language": "en" },
+    { "task_id": "T047", "request": "Schreibe Tests für ein Anmeldeformular: gültige Eingabe, falsches Passwort, gesperrtes Konto und Netzwerkfehler.", "domain": "testing", "language": "de" },
+
+    { "task_id": "T048", "request": "A GitHub Actions workflow that installs dependencies, runs the test suite, and only deploys when tests pass on the main branch.", "domain": "deployment", "language": "en" },
+    { "task_id": "T049", "request": "Eine Konfiguration, die dieselbe Anwendung mit verschiedenen Umgebungsvariablen für Test und Produktion baut, ohne Geheimnisse ins Repository zu schreiben.", "domain": "deployment", "language": "de" },
+    { "task_id": "T050", "request": "A health check endpoint and a readiness check that reports whether the database connection is actually working.", "domain": "deployment", "language": "en" }
+  ]
+}

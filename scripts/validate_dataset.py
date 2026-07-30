@@ -8,6 +8,7 @@ uniqueness constraints, and quality requirements.
 import json
 import os
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from collections import Counter, defaultdict
 
@@ -338,7 +339,9 @@ def main():
 
     # Write validation report
     report = {
-        "timestamp": "2026-05-29T00:00:00Z",
+        # Real UTC run time. Previously hardcoded to 2026-05-29T00:00:00Z, which
+        # made every report look current regardless of when it last ran (D5).
+        "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "total_prompts": total_prompts,
         "total_categories": total_categories,
         "invalid_lines": invalid_lines,

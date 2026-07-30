@@ -12,24 +12,10 @@ import {
 } from "../components/ExplorerControls";
 import { PromptCard } from "../components/PromptCard";
 import { PromptDrawer } from "../components/PromptDrawer";
+import { matchesParsed, parseQuery } from "../lib/search";
+import { rankResults } from "../lib/ranking";
 
 const PAGE = 48;
-
-function haystack(it: IndexItem): string {
-  return [
-    it.t,
-    it.hl,
-    it.sum,
-    it.fw,
-    it.in,
-    it.sc,
-    it.a,
-    ...(it.tags ?? []),
-    ...(it.kw ?? []),
-  ]
-    .join(" ")
-    .toLowerCase();
-}
 
 export function Library() {
   const [params, setParams] = useSearchParams();
@@ -63,7 +49,20 @@ export function Library() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters.category]);
 
-  const q = query.trim().toLowerCase();
+  // Debounced so mid-typing states ("d", "da", "das") never run a full search.
+  // Identified in the ENG-011 report as the highest-value latency measure and
+  // deferred then; ENG-006's ranking made it necessary, because scoring cost
+  // scales with the matched set and short prefixes match thousands of records.
+  const [debounced, setDebounced] = useState("");
+  useEffect(() => {
+    const t = setTimeout(() => setDebounced(query), 140);
+    return () => clearTimeout(t);
+  }, [query]);
+
+  const q = debounced.trim().toLowerCase();
+  // Parsed once per query, not per record: phrase detection and the regex
+  // construction are the expensive part (ENG-010 / ENG-012).
+  const parsed = useMemo(() => parseQuery(q), [q]);
 
   const results = useMemo(() => {
     if (!index) return [];
@@ -73,7 +72,7 @@ export function Library() {
       if (filters.framework && it.fw !== filters.framework) return false;
       if (filters.language && it.lang !== filters.language) return false;
       if (filters.audience && it.a !== filters.audience) return false;
-      if (q && !haystack(it).includes(q)) return false;
+      if (!matchesParsed(it, parsed)) return false;
       return true;
     });
 
@@ -81,9 +80,13 @@ export function Library() {
       list = [...list].sort((a, b) => (b.q ?? 0) - (a.q ?? 0));
     } else if (sort === "az") {
       list = [...list].sort((a, b) => a.t.localeCompare(b.t));
+    } else {
+      // "relevance" finally computes relevance (ENG-006). Before this it was a
+      // label on arbitrary index order.
+      list = rankResults(list, parsed, parsed.requiredTerms);
     }
     return list;
-  }, [index, filters, q, sort]);
+  }, [index, filters, parsed, sort]);
 
   // Reset window when the result set changes.
   useEffect(() => setVisible(PAGE), [filters, q, sort]);

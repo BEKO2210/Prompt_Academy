@@ -1,0 +1,334 @@
+{
+  "query_schema_version": "1.0.0",
+  "ground_truth_version": "retrieval-ground-truth-v1",
+  "created_at": "2026-07-30",
+  "ticket": "ENG-005",
+  "authoring_note": "Every query below was written before any candidate was pooled and before any retrieval output was inspected. Relevance grades live in relevance.json and were assigned afterwards, blinded.",
+  "queries": [
+    {
+      "id": "Q001",
+      "query": "pricing page",
+      "language": "en",
+      "type": "exact_lexical",
+      "difficulty": "easy",
+      "split": "dev",
+      "intent": "A landing page whose purpose is presenting plans and prices.",
+      "annotation_status": "annotated"
+    },
+    {
+      "id": "Q002",
+      "query": "accessible dashboard",
+      "language": "en",
+      "type": "multi_word",
+      "difficulty": "medium",
+      "split": "holdout",
+      "intent": "A dashboard where accessibility is an explicit, binding requirement — not merely a dashboard that happens to mention a11y.",
+      "annotation_status": "annotated"
+    },
+    {
+      "id": "Q003",
+      "query": "design a dashboard that works well for screen reader users",
+      "language": "en",
+      "type": "natural_language",
+      "difficulty": "hard",
+      "split": "holdout",
+      "intent": "Same core need as Q002 but phrased as a sentence; tests whether phrasing alone breaks retrieval.",
+      "annotation_status": "annotated"
+    },
+    {
+      "id": "Q004",
+      "query": "sign in screen",
+      "language": "en",
+      "type": "synonym_mismatch",
+      "difficulty": "medium",
+      "split": "dev",
+      "intent": "An authentication entry screen. The corpus mostly says 'login' / 'authentication', so the user's vocabulary does not match the data's.",
+      "annotation_status": "annotated"
+    },
+    {
+      "id": "Q005",
+      "query": "checkout with coupon support",
+      "language": "en",
+      "type": "feature_composition",
+      "difficulty": "hard",
+      "split": "holdout",
+      "intent": "A checkout flow that specifically handles discount/coupon codes.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q006",
+      "query": "healthcare appointment booking form",
+      "language": "en",
+      "type": "domain_plus_feature",
+      "difficulty": "hard",
+      "split": "dev",
+      "intent": "A booking/scheduling form in a healthcare context. Healthcare dashboards are NOT this.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q007",
+      "query": "responsive React admin dashboard",
+      "language": "en",
+      "type": "framework_specific",
+      "difficulty": "medium",
+      "split": "dev",
+      "intent": "An admin dashboard built with React. Framework is a filter, not the intent — React alone must not qualify a record.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q008",
+      "query": "minimal landing page without animations",
+      "language": "en",
+      "type": "negative_constraint",
+      "difficulty": "hard",
+      "split": "holdout",
+      "intent": "A restrained landing page. A record that foregrounds animation is actively wrong, not merely weaker.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q009",
+      "query": "account management",
+      "language": "en",
+      "type": "ambiguous",
+      "difficulty": "medium",
+      "split": "dev",
+      "intent": "Deliberately ambiguous: could mean user settings, admin user management, or billing. Tests whether a ranker spreads across senses or collapses onto one.",
+      "annotation_status": "annotated"
+    },
+    {
+      "id": "Q010",
+      "query": "ARIA error messages for forms",
+      "language": "en",
+      "type": "narrow",
+      "difficulty": "hard",
+      "split": "holdout",
+      "intent": "Very specific: accessible error announcement on form inputs.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q011",
+      "query": "e-commerce",
+      "language": "en",
+      "type": "broad",
+      "difficulty": "easy",
+      "split": "dev",
+      "intent": "Whole-category query. Expect many grade-2s, few grade-3s.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q012",
+      "query": "AI analytics SaaS dashboard",
+      "language": "en",
+      "type": "cross_category",
+      "difficulty": "hard",
+      "split": "holdout",
+      "intent": "Sits across ai_tools_agents and saas_dashboards; tests category boundary behaviour.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q013",
+      "query": "dark mode toggle",
+      "language": "en",
+      "type": "exact_lexical",
+      "difficulty": "easy",
+      "split": "dev",
+      "intent": "A theme switcher. A dark colour palette alone is not this.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q014",
+      "query": "infinite scroll product list",
+      "language": "en",
+      "type": "feature_composition",
+      "difficulty": "medium",
+      "split": "dev",
+      "intent": "Product listing that pages by infinite scroll / virtualization.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q015",
+      "query": "onboarding flow for a mobile app",
+      "language": "en",
+      "type": "domain_plus_feature",
+      "difficulty": "medium",
+      "split": "dev",
+      "intent": "First-run multi-step experience in a mobile app.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q016",
+      "query": "game HUD with health bar",
+      "language": "en",
+      "type": "narrow",
+      "difficulty": "medium",
+      "split": "holdout",
+      "intent": "In-game heads-up display showing player health.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q017",
+      "query": "portfolio for a photographer",
+      "language": "en",
+      "type": "domain_plus_feature",
+      "difficulty": "easy",
+      "split": "dev",
+      "intent": "Image-led personal portfolio for a photographer specifically.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q018",
+      "query": "flashcard app for language learning",
+      "language": "en",
+      "type": "domain_plus_feature",
+      "difficulty": "medium",
+      "split": "dev",
+      "intent": "Spaced-repetition / flashcard UI aimed at learning a language.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q019",
+      "query": "heatmap visualization",
+      "language": "en",
+      "type": "exact_lexical",
+      "difficulty": "easy",
+      "split": "dev",
+      "intent": "A heatmap chart.",
+      "annotation_status": "annotated"
+    },
+    {
+      "id": "Q020",
+      "query": "chat interface for an AI assistant",
+      "language": "en",
+      "type": "domain_plus_feature",
+      "difficulty": "easy",
+      "split": "dev",
+      "intent": "Conversational UI for an LLM/agent.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q021",
+      "query": "modal dialog with focus trap",
+      "language": "en",
+      "type": "narrow",
+      "difficulty": "medium",
+      "split": "holdout",
+      "intent": "An overlay component whose keyboard focus handling is explicit.",
+      "annotation_status": "annotated"
+    },
+    {
+      "id": "Q022",
+      "query": "real-time monitoring dashboard with alerts",
+      "language": "en",
+      "type": "feature_composition",
+      "difficulty": "medium",
+      "split": "dev",
+      "intent": "Live-updating operational dashboard that raises alerts.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q023",
+      "query": "shopping cart drawer",
+      "language": "en",
+      "type": "narrow",
+      "difficulty": "medium",
+      "split": "dev",
+      "intent": "Cart presented as a slide-over panel rather than a page.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q024",
+      "query": "data table with sorting and pagination",
+      "language": "en",
+      "type": "feature_composition",
+      "difficulty": "medium",
+      "split": "holdout",
+      "intent": "Tabular data component with both sorting and paging.",
+      "annotation_status": "annotated"
+    },
+    {
+      "id": "Q025",
+      "query": "Preisseite",
+      "language": "de",
+      "type": "german_exact",
+      "difficulty": "hard",
+      "split": "dev",
+      "intent": "German for 'pricing page'. Same need as Q001; the corpus is ~91% English, so this tests cross-language retrieval directly.",
+      "annotation_status": "annotated"
+    },
+    {
+      "id": "Q026",
+      "query": "barrierefreies Dashboard",
+      "language": "de",
+      "type": "german_multi_word",
+      "difficulty": "hard",
+      "split": "holdout",
+      "intent": "German for 'accessible dashboard'. Paired with Q002 on purpose so the language delta is measurable on the same need.",
+      "annotation_status": "annotated"
+    },
+    {
+      "id": "Q027",
+      "query": "Anmeldeformular mit Validierung",
+      "language": "de",
+      "type": "german_feature_composition",
+      "difficulty": "hard",
+      "split": "dev",
+      "intent": "German for 'login form with validation'.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q028",
+      "query": "Onlineshop Startseite",
+      "language": "de",
+      "type": "german_domain",
+      "difficulty": "hard",
+      "split": "holdout",
+      "intent": "German for 'online shop homepage'.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q029",
+      "query": "React Dashboard mit dark mode",
+      "language": "mixed",
+      "type": "mixed_language",
+      "difficulty": "hard",
+      "split": "dev",
+      "intent": "Realistic German-developer phrasing: English technical nouns, German grammar.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q030",
+      "query": "responsive Landingpage für Startups",
+      "language": "mixed",
+      "type": "mixed_language",
+      "difficulty": "hard",
+      "split": "holdout",
+      "intent": "Same pattern as Q029 in a different domain.",
+      "annotation_status": "authored_not_annotated"
+    },
+    {
+      "id": "Q031",
+      "query": "Figma plugin panel",
+      "language": "en",
+      "type": "out_of_domain",
+      "difficulty": "hard",
+      "split": "dev",
+      "expected_relevant_count": 0,
+      "intent": "The corpus contains zero Figma-plugin records (verified corpus-wide). A good ranker returns nothing rather than a confident near-miss.",
+      "absence_verified": "regex \\bfigma plugin\\w*\\b over title+prompt+negative_prompt+acceptance_criteria+tags+subcategory+category — 0 of 10,000 records",
+      "annotation_status": "annotated"
+    },
+    {
+      "id": "Q032",
+      "query": "Chrome browser extension popup",
+      "language": "en",
+      "type": "out_of_domain",
+      "difficulty": "hard",
+      "split": "holdout",
+      "expected_relevant_count": 0,
+      "intent": "Second zero-result probe, in the holdout so thresholding is measured on unseen data too.",
+      "absence_verified": "regex \\bchrome extension\\w*\\b and \\bbrowser extension\\w*\\b — 0 of 10,000 records each",
+      "annotation_status": "annotated"
+    }
+  ],
+  "annotation_note": "v1 annotates 12 of 32 authored queries. The ticket targets 100-150; that is not achievable at genuine quality by a single annotator in one pass, and the brief was explicit that quality outranks quantity. The remaining 20 queries are authored and pooled but deliberately ungraded — they are v2 work, and marking them is more honest than shipping rushed labels."
+}

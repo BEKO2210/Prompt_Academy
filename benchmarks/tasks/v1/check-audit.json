@@ -1,0 +1,1237 @@
+{
+ "version": "task-set-v1-eval2",
+ "classes": {
+  "A": 21,
+  "C": 63,
+  "B": 125,
+  "D": 5
+ },
+ "checks": [
+  {
+   "check": "T001.a1",
+   "class": "A",
+   "kind": "contains",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T001.a2",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T001.a3",
+   "class": "C",
+   "note": "visual prominence"
+  },
+  {
+   "check": "T001.a4",
+   "class": "C",
+   "note": "behaviour: prices must change, not just a label"
+  },
+  {
+   "check": "T001.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a component file' -> generic artifact check"
+  },
+  {
+   "check": "T002.a1",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T002.a2",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T002.a3",
+   "class": "C",
+   "note": "position of the error relative to its field"
+  },
+  {
+   "check": "T002.a4",
+   "class": "C",
+   "note": "'distinct from submit' is a relational judgement"
+  },
+  {
+   "check": "T002.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a form component' -> generic artifact check"
+  },
+  {
+   "check": "T003.a1",
+   "class": "C",
+   "note": "behaviour: toggling sort direction"
+  },
+  {
+   "check": "T003.a2",
+   "class": "C",
+   "note": "behaviour: which columns the filter covers"
+  },
+  {
+   "check": "T003.a3",
+   "class": "D",
+   "resolved_to": "C",
+   "note": "either-or ('or the tradeoff is stated') makes it near-unfalsifiable; reworked",
+   "reworded": "Either the table virtualises/paginates, or the answer states in prose that it renders all 500 rows. Silence is a fail."
+  },
+  {
+   "check": "T003.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a table component' -> generic artifact check"
+  },
+  {
+   "check": "T004.a1",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T004.a2",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T004.a3",
+   "class": "C",
+   "note": "per-file vs aggregate is a rendering judgement"
+  },
+  {
+   "check": "T004.a4",
+   "class": "C",
+   "note": "visible rejection"
+  },
+  {
+   "check": "T004.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'an upload component' -> generic artifact check"
+  },
+  {
+   "check": "T005.a1",
+   "class": "A",
+   "kind": "contains",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T005.a2",
+   "class": "B",
+   "kind": "count_min",
+   "note": "four card-like elements"
+  },
+  {
+   "check": "T005.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "a 30-day range is named"
+  },
+  {
+   "check": "T005.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a dashboard page' -> generic artifact check"
+  },
+  {
+   "check": "T006.a1",
+   "class": "C",
+   "note": "'shown with quantities and a total' is a rendering judgement"
+  },
+  {
+   "check": "T006.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "address form present"
+  },
+  {
+   "check": "T006.a3",
+   "class": "B",
+   "kind": "count_min",
+   "note": "two delivery options"
+  },
+  {
+   "check": "T006.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a checkout step component' -> generic artifact check"
+  },
+  {
+   "check": "T007.a1",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T007.a2",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T007.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "focus is moved programmatically"
+  },
+  {
+   "check": "T007.a4",
+   "class": "B",
+   "kind": "regex",
+   "note": "tab handling present"
+  },
+  {
+   "check": "T007.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a modal component' -> generic artifact check"
+  },
+  {
+   "check": "T008.a1",
+   "class": "B",
+   "kind": "count_min",
+   "note": "three sections named"
+  },
+  {
+   "check": "T008.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "confirmation step"
+  },
+  {
+   "check": "T008.a3",
+   "class": "C",
+   "note": "visual separation"
+  },
+  {
+   "check": "T008.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a settings page' -> generic artifact check"
+  },
+  {
+   "check": "T009.a1",
+   "class": "C",
+   "note": "'not a generic slogan' is a semantic judgement"
+  },
+  {
+   "check": "T009.a2",
+   "class": "C",
+   "note": "'a single primary CTA' is a relational judgement"
+  },
+  {
+   "check": "T009.a3",
+   "class": "B",
+   "kind": "element",
+   "note": "an image slot exists"
+  },
+  {
+   "check": "T009.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a landing page' -> generic artifact check"
+  },
+  {
+   "check": "T010.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "snippet marked up as code"
+  },
+  {
+   "check": "T010.a2",
+   "class": "C",
+   "note": "'visually distinguished as primary and secondary'"
+  },
+  {
+   "check": "T010.a3",
+   "class": "C",
+   "note": "semantic: describes tool vs company"
+  },
+  {
+   "check": "T010.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a hero section' -> generic artifact check"
+  },
+  {
+   "check": "T011.a1",
+   "class": "C",
+   "note": "behaviour: single-open accordion"
+  },
+  {
+   "check": "T011.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "keyboard-operable control"
+  },
+  {
+   "check": "T011.a3",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T011.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'an accordion component' -> generic artifact check"
+  },
+  {
+   "check": "T012.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "range constraint expressed"
+  },
+  {
+   "check": "T012.a2",
+   "class": "C",
+   "note": "both dates visible at once"
+  },
+  {
+   "check": "T012.a3",
+   "class": "C",
+   "note": "communicated before the mistake"
+  },
+  {
+   "check": "T012.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a date range picker' -> generic artifact check"
+  },
+  {
+   "check": "T013.a1",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T013.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "three-character threshold"
+  },
+  {
+   "check": "T013.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "arrow key handling"
+  },
+  {
+   "check": "T013.a4",
+   "class": "C",
+   "note": "'not blocked while loading' is a behaviour judgement"
+  },
+  {
+   "check": "T013.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'an autocomplete input' -> generic artifact check"
+  },
+  {
+   "check": "T014.a1",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T014.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "toasts held as a list"
+  },
+  {
+   "check": "T014.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "per-toast dismissal"
+  },
+  {
+   "check": "T014.a4",
+   "class": "B",
+   "kind": "regex",
+   "note": "timer cleared"
+  },
+  {
+   "check": "T014.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a toast system' -> generic artifact check"
+  },
+  {
+   "check": "T015.a1",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T015.a2",
+   "class": "B",
+   "kind": "breakpoint",
+   "note": "responsive breakpoint declared"
+  },
+  {
+   "check": "T015.a3",
+   "class": "C",
+   "note": "'visible without interaction on desktop' needs rendering"
+  },
+  {
+   "check": "T015.a4",
+   "class": "C",
+   "note": "scroll locking behind an overlay"
+  },
+  {
+   "check": "T015.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a sidebar component' -> generic artifact check"
+  },
+  {
+   "check": "T016.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "strength feedback present"
+  },
+  {
+   "check": "T016.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "confirm-password comparison"
+  },
+  {
+   "check": "T016.a3",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T016.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a registration form' -> generic artifact check"
+  },
+  {
+   "check": "T017.a1",
+   "class": "B",
+   "kind": "count_min",
+   "note": "six inputs"
+  },
+  {
+   "check": "T017.a2",
+   "class": "B",
+   "kind": "handler",
+   "note": "paste handler"
+  },
+  {
+   "check": "T017.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "backspace handling"
+  },
+  {
+   "check": "T017.a4",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T017.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a code input component' -> generic artifact check"
+  },
+  {
+   "check": "T018.a1",
+   "class": "C",
+   "note": "semantic quality of the message"
+  },
+  {
+   "check": "T018.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "destination preserved"
+  },
+  {
+   "check": "T018.a3",
+   "class": "C",
+   "note": "'no unsaved work silently discarded'"
+  },
+  {
+   "check": "T018.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a session expiry screen' -> generic artifact check"
+  },
+  {
+   "check": "T019.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "step state present"
+  },
+  {
+   "check": "T019.a2",
+   "class": "C",
+   "note": "behaviour: state survives back navigation"
+  },
+  {
+   "check": "T019.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "forward navigation gated"
+  },
+  {
+   "check": "T019.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a multi-step form' -> generic artifact check"
+  },
+  {
+   "check": "T020.a1",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T020.a2",
+   "class": "B",
+   "kind": "handler",
+   "note": "validation bound to blur"
+  },
+  {
+   "check": "T020.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "submit disabled while in flight"
+  },
+  {
+   "check": "T020.a4",
+   "class": "C",
+   "note": "behaviour after a failed submit"
+  },
+  {
+   "check": "T020.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a contact form' -> generic artifact check"
+  },
+  {
+   "check": "T021.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "five-digit postcode rule"
+  },
+  {
+   "check": "T021.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "supplement field"
+  },
+  {
+   "check": "T021.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "German field labels"
+  },
+  {
+   "check": "T021.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'an address form' -> generic artifact check"
+  },
+  {
+   "check": "T022.a1",
+   "class": "C",
+   "note": "'one control governs every chart' is architectural"
+  },
+  {
+   "check": "T022.a2",
+   "class": "C",
+   "note": "behaviour across charts"
+  },
+  {
+   "check": "T022.a3",
+   "class": "C",
+   "note": "visible without opening the control"
+  },
+  {
+   "check": "T022.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a dashboard page' -> generic artifact check"
+  },
+  {
+   "check": "T023.a1",
+   "class": "B",
+   "kind": "count_min",
+   "note": "two filter dimensions"
+  },
+  {
+   "check": "T023.a2",
+   "class": "C",
+   "note": "behaviour: filters intersect"
+  },
+  {
+   "check": "T023.a3",
+   "class": "C",
+   "note": "empty result messaging"
+  },
+  {
+   "check": "T023.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'an admin dashboard' -> generic artifact check"
+  },
+  {
+   "check": "T024.a1",
+   "class": "C",
+   "note": "semantic quality of the explanation"
+  },
+  {
+   "check": "T024.a2",
+   "class": "C",
+   "note": "'a concrete first action'"
+  },
+  {
+   "check": "T024.a3",
+   "class": "D",
+   "resolved_to": "C",
+   "note": "'as if it were real' is ambiguous; reworked to a labelling rule",
+   "reworded": "Any sample data present is labelled as sample, placeholder or demo. Unlabelled invented data is a fail."
+  },
+  {
+   "check": "T024.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'an empty state' -> generic artifact check"
+  },
+  {
+   "check": "T025.a1",
+   "class": "C",
+   "note": "gallery behaviour"
+  },
+  {
+   "check": "T025.a2",
+   "class": "B",
+   "kind": "count_min",
+   "note": "size and colour as separate selections"
+  },
+  {
+   "check": "T025.a3",
+   "class": "C",
+   "note": "unavailable-combination handling"
+  },
+  {
+   "check": "T025.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a product detail page' -> generic artifact check"
+  },
+  {
+   "check": "T026.a1",
+   "class": "C",
+   "note": "overlay vs replacement is a rendering judgement"
+  },
+  {
+   "check": "T026.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "quantity affects totals"
+  },
+  {
+   "check": "T026.a3",
+   "class": "C",
+   "note": "zero-quantity behaviour"
+  },
+  {
+   "check": "T026.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a cart drawer' -> generic artifact check"
+  },
+  {
+   "check": "T027.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "order number present"
+  },
+  {
+   "check": "T027.a2",
+   "class": "C",
+   "note": "both address and items listed"
+  },
+  {
+   "check": "T027.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "a real date, not vague text"
+  },
+  {
+   "check": "T027.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'an order confirmation page' -> generic artifact check"
+  },
+  {
+   "check": "T028.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "card number grouping"
+  },
+  {
+   "check": "T028.a2",
+   "class": "C",
+   "note": "'separate, specific' messages"
+  },
+  {
+   "check": "T028.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "card data logged (inverted below)"
+  },
+  {
+   "check": "T028.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a payment form' -> generic artifact check"
+  },
+  {
+   "check": "T029.a1",
+   "class": "B",
+   "kind": "count_min",
+   "note": "three payment methods"
+  },
+  {
+   "check": "T029.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "IBAN shown conditionally"
+  },
+  {
+   "check": "T029.a3",
+   "class": "C",
+   "note": "stale-requirement behaviour"
+  },
+  {
+   "check": "T029.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a payment method selector' -> generic artifact check"
+  },
+  {
+   "check": "T030.a1",
+   "class": "C",
+   "note": "ordering of crop and upload"
+  },
+  {
+   "check": "T030.a2",
+   "class": "C",
+   "note": "which image the preview shows"
+  },
+  {
+   "check": "T030.a3",
+   "class": "C",
+   "note": "cancellation behaviour"
+  },
+  {
+   "check": "T030.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'an image upload component' -> generic artifact check"
+  },
+  {
+   "check": "T031.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "preview of first rows"
+  },
+  {
+   "check": "T031.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "user-driven column mapping"
+  },
+  {
+   "check": "T031.a3",
+   "class": "C",
+   "note": "unmappable-row reporting"
+  },
+  {
+   "check": "T031.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a CSV import component' -> generic artifact check"
+  },
+  {
+   "check": "T032.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "multi-column grid"
+  },
+  {
+   "check": "T032.a2",
+   "class": "C",
+   "note": "click-to-enlarge behaviour"
+  },
+  {
+   "check": "T032.a3",
+   "class": "C",
+   "note": "scroll position restoration"
+  },
+  {
+   "check": "T032.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a portfolio page' -> generic artifact check"
+  },
+  {
+   "check": "T033.a1",
+   "class": "C",
+   "note": "'a short biography' is a content judgement"
+  },
+  {
+   "check": "T033.a2",
+   "class": "C",
+   "note": "chronological structure"
+  },
+  {
+   "check": "T033.a3",
+   "class": "D",
+   "resolved_to": "B",
+   "note": "'without breaking the page' is vague; reworked to target/rel attributes",
+   "automated_as": "attribute"
+  },
+  {
+   "check": "T033.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'an about page' -> generic artifact check"
+  },
+  {
+   "check": "T034.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "streaming"
+  },
+  {
+   "check": "T034.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "interruption"
+  },
+  {
+   "check": "T034.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "in-flight indication"
+  },
+  {
+   "check": "T034.a4",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T034.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a chat interface' -> generic artifact check"
+  },
+  {
+   "check": "T035.a1",
+   "class": "C",
+   "note": "'at the same time' is a layout judgement"
+  },
+  {
+   "check": "T035.a2",
+   "class": "C",
+   "note": "attribution of each result"
+  },
+  {
+   "check": "T035.a3",
+   "class": "C",
+   "note": "overflow behaviour"
+  },
+  {
+   "check": "T035.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a comparison interface' -> generic artifact check"
+  },
+  {
+   "check": "T036.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "progress as a proportion"
+  },
+  {
+   "check": "T036.a2",
+   "class": "C",
+   "note": "'the next lesson is identified'"
+  },
+  {
+   "check": "T036.a3",
+   "class": "C",
+   "note": "completed vs 99 percent"
+  },
+  {
+   "check": "T036.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a course overview' -> generic artifact check"
+  },
+  {
+   "check": "T037.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "one question at a time"
+  },
+  {
+   "check": "T037.a2",
+   "class": "C",
+   "note": "timing of feedback"
+  },
+  {
+   "check": "T037.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "score computed"
+  },
+  {
+   "check": "T037.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a quiz component' -> generic artifact check"
+  },
+  {
+   "check": "T038.a1",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T038.a2",
+   "class": "B",
+   "kind": "count_min",
+   "note": "four tabs"
+  },
+  {
+   "check": "T038.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "fixed to the bottom"
+  },
+  {
+   "check": "T038.a4",
+   "class": "D",
+   "resolved_to": "B",
+   "note": "'legible at small sizes' cannot be judged from code at all; reworked",
+   "automated_as": "count_min"
+  },
+  {
+   "check": "T038.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a bottom navigation component' -> generic artifact check"
+  },
+  {
+   "check": "T039.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "swipe handling"
+  },
+  {
+   "check": "T039.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "undo affordance"
+  },
+  {
+   "check": "T039.a3",
+   "class": "C",
+   "note": "expiry of the undo window"
+  },
+  {
+   "check": "T039.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a swipeable list' -> generic artifact check"
+  },
+  {
+   "check": "T040.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "flip state"
+  },
+  {
+   "check": "T040.a2",
+   "class": "C",
+   "note": "per-pair vs per-flip counting"
+  },
+  {
+   "check": "T040.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "timer stops"
+  },
+  {
+   "check": "T040.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a memory game board' -> generic artifact check"
+  },
+  {
+   "check": "T041.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "ordered by score"
+  },
+  {
+   "check": "T041.a2",
+   "class": "B",
+   "kind": "count_min",
+   "note": "rank, name and score"
+  },
+  {
+   "check": "T041.a3",
+   "class": "C",
+   "note": "own row visually distinguished"
+  },
+  {
+   "check": "T041.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a leaderboard component' -> generic artifact check"
+  },
+  {
+   "check": "T042.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "stacked, not grouped"
+  },
+  {
+   "check": "T042.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "legend toggles a series"
+  },
+  {
+   "check": "T042.a3",
+   "class": "D",
+   "resolved_to": "C",
+   "note": "'rescales or clearly does not' is unfalsifiable as written; reworked",
+   "reworded": "The answer either rescales the axis when a category is hidden, or leaves it fixed. Either is acceptable; clipping the remaining bars is a fail."
+  },
+  {
+   "check": "T042.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a stacked bar chart' -> generic artifact check"
+  },
+  {
+   "check": "T043.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "empty branch exists"
+  },
+  {
+   "check": "T043.a2",
+   "class": "C",
+   "note": "the message names the period"
+  },
+  {
+   "check": "T043.a3",
+   "class": "C",
+   "note": "no axes drawn when empty"
+  },
+  {
+   "check": "T043.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a chart component' -> generic artifact check"
+  },
+  {
+   "check": "T044.a1",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T044.a2",
+   "class": "B",
+   "kind": "breakpoint",
+   "note": "breakpoint declared"
+  },
+  {
+   "check": "T044.a3",
+   "class": "C",
+   "note": "'no horizontal scrolling' needs rendering"
+  },
+  {
+   "check": "T044.a4",
+   "class": "C",
+   "note": "header/value association in card form"
+  },
+  {
+   "check": "T044.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a responsive table' -> generic artifact check"
+  },
+  {
+   "check": "T045.a1",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T045.a2",
+   "class": "B",
+   "kind": "attribute",
+   "note": "error associated with its field"
+  },
+  {
+   "check": "T045.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "errors announced"
+  },
+  {
+   "check": "T045.a4",
+   "class": "C",
+   "note": "tab order matches visual order"
+  },
+  {
+   "check": "T045.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'an accessible form' -> generic artifact check"
+  },
+  {
+   "check": "T046.a1",
+   "class": "B",
+   "kind": "count_min",
+   "note": "three behaviours covered"
+  },
+  {
+   "check": "T046.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "empty cart case"
+  },
+  {
+   "check": "T046.a3",
+   "class": "C",
+   "note": "asserting state vs asserting calls"
+  },
+  {
+   "check": "T046.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a test file' -> generic artifact check"
+  },
+  {
+   "check": "T047.a1",
+   "class": "B",
+   "kind": "count_min",
+   "note": "four cases covered"
+  },
+  {
+   "check": "T047.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "locked account distinguished"
+  },
+  {
+   "check": "T047.a3",
+   "class": "C",
+   "note": "'does not assert a specific message' is a review judgement"
+  },
+  {
+   "check": "T047.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a test file' -> generic artifact check"
+  },
+  {
+   "check": "T048.a1",
+   "class": "A",
+   "kind": "regex",
+   "note": "already deterministic"
+  },
+  {
+   "check": "T048.a2",
+   "class": "B",
+   "kind": "count_min",
+   "note": "separate steps"
+  },
+  {
+   "check": "T048.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "deploy gated on tests"
+  },
+  {
+   "check": "T048.a4",
+   "class": "B",
+   "kind": "regex",
+   "note": "main-branch restriction"
+  },
+  {
+   "check": "T048.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a workflow file' -> generic artifact check"
+  },
+  {
+   "check": "T049.a1",
+   "class": "B",
+   "kind": "count_min",
+   "note": "two environments"
+  },
+  {
+   "check": "T049.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "secrets referenced"
+  },
+  {
+   "check": "T049.a3",
+   "class": "C",
+   "note": "'the same build command' is architectural"
+  },
+  {
+   "check": "T049.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a configuration file' -> generic artifact check"
+  },
+  {
+   "check": "T050.a1",
+   "class": "B",
+   "kind": "regex",
+   "note": "liveness endpoint"
+  },
+  {
+   "check": "T050.a2",
+   "class": "B",
+   "kind": "regex",
+   "note": "readiness actually queries"
+  },
+  {
+   "check": "T050.a3",
+   "class": "B",
+   "kind": "regex",
+   "note": "failure produces a non-success status"
+  },
+  {
+   "check": "T050.art0",
+   "class": "B",
+   "kind": "artifact",
+   "note": "prose requirement 'a health check module' -> generic artifact check"
+  }
+ ]
+}

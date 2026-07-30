@@ -21,7 +21,14 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Gate. Deploy cannot proceed unless every check passes (ENG-003, finding D4).
+  # Invoked as a reusable workflow rather than duplicated, so the gate and the
+  # pull-request checks can never drift apart.
+  checks:
+    uses: ./.github/workflows/checks.yml
+
   build:
+    needs: checks
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -31,9 +38,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node
+        # node-version-file keeps this in step with .nvmrc and checks.yml
+        # instead of pinning 22 in a second place (finding D12).
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: .nvmrc
           cache: npm
           cache-dependency-path: site/package-lock.json
 

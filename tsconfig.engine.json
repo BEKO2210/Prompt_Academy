@@ -1,0 +1,41 @@
+{
+  // The engine core (ADR-0001 Layer 1). Separate from site/tsconfig.app.json
+  // because the engine runs under Node, not in a browser, and shares no DOM
+  // libs with the site.
+  //
+  // This file exists because Node's native type stripping STRIPS types without
+  // CHECKING them. Without a typecheck step, every annotation in engine/ is
+  // decoration and a type error ships silently.
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    // This config sits at the repo root but the toolchain lives in site/, so
+    // type resolution has to be pointed there explicitly — the default walk
+    // from this file's directory finds no node_modules.
+    "types": ["node"],
+    "typeRoots": ["./site/node_modules/@types"],
+
+    // Node's type stripping requires import specifiers to carry the .ts
+    // extension, which tsc only accepts alongside noEmit.
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
+
+    "strict": true,
+    // NOT noUncheckedIndexedAccess. retrieval.ts imports site/src/lib/*.ts by
+    // design (ADR-0001: one ranking implementation, two consumers), and tsc
+    // checks imported files under THIS config. Turning it on would report the
+    // site's own code against a stricter setting than the site is written to,
+    // which is a config conflict rather than a defect. Engine-only strictness
+    // would need the shared modules moved out of site/, which ADR-0001's
+    // "shared with the static site" requirement argues against.
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true
+  },
+  "include": ["engine"]
+}

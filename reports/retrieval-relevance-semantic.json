@@ -1,0 +1,40 @@
+{
+ "kind": "task_to_skill_retrieval_relevance",
+ "method": "semantic (nomic-embed-text, cosine top-1)",
+ "split": "dev_clean",
+ "n": 20,
+ "reviewer": "reviewer-01",
+ "counts": {
+  "RELEVANT": 10,
+  "PARTIAL": 5,
+  "IRRELEVANT": 5
+ },
+ "judgements": {
+  "T002": "RELEVANT",
+  "T006": "RELEVANT",
+  "T010": "RELEVANT",
+  "T013": "RELEVANT",
+  "T015": "RELEVANT",
+  "T016": "RELEVANT",
+  "T028": "RELEVANT",
+  "T030": "RELEVANT",
+  "T032": "RELEVANT",
+  "T037": "RELEVANT",
+  "T007": "PARTIAL",
+  "T020": "PARTIAL",
+  "T035": "PARTIAL",
+  "T041": "PARTIAL",
+  "T046": "PARTIAL",
+  "T003": "IRRELEVANT",
+  "T017": "IRRELEVANT",
+  "T027": "IRRELEVANT",
+  "T036": "IRRELEVANT",
+  "T045": "IRRELEVANT"
+ },
+ "comparison_to_lexical": {
+  "RELEVANT": "2 -> 10",
+  "PARTIAL": "7 -> 5",
+  "IRRELEVANT": "9 -> 5",
+  "NOTHING": "2 -> 0"
+ }
+}

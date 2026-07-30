@@ -1,4 +1,4 @@
-import type { Difficulty } from "./data";
+import type { Difficulty } from "./data.ts";
 
 /** snake_case / kebab → Title Case. */
 export function humanize(input: string): string {

@@ -1,0 +1,101 @@
+name: Checks
+
+# Reusable so deploy.yml can gate on the SAME checks rather than a copy that
+# drifts. Runs standalone on pull requests for fast feedback.
+#
+# Note on ordering: a separate workflow triggered by `push` would run in
+# PARALLEL with deploy and could not block it. Guaranteeing that a red build
+# cannot publish requires deploy to `needs:` this via workflow_call.
+on:
+  workflow_call:
+  pull_request:
+  workflow_dispatch:
+
+# Read-only. Deploy permissions live in deploy.yml, not here.
+permissions:
+  contents: read
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  dataset:
+    name: Dataset integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Existing tooling, previously manual-only — nothing invoked it, so an
+      # invalid dataset could reach production (finding D4).
+      - name: Schema and uniqueness validation
+        run: python scripts/validate_dataset.py
+
+      - name: Duplicate detection
+        run: python scripts/dedupe_dataset.py
+
+      # ENG-004. --self-test first: if the hash function itself is broken,
+      # --check's verdict is meaningless.
+      - name: content_hash self-test
+        run: python scripts/compute_content_hashes.py --self-test
+
+      - name: content_hash manifest is current
+        run: python scripts/compute_content_hashes.py --check
+
+      # ENG-001. Deterministic rules — a stale manifest means the rules or the
+      # dataset changed without the labels being regenerated.
+      - name: capability manifest is current
+        run: python scripts/derive_capabilities.py --check
+
+      # ENG-005. Structural integrity of the frozen retrieval ground truth,
+      # including the ban on deriving relevance from capability labels.
+      - name: retrieval ground truth is valid
+        run: python scripts/validate_query_set.py
+
+  site:
+    name: Typecheck, lint, tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+
+      # Kept in step with .nvmrc and site/package.json engines (finding D12:
+      # Node 18 cannot build this project at all).
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # ENG-008. Node strips types in engine/ WITHOUT checking them, so without
+      # this step every annotation there is decoration and a type error ships.
+      - name: Typecheck engine core
+        run: npm run typecheck:engine
+
+      # Two pre-existing rules are 'warn' rather than 'error' — see the comment
+      # in site/eslint.config.js and ENG-009. New errors still fail this step.
+      - name: Lint
+        run: npm run lint
+
+      - name: Build browser data artifacts
+        run: npm run data
+
+      # Dataset invariants + build-output shape + size budgets guarding the
+      # ENG-002 baseline. Node's built-in runner; no test dependency added.
+      - name: Tests
+        run: npm test
+
+      # Proves the production build works before deploy is allowed to run it.
+      - name: Production build
+        run: npm run build

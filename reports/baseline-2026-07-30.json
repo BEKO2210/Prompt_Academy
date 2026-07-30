@@ -1,0 +1,230 @@
+{
+  "ticket": "ENG-002",
+  "purpose": "Performance baseline of the current site, recorded before any retrieval or ranking work, so later change can be shown to help or hurt.",
+  "measured_at": "2026-07-30T11:12:00+02:00",
+  "measured_at_note": "Real wall-clock time of the measurement session, not a rounded placeholder.",
+  "method": "See reports/baseline-method.md for exact reproduction steps.",
+
+  "environment": {
+    "os": "Pop!_OS 24.04, Linux 6.18.7-76061807-generic",
+    "cpu_threads": 16,
+    "ram_gb": 15,
+    "gpu": "RTX 3070 8GB (not used by these measurements)",
+    "node_used": "v22.23.1",
+    "node_note": "System node is v18.19.1, which cannot build this project: Vite 8 requires Node >=20.19 or >=22.12. CI uses Node 22, so v22.23.1 was used to match.",
+    "npm": "10.9.8",
+    "browser": "Chrome/150.0.7871.128 headless=new",
+    "vite": "8.0.14",
+    "commit": "6d08696",
+    "branch": "phase-0/skill-engine-foundation",
+    "dataset_records": 10000
+  },
+
+  "build": {
+    "data_build_wall_s": 0.33,
+    "data_build_max_rss_kb": 170376,
+    "full_build_wall_s": 2.82,
+    "full_build_max_rss_kb": 366324,
+    "full_build_includes": "npm run data + tsc -b + vite build"
+  },
+
+  "artifact_sizes_bytes": {
+    "dist_total": 33910949,
+    "public_data_total_raw": 31579590,
+    "public_data_total_gzip": 3087114,
+    "index_json_raw": 6908069,
+    "index_json_gzip_level6": 696017,
+    "js_bundle_raw": 528998,
+    "js_bundle_gzip": 164017,
+    "js_bundle_note": "Single chunk. Exceeds Vite's 500 kB warning threshold; no code splitting configured.",
+    "css_raw": 34152,
+    "css_gzip": 7437,
+    "html_raw": 4797,
+    "html_gzip": 1620,
+    "largest_image": {
+      "file": "Qualität.png",
+      "raw": 1490614,
+      "gzip": 1480042,
+      "note": "Effectively incompressible. Accounts for ~85% of the landing page's transfer. Filename contains a non-ASCII character."
+    },
+    "category_files": {
+      "count": 10,
+      "raw_total": 24659191,
+      "gzip_total": 2388164,
+      "per_file_gzip_min": 172885,
+      "per_file_gzip_max": 314821,
+      "note": "Lazy-loaded per category by site/src/lib/data.ts, so a visitor pays for at most the categories they open."
+    }
+  },
+
+  "deployed_transfer": {
+    "host": "GitHub Pages",
+    "url": "https://beko2210.github.io/Prompt_Academy/",
+    "index_json_encoded_body": 738038,
+    "index_json_transfer_incl_headers": 738338,
+    "index_json_decoded": 6908069,
+    "compression_ratio": 9.36,
+    "encodings_offered": ["gzip"],
+    "encodings_not_offered": ["br", "zstd", "deflate"],
+    "encoding_finding": "GitHub Pages serves gzip only. A client advertising only 'br' or only 'zstd' receives the full 6,908,069 bytes uncompressed with no Content-Encoding header. Real browsers advertise gzip so they get the compressed form.",
+    "cache_control": "max-age=600",
+    "cache_finding": "Data files carry a 10-minute max-age and are not content-hashed, so returning visitors re-download index.json frequently. JS/CSS assets are content-hashed and cache well.",
+    "etag": "weak"
+  },
+
+  "parse_and_heap": {
+    "harness": "Node 22 / V8, same engine family as Chrome. scratchpad/measure.mjs",
+    "index_json_parse_ms": { "runs": 12, "p50": 15.69, "p95": 25.21, "min": 14.98, "max": 25.21 },
+    "heap_attributable_to_parsed_index_bytes": 14651880,
+    "heap_attributable_to_parsed_index_mb": 13.97,
+    "note": "Parse cost is on the full 6.9 MB regardless of transfer compression. This is the part that cannot be compressed away."
+  },
+
+  "page_load_local_production_build": {
+    "server": "scratchpad/serve.mjs — gzip only, SPA fallback, max-age=600, mirroring measured GitHub Pages behaviour",
+    "cache": "disabled per run (cold)",
+    "runs": 3,
+    "library": {
+      "first_paint_ms": [124, null, null],
+      "first_contentful_paint_ms": [172, 168, 172],
+      "largest_contentful_paint_ms": [172, 168, 172],
+      "dom_content_loaded_ms": 136,
+      "time_to_first_rendered_result_ms": [323, 294, 294],
+      "rendered_cards": 48,
+      "js_heap_used_mb": [24.5, 24.4, 24.5]
+    },
+    "landing": {
+      "first_contentful_paint_ms": [196, 192, 180],
+      "largest_contentful_paint_ms": [412, 400, 380],
+      "js_heap_used_mb": [5.1, 5.1, 5.1],
+      "total_transfer_bytes": 1753242,
+      "lcp_finding": "LCP is driven by Qualität.png (1,490,614 bytes), which is ~85% of the page's transfer."
+    }
+  },
+
+  "page_load_deployed": {
+    "url": "https://beko2210.github.io/Prompt_Academy/library",
+    "runs": 3,
+    "first_contentful_paint_ms": [492, 196, 188],
+    "largest_contentful_paint_ms": [492, 196, 188],
+    "time_to_first_rendered_result_ms": [684, 360, 311],
+    "js_heap_used_mb": [24.7, 24.3, 24.3],
+    "index_json_download_ms": [155, 81, 70],
+    "note": "Run 1 reflects a cold CDN edge; runs 2-3 reflect a warm edge. Report the range, not the best case."
+  },
+
+  "search_latency": {
+    "filter_only_node_ms": {
+      "harness": "scratchpad/measure.mjs, replicating Library.tsx:18-31 and :70-77 exactly",
+      "measurements": 160,
+      "p50": 6.97,
+      "p95": 8.08,
+      "max": 11.34
+    },
+    "haystack_construction_only_ms": { "p50": 5.79, "p95": 5.99 },
+    "haystack_finding": "Building the haystack strings is 5.79 of the 6.97 ms filter cost — about 83%. haystack() is called inside the filter predicate (Library.tsx:76), so up to 10,000 array joins and toLowerCase() calls are redone on every keystroke. Nothing is precomputed or memoised per record.",
+    "facet_only_no_text_ms": { "p50": 0.64, "p95": 0.81 },
+    "facet_finding": "Facet-only filtering is roughly 11x cheaper than text search, which is consistent with the haystack cost dominating.",
+    "keystroke_to_paint_browser_ms": {
+      "harness": "scratchpad/cdp-search.mjs — native value setter + input event, waits two animation frames",
+      "repeats_per_query": 5,
+      "overall_p50": 49.9,
+      "overall_p95": 50.6,
+      "zero_result_queries_p50": 32.0,
+      "heap_after_searching_mb": 34.0,
+      "finding": "Full keystroke cost is ~50 ms, about 7x the filter-only cost, so React re-render of the 48 visible cards dominates. Queries returning nothing are faster (~32 ms) because no cards render. There is no debounce on the input."
+    }
+  },
+
+  "retrieval_correctness_findings": {
+    "note": "Discovered while building the fixed query set. These are correctness defects, not performance, and they were not previously recorded. They matter because they define the R0 baseline that ENG-006 must beat.",
+    "CORRECTION_three_causes_not_one": {
+      "detail": "This section originally listed 'accessible dashboard', 'stripe checkout' and the German queries together under one multi-word heading, implying a single cause. Measured during ENG-010, they have THREE distinct causes and only the first is a bug.",
+      "causes": {
+        "matching_bug": "'accessible dashboard' -> 0 while both terms exist in the corpus ('accessible' in 460 records, 'dashboard' in 3391). Genuine defect. FIXED by ENG-010.",
+        "dataset_gap": "'stripe checkout' -> 0 because 'stripe' appears in ZERO records. Returning nothing is CORRECT over a corpus with no Stripe content. This is a skill-gap signal for the dataset, not a search defect, and ENG-010 does not and should not change it.",
+        "language_gap": "'barrierefrei', 'dunkelmodus', 'anmeldeformular' -> 0 because the terms are absent from a ~91% English corpus. Needs translation or embeddings (ENG-006 arm R7), not term splitting."
+      },
+      "why_recorded": "Kept rather than silently rewritten: conflating a bug with a data gap would have made ENG-010 look like it fixed more than it did, and would have set an unreachable acceptance criterion."
+    },
+    "multi_word_queries_return_nothing": {
+      "status": "FIXED by ENG-010 (2026-07-30)",
+      "evidence_before": [
+        { "query": "dashboard", "hits": 3391 },
+        { "query": "accessible dashboard", "hits": 0 },
+        { "query": "react pricing table", "hits": 0 },
+        { "query": "ecommerce product page", "hits": 0 }
+      ],
+      "evidence_after": [
+        { "query": "dashboard", "hits": 3391, "note": "unchanged" },
+        { "query": "accessible dashboard", "hits": 100 },
+        { "query": "react pricing table", "hits": 21 },
+        { "query": "ecommerce product page", "hits": 330 }
+      ],
+      "cause": "Search was a single substring test over one joined string (Library.tsx:76). A multi-word query only matched if those words appeared adjacently, in that order, in the concatenation. Term-wise matching did not exist.",
+      "fix": "site/src/lib/search.ts — query split into terms, record must contain ALL terms (AND). Still a boolean filter, not a ranker; ranking remains ENG-006.",
+      "severity": "was high — a natural two-word query silently returned an empty result set"
+    },
+    "german_queries_return_nothing": {
+      "evidence": [
+        { "query": "barrierefrei", "hits": 0 },
+        { "query": "dunkelmodus", "hits": 0 }
+      ],
+      "cause": "The corpus is ~91% English while the UI is German. Lexical matching cannot bridge that, term-splitting included — ENG-010 confirmed these stay at 0 and does not claim otherwise.",
+      "status": "OPEN — not addressed by ENG-010, by design",
+      "severity": "medium — verified as a real failure mode, and the strongest concrete argument for the embeddings ablation arm R7"
+    },
+    "single_character_matches_everything": {
+      "evidence": [{ "query": "d", "hits": 10000 }],
+      "severity": "low"
+    }
+  },
+
+  "incidental_findings": {
+    "google_fonts_third_party_request": {
+      "detail": "Both pages request fonts.googleapis.com at runtime (22,494 bytes decoded, 32-104 ms). This sends every visitor's IP address to Google.",
+      "relevance": "The site ships Impressum and Datenschutz pages, so this is a GDPR consideration rather than a performance one. Not in scope for ENG-002; recorded because it was observed.",
+      "severity": "medium (legal/privacy, not performance)"
+    },
+    "public_data_gitignore_RETRACTED": {
+      "detail": "An earlier draft of this report claimed site/public/data/ was not gitignored. That was WRONG and is retracted. The root .gitignore covers it explicitly at line 10 with the comment '# Generated site data (rebuilt from data/*.jsonl by `npm run data`)'. Verified with `git check-ignore -v`. The error came from reading only site/.gitignore and not the root one.",
+      "severity": "none — no issue exists",
+      "kept_because": "Recording the retraction rather than deleting it, so the claim is not silently reintroduced from an earlier read of this file."
+    },
+    "vite_preview_ignores_build_base": {
+      "detail": "vite.config.ts sets base only when command === 'build', so `vite preview` serves at / while the built assets reference /Prompt_Academy/. Preview of a production build therefore 404s its own assets.",
+      "severity": "low — affects local verification, not production"
+    },
+    "system_node_too_old_to_build": {
+      "detail": "System node is v18.19.1; Vite 8 requires >=20.19 or >=22.12. There is no .nvmrc or engines field pinning the version, so a fresh checkout on this machine fails to build with a version error.",
+      "severity": "low, but a guaranteed stumble for a new contributor"
+    }
+  },
+
+  "reproduction_check": {
+    "note": "The harness was re-run from the committed scripts/baseline/ paths as an independent second measurement, to confirm the numbers are reproducible and to record real run-to-run variance rather than presenting single values as exact.",
+    "index_json_parse_ms": { "p50": 15.83, "p95": 24.76, "first_run_p50": 15.69, "first_run_p95": 25.21 },
+    "heap_attributable_mb": { "value": 13.97, "first_run": 13.97, "comment": "identical" },
+    "filter_only_search_ms": { "p50": 7.81, "p95": 8.67, "first_run_p50": 6.97, "first_run_p95": 8.08 },
+    "haystack_only_p50_ms": { "value": 6.54, "first_run": 5.79 },
+    "time_to_first_rendered_result_ms": { "value": 360, "first_run_range": [294, 323] },
+    "conclusion": "Reproducible. Search-path timings vary by roughly 10-15% between sessions on an otherwise idle machine, so any claimed improvement below ~15% is not distinguishable from noise with this method and this n. Comparisons for ENG-006/ENG-007 must either exceed that margin or raise the repeat count."
+  },
+
+  "budgets_proposed_for_eng_007": {
+    "note": "Derived from the measurements above. Proposed, not yet agreed; ENG-007 must not regress these.",
+    "library_time_to_first_rendered_result_ms": 323,
+    "library_js_heap_used_mb": 24.5,
+    "index_json_encoded_transfer_bytes": 738038,
+    "index_json_parse_p95_ms": 25.21,
+    "keystroke_to_paint_p95_ms": 50.6
+  },
+
+  "not_measured": {
+    "real_device_and_network": "All numbers are from one machine on a wired connection with a headless browser. Mobile CPU and slow networks are UNMEASURED and would be substantially worse, particularly for the 6.9 MB parse.",
+    "brotli_benefit": "GitHub Pages does not offer brotli, so the potential saving is UNMEASURED and unavailable without changing host.",
+    "cold_cdn_variance": "Only one genuinely cold-edge deployed run was captured (run 1). The cold-start distribution is UNMEASURED.",
+    "search_quality": "Precision and recall against a labelled query set are UNMEASURED by design — that is ENG-005/ENG-006.",
+    "repeat_visit_behaviour": "Effect of the 600 s max-age on returning visitors is UNMEASURED."
+  }
+}

@@ -1,0 +1,6383 @@
+{
+  "pool_schema_version": "1.0.0",
+  "ground_truth_version": "retrieval-ground-truth-v1",
+  "dataset_hash": "7bb8bec4fda48bd9c6f3e6918130a1c577370f1504d8d16048a40127279b40a7",
+  "per_source_cap": 14,
+  "shuffle_seed_base": 20260730,
+  "sources": {
+    "substring": "current live site behaviour — one substring test over the haystack",
+    "all_terms": "ENG-010 shipped predicate — every query term must appear",
+    "any_term": "loose OR over terms, ranked by term count — deliberately noisy",
+    "facet": "hand-written category/subcategory expansion per query",
+    "synonyms": "hand-written vocabulary variants per query, incl. German↔English",
+    "facet_and_synonym": "intersection of facet and synonym — added after a measured pooling failure on Q002, see the coverage report",
+    "ranked_system_topk": "top-k of a compared ranking system, added to the pool and then judged (standard pooled-evaluation practice)"
+  },
+  "rule": "Sources PROPOSE candidates. Sources never assign relevance. Grades come from a human reading the record against RELEVANCE-GUIDELINE.md.",
+  "pool": {
+    "Q001": {
+      "query": "pricing page",
+      "candidate_ids": [
+        "PRM-000065",
+        "PRM-000052",
+        "PRM-000058",
+        "PRM-000056",
+        "PRM-000059",
+        "PRM-000064",
+        "PRM-000013",
+        "PRM-000062",
+        "PRM-000033",
+        "PRM-000076",
+        "PRM-000054",
+        "PRM-000077",
+        "PRM-000055",
+        "PRM-000051",
+        "PRM-000091",
+        "PRM-000061",
+        "PRM-000060",
+        "PRM-000057",
+        "PRM-000063",
+        "PRM-000068",
+        "PRM-000071",
+        "PRM-000053",
+        "PRM-000067",
+        "PRM-000069",
+        "PRM-000070",
+        "PRM-000072",
+        "PRM-000075",
+        "PRM-000079",
+        "PRM-000089",
+        "PRM-000092",
+        "PRM-000095"
+      ],
+      "provenance": {
+        "PRM-000051": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-000052": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-000053": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-000054": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-000055": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-000056": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-000057": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-000058": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-000059": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-000060": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-000061": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-000062": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-000063": [
+          "facet",
+          "substring"
+        ],
+        "PRM-000064": [
+          "facet",
+          "substring"
+        ],
+        "PRM-000013": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-000033": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-000071": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000091": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000065": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000067": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000068": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000069": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000070": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000076": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000077": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000072": [
+          "ranked_system_topk"
+        ],
+        "PRM-000075": [
+          "ranked_system_topk"
+        ],
+        "PRM-000079": [
+          "ranked_system_topk"
+        ],
+        "PRM-000089": [
+          "ranked_system_topk"
+        ],
+        "PRM-000092": [
+          "ranked_system_topk"
+        ],
+        "PRM-000095": [
+          "ranked_system_topk"
+        ]
+      },
+      "source_totals": {
+        "substring": 50,
+        "all_terms": 713,
+        "any_term": 3928,
+        "facet": 100,
+        "synonyms": 1010,
+        "facet_and_synonym": 100,
+        "ranked_system_topk": 6
+      },
+      "source_truncated_at_cap": {
+        "substring": 50,
+        "all_terms": 713,
+        "any_term": 3928,
+        "facet": 100,
+        "synonyms": 1010,
+        "facet_and_synonym": 100
+      },
+      "shuffle_seed": "20260730:Q001"
+    },
+    "Q002": {
+      "query": "accessible dashboard",
+      "candidate_ids": [
+        "PRM-001133",
+        "PRM-001773",
+        "PRM-002047",
+        "PRM-001083",
+        "PRM-001141",
+        "PRM-001094",
+        "PRM-002002",
+        "PRM-001075",
+        "PRM-002013",
+        "PRM-002019",
+        "PRM-002004",
+        "PRM-002033",
+        "PRM-002001",
+        "PRM-001004",
+        "PRM-000884",
+        "PRM-002008",
+        "PRM-001127",
+        "PRM-000873",
+        "PRM-002040",
+        "PRM-002251",
+        "PRM-001987",
+        "PRM-002061",
+        "PRM-002011",
+        "PRM-002090",
+        "PRM-002009",
+        "PRM-002042",
+        "PRM-002012",
+        "PRM-001149",
+        "PRM-002014",
+        "PRM-000894",
+        "PRM-001697",
+        "PRM-001015",
+        "PRM-001017",
+        "PRM-001040",
+        "PRM-001252",
+        "PRM-001737",
+        "PRM-002082",
+        "PRM-002010",
+        "PRM-002282",
+        "PRM-002007",
+        "PRM-001048",
+        "PRM-002089",
+        "PRM-002005",
+        "PRM-002278",
+        "PRM-001115",
+        "PRM-001038",
+        "PRM-002006",
+        "PRM-002273",
+        "PRM-002003",
+        "PRM-002062",
+        "PRM-001387",
+        "PRM-002091",
+        "PRM-001082"
+      ],
+      "provenance": {
+        "PRM-000873": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-000884": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-000894": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001048": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001252": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001387": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001697": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001737": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001773": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001987": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002009": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-002019": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002033": [
+          "all_terms",
+          "any_term",
+          "facet_and_synonym"
+        ],
+        "PRM-002040": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002001": [
+          "facet"
+        ],
+        "PRM-002002": [
+          "facet"
+        ],
+        "PRM-002003": [
+          "facet"
+        ],
+        "PRM-002004": [
+          "facet"
+        ],
+        "PRM-002005": [
+          "facet"
+        ],
+        "PRM-002006": [
+          "facet"
+        ],
+        "PRM-002007": [
+          "facet"
+        ],
+        "PRM-002008": [
+          "facet"
+        ],
+        "PRM-002010": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002011": [
+          "facet"
+        ],
+        "PRM-002012": [
+          "facet"
+        ],
+        "PRM-002013": [
+          "facet"
+        ],
+        "PRM-002014": [
+          "facet"
+        ],
+        "PRM-001004": [
+          "synonyms"
+        ],
+        "PRM-001015": [
+          "synonyms"
+        ],
+        "PRM-001017": [
+          "synonyms"
+        ],
+        "PRM-001038": [
+          "synonyms"
+        ],
+        "PRM-001040": [
+          "synonyms"
+        ],
+        "PRM-001075": [
+          "synonyms"
+        ],
+        "PRM-001082": [
+          "synonyms"
+        ],
+        "PRM-001083": [
+          "synonyms"
+        ],
+        "PRM-001094": [
+          "synonyms"
+        ],
+        "PRM-001115": [
+          "synonyms"
+        ],
+        "PRM-001127": [
+          "synonyms"
+        ],
+        "PRM-001133": [
+          "synonyms"
+        ],
+        "PRM-001141": [
+          "synonyms"
+        ],
+        "PRM-001149": [
+          "synonyms"
+        ],
+        "PRM-002042": [
+          "facet_and_synonym"
+        ],
+        "PRM-002047": [
+          "facet_and_synonym"
+        ],
+        "PRM-002061": [
+          "facet_and_synonym"
+        ],
+        "PRM-002062": [
+          "facet_and_synonym"
+        ],
+        "PRM-002082": [
+          "facet_and_synonym"
+        ],
+        "PRM-002089": [
+          "facet_and_synonym"
+        ],
+        "PRM-002090": [
+          "facet_and_synonym"
+        ],
+        "PRM-002091": [
+          "facet_and_synonym"
+        ],
+        "PRM-002251": [
+          "facet_and_synonym"
+        ],
+        "PRM-002273": [
+          "facet_and_synonym"
+        ],
+        "PRM-002278": [
+          "facet_and_synonym"
+        ],
+        "PRM-002282": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 404,
+        "any_term": 3692,
+        "facet": 150,
+        "synonyms": 5781,
+        "facet_and_synonym": 119
+      },
+      "source_truncated_at_cap": {
+        "all_terms": 404,
+        "any_term": 3692,
+        "facet": 150,
+        "synonyms": 5781,
+        "facet_and_synonym": 119
+      },
+      "shuffle_seed": "20260730:Q002"
+    },
+    "Q003": {
+      "query": "design a dashboard that works well for screen reader users",
+      "candidate_ids": [
+        "PRM-001018",
+        "PRM-003017",
+        "PRM-002005",
+        "PRM-002036",
+        "PRM-002011",
+        "PRM-003012",
+        "PRM-002010",
+        "PRM-005185",
+        "PRM-002024",
+        "PRM-002047",
+        "PRM-003039",
+        "PRM-009070",
+        "PRM-002012",
+        "PRM-002033",
+        "PRM-003513",
+        "PRM-003457",
+        "PRM-003524",
+        "PRM-003452",
+        "PRM-002002",
+        "PRM-003505",
+        "PRM-001015",
+        "PRM-003329",
+        "PRM-002006",
+        "PRM-002061",
+        "PRM-001003",
+        "PRM-001002",
+        "PRM-003369",
+        "PRM-001004",
+        "PRM-001011",
+        "PRM-001008",
+        "PRM-002035",
+        "PRM-002008",
+        "PRM-002038",
+        "PRM-001009",
+        "PRM-003321",
+        "PRM-003497",
+        "PRM-005735",
+        "PRM-002052",
+        "PRM-002001",
+        "PRM-003697",
+        "PRM-002042",
+        "PRM-001010",
+        "PRM-002048",
+        "PRM-002004",
+        "PRM-002014",
+        "PRM-002009",
+        "PRM-002013",
+        "PRM-002062",
+        "PRM-003137",
+        "PRM-002003",
+        "PRM-002007",
+        "PRM-001019",
+        "PRM-001017"
+      ],
+      "provenance": {
+        "PRM-003697": [
+          "any_term"
+        ],
+        "PRM-003012": [
+          "any_term"
+        ],
+        "PRM-003017": [
+          "any_term"
+        ],
+        "PRM-003039": [
+          "any_term"
+        ],
+        "PRM-003137": [
+          "any_term"
+        ],
+        "PRM-003321": [
+          "any_term"
+        ],
+        "PRM-003329": [
+          "any_term"
+        ],
+        "PRM-003369": [
+          "any_term"
+        ],
+        "PRM-003452": [
+          "any_term"
+        ],
+        "PRM-003457": [
+          "any_term"
+        ],
+        "PRM-003497": [
+          "any_term"
+        ],
+        "PRM-003505": [
+          "any_term"
+        ],
+        "PRM-003513": [
+          "any_term"
+        ],
+        "PRM-003524": [
+          "any_term"
+        ],
+        "PRM-002001": [
+          "facet"
+        ],
+        "PRM-002002": [
+          "facet"
+        ],
+        "PRM-002003": [
+          "facet"
+        ],
+        "PRM-002004": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002005": [
+          "facet"
+        ],
+        "PRM-002006": [
+          "facet"
+        ],
+        "PRM-002007": [
+          "facet"
+        ],
+        "PRM-002008": [
+          "facet"
+        ],
+        "PRM-002009": [
+          "facet"
+        ],
+        "PRM-002010": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002011": [
+          "facet"
+        ],
+        "PRM-002012": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002013": [
+          "facet"
+        ],
+        "PRM-002014": [
+          "facet"
+        ],
+        "PRM-005185": [
+          "synonyms"
+        ],
+        "PRM-005735": [
+          "synonyms"
+        ],
+        "PRM-009070": [
+          "synonyms"
+        ],
+        "PRM-001002": [
+          "synonyms"
+        ],
+        "PRM-001003": [
+          "synonyms"
+        ],
+        "PRM-001004": [
+          "synonyms"
+        ],
+        "PRM-001008": [
+          "synonyms"
+        ],
+        "PRM-001009": [
+          "synonyms"
+        ],
+        "PRM-001010": [
+          "synonyms"
+        ],
+        "PRM-001011": [
+          "synonyms"
+        ],
+        "PRM-001015": [
+          "synonyms"
+        ],
+        "PRM-001017": [
+          "synonyms"
+        ],
+        "PRM-001018": [
+          "synonyms"
+        ],
+        "PRM-001019": [
+          "synonyms"
+        ],
+        "PRM-002024": [
+          "facet_and_synonym"
+        ],
+        "PRM-002033": [
+          "facet_and_synonym"
+        ],
+        "PRM-002035": [
+          "facet_and_synonym"
+        ],
+        "PRM-002036": [
+          "facet_and_synonym"
+        ],
+        "PRM-002038": [
+          "facet_and_synonym"
+        ],
+        "PRM-002042": [
+          "facet_and_synonym"
+        ],
+        "PRM-002047": [
+          "facet_and_synonym"
+        ],
+        "PRM-002048": [
+          "facet_and_synonym"
+        ],
+        "PRM-002052": [
+          "facet_and_synonym"
+        ],
+        "PRM-002061": [
+          "facet_and_synonym"
+        ],
+        "PRM-002062": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 0,
+        "any_term": 10000,
+        "facet": 100,
+        "synonyms": 5018,
+        "facet_and_synonym": 80
+      },
+      "source_truncated_at_cap": {
+        "any_term": 10000,
+        "facet": 100,
+        "synonyms": 5018,
+        "facet_and_synonym": 80
+      },
+      "shuffle_seed": "20260730:Q003"
+    },
+    "Q004": {
+      "query": "sign in screen",
+      "candidate_ids": [
+        "PRM-000067",
+        "PRM-000141",
+        "PRM-000044",
+        "PRM-003009",
+        "PRM-003064",
+        "PRM-003018",
+        "PRM-003014",
+        "PRM-000063",
+        "PRM-000101",
+        "PRM-000002",
+        "PRM-001304",
+        "PRM-003049",
+        "PRM-000046",
+        "PRM-000147",
+        "PRM-000042",
+        "PRM-001303",
+        "PRM-003015",
+        "PRM-001309",
+        "PRM-000124",
+        "PRM-000107",
+        "PRM-001307",
+        "PRM-000120",
+        "PRM-001314",
+        "PRM-000110",
+        "PRM-000006",
+        "PRM-000127",
+        "PRM-003041",
+        "PRM-001312",
+        "PRM-000144",
+        "PRM-000109",
+        "PRM-000055",
+        "PRM-001301",
+        "PRM-003026",
+        "PRM-000034",
+        "PRM-000121",
+        "PRM-003034",
+        "PRM-001308",
+        "PRM-000038",
+        "PRM-000058",
+        "PRM-003066",
+        "PRM-001302",
+        "PRM-001306",
+        "PRM-001313",
+        "PRM-000013",
+        "PRM-000130",
+        "PRM-003023",
+        "PRM-003021",
+        "PRM-000150",
+        "PRM-003058",
+        "PRM-003057",
+        "PRM-000022",
+        "PRM-001310",
+        "PRM-000104",
+        "PRM-001305",
+        "PRM-000023",
+        "PRM-001311"
+      ],
+      "provenance": {
+        "PRM-000002": [
+          "all_terms"
+        ],
+        "PRM-000006": [
+          "all_terms"
+        ],
+        "PRM-000013": [
+          "all_terms"
+        ],
+        "PRM-000022": [
+          "all_terms"
+        ],
+        "PRM-000023": [
+          "all_terms"
+        ],
+        "PRM-000034": [
+          "all_terms"
+        ],
+        "PRM-000038": [
+          "all_terms"
+        ],
+        "PRM-000042": [
+          "all_terms"
+        ],
+        "PRM-000044": [
+          "all_terms"
+        ],
+        "PRM-000046": [
+          "all_terms"
+        ],
+        "PRM-000055": [
+          "all_terms"
+        ],
+        "PRM-000058": [
+          "all_terms"
+        ],
+        "PRM-000063": [
+          "all_terms"
+        ],
+        "PRM-000067": [
+          "all_terms"
+        ],
+        "PRM-000101": [
+          "any_term"
+        ],
+        "PRM-000104": [
+          "any_term"
+        ],
+        "PRM-000107": [
+          "any_term"
+        ],
+        "PRM-000109": [
+          "any_term"
+        ],
+        "PRM-000110": [
+          "any_term"
+        ],
+        "PRM-000120": [
+          "any_term"
+        ],
+        "PRM-000121": [
+          "any_term"
+        ],
+        "PRM-000124": [
+          "any_term"
+        ],
+        "PRM-000127": [
+          "any_term"
+        ],
+        "PRM-000130": [
+          "any_term"
+        ],
+        "PRM-000141": [
+          "any_term"
+        ],
+        "PRM-000144": [
+          "any_term"
+        ],
+        "PRM-000147": [
+          "any_term"
+        ],
+        "PRM-000150": [
+          "any_term"
+        ],
+        "PRM-001301": [
+          "facet"
+        ],
+        "PRM-001302": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001303": [
+          "facet"
+        ],
+        "PRM-001304": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001305": [
+          "facet"
+        ],
+        "PRM-001306": [
+          "facet"
+        ],
+        "PRM-001307": [
+          "facet"
+        ],
+        "PRM-001308": [
+          "facet"
+        ],
+        "PRM-001309": [
+          "facet"
+        ],
+        "PRM-001310": [
+          "facet"
+        ],
+        "PRM-001311": [
+          "facet"
+        ],
+        "PRM-001312": [
+          "facet"
+        ],
+        "PRM-001313": [
+          "facet"
+        ],
+        "PRM-001314": [
+          "facet"
+        ],
+        "PRM-003009": [
+          "synonyms"
+        ],
+        "PRM-003014": [
+          "synonyms"
+        ],
+        "PRM-003015": [
+          "synonyms"
+        ],
+        "PRM-003018": [
+          "synonyms"
+        ],
+        "PRM-003021": [
+          "synonyms"
+        ],
+        "PRM-003023": [
+          "synonyms"
+        ],
+        "PRM-003026": [
+          "synonyms"
+        ],
+        "PRM-003034": [
+          "synonyms"
+        ],
+        "PRM-003041": [
+          "synonyms"
+        ],
+        "PRM-003049": [
+          "synonyms"
+        ],
+        "PRM-003057": [
+          "synonyms"
+        ],
+        "PRM-003058": [
+          "synonyms"
+        ],
+        "PRM-003064": [
+          "synonyms"
+        ],
+        "PRM-003066": [
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 2316,
+        "any_term": 3161,
+        "facet": 50,
+        "synonyms": 1166,
+        "facet_and_synonym": 2
+      },
+      "source_truncated_at_cap": {
+        "all_terms": 2316,
+        "any_term": 3161,
+        "facet": 50,
+        "synonyms": 1166
+      },
+      "shuffle_seed": "20260730:Q004"
+    },
+    "Q005": {
+      "query": "checkout with coupon support",
+      "candidate_ids": [
+        "PRM-003108",
+        "PRM-003114",
+        "PRM-003110",
+        "PRM-003102",
+        "PRM-003105",
+        "PRM-001593",
+        "PRM-000669",
+        "PRM-003004",
+        "PRM-003005",
+        "PRM-003015",
+        "PRM-000392",
+        "PRM-003106",
+        "PRM-003109",
+        "PRM-003010",
+        "PRM-003113",
+        "PRM-000890",
+        "PRM-001727",
+        "PRM-000869",
+        "PRM-003209",
+        "PRM-003107",
+        "PRM-003101",
+        "PRM-003019",
+        "PRM-003111",
+        "PRM-003112",
+        "PRM-003104",
+        "PRM-000372",
+        "PRM-000352",
+        "PRM-003020",
+        "PRM-007449",
+        "PRM-003103",
+        "PRM-003002",
+        "PRM-003018",
+        "PRM-003594",
+        "PRM-001695",
+        "PRM-006129",
+        "PRM-003008",
+        "PRM-003007",
+        "PRM-000957",
+        "PRM-000689",
+        "PRM-003526"
+      ],
+      "provenance": {
+        "PRM-003526": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001593": [
+          "any_term"
+        ],
+        "PRM-001695": [
+          "any_term"
+        ],
+        "PRM-001727": [
+          "any_term"
+        ],
+        "PRM-003002": [
+          "any_term"
+        ],
+        "PRM-003004": [
+          "any_term"
+        ],
+        "PRM-003005": [
+          "any_term"
+        ],
+        "PRM-003007": [
+          "any_term"
+        ],
+        "PRM-003008": [
+          "any_term"
+        ],
+        "PRM-003010": [
+          "any_term"
+        ],
+        "PRM-003015": [
+          "any_term"
+        ],
+        "PRM-003018": [
+          "any_term"
+        ],
+        "PRM-003019": [
+          "any_term"
+        ],
+        "PRM-003020": [
+          "any_term"
+        ],
+        "PRM-003101": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003102": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003103": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003104": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003105": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003106": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003107": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003108": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003109": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003110": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003111": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003112": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003113": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003114": [
+          "facet"
+        ],
+        "PRM-003209": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003594": [
+          "synonyms"
+        ],
+        "PRM-006129": [
+          "synonyms"
+        ],
+        "PRM-007449": [
+          "synonyms"
+        ],
+        "PRM-000352": [
+          "synonyms"
+        ],
+        "PRM-000372": [
+          "synonyms"
+        ],
+        "PRM-000392": [
+          "synonyms"
+        ],
+        "PRM-000669": [
+          "synonyms"
+        ],
+        "PRM-000689": [
+          "synonyms"
+        ],
+        "PRM-000869": [
+          "synonyms"
+        ],
+        "PRM-000890": [
+          "synonyms"
+        ],
+        "PRM-000957": [
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 1,
+        "any_term": 9994,
+        "facet": 100,
+        "synonyms": 750,
+        "facet_and_synonym": 88
+      },
+      "source_truncated_at_cap": {
+        "any_term": 9994,
+        "facet": 100,
+        "synonyms": 750,
+        "facet_and_synonym": 88
+      },
+      "shuffle_seed": "20260730:Q005"
+    },
+    "Q006": {
+      "query": "healthcare appointment booking form",
+      "candidate_ids": [
+        "PRM-000831",
+        "PRM-000808",
+        "PRM-000812",
+        "PRM-002904",
+        "PRM-000810",
+        "PRM-000814",
+        "PRM-000811",
+        "PRM-000806",
+        "PRM-002915",
+        "PRM-000822",
+        "PRM-000802",
+        "PRM-000804",
+        "PRM-000809",
+        "PRM-002901",
+        "PRM-000843",
+        "PRM-002913",
+        "PRM-000801",
+        "PRM-002906",
+        "PRM-000803",
+        "PRM-000817",
+        "PRM-000818",
+        "PRM-000821",
+        "PRM-002902",
+        "PRM-000830",
+        "PRM-000813",
+        "PRM-002907",
+        "PRM-000816",
+        "PRM-000825",
+        "PRM-002912",
+        "PRM-000805",
+        "PRM-002914",
+        "PRM-000819",
+        "PRM-000807",
+        "PRM-000834"
+      ],
+      "provenance": {
+        "PRM-000801": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000809": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000813": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-000822": [
+          "all_terms",
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000830": [
+          "all_terms",
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000834": [
+          "all_terms"
+        ],
+        "PRM-000843": [
+          "all_terms",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000804": [
+          "any_term",
+          "facet"
+        ],
+        "PRM-000810": [
+          "any_term",
+          "facet"
+        ],
+        "PRM-000816": [
+          "any_term"
+        ],
+        "PRM-000817": [
+          "any_term"
+        ],
+        "PRM-000818": [
+          "any_term"
+        ],
+        "PRM-000819": [
+          "any_term"
+        ],
+        "PRM-000821": [
+          "any_term"
+        ],
+        "PRM-000825": [
+          "any_term"
+        ],
+        "PRM-000831": [
+          "any_term"
+        ],
+        "PRM-000802": [
+          "facet"
+        ],
+        "PRM-000803": [
+          "facet"
+        ],
+        "PRM-000805": [
+          "facet"
+        ],
+        "PRM-000806": [
+          "facet"
+        ],
+        "PRM-000807": [
+          "facet"
+        ],
+        "PRM-000808": [
+          "facet"
+        ],
+        "PRM-000811": [
+          "facet"
+        ],
+        "PRM-000812": [
+          "facet"
+        ],
+        "PRM-000814": [
+          "facet"
+        ],
+        "PRM-002901": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002902": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002904": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002906": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002907": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002912": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002913": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002914": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002915": [
+          "facet_and_synonym",
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 7,
+        "any_term": 4106,
+        "facet": 150,
+        "synonyms": 1103,
+        "facet_and_synonym": 87
+      },
+      "source_truncated_at_cap": {
+        "any_term": 4106,
+        "facet": 150,
+        "synonyms": 1103,
+        "facet_and_synonym": 87
+      },
+      "shuffle_seed": "20260730:Q006"
+    },
+    "Q007": {
+      "query": "responsive React admin dashboard",
+      "candidate_ids": [
+        "PRM-009374",
+        "PRM-009812",
+        "PRM-002009",
+        "PRM-000197",
+        "PRM-002003",
+        "PRM-002001",
+        "PRM-009124",
+        "PRM-000089",
+        "PRM-002016",
+        "PRM-002041",
+        "PRM-002007",
+        "PRM-002015",
+        "PRM-002006",
+        "PRM-000067",
+        "PRM-002014",
+        "PRM-002008",
+        "PRM-000157",
+        "PRM-002002",
+        "PRM-002013",
+        "PRM-002011",
+        "PRM-000120",
+        "PRM-000108",
+        "PRM-000117",
+        "PRM-000020",
+        "PRM-000097",
+        "PRM-002010",
+        "PRM-009138",
+        "PRM-002019",
+        "PRM-000015",
+        "PRM-000112",
+        "PRM-002005",
+        "PRM-002004",
+        "PRM-002012",
+        "PRM-000153",
+        "PRM-000186",
+        "PRM-002022"
+      ],
+      "provenance": {
+        "PRM-002007": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002011": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002019": [
+          "all_terms",
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009124": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-009138": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-009812": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-000015": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000020": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000089": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000108": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000120": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000157": [
+          "any_term"
+        ],
+        "PRM-000186": [
+          "any_term"
+        ],
+        "PRM-000197": [
+          "any_term"
+        ],
+        "PRM-002001": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002002": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002003": [
+          "facet"
+        ],
+        "PRM-002004": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002005": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002006": [
+          "facet"
+        ],
+        "PRM-002008": [
+          "facet"
+        ],
+        "PRM-002009": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002010": [
+          "facet"
+        ],
+        "PRM-002012": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002013": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002014": [
+          "facet"
+        ],
+        "PRM-009374": [
+          "synonyms"
+        ],
+        "PRM-000067": [
+          "synonyms"
+        ],
+        "PRM-000097": [
+          "synonyms"
+        ],
+        "PRM-000112": [
+          "synonyms"
+        ],
+        "PRM-000117": [
+          "synonyms"
+        ],
+        "PRM-000153": [
+          "synonyms"
+        ],
+        "PRM-002022": [
+          "facet_and_synonym"
+        ],
+        "PRM-002041": [
+          "facet_and_synonym"
+        ],
+        "PRM-002015": [
+          "facet_and_synonym"
+        ],
+        "PRM-002016": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 6,
+        "any_term": 8126,
+        "facet": 50,
+        "synonyms": 7220,
+        "facet_and_synonym": 50
+      },
+      "source_truncated_at_cap": {
+        "any_term": 8126,
+        "facet": 50,
+        "synonyms": 7220,
+        "facet_and_synonym": 50
+      },
+      "shuffle_seed": "20260730:Q007"
+    },
+    "Q008": {
+      "query": "minimal landing page without animations",
+      "candidate_ids": [
+        "PRM-004711",
+        "PRM-004705",
+        "PRM-000125",
+        "PRM-000001",
+        "PRM-000009",
+        "PRM-000003",
+        "PRM-001974",
+        "PRM-000015",
+        "PRM-000229",
+        "PRM-000002",
+        "PRM-000057",
+        "PRM-000062",
+        "PRM-004704",
+        "PRM-004703",
+        "PRM-004701",
+        "PRM-000209",
+        "PRM-000112",
+        "PRM-000011",
+        "PRM-000006",
+        "PRM-000030",
+        "PRM-004707",
+        "PRM-003060",
+        "PRM-001170",
+        "PRM-000059",
+        "PRM-004708",
+        "PRM-000076",
+        "PRM-001482",
+        "PRM-004706",
+        "PRM-006078",
+        "PRM-000047",
+        "PRM-000005",
+        "PRM-000027",
+        "PRM-000032",
+        "PRM-000070",
+        "PRM-004716",
+        "PRM-004702",
+        "PRM-000014",
+        "PRM-000007",
+        "PRM-000050",
+        "PRM-004709",
+        "PRM-004710",
+        "PRM-004736",
+        "PRM-001625",
+        "PRM-000145",
+        "PRM-000004",
+        "PRM-000010",
+        "PRM-000008",
+        "PRM-000105",
+        "PRM-004712",
+        "PRM-000012",
+        "PRM-000132",
+        "PRM-000013"
+      ],
+      "provenance": {
+        "PRM-003060": [
+          "all_terms"
+        ],
+        "PRM-000004": [
+          "any_term",
+          "facet"
+        ],
+        "PRM-000007": [
+          "any_term",
+          "facet"
+        ],
+        "PRM-000010": [
+          "any_term",
+          "facet"
+        ],
+        "PRM-000015": [
+          "any_term"
+        ],
+        "PRM-000027": [
+          "any_term"
+        ],
+        "PRM-000030": [
+          "any_term"
+        ],
+        "PRM-000032": [
+          "any_term"
+        ],
+        "PRM-000047": [
+          "any_term"
+        ],
+        "PRM-000050": [
+          "any_term"
+        ],
+        "PRM-000057": [
+          "any_term"
+        ],
+        "PRM-000059": [
+          "any_term"
+        ],
+        "PRM-000062": [
+          "any_term"
+        ],
+        "PRM-000070": [
+          "any_term"
+        ],
+        "PRM-000076": [
+          "any_term"
+        ],
+        "PRM-000001": [
+          "facet"
+        ],
+        "PRM-000002": [
+          "facet"
+        ],
+        "PRM-000003": [
+          "facet"
+        ],
+        "PRM-000005": [
+          "facet"
+        ],
+        "PRM-000006": [
+          "facet"
+        ],
+        "PRM-000008": [
+          "facet"
+        ],
+        "PRM-000009": [
+          "facet"
+        ],
+        "PRM-000011": [
+          "facet"
+        ],
+        "PRM-000012": [
+          "facet"
+        ],
+        "PRM-000013": [
+          "facet"
+        ],
+        "PRM-000014": [
+          "facet"
+        ],
+        "PRM-001170": [
+          "synonyms"
+        ],
+        "PRM-001482": [
+          "synonyms"
+        ],
+        "PRM-001625": [
+          "synonyms"
+        ],
+        "PRM-001974": [
+          "synonyms"
+        ],
+        "PRM-004716": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004736": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-006078": [
+          "synonyms"
+        ],
+        "PRM-000105": [
+          "synonyms"
+        ],
+        "PRM-000112": [
+          "synonyms"
+        ],
+        "PRM-000125": [
+          "synonyms"
+        ],
+        "PRM-000132": [
+          "synonyms"
+        ],
+        "PRM-000145": [
+          "synonyms"
+        ],
+        "PRM-000209": [
+          "synonyms"
+        ],
+        "PRM-000229": [
+          "synonyms"
+        ],
+        "PRM-004701": [
+          "facet_and_synonym"
+        ],
+        "PRM-004702": [
+          "facet_and_synonym"
+        ],
+        "PRM-004703": [
+          "facet_and_synonym"
+        ],
+        "PRM-004704": [
+          "facet_and_synonym"
+        ],
+        "PRM-004705": [
+          "facet_and_synonym"
+        ],
+        "PRM-004706": [
+          "facet_and_synonym"
+        ],
+        "PRM-004707": [
+          "facet_and_synonym"
+        ],
+        "PRM-004708": [
+          "facet_and_synonym"
+        ],
+        "PRM-004709": [
+          "facet_and_synonym"
+        ],
+        "PRM-004710": [
+          "facet_and_synonym"
+        ],
+        "PRM-004711": [
+          "facet_and_synonym"
+        ],
+        "PRM-004712": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 1,
+        "any_term": 8654,
+        "facet": 150,
+        "synonyms": 1914,
+        "facet_and_synonym": 68
+      },
+      "source_truncated_at_cap": {
+        "any_term": 8654,
+        "facet": 150,
+        "synonyms": 1914,
+        "facet_and_synonym": 68
+      },
+      "shuffle_seed": "20260730:Q008"
+    },
+    "Q009": {
+      "query": "account management",
+      "candidate_ids": [
+        "PRM-007036",
+        "PRM-002013",
+        "PRM-002131",
+        "PRM-002009",
+        "PRM-002006",
+        "PRM-002102",
+        "PRM-002025",
+        "PRM-002002",
+        "PRM-007035",
+        "PRM-007009",
+        "PRM-002005",
+        "PRM-007055",
+        "PRM-002021",
+        "PRM-002008",
+        "PRM-002001",
+        "PRM-002004",
+        "PRM-000071",
+        "PRM-001439",
+        "PRM-002113",
+        "PRM-002014",
+        "PRM-002007",
+        "PRM-007058",
+        "PRM-002028",
+        "PRM-007022",
+        "PRM-007057",
+        "PRM-007024",
+        "PRM-007001",
+        "PRM-002123",
+        "PRM-002012",
+        "PRM-007016",
+        "PRM-007002",
+        "PRM-002117",
+        "PRM-002110",
+        "PRM-002122",
+        "PRM-002115",
+        "PRM-000051",
+        "PRM-002032",
+        "PRM-002015",
+        "PRM-002010",
+        "PRM-007026",
+        "PRM-002011",
+        "PRM-002109",
+        "PRM-001518",
+        "PRM-002018",
+        "PRM-007039",
+        "PRM-000091",
+        "PRM-002003",
+        "PRM-002130",
+        "PRM-001440",
+        "PRM-007061",
+        "PRM-002034",
+        "PRM-002129",
+        "PRM-001999",
+        "PRM-001149",
+        "PRM-002111",
+        "PRM-002118",
+        "PRM-002164",
+        "PRM-002178",
+        "PRM-002181",
+        "PRM-002518",
+        "PRM-002525",
+        "PRM-002529",
+        "PRM-002532",
+        "PRM-002534",
+        "PRM-002535"
+      ],
+      "provenance": {
+        "PRM-007001": [
+          "substring"
+        ],
+        "PRM-007002": [
+          "substring"
+        ],
+        "PRM-007009": [
+          "substring"
+        ],
+        "PRM-007016": [
+          "substring"
+        ],
+        "PRM-007022": [
+          "substring"
+        ],
+        "PRM-007024": [
+          "substring"
+        ],
+        "PRM-007026": [
+          "substring"
+        ],
+        "PRM-007035": [
+          "substring"
+        ],
+        "PRM-007036": [
+          "substring"
+        ],
+        "PRM-007039": [
+          "substring"
+        ],
+        "PRM-007055": [
+          "substring"
+        ],
+        "PRM-007057": [
+          "substring"
+        ],
+        "PRM-007058": [
+          "substring"
+        ],
+        "PRM-007061": [
+          "substring"
+        ],
+        "PRM-001149": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001439": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001518": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002102": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002109": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002110": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002113": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002115": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002117": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002122": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002123": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002129": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002130": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002131": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002001": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002002": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002003": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002004": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002005": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002006": [
+          "facet"
+        ],
+        "PRM-002007": [
+          "facet"
+        ],
+        "PRM-002008": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002009": [
+          "facet"
+        ],
+        "PRM-002010": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002011": [
+          "facet"
+        ],
+        "PRM-002012": [
+          "facet"
+        ],
+        "PRM-002013": [
+          "facet"
+        ],
+        "PRM-002014": [
+          "facet"
+        ],
+        "PRM-002015": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002018": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002021": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002025": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002028": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002032": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002034": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000051": [
+          "synonyms"
+        ],
+        "PRM-000071": [
+          "synonyms"
+        ],
+        "PRM-000091": [
+          "synonyms"
+        ],
+        "PRM-001440": [
+          "synonyms"
+        ],
+        "PRM-001999": [
+          "synonyms"
+        ],
+        "PRM-002111": [
+          "ranked_system_topk"
+        ],
+        "PRM-002118": [
+          "ranked_system_topk"
+        ],
+        "PRM-002164": [
+          "ranked_system_topk"
+        ],
+        "PRM-002178": [
+          "ranked_system_topk"
+        ],
+        "PRM-002181": [
+          "ranked_system_topk"
+        ],
+        "PRM-002518": [
+          "ranked_system_topk"
+        ],
+        "PRM-002525": [
+          "ranked_system_topk"
+        ],
+        "PRM-002529": [
+          "ranked_system_topk"
+        ],
+        "PRM-002532": [
+          "ranked_system_topk"
+        ],
+        "PRM-002534": [
+          "ranked_system_topk"
+        ],
+        "PRM-002535": [
+          "ranked_system_topk"
+        ]
+      },
+      "source_totals": {
+        "substring": 232,
+        "all_terms": 365,
+        "any_term": 2938,
+        "facet": 100,
+        "synonyms": 289,
+        "facet_and_synonym": 42,
+        "ranked_system_topk": 11
+      },
+      "source_truncated_at_cap": {
+        "substring": 232,
+        "all_terms": 365,
+        "any_term": 2938,
+        "facet": 100,
+        "synonyms": 289,
+        "facet_and_synonym": 42
+      },
+      "shuffle_seed": "20260730:Q009"
+    },
+    "Q010": {
+      "query": "ARIA error messages for forms",
+      "candidate_ids": [
+        "PRM-001304",
+        "PRM-001309",
+        "PRM-005320",
+        "PRM-005735",
+        "PRM-001311",
+        "PRM-001307",
+        "PRM-001305",
+        "PRM-001303",
+        "PRM-001312",
+        "PRM-005185",
+        "PRM-005989",
+        "PRM-001315",
+        "PRM-005892",
+        "PRM-005893",
+        "PRM-005356",
+        "PRM-001313",
+        "PRM-005937",
+        "PRM-001301",
+        "PRM-001321",
+        "PRM-001306",
+        "PRM-005009",
+        "PRM-001314",
+        "PRM-001317",
+        "PRM-001325",
+        "PRM-005753",
+        "PRM-001318",
+        "PRM-005764",
+        "PRM-001302",
+        "PRM-001310",
+        "PRM-005998",
+        "PRM-005638",
+        "PRM-001308",
+        "PRM-001320"
+      ],
+      "provenance": {
+        "PRM-001302": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001303": [
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-001304": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001305": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001307": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001309": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001311": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001313": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001315": [
+          "any_term",
+          "facet_and_synonym"
+        ],
+        "PRM-001317": [
+          "any_term"
+        ],
+        "PRM-001318": [
+          "any_term"
+        ],
+        "PRM-001320": [
+          "any_term"
+        ],
+        "PRM-001321": [
+          "any_term"
+        ],
+        "PRM-001325": [
+          "any_term"
+        ],
+        "PRM-001301": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001306": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001308": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001310": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001312": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001314": [
+          "facet"
+        ],
+        "PRM-005185": [
+          "synonyms"
+        ],
+        "PRM-005009": [
+          "synonyms"
+        ],
+        "PRM-005320": [
+          "synonyms"
+        ],
+        "PRM-005356": [
+          "synonyms"
+        ],
+        "PRM-005638": [
+          "synonyms"
+        ],
+        "PRM-005735": [
+          "synonyms"
+        ],
+        "PRM-005753": [
+          "synonyms"
+        ],
+        "PRM-005764": [
+          "synonyms"
+        ],
+        "PRM-005892": [
+          "synonyms"
+        ],
+        "PRM-005893": [
+          "synonyms"
+        ],
+        "PRM-005937": [
+          "synonyms"
+        ],
+        "PRM-005989": [
+          "synonyms"
+        ],
+        "PRM-005998": [
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 0,
+        "any_term": 9645,
+        "facet": 50,
+        "synonyms": 3728,
+        "facet_and_synonym": 46
+      },
+      "source_truncated_at_cap": {
+        "any_term": 9645,
+        "facet": 50,
+        "synonyms": 3728,
+        "facet_and_synonym": 46
+      },
+      "shuffle_seed": "20260730:Q010"
+    },
+    "Q011": {
+      "query": "e-commerce",
+      "candidate_ids": [
+        "PRM-003051",
+        "PRM-003852",
+        "PRM-003007",
+        "PRM-003060",
+        "PRM-003059",
+        "PRM-003054",
+        "PRM-003012",
+        "PRM-001067",
+        "PRM-003009",
+        "PRM-003003",
+        "PRM-003005",
+        "PRM-003251",
+        "PRM-000978",
+        "PRM-003061",
+        "PRM-000957",
+        "PRM-003011",
+        "PRM-001030",
+        "PRM-001373",
+        "PRM-003052",
+        "PRM-003056",
+        "PRM-003010",
+        "PRM-003014",
+        "PRM-003016",
+        "PRM-003020",
+        "PRM-003004",
+        "PRM-003006",
+        "PRM-003057",
+        "PRM-003013",
+        "PRM-003002",
+        "PRM-003034",
+        "PRM-000999",
+        "PRM-003008",
+        "PRM-003001",
+        "PRM-003026",
+        "PRM-003301"
+      ],
+      "provenance": {
+        "PRM-000957": [
+          "all_terms",
+          "any_term",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-000978": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-000999": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-001030": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-001067": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-001373": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-003001": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-003004": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-003006": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-003009": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-003011": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-003012": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-003014": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "substring"
+        ],
+        "PRM-003016": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-003002": [
+          "facet"
+        ],
+        "PRM-003003": [
+          "facet"
+        ],
+        "PRM-003005": [
+          "facet"
+        ],
+        "PRM-003007": [
+          "facet"
+        ],
+        "PRM-003008": [
+          "facet"
+        ],
+        "PRM-003010": [
+          "facet"
+        ],
+        "PRM-003013": [
+          "facet"
+        ],
+        "PRM-003251": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003301": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003852": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003020": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003026": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003034": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003051": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003052": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003054": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003056": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003057": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003059": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003060": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003061": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 607,
+        "all_terms": 607,
+        "any_term": 607,
+        "facet": 1000,
+        "synonyms": 1515,
+        "facet_and_synonym": 1000
+      },
+      "source_truncated_at_cap": {
+        "substring": 607,
+        "all_terms": 607,
+        "any_term": 607,
+        "facet": 1000,
+        "synonyms": 1515,
+        "facet_and_synonym": 1000
+      },
+      "shuffle_seed": "20260730:Q011"
+    },
+    "Q012": {
+      "query": "AI analytics SaaS dashboard",
+      "candidate_ids": [
+        "PRM-002017",
+        "PRM-002052",
+        "PRM-002053",
+        "PRM-002061",
+        "PRM-002007",
+        "PRM-002054",
+        "PRM-002024",
+        "PRM-001029",
+        "PRM-002004",
+        "PRM-002039",
+        "PRM-002012",
+        "PRM-002063",
+        "PRM-002064",
+        "PRM-002005",
+        "PRM-002029",
+        "PRM-002001",
+        "PRM-002042",
+        "PRM-002021",
+        "PRM-002060",
+        "PRM-002008",
+        "PRM-002058",
+        "PRM-002016",
+        "PRM-002059",
+        "PRM-002009",
+        "PRM-002018",
+        "PRM-002057",
+        "PRM-002014",
+        "PRM-002056",
+        "PRM-002002",
+        "PRM-002019",
+        "PRM-002010",
+        "PRM-002051",
+        "PRM-002013",
+        "PRM-002003",
+        "PRM-002055",
+        "PRM-002043",
+        "PRM-002011",
+        "PRM-002062",
+        "PRM-002026",
+        "PRM-002006",
+        "PRM-005714",
+        "PRM-002015",
+        "PRM-002040",
+        "PRM-002020"
+      ],
+      "provenance": {
+        "PRM-002005": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002007": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002011": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002014": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002015": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002018": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002021": [
+          "all_terms"
+        ],
+        "PRM-002024": [
+          "all_terms"
+        ],
+        "PRM-002026": [
+          "all_terms"
+        ],
+        "PRM-002029": [
+          "all_terms"
+        ],
+        "PRM-002039": [
+          "all_terms"
+        ],
+        "PRM-002040": [
+          "all_terms"
+        ],
+        "PRM-002042": [
+          "all_terms"
+        ],
+        "PRM-002043": [
+          "all_terms"
+        ],
+        "PRM-002002": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002010": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002012": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002013": [
+          "any_term"
+        ],
+        "PRM-002016": [
+          "any_term"
+        ],
+        "PRM-002017": [
+          "any_term"
+        ],
+        "PRM-002019": [
+          "any_term"
+        ],
+        "PRM-002020": [
+          "any_term"
+        ],
+        "PRM-002051": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002052": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002053": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002054": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002055": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002056": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002057": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002058": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002059": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002060": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002061": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002062": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002063": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002064": [
+          "facet"
+        ],
+        "PRM-005714": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-001029": [
+          "synonyms"
+        ],
+        "PRM-002001": [
+          "synonyms"
+        ],
+        "PRM-002003": [
+          "synonyms"
+        ],
+        "PRM-002004": [
+          "synonyms"
+        ],
+        "PRM-002006": [
+          "synonyms"
+        ],
+        "PRM-002008": [
+          "synonyms"
+        ],
+        "PRM-002009": [
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 262,
+        "any_term": 3668,
+        "facet": 150,
+        "synonyms": 1074,
+        "facet_and_synonym": 100
+      },
+      "source_truncated_at_cap": {
+        "all_terms": 262,
+        "any_term": 3668,
+        "facet": 150,
+        "synonyms": 1074,
+        "facet_and_synonym": 100
+      },
+      "shuffle_seed": "20260730:Q012"
+    },
+    "Q013": {
+      "query": "dark mode toggle",
+      "candidate_ids": [
+        "PRM-001011",
+        "PRM-001016",
+        "PRM-001001",
+        "PRM-001035",
+        "PRM-001020",
+        "PRM-001010",
+        "PRM-002128",
+        "PRM-005109",
+        "PRM-001037",
+        "PRM-001004",
+        "PRM-001036",
+        "PRM-000500",
+        "PRM-001023",
+        "PRM-001009",
+        "PRM-001017",
+        "PRM-000112",
+        "PRM-001008",
+        "PRM-001003",
+        "PRM-001015",
+        "PRM-001022",
+        "PRM-000166",
+        "PRM-001028",
+        "PRM-001034",
+        "PRM-001007",
+        "PRM-001019"
+      ],
+      "provenance": {
+        "PRM-001004": [
+          "all_terms",
+          "any_term",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-001010": [
+          "all_terms",
+          "any_term",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-001011": [
+          "all_terms",
+          "any_term",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-001015": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-001016": [
+          "all_terms",
+          "any_term",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-001017": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-001019": [
+          "all_terms",
+          "any_term",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-001020": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-001023": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-001028": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-001034": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-001035": [
+          "all_terms",
+          "any_term",
+          "substring"
+        ],
+        "PRM-001036": [
+          "substring"
+        ],
+        "PRM-001037": [
+          "substring"
+        ],
+        "PRM-000166": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-000500": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002128": [
+          "synonyms"
+        ],
+        "PRM-005109": [
+          "synonyms"
+        ],
+        "PRM-000112": [
+          "synonyms"
+        ],
+        "PRM-001001": [
+          "synonyms"
+        ],
+        "PRM-001003": [
+          "synonyms"
+        ],
+        "PRM-001007": [
+          "synonyms"
+        ],
+        "PRM-001008": [
+          "synonyms"
+        ],
+        "PRM-001009": [
+          "synonyms"
+        ],
+        "PRM-001022": [
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 625,
+        "all_terms": 970,
+        "any_term": 5762,
+        "facet": 0,
+        "synonyms": 3070,
+        "facet_and_synonym": 0
+      },
+      "source_truncated_at_cap": {
+        "substring": 625,
+        "all_terms": 970,
+        "any_term": 5762,
+        "synonyms": 3070
+      },
+      "shuffle_seed": "20260730:Q013"
+    },
+    "Q014": {
+      "query": "infinite scroll product list",
+      "candidate_ids": [
+        "PRM-003063",
+        "PRM-001660",
+        "PRM-000753",
+        "PRM-003215",
+        "PRM-001739",
+        "PRM-003199",
+        "PRM-001656",
+        "PRM-003119",
+        "PRM-003707",
+        "PRM-003013",
+        "PRM-003328",
+        "PRM-003047",
+        "PRM-003335",
+        "PRM-003818",
+        "PRM-003829",
+        "PRM-001651",
+        "PRM-001657",
+        "PRM-003015",
+        "PRM-003212",
+        "PRM-001652",
+        "PRM-003207",
+        "PRM-001663",
+        "PRM-003007",
+        "PRM-001661",
+        "PRM-001653",
+        "PRM-001664",
+        "PRM-003039",
+        "PRM-003548",
+        "PRM-001659",
+        "PRM-003399",
+        "PRM-001794",
+        "PRM-003095",
+        "PRM-003087",
+        "PRM-001342",
+        "PRM-003127",
+        "PRM-001658",
+        "PRM-003079",
+        "PRM-003607",
+        "PRM-003055",
+        "PRM-001655",
+        "PRM-001662",
+        "PRM-003023",
+        "PRM-001654",
+        "PRM-003031",
+        "PRM-003071",
+        "PRM-000344"
+      ],
+      "provenance": {
+        "PRM-000344": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-000753": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001342": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001739": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001794": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-003013": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-003063": [
+          "all_terms",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003071": [
+          "all_terms",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003087": [
+          "all_terms",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003119": [
+          "all_terms"
+        ],
+        "PRM-003127": [
+          "all_terms"
+        ],
+        "PRM-003207": [
+          "all_terms"
+        ],
+        "PRM-003212": [
+          "all_terms"
+        ],
+        "PRM-003215": [
+          "all_terms"
+        ],
+        "PRM-003328": [
+          "any_term"
+        ],
+        "PRM-003335": [
+          "any_term"
+        ],
+        "PRM-003399": [
+          "any_term"
+        ],
+        "PRM-003548": [
+          "any_term"
+        ],
+        "PRM-003607": [
+          "any_term"
+        ],
+        "PRM-003707": [
+          "any_term"
+        ],
+        "PRM-003818": [
+          "any_term"
+        ],
+        "PRM-003829": [
+          "any_term"
+        ],
+        "PRM-001651": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001652": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-001653": [
+          "facet"
+        ],
+        "PRM-001654": [
+          "facet"
+        ],
+        "PRM-001655": [
+          "facet"
+        ],
+        "PRM-001656": [
+          "facet"
+        ],
+        "PRM-001657": [
+          "facet"
+        ],
+        "PRM-001658": [
+          "facet"
+        ],
+        "PRM-001659": [
+          "facet"
+        ],
+        "PRM-001660": [
+          "facet"
+        ],
+        "PRM-001661": [
+          "facet"
+        ],
+        "PRM-001662": [
+          "facet"
+        ],
+        "PRM-001663": [
+          "facet"
+        ],
+        "PRM-001664": [
+          "facet"
+        ],
+        "PRM-003199": [
+          "synonyms"
+        ],
+        "PRM-003007": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003015": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003023": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003031": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003039": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003047": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003055": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003079": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003095": [
+          "facet_and_synonym",
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 74,
+        "any_term": 6495,
+        "facet": 150,
+        "synonyms": 1058,
+        "facet_and_synonym": 89
+      },
+      "source_truncated_at_cap": {
+        "all_terms": 74,
+        "any_term": 6495,
+        "facet": 150,
+        "synonyms": 1058,
+        "facet_and_synonym": 89
+      },
+      "shuffle_seed": "20260730:Q014"
+    },
+    "Q015": {
+      "query": "onboarding flow for a mobile app",
+      "candidate_ids": [
+        "PRM-001301",
+        "PRM-002173",
+        "PRM-007009",
+        "PRM-002076",
+        "PRM-007005",
+        "PRM-002108",
+        "PRM-007001",
+        "PRM-007014",
+        "PRM-005249",
+        "PRM-007011",
+        "PRM-002151",
+        "PRM-000260",
+        "PRM-002152",
+        "PRM-000280",
+        "PRM-007003",
+        "PRM-002189",
+        "PRM-002183",
+        "PRM-005018",
+        "PRM-000300",
+        "PRM-001103",
+        "PRM-007002",
+        "PRM-002168",
+        "PRM-007008",
+        "PRM-002175",
+        "PRM-002170",
+        "PRM-002090",
+        "PRM-002143",
+        "PRM-002068",
+        "PRM-007050",
+        "PRM-007007",
+        "PRM-002165",
+        "PRM-002157",
+        "PRM-002191",
+        "PRM-002007",
+        "PRM-003102",
+        "PRM-007004",
+        "PRM-007013",
+        "PRM-002089",
+        "PRM-007012",
+        "PRM-002123",
+        "PRM-002153",
+        "PRM-006749",
+        "PRM-002197",
+        "PRM-002154",
+        "PRM-006049",
+        "PRM-007006",
+        "PRM-007010",
+        "PRM-002132"
+      ],
+      "provenance": {
+        "PRM-002007": [
+          "all_terms"
+        ],
+        "PRM-002068": [
+          "all_terms"
+        ],
+        "PRM-002076": [
+          "all_terms"
+        ],
+        "PRM-002089": [
+          "all_terms"
+        ],
+        "PRM-002090": [
+          "all_terms"
+        ],
+        "PRM-002108": [
+          "all_terms"
+        ],
+        "PRM-002123": [
+          "all_terms"
+        ],
+        "PRM-002132": [
+          "all_terms"
+        ],
+        "PRM-002143": [
+          "all_terms"
+        ],
+        "PRM-002151": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002152": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002153": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002154": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002157": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002165": [
+          "any_term"
+        ],
+        "PRM-002168": [
+          "any_term"
+        ],
+        "PRM-002170": [
+          "any_term"
+        ],
+        "PRM-002173": [
+          "any_term"
+        ],
+        "PRM-002175": [
+          "any_term"
+        ],
+        "PRM-002183": [
+          "any_term"
+        ],
+        "PRM-002189": [
+          "any_term"
+        ],
+        "PRM-002191": [
+          "any_term"
+        ],
+        "PRM-002197": [
+          "any_term"
+        ],
+        "PRM-007001": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-007002": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-007003": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-007004": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-007005": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-007006": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-007007": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-007008": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-007009": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-007010": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-007011": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-007012": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-007013": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-007014": [
+          "facet"
+        ],
+        "PRM-007050": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000260": [
+          "synonyms"
+        ],
+        "PRM-000280": [
+          "synonyms"
+        ],
+        "PRM-000300": [
+          "synonyms"
+        ],
+        "PRM-001103": [
+          "synonyms"
+        ],
+        "PRM-001301": [
+          "synonyms"
+        ],
+        "PRM-003102": [
+          "synonyms"
+        ],
+        "PRM-005018": [
+          "synonyms"
+        ],
+        "PRM-005249": [
+          "synonyms"
+        ],
+        "PRM-006049": [
+          "synonyms"
+        ],
+        "PRM-006749": [
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 170,
+        "any_term": 9758,
+        "facet": 50,
+        "synonyms": 1183,
+        "facet_and_synonym": 50
+      },
+      "source_truncated_at_cap": {
+        "all_terms": 170,
+        "any_term": 9758,
+        "facet": 50,
+        "synonyms": 1183,
+        "facet_and_synonym": 50
+      },
+      "shuffle_seed": "20260730:Q015"
+    },
+    "Q016": {
+      "query": "game HUD with health bar",
+      "candidate_ids": [
+        "PRM-008145",
+        "PRM-008118",
+        "PRM-008125",
+        "PRM-008104",
+        "PRM-008140",
+        "PRM-008122",
+        "PRM-008106",
+        "PRM-008107",
+        "PRM-008103",
+        "PRM-008102",
+        "PRM-008109",
+        "PRM-008126",
+        "PRM-008105",
+        "PRM-008119",
+        "PRM-008132",
+        "PRM-008112",
+        "PRM-008133",
+        "PRM-008111",
+        "PRM-008124",
+        "PRM-008114",
+        "PRM-008108",
+        "PRM-008113",
+        "PRM-008117",
+        "PRM-008110",
+        "PRM-008135",
+        "PRM-008101"
+      ],
+      "provenance": {
+        "PRM-008102": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-008103": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-008107": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008108": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008109": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-008112": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-008113": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008114": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-008117": [
+          "all_terms",
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008119": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-008122": [
+          "all_terms",
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008124": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-008125": [
+          "all_terms",
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008126": [
+          "all_terms",
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008101": [
+          "facet"
+        ],
+        "PRM-008104": [
+          "facet"
+        ],
+        "PRM-008105": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008106": [
+          "facet"
+        ],
+        "PRM-008110": [
+          "facet"
+        ],
+        "PRM-008111": [
+          "facet"
+        ],
+        "PRM-008132": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008145": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008118": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008133": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008135": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-008140": [
+          "facet_and_synonym",
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 51,
+        "any_term": 10000,
+        "facet": 100,
+        "synonyms": 257,
+        "facet_and_synonym": 100
+      },
+      "source_truncated_at_cap": {
+        "all_terms": 51,
+        "any_term": 10000,
+        "facet": 100,
+        "synonyms": 257,
+        "facet_and_synonym": 100
+      },
+      "shuffle_seed": "20260730:Q016"
+    },
+    "Q017": {
+      "query": "portfolio for a photographer",
+      "candidate_ids": [
+        "PRM-004276",
+        "PRM-004270",
+        "PRM-004268",
+        "PRM-004246",
+        "PRM-004256",
+        "PRM-004251",
+        "PRM-004257",
+        "PRM-004259",
+        "PRM-004254",
+        "PRM-004226",
+        "PRM-004273",
+        "PRM-004263",
+        "PRM-004264",
+        "PRM-004252",
+        "PRM-004258",
+        "PRM-004260",
+        "PRM-004275",
+        "PRM-004261",
+        "PRM-004255",
+        "PRM-004262",
+        "PRM-004253",
+        "PRM-004265",
+        "PRM-004206"
+      ],
+      "provenance": {
+        "PRM-004206": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-004226": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-004246": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-004251": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-004252": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-004253": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004254": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-004255": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004256": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004257": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-004258": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004259": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-004260": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004261": [
+          "all_terms",
+          "any_term",
+          "facet"
+        ],
+        "PRM-004262": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004263": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004264": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004265": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004268": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004270": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004273": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004275": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-004276": [
+          "facet_and_synonym",
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 63,
+        "any_term": 9496,
+        "facet": 100,
+        "synonyms": 1270,
+        "facet_and_synonym": 100
+      },
+      "source_truncated_at_cap": {
+        "all_terms": 63,
+        "any_term": 9496,
+        "facet": 100,
+        "synonyms": 1270,
+        "facet_and_synonym": 100
+      },
+      "shuffle_seed": "20260730:Q017"
+    },
+    "Q018": {
+      "query": "flashcard app for language learning",
+      "candidate_ids": [
+        "PRM-000969",
+        "PRM-006214",
+        "PRM-006389",
+        "PRM-006210",
+        "PRM-006209",
+        "PRM-006285",
+        "PRM-006208",
+        "PRM-006203",
+        "PRM-004120",
+        "PRM-006205",
+        "PRM-006212",
+        "PRM-007932",
+        "PRM-006400",
+        "PRM-004150",
+        "PRM-006385",
+        "PRM-006603",
+        "PRM-006201",
+        "PRM-006207",
+        "PRM-006367",
+        "PRM-006204",
+        "PRM-006375",
+        "PRM-006373",
+        "PRM-006351",
+        "PRM-004140",
+        "PRM-006206",
+        "PRM-006390",
+        "PRM-006366",
+        "PRM-007901",
+        "PRM-006213",
+        "PRM-004110",
+        "PRM-006211",
+        "PRM-004130",
+        "PRM-002972",
+        "PRM-000990",
+        "PRM-006225",
+        "PRM-006202",
+        "PRM-002986",
+        "PRM-002985",
+        "PRM-006371",
+        "PRM-006221"
+      ],
+      "provenance": {
+        "PRM-006221": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-006366": [
+          "all_terms",
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-007901": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-007932": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-000969": [
+          "any_term"
+        ],
+        "PRM-000990": [
+          "any_term"
+        ],
+        "PRM-002972": [
+          "any_term"
+        ],
+        "PRM-002985": [
+          "any_term"
+        ],
+        "PRM-002986": [
+          "any_term"
+        ],
+        "PRM-004110": [
+          "any_term"
+        ],
+        "PRM-004120": [
+          "any_term"
+        ],
+        "PRM-004130": [
+          "any_term"
+        ],
+        "PRM-004140": [
+          "any_term"
+        ],
+        "PRM-004150": [
+          "any_term"
+        ],
+        "PRM-006201": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-006202": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-006203": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-006204": [
+          "facet"
+        ],
+        "PRM-006205": [
+          "facet"
+        ],
+        "PRM-006206": [
+          "facet"
+        ],
+        "PRM-006207": [
+          "facet"
+        ],
+        "PRM-006208": [
+          "facet"
+        ],
+        "PRM-006209": [
+          "facet"
+        ],
+        "PRM-006210": [
+          "facet"
+        ],
+        "PRM-006211": [
+          "facet"
+        ],
+        "PRM-006212": [
+          "facet"
+        ],
+        "PRM-006213": [
+          "facet"
+        ],
+        "PRM-006214": [
+          "facet"
+        ],
+        "PRM-006603": [
+          "synonyms"
+        ],
+        "PRM-006225": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-006285": [
+          "synonyms"
+        ],
+        "PRM-006351": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-006367": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-006371": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-006373": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-006375": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-006385": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-006389": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-006390": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-006400": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 4,
+        "any_term": 9841,
+        "facet": 100,
+        "synonyms": 142,
+        "facet_and_synonym": 100
+      },
+      "source_truncated_at_cap": {
+        "any_term": 9841,
+        "facet": 100,
+        "synonyms": 142,
+        "facet_and_synonym": 100
+      },
+      "shuffle_seed": "20260730:Q018"
+    },
+    "Q019": {
+      "query": "heatmap visualization",
+      "candidate_ids": [
+        "PRM-009413",
+        "PRM-009411",
+        "PRM-009402",
+        "PRM-002085",
+        "PRM-009403",
+        "PRM-009407",
+        "PRM-002054",
+        "PRM-002079",
+        "PRM-009409",
+        "PRM-009410",
+        "PRM-002086",
+        "PRM-002064",
+        "PRM-002076",
+        "PRM-002083",
+        "PRM-009408",
+        "PRM-002057",
+        "PRM-002082",
+        "PRM-009414",
+        "PRM-002056",
+        "PRM-009406",
+        "PRM-002075",
+        "PRM-009412",
+        "PRM-002066",
+        "PRM-002061",
+        "PRM-009405",
+        "PRM-006806",
+        "PRM-002058",
+        "PRM-009401",
+        "PRM-009404",
+        "PRM-002078",
+        "PRM-002092",
+        "PRM-002266",
+        "PRM-002268",
+        "PRM-002955",
+        "PRM-002960",
+        "PRM-002962",
+        "PRM-009424",
+        "PRM-009426",
+        "PRM-009428",
+        "PRM-009431",
+        "PRM-009440"
+      ],
+      "provenance": {
+        "PRM-002054": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002056": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002057": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002058": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002061": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002064": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002066": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002075": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002076": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002079": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002082": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002083": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002085": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002086": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-009401": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009402": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009403": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009404": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009405": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009406": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009407": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009408": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009409": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009410": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009411": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009412": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009413": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009414": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-006806": [
+          "synonyms"
+        ],
+        "PRM-002078": [
+          "ranked_system_topk"
+        ],
+        "PRM-002092": [
+          "ranked_system_topk"
+        ],
+        "PRM-002266": [
+          "ranked_system_topk"
+        ],
+        "PRM-002268": [
+          "ranked_system_topk"
+        ],
+        "PRM-002955": [
+          "ranked_system_topk"
+        ],
+        "PRM-002960": [
+          "ranked_system_topk"
+        ],
+        "PRM-002962": [
+          "ranked_system_topk"
+        ],
+        "PRM-009424": [
+          "ranked_system_topk"
+        ],
+        "PRM-009426": [
+          "ranked_system_topk"
+        ],
+        "PRM-009428": [
+          "ranked_system_topk"
+        ],
+        "PRM-009431": [
+          "ranked_system_topk"
+        ],
+        "PRM-009440": [
+          "ranked_system_topk"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 146,
+        "any_term": 2425,
+        "facet": 50,
+        "synonyms": 222,
+        "facet_and_synonym": 50,
+        "ranked_system_topk": 12
+      },
+      "source_truncated_at_cap": {
+        "all_terms": 146,
+        "any_term": 2425,
+        "facet": 50,
+        "synonyms": 222,
+        "facet_and_synonym": 50
+      },
+      "shuffle_seed": "20260730:Q019"
+    },
+    "Q020": {
+      "query": "chat interface for an AI assistant",
+      "candidate_ids": [
+        "PRM-005327",
+        "PRM-000871",
+        "PRM-007283",
+        "PRM-005121",
+        "PRM-000967",
+        "PRM-005008",
+        "PRM-005105",
+        "PRM-007263",
+        "PRM-005110",
+        "PRM-005013",
+        "PRM-005103",
+        "PRM-007279",
+        "PRM-005009",
+        "PRM-005106",
+        "PRM-005127",
+        "PRM-005108",
+        "PRM-000213",
+        "PRM-005003",
+        "PRM-005124",
+        "PRM-005307",
+        "PRM-005007",
+        "PRM-005107",
+        "PRM-000988",
+        "PRM-005101",
+        "PRM-005109",
+        "PRM-005011",
+        "PRM-005231",
+        "PRM-005012",
+        "PRM-007035",
+        "PRM-005004",
+        "PRM-005014",
+        "PRM-005334",
+        "PRM-005126",
+        "PRM-005010",
+        "PRM-005002",
+        "PRM-005005",
+        "PRM-005112",
+        "PRM-005001",
+        "PRM-005006"
+      ],
+      "provenance": {
+        "PRM-000967": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-000988": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-005106": [
+          "all_terms",
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005121": [
+          "all_terms",
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005231": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-005307": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-005327": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-005334": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-007035": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-007263": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-007279": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-007283": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-000213": [
+          "any_term"
+        ],
+        "PRM-000871": [
+          "any_term"
+        ],
+        "PRM-005001": [
+          "facet"
+        ],
+        "PRM-005002": [
+          "facet"
+        ],
+        "PRM-005003": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005004": [
+          "facet"
+        ],
+        "PRM-005005": [
+          "facet"
+        ],
+        "PRM-005006": [
+          "facet"
+        ],
+        "PRM-005007": [
+          "facet"
+        ],
+        "PRM-005008": [
+          "facet"
+        ],
+        "PRM-005009": [
+          "facet"
+        ],
+        "PRM-005010": [
+          "facet"
+        ],
+        "PRM-005011": [
+          "facet"
+        ],
+        "PRM-005012": [
+          "facet"
+        ],
+        "PRM-005013": [
+          "facet"
+        ],
+        "PRM-005014": [
+          "facet"
+        ],
+        "PRM-005101": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005103": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005105": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005107": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005108": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005109": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005110": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005112": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005124": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005126": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-005127": [
+          "facet_and_synonym",
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 12,
+        "any_term": 9951,
+        "facet": 100,
+        "synonyms": 338,
+        "facet_and_synonym": 56
+      },
+      "source_truncated_at_cap": {
+        "any_term": 9951,
+        "facet": 100,
+        "synonyms": 338,
+        "facet_and_synonym": 56
+      },
+      "shuffle_seed": "20260730:Q020"
+    },
+    "Q021": {
+      "query": "modal dialog with focus trap",
+      "candidate_ids": [
+        "PRM-005142",
+        "PRM-001106",
+        "PRM-005005",
+        "PRM-005372",
+        "PRM-001111",
+        "PRM-001110",
+        "PRM-001103",
+        "PRM-005190",
+        "PRM-001135",
+        "PRM-001116",
+        "PRM-001148",
+        "PRM-005118",
+        "PRM-001109",
+        "PRM-001112",
+        "PRM-001127",
+        "PRM-005462",
+        "PRM-001101",
+        "PRM-005168",
+        "PRM-001108",
+        "PRM-001114",
+        "PRM-005578",
+        "PRM-001102",
+        "PRM-005667",
+        "PRM-005388",
+        "PRM-005028",
+        "PRM-001113",
+        "PRM-005105",
+        "PRM-001104",
+        "PRM-001105",
+        "PRM-005317",
+        "PRM-005012",
+        "PRM-005059",
+        "PRM-001107"
+      ],
+      "provenance": {
+        "PRM-005028": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-005118": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-005168": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-005372": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-005667": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001101": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001103": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001104": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001105": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001106": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001107": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001110": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001111": [
+          "any_term",
+          "facet"
+        ],
+        "PRM-001112": [
+          "any_term",
+          "facet"
+        ],
+        "PRM-001102": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001108": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001109": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001113": [
+          "facet"
+        ],
+        "PRM-001114": [
+          "facet"
+        ],
+        "PRM-005005": [
+          "synonyms"
+        ],
+        "PRM-005012": [
+          "synonyms"
+        ],
+        "PRM-005059": [
+          "synonyms"
+        ],
+        "PRM-005105": [
+          "synonyms"
+        ],
+        "PRM-005142": [
+          "synonyms"
+        ],
+        "PRM-005190": [
+          "synonyms"
+        ],
+        "PRM-005317": [
+          "synonyms"
+        ],
+        "PRM-005388": [
+          "synonyms"
+        ],
+        "PRM-005462": [
+          "synonyms"
+        ],
+        "PRM-005578": [
+          "synonyms"
+        ],
+        "PRM-001116": [
+          "facet_and_synonym"
+        ],
+        "PRM-001127": [
+          "facet_and_synonym"
+        ],
+        "PRM-001135": [
+          "facet_and_synonym"
+        ],
+        "PRM-001148": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 5,
+        "any_term": 9994,
+        "facet": 50,
+        "synonyms": 1714,
+        "facet_and_synonym": 50
+      },
+      "source_truncated_at_cap": {
+        "any_term": 9994,
+        "facet": 50,
+        "synonyms": 1714,
+        "facet_and_synonym": 50
+      },
+      "shuffle_seed": "20260730:Q021"
+    },
+    "Q022": {
+      "query": "real-time monitoring dashboard with alerts",
+      "candidate_ids": [
+        "PRM-002010",
+        "PRM-002281",
+        "PRM-002786",
+        "PRM-002796",
+        "PRM-002262",
+        "PRM-002263",
+        "PRM-009375",
+        "PRM-002264",
+        "PRM-002791",
+        "PRM-002252",
+        "PRM-009394",
+        "PRM-002251",
+        "PRM-002763",
+        "PRM-002261",
+        "PRM-002254",
+        "PRM-002258",
+        "PRM-002022",
+        "PRM-002134",
+        "PRM-002271",
+        "PRM-002047",
+        "PRM-002256",
+        "PRM-002079",
+        "PRM-002028",
+        "PRM-002267",
+        "PRM-009378",
+        "PRM-002078",
+        "PRM-002257",
+        "PRM-002003",
+        "PRM-002120",
+        "PRM-002766",
+        "PRM-002118",
+        "PRM-002260",
+        "PRM-002063",
+        "PRM-002140",
+        "PRM-002253",
+        "PRM-002259",
+        "PRM-002071",
+        "PRM-002123",
+        "PRM-009386",
+        "PRM-002255",
+        "PRM-009353"
+      ],
+      "provenance": {
+        "PRM-002003": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002010": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002022": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002028": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002047": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002063": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002071": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002078": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002079": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002118": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002120": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002123": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002134": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002140": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002251": [
+          "facet"
+        ],
+        "PRM-002252": [
+          "facet"
+        ],
+        "PRM-002253": [
+          "facet"
+        ],
+        "PRM-002254": [
+          "facet"
+        ],
+        "PRM-002255": [
+          "facet"
+        ],
+        "PRM-002256": [
+          "facet"
+        ],
+        "PRM-002257": [
+          "facet"
+        ],
+        "PRM-002258": [
+          "facet"
+        ],
+        "PRM-002259": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002260": [
+          "facet"
+        ],
+        "PRM-002261": [
+          "facet"
+        ],
+        "PRM-002262": [
+          "facet"
+        ],
+        "PRM-002263": [
+          "facet"
+        ],
+        "PRM-002264": [
+          "facet"
+        ],
+        "PRM-009353": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009375": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009378": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009386": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-009394": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002267": [
+          "facet_and_synonym"
+        ],
+        "PRM-002271": [
+          "facet_and_synonym"
+        ],
+        "PRM-002281": [
+          "facet_and_synonym"
+        ],
+        "PRM-002763": [
+          "facet_and_synonym"
+        ],
+        "PRM-002766": [
+          "facet_and_synonym"
+        ],
+        "PRM-002786": [
+          "facet_and_synonym"
+        ],
+        "PRM-002791": [
+          "facet_and_synonym"
+        ],
+        "PRM-002796": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 100,
+        "any_term": 9995,
+        "facet": 200,
+        "synonyms": 3575,
+        "facet_and_synonym": 183
+      },
+      "source_truncated_at_cap": {
+        "all_terms": 100,
+        "any_term": 9995,
+        "facet": 200,
+        "synonyms": 3575,
+        "facet_and_synonym": 183
+      },
+      "shuffle_seed": "20260730:Q022"
+    },
+    "Q023": {
+      "query": "shopping cart drawer",
+      "candidate_ids": [
+        "PRM-003034",
+        "PRM-003211",
+        "PRM-003146",
+        "PRM-003201",
+        "PRM-000403",
+        "PRM-003206",
+        "PRM-003209",
+        "PRM-003227",
+        "PRM-003212",
+        "PRM-003205",
+        "PRM-003203",
+        "PRM-003208",
+        "PRM-003219",
+        "PRM-003066",
+        "PRM-003207",
+        "PRM-003214",
+        "PRM-003026",
+        "PRM-003204",
+        "PRM-003213",
+        "PRM-003058",
+        "PRM-003011",
+        "PRM-003154",
+        "PRM-003082",
+        "PRM-001426",
+        "PRM-000423",
+        "PRM-003090",
+        "PRM-003003",
+        "PRM-003202",
+        "PRM-003122",
+        "PRM-003018",
+        "PRM-000443",
+        "PRM-003243",
+        "PRM-003162",
+        "PRM-003235",
+        "PRM-003210",
+        "PRM-003130"
+      ],
+      "provenance": {
+        "PRM-003201": [
+          "all_terms",
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "substring",
+          "synonyms"
+        ],
+        "PRM-001426": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-003018": [
+          "any_term"
+        ],
+        "PRM-003026": [
+          "any_term"
+        ],
+        "PRM-003034": [
+          "any_term"
+        ],
+        "PRM-003058": [
+          "any_term"
+        ],
+        "PRM-003066": [
+          "any_term"
+        ],
+        "PRM-003082": [
+          "any_term"
+        ],
+        "PRM-003090": [
+          "any_term"
+        ],
+        "PRM-003122": [
+          "any_term"
+        ],
+        "PRM-003130": [
+          "any_term"
+        ],
+        "PRM-003146": [
+          "any_term"
+        ],
+        "PRM-003154": [
+          "any_term"
+        ],
+        "PRM-003162": [
+          "any_term"
+        ],
+        "PRM-003202": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003203": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003204": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003205": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003206": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003207": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003208": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003209": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-003210": [
+          "facet"
+        ],
+        "PRM-003211": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003212": [
+          "facet"
+        ],
+        "PRM-003213": [
+          "facet"
+        ],
+        "PRM-003214": [
+          "facet"
+        ],
+        "PRM-003219": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003227": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003235": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003243": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000403": [
+          "synonyms"
+        ],
+        "PRM-000423": [
+          "synonyms"
+        ],
+        "PRM-000443": [
+          "synonyms"
+        ],
+        "PRM-003003": [
+          "synonyms"
+        ],
+        "PRM-003011": [
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 1,
+        "all_terms": 1,
+        "any_term": 1239,
+        "facet": 50,
+        "synonyms": 173,
+        "facet_and_synonym": 50
+      },
+      "source_truncated_at_cap": {
+        "any_term": 1239,
+        "facet": 50,
+        "synonyms": 173,
+        "facet_and_synonym": 50
+      },
+      "shuffle_seed": "20260730:Q023"
+    },
+    "Q024": {
+      "query": "data table with sorting and pagination",
+      "candidate_ids": [
+        "PRM-002025",
+        "PRM-005031",
+        "PRM-002062",
+        "PRM-001662",
+        "PRM-002046",
+        "PRM-001652",
+        "PRM-001653",
+        "PRM-005032",
+        "PRM-005034",
+        "PRM-001664",
+        "PRM-002105",
+        "PRM-005011",
+        "PRM-005030",
+        "PRM-001659",
+        "PRM-002010",
+        "PRM-001656",
+        "PRM-002161",
+        "PRM-005015",
+        "PRM-002072",
+        "PRM-001654",
+        "PRM-002086",
+        "PRM-002092",
+        "PRM-005013",
+        "PRM-001651",
+        "PRM-002036",
+        "PRM-005021",
+        "PRM-001663",
+        "PRM-005035",
+        "PRM-002008",
+        "PRM-001657",
+        "PRM-001660",
+        "PRM-002141",
+        "PRM-005002",
+        "PRM-005010",
+        "PRM-001658",
+        "PRM-005019",
+        "PRM-001661",
+        "PRM-002134",
+        "PRM-002108",
+        "PRM-001655"
+      ],
+      "provenance": {
+        "PRM-002008": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002010": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002025": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002036": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002046": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002062": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002072": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002086": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002092": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002105": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002108": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002134": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002141": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-002161": [
+          "all_terms",
+          "any_term"
+        ],
+        "PRM-001651": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001652": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001653": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001654": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001655": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001656": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001657": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001658": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001659": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001660": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001661": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001662": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001663": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001664": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-005002": [
+          "synonyms"
+        ],
+        "PRM-005010": [
+          "synonyms"
+        ],
+        "PRM-005011": [
+          "synonyms"
+        ],
+        "PRM-005013": [
+          "synonyms"
+        ],
+        "PRM-005015": [
+          "synonyms"
+        ],
+        "PRM-005019": [
+          "synonyms"
+        ],
+        "PRM-005021": [
+          "synonyms"
+        ],
+        "PRM-005030": [
+          "synonyms"
+        ],
+        "PRM-005031": [
+          "synonyms"
+        ],
+        "PRM-005032": [
+          "synonyms"
+        ],
+        "PRM-005034": [
+          "synonyms"
+        ],
+        "PRM-005035": [
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 325,
+        "any_term": 10000,
+        "facet": 50,
+        "synonyms": 698,
+        "facet_and_synonym": 50
+      },
+      "source_truncated_at_cap": {
+        "all_terms": 325,
+        "any_term": 10000,
+        "facet": 50,
+        "synonyms": 698,
+        "facet_and_synonym": 50
+      },
+      "shuffle_seed": "20260730:Q024"
+    },
+    "Q025": {
+      "query": "Preisseite",
+      "candidate_ids": [
+        "PRM-000061",
+        "PRM-000057",
+        "PRM-000059",
+        "PRM-000054",
+        "PRM-000058",
+        "PRM-000063",
+        "PRM-000065",
+        "PRM-000053",
+        "PRM-003727",
+        "PRM-000064",
+        "PRM-000060",
+        "PRM-000098",
+        "PRM-000067",
+        "PRM-000078",
+        "PRM-000051",
+        "PRM-006782",
+        "PRM-000062",
+        "PRM-000071",
+        "PRM-000052",
+        "PRM-000056",
+        "PRM-000055",
+        "PRM-006117",
+        "PRM-000091"
+      ],
+      "provenance": {
+        "PRM-000051": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000052": [
+          "facet"
+        ],
+        "PRM-000053": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000054": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000055": [
+          "facet"
+        ],
+        "PRM-000056": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000057": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000058": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000059": [
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000060": [
+          "facet"
+        ],
+        "PRM-000061": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000062": [
+          "facet"
+        ],
+        "PRM-000063": [
+          "facet"
+        ],
+        "PRM-000064": [
+          "facet"
+        ],
+        "PRM-000071": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000091": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000078": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-000098": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003727": [
+          "synonyms"
+        ],
+        "PRM-006117": [
+          "synonyms"
+        ],
+        "PRM-006782": [
+          "synonyms"
+        ],
+        "PRM-000065": [
+          "facet_and_synonym"
+        ],
+        "PRM-000067": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 0,
+        "any_term": 0,
+        "facet": 100,
+        "synonyms": 1112,
+        "facet_and_synonym": 100
+      },
+      "source_truncated_at_cap": {
+        "facet": 100,
+        "synonyms": 1112,
+        "facet_and_synonym": 100
+      },
+      "shuffle_seed": "20260730:Q025"
+    },
+    "Q026": {
+      "query": "barrierefreies Dashboard",
+      "candidate_ids": [
+        "PRM-000043",
+        "PRM-002014",
+        "PRM-002747",
+        "PRM-002397",
+        "PRM-000048",
+        "PRM-000028",
+        "PRM-000873",
+        "PRM-002011",
+        "PRM-002090",
+        "PRM-002182",
+        "PRM-002042",
+        "PRM-002005",
+        "PRM-002082",
+        "PRM-002007",
+        "PRM-000015",
+        "PRM-002001",
+        "PRM-002584",
+        "PRM-002002",
+        "PRM-000063",
+        "PRM-002012",
+        "PRM-002414",
+        "PRM-002954",
+        "PRM-002008",
+        "PRM-000075",
+        "PRM-002062",
+        "PRM-002047",
+        "PRM-002089",
+        "PRM-002010",
+        "PRM-000008",
+        "PRM-002091",
+        "PRM-002061",
+        "PRM-002009",
+        "PRM-000016",
+        "PRM-002006",
+        "PRM-000062",
+        "PRM-002459",
+        "PRM-002003",
+        "PRM-003675",
+        "PRM-002538",
+        "PRM-002369",
+        "PRM-000051",
+        "PRM-002013",
+        "PRM-000033",
+        "PRM-002033",
+        "PRM-000020",
+        "PRM-000071",
+        "PRM-002004",
+        "PRM-002797",
+        "PRM-000049",
+        "PRM-002113",
+        "PRM-002977"
+      ],
+      "provenance": {
+        "PRM-000008": [
+          "any_term"
+        ],
+        "PRM-000015": [
+          "any_term"
+        ],
+        "PRM-000016": [
+          "any_term"
+        ],
+        "PRM-000020": [
+          "any_term"
+        ],
+        "PRM-000028": [
+          "any_term"
+        ],
+        "PRM-000033": [
+          "any_term"
+        ],
+        "PRM-000043": [
+          "any_term"
+        ],
+        "PRM-000048": [
+          "any_term"
+        ],
+        "PRM-000049": [
+          "any_term"
+        ],
+        "PRM-000051": [
+          "any_term"
+        ],
+        "PRM-000062": [
+          "any_term"
+        ],
+        "PRM-000063": [
+          "any_term"
+        ],
+        "PRM-000071": [
+          "any_term"
+        ],
+        "PRM-000075": [
+          "any_term"
+        ],
+        "PRM-002001": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002002": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002003": [
+          "facet"
+        ],
+        "PRM-002004": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002005": [
+          "facet"
+        ],
+        "PRM-002006": [
+          "facet"
+        ],
+        "PRM-002007": [
+          "facet"
+        ],
+        "PRM-002008": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002009": [
+          "facet"
+        ],
+        "PRM-002010": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002011": [
+          "facet"
+        ],
+        "PRM-002012": [
+          "facet"
+        ],
+        "PRM-002013": [
+          "facet"
+        ],
+        "PRM-002014": [
+          "facet"
+        ],
+        "PRM-002113": [
+          "synonyms"
+        ],
+        "PRM-002182": [
+          "synonyms"
+        ],
+        "PRM-002369": [
+          "synonyms"
+        ],
+        "PRM-002397": [
+          "synonyms"
+        ],
+        "PRM-002414": [
+          "synonyms"
+        ],
+        "PRM-002459": [
+          "synonyms"
+        ],
+        "PRM-002538": [
+          "synonyms"
+        ],
+        "PRM-002584": [
+          "synonyms"
+        ],
+        "PRM-002747": [
+          "synonyms"
+        ],
+        "PRM-002797": [
+          "synonyms"
+        ],
+        "PRM-002954": [
+          "synonyms"
+        ],
+        "PRM-002977": [
+          "synonyms"
+        ],
+        "PRM-003675": [
+          "synonyms"
+        ],
+        "PRM-000873": [
+          "synonyms"
+        ],
+        "PRM-002033": [
+          "facet_and_synonym"
+        ],
+        "PRM-002042": [
+          "facet_and_synonym"
+        ],
+        "PRM-002047": [
+          "facet_and_synonym"
+        ],
+        "PRM-002061": [
+          "facet_and_synonym"
+        ],
+        "PRM-002062": [
+          "facet_and_synonym"
+        ],
+        "PRM-002082": [
+          "facet_and_synonym"
+        ],
+        "PRM-002089": [
+          "facet_and_synonym"
+        ],
+        "PRM-002090": [
+          "facet_and_synonym"
+        ],
+        "PRM-002091": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 0,
+        "any_term": 2691,
+        "facet": 100,
+        "synonyms": 6832,
+        "facet_and_synonym": 100
+      },
+      "source_truncated_at_cap": {
+        "any_term": 2691,
+        "facet": 100,
+        "synonyms": 6832,
+        "facet_and_synonym": 100
+      },
+      "shuffle_seed": "20260730:Q026"
+    },
+    "Q027": {
+      "query": "Anmeldeformular mit Validierung",
+      "candidate_ids": [
+        "PRM-005736",
+        "PRM-003197",
+        "PRM-003077",
+        "PRM-001314",
+        "PRM-003107",
+        "PRM-001312",
+        "PRM-003177",
+        "PRM-001304",
+        "PRM-003067",
+        "PRM-001310",
+        "PRM-001311",
+        "PRM-006836",
+        "PRM-003162",
+        "PRM-003157",
+        "PRM-003102",
+        "PRM-001303",
+        "PRM-003277",
+        "PRM-003057",
+        "PRM-005617",
+        "PRM-003127",
+        "PRM-001301",
+        "PRM-003192",
+        "PRM-003187",
+        "PRM-005985",
+        "PRM-001302",
+        "PRM-001305",
+        "PRM-001308",
+        "PRM-003267",
+        "PRM-001307",
+        "PRM-001313",
+        "PRM-001306",
+        "PRM-001309"
+      ],
+      "provenance": {
+        "PRM-005617": [
+          "any_term"
+        ],
+        "PRM-005736": [
+          "any_term"
+        ],
+        "PRM-005985": [
+          "any_term"
+        ],
+        "PRM-006836": [
+          "any_term"
+        ],
+        "PRM-001301": [
+          "facet"
+        ],
+        "PRM-001302": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-001303": [
+          "facet"
+        ],
+        "PRM-001304": [
+          "facet"
+        ],
+        "PRM-001305": [
+          "facet"
+        ],
+        "PRM-001306": [
+          "facet"
+        ],
+        "PRM-001307": [
+          "facet"
+        ],
+        "PRM-001308": [
+          "facet"
+        ],
+        "PRM-001309": [
+          "facet"
+        ],
+        "PRM-001310": [
+          "facet"
+        ],
+        "PRM-001311": [
+          "facet"
+        ],
+        "PRM-001312": [
+          "facet"
+        ],
+        "PRM-001313": [
+          "facet"
+        ],
+        "PRM-001314": [
+          "facet"
+        ],
+        "PRM-003057": [
+          "synonyms"
+        ],
+        "PRM-003067": [
+          "synonyms"
+        ],
+        "PRM-003077": [
+          "synonyms"
+        ],
+        "PRM-003102": [
+          "synonyms"
+        ],
+        "PRM-003107": [
+          "synonyms"
+        ],
+        "PRM-003127": [
+          "synonyms"
+        ],
+        "PRM-003157": [
+          "synonyms"
+        ],
+        "PRM-003162": [
+          "synonyms"
+        ],
+        "PRM-003177": [
+          "synonyms"
+        ],
+        "PRM-003187": [
+          "synonyms"
+        ],
+        "PRM-003192": [
+          "synonyms"
+        ],
+        "PRM-003197": [
+          "synonyms"
+        ],
+        "PRM-003267": [
+          "synonyms"
+        ],
+        "PRM-003277": [
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 0,
+        "any_term": 4,
+        "facet": 50,
+        "synonyms": 960,
+        "facet_and_synonym": 1
+      },
+      "source_truncated_at_cap": {
+        "facet": 50,
+        "synonyms": 960
+      },
+      "shuffle_seed": "20260730:Q027"
+    },
+    "Q028": {
+      "query": "Onlineshop Startseite",
+      "candidate_ids": [
+        "PRM-003005",
+        "PRM-003054",
+        "PRM-003068",
+        "PRM-003002",
+        "PRM-003003",
+        "PRM-003009",
+        "PRM-003011",
+        "PRM-003055",
+        "PRM-003059",
+        "PRM-003008",
+        "PRM-003075",
+        "PRM-003013",
+        "PRM-003074",
+        "PRM-003012",
+        "PRM-003006",
+        "PRM-003056",
+        "PRM-003063",
+        "PRM-003061",
+        "PRM-003078",
+        "PRM-003014",
+        "PRM-003010",
+        "PRM-003052",
+        "PRM-003004",
+        "PRM-003001",
+        "PRM-003060",
+        "PRM-003007",
+        "PRM-003071",
+        "PRM-003070"
+      ],
+      "provenance": {
+        "PRM-003001": [
+          "facet"
+        ],
+        "PRM-003002": [
+          "facet"
+        ],
+        "PRM-003003": [
+          "facet"
+        ],
+        "PRM-003004": [
+          "facet"
+        ],
+        "PRM-003005": [
+          "facet"
+        ],
+        "PRM-003006": [
+          "facet"
+        ],
+        "PRM-003007": [
+          "facet"
+        ],
+        "PRM-003008": [
+          "facet"
+        ],
+        "PRM-003009": [
+          "facet"
+        ],
+        "PRM-003010": [
+          "facet"
+        ],
+        "PRM-003011": [
+          "facet"
+        ],
+        "PRM-003012": [
+          "facet"
+        ],
+        "PRM-003013": [
+          "facet"
+        ],
+        "PRM-003014": [
+          "facet"
+        ],
+        "PRM-003052": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003054": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003055": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003056": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003059": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003060": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003061": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003063": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003068": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003070": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003071": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003074": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003075": [
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-003078": [
+          "facet_and_synonym",
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 0,
+        "any_term": 0,
+        "facet": 1000,
+        "synonyms": 1164,
+        "facet_and_synonym": 1000
+      },
+      "source_truncated_at_cap": {
+        "facet": 1000,
+        "synonyms": 1164,
+        "facet_and_synonym": 1000
+      },
+      "shuffle_seed": "20260730:Q028"
+    },
+    "Q029": {
+      "query": "React Dashboard mit dark mode",
+      "candidate_ids": [
+        "PRM-002270",
+        "PRM-001710",
+        "PRM-002018",
+        "PRM-002021",
+        "PRM-000043",
+        "PRM-002002",
+        "PRM-002010",
+        "PRM-000085",
+        "PRM-002073",
+        "PRM-002519",
+        "PRM-002114",
+        "PRM-002093",
+        "PRM-001102",
+        "PRM-002012",
+        "PRM-002019",
+        "PRM-002011",
+        "PRM-002932",
+        "PRM-002030",
+        "PRM-002014",
+        "PRM-002003",
+        "PRM-009151",
+        "PRM-002061",
+        "PRM-002007",
+        "PRM-002033",
+        "PRM-002004",
+        "PRM-001773",
+        "PRM-002005",
+        "PRM-002024",
+        "PRM-001406",
+        "PRM-002016",
+        "PRM-001372",
+        "PRM-002009",
+        "PRM-002116",
+        "PRM-002001",
+        "PRM-002560",
+        "PRM-002013",
+        "PRM-000244",
+        "PRM-002008",
+        "PRM-002128",
+        "PRM-002006"
+      ],
+      "provenance": {
+        "PRM-000043": [
+          "all_terms",
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002114": [
+          "all_terms",
+          "synonyms"
+        ],
+        "PRM-002270": [
+          "all_terms"
+        ],
+        "PRM-002519": [
+          "all_terms"
+        ],
+        "PRM-002560": [
+          "all_terms"
+        ],
+        "PRM-002932": [
+          "all_terms"
+        ],
+        "PRM-009151": [
+          "all_terms"
+        ],
+        "PRM-000085": [
+          "any_term"
+        ],
+        "PRM-000244": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001102": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001372": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001406": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001710": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001773": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-002007": [
+          "any_term",
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002011": [
+          "any_term",
+          "facet",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002033": [
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002061": [
+          "any_term"
+        ],
+        "PRM-002073": [
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002093": [
+          "any_term",
+          "facet_and_synonym",
+          "synonyms"
+        ],
+        "PRM-002001": [
+          "facet"
+        ],
+        "PRM-002002": [
+          "facet"
+        ],
+        "PRM-002003": [
+          "facet"
+        ],
+        "PRM-002004": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002005": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002006": [
+          "facet"
+        ],
+        "PRM-002008": [
+          "facet"
+        ],
+        "PRM-002009": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-002010": [
+          "facet"
+        ],
+        "PRM-002012": [
+          "facet"
+        ],
+        "PRM-002013": [
+          "facet"
+        ],
+        "PRM-002014": [
+          "facet"
+        ],
+        "PRM-002116": [
+          "synonyms"
+        ],
+        "PRM-002128": [
+          "synonyms"
+        ],
+        "PRM-002016": [
+          "facet_and_synonym"
+        ],
+        "PRM-002018": [
+          "facet_and_synonym"
+        ],
+        "PRM-002019": [
+          "facet_and_synonym"
+        ],
+        "PRM-002021": [
+          "facet_and_synonym"
+        ],
+        "PRM-002024": [
+          "facet_and_synonym"
+        ],
+        "PRM-002030": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 7,
+        "any_term": 7389,
+        "facet": 100,
+        "synonyms": 5129,
+        "facet_and_synonym": 100
+      },
+      "source_truncated_at_cap": {
+        "any_term": 7389,
+        "facet": 100,
+        "synonyms": 5129,
+        "facet_and_synonym": 100
+      },
+      "shuffle_seed": "20260730:Q029"
+    },
+    "Q030": {
+      "query": "responsive Landingpage für Startups",
+      "candidate_ids": [
+        "PRM-000257",
+        "PRM-000008",
+        "PRM-000252",
+        "PRM-000260",
+        "PRM-000015",
+        "PRM-000264",
+        "PRM-000020",
+        "PRM-000263",
+        "PRM-000025",
+        "PRM-000218",
+        "PRM-000022",
+        "PRM-000206",
+        "PRM-000001",
+        "PRM-000267",
+        "PRM-000098",
+        "PRM-000259",
+        "PRM-000017",
+        "PRM-000197",
+        "PRM-000024",
+        "PRM-000265",
+        "PRM-000183",
+        "PRM-000021",
+        "PRM-000027",
+        "PRM-000026",
+        "PRM-000251",
+        "PRM-000014",
+        "PRM-000261",
+        "PRM-000258",
+        "PRM-000134",
+        "PRM-000135",
+        "PRM-000253",
+        "PRM-000256",
+        "PRM-000254",
+        "PRM-000083",
+        "PRM-000168",
+        "PRM-000056",
+        "PRM-000204",
+        "PRM-000188",
+        "PRM-000117",
+        "PRM-000255",
+        "PRM-000220",
+        "PRM-000028",
+        "PRM-000262",
+        "PRM-000019",
+        "PRM-000266"
+      ],
+      "provenance": {
+        "PRM-000001": [
+          "any_term"
+        ],
+        "PRM-000008": [
+          "any_term"
+        ],
+        "PRM-000014": [
+          "any_term"
+        ],
+        "PRM-000015": [
+          "any_term"
+        ],
+        "PRM-000017": [
+          "any_term"
+        ],
+        "PRM-000019": [
+          "any_term"
+        ],
+        "PRM-000020": [
+          "any_term"
+        ],
+        "PRM-000021": [
+          "any_term"
+        ],
+        "PRM-000022": [
+          "any_term"
+        ],
+        "PRM-000024": [
+          "any_term"
+        ],
+        "PRM-000025": [
+          "any_term"
+        ],
+        "PRM-000026": [
+          "any_term"
+        ],
+        "PRM-000027": [
+          "any_term"
+        ],
+        "PRM-000028": [
+          "any_term"
+        ],
+        "PRM-000251": [
+          "facet"
+        ],
+        "PRM-000252": [
+          "facet"
+        ],
+        "PRM-000253": [
+          "facet"
+        ],
+        "PRM-000254": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000255": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000256": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000257": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000258": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000259": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000260": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000261": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000262": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000263": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000264": [
+          "facet",
+          "facet_and_synonym"
+        ],
+        "PRM-000056": [
+          "synonyms"
+        ],
+        "PRM-000083": [
+          "synonyms"
+        ],
+        "PRM-000098": [
+          "synonyms"
+        ],
+        "PRM-000117": [
+          "synonyms"
+        ],
+        "PRM-000134": [
+          "synonyms"
+        ],
+        "PRM-000135": [
+          "synonyms"
+        ],
+        "PRM-000168": [
+          "synonyms"
+        ],
+        "PRM-000183": [
+          "synonyms"
+        ],
+        "PRM-000188": [
+          "synonyms"
+        ],
+        "PRM-000197": [
+          "synonyms"
+        ],
+        "PRM-000204": [
+          "synonyms"
+        ],
+        "PRM-000206": [
+          "synonyms"
+        ],
+        "PRM-000218": [
+          "synonyms"
+        ],
+        "PRM-000220": [
+          "synonyms"
+        ],
+        "PRM-000265": [
+          "facet_and_synonym"
+        ],
+        "PRM-000266": [
+          "facet_and_synonym"
+        ],
+        "PRM-000267": [
+          "facet_and_synonym"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 0,
+        "any_term": 6089,
+        "facet": 100,
+        "synonyms": 6356,
+        "facet_and_synonym": 100
+      },
+      "source_truncated_at_cap": {
+        "any_term": 6089,
+        "facet": 100,
+        "synonyms": 6356,
+        "facet_and_synonym": 100
+      },
+      "shuffle_seed": "20260730:Q030"
+    },
+    "Q031": {
+      "query": "Figma plugin panel",
+      "candidate_ids": [
+        "PRM-000144",
+        "PRM-000231",
+        "PRM-000130",
+        "PRM-000150",
+        "PRM-000217",
+        "PRM-000136",
+        "PRM-002964",
+        "PRM-000211",
+        "PRM-000034",
+        "PRM-001649",
+        "PRM-000124",
+        "PRM-000116",
+        "PRM-000104",
+        "PRM-000014",
+        "PRM-000110"
+      ],
+      "provenance": {
+        "PRM-001649": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000014": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000034": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000104": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000110": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000116": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000124": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000130": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000136": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000144": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000150": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000211": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000217": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-000231": [
+          "any_term"
+        ],
+        "PRM-002964": [
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 0,
+        "any_term": 1768,
+        "facet": 0,
+        "synonyms": 1781,
+        "facet_and_synonym": 0
+      },
+      "source_truncated_at_cap": {
+        "any_term": 1768,
+        "synonyms": 1781
+      },
+      "shuffle_seed": "20260730:Q031"
+    },
+    "Q032": {
+      "query": "Chrome browser extension popup",
+      "candidate_ids": [
+        "PRM-001305",
+        "PRM-003126",
+        "PRM-001450",
+        "PRM-001320",
+        "PRM-001291",
+        "PRM-001686",
+        "PRM-001732",
+        "PRM-001238",
+        "PRM-001038",
+        "PRM-001096",
+        "PRM-003064",
+        "PRM-003416",
+        "PRM-001116",
+        "PRM-001225",
+        "PRM-001679",
+        "PRM-001167",
+        "PRM-001011",
+        "PRM-003256",
+        "PRM-003165",
+        "PRM-001108",
+        "PRM-001037",
+        "PRM-001104"
+      ],
+      "provenance": {
+        "PRM-001011": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001037": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001225": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001291": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001305": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001450": [
+          "any_term",
+          "synonyms"
+        ],
+        "PRM-001679": [
+          "any_term"
+        ],
+        "PRM-001686": [
+          "any_term"
+        ],
+        "PRM-001732": [
+          "any_term"
+        ],
+        "PRM-003064": [
+          "any_term"
+        ],
+        "PRM-003126": [
+          "any_term"
+        ],
+        "PRM-003165": [
+          "any_term"
+        ],
+        "PRM-003256": [
+          "any_term"
+        ],
+        "PRM-003416": [
+          "any_term"
+        ],
+        "PRM-001038": [
+          "synonyms"
+        ],
+        "PRM-001096": [
+          "synonyms"
+        ],
+        "PRM-001104": [
+          "synonyms"
+        ],
+        "PRM-001108": [
+          "synonyms"
+        ],
+        "PRM-001116": [
+          "synonyms"
+        ],
+        "PRM-001167": [
+          "synonyms"
+        ],
+        "PRM-001238": [
+          "synonyms"
+        ],
+        "PRM-001320": [
+          "synonyms"
+        ]
+      },
+      "source_totals": {
+        "substring": 0,
+        "all_terms": 0,
+        "any_term": 1370,
+        "facet": 0,
+        "synonyms": 171,
+        "facet_and_synonym": 0
+      },
+      "source_truncated_at_cap": {
+        "any_term": 1370,
+        "synonyms": 171
+      },
+      "shuffle_seed": "20260730:Q032"
+    }
+  },
+  "_by_id_count": 10000
+}

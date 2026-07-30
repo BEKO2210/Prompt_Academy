@@ -1,0 +1,423 @@
+{
+  "rules_version": "1.1.0",
+  "vocabulary_version": "1.0.0",
+  "created": "2026-07-30",
+  "ticket": "ENG-001",
+  "method": {
+    "summary": "Deterministic rules only. No model is used to assign capabilities. Same input always yields the same output; changing this file requires a rules_version bump, which downstream consumers must treat as 'all labels regenerated', not 'content changed'.",
+    "matching": "Python re with re.IGNORECASE. All patterns use explicit word boundaries. Substring matching is forbidden — measured inflation from substring matching on this corpus: 'form' 2783 -> 7679 (+176%), 'graph' 527 -> 3617 (+586%), 'live' 499 -> 2776 (+456%).",
+    "fields_high": [
+      "acceptance_criteria"
+    ],
+    "fields_medium": [
+      "prompt",
+      "negative_prompt",
+      "tags"
+    ],
+    "why_split": "acceptance_criteria are explicit promises about the output and are template-generated, so they are both the strongest and the most rule-friendly evidence. Prompt prose is descriptive and may mention a concept without the output providing it.",
+    "negative_prompt_caveat": "negative_prompt states what to AVOID. A capability term appearing only there is NOT evidence the capability is provided — it is excluded from medium evidence and routed to `uncertain` instead. See `negated_context`."
+  },
+  "negated_context": {
+    "description": "If a capability pattern matches only within a negation window, the hit is downgraded to uncertain rather than assigned.",
+    "window_chars": 60,
+    "markers": [
+      "no ",
+      "not ",
+      "without ",
+      "avoid",
+      "never ",
+      "don't",
+      "do not",
+      "exclude",
+      "omit",
+      "skip "
+    ]
+  },
+  "text_rules": {
+    "a11y.keyboard": {
+      "patterns": [
+        "\\bkeyboard\\s+(navigat\\w+|accessib\\w+|operabl\\w+|shortcut)",
+        "\\bkeyboard[- ]navigable\\b",
+        "\\bfocus\\s+(ring|indicator|trap|management|visible)",
+        "\\btrap\\s+focus\\b",
+        "\\bescape\\s+key\\b",
+        "\\btab\\s+order\\b"
+      ],
+      "notes": "Bare 'keyboard' is not enough — a music app mentions keyboards. Requires an accessibility-bearing collocation."
+    },
+    "a11y.screen_reader": {
+      "patterns": [
+        "\\bscreen[- ]readers?\\b",
+        "\\baria\\b",
+        "\\bassistive\\s+tech\\w*",
+        "\\bsemantic\\s+(html|markup)\\b",
+        "\\baccessibility\\s+descriptions?\\b",
+        "\\balt\\s+text\\b"
+      ],
+      "notes": "'ARIA improvements' and 'accessibility descriptions' were measured FNs; bare 'aria' is safe here — it is not an English word."
+    },
+    "a11y.contrast": {
+      "patterns": [
+        "\\bcontrast\\s+ratios?\\b",
+        "\\b(sufficient|adequate|proper|minimum)\\s+(colou?r\\s+)?contrast\\b",
+        "\\bcontrast\\b(?=[^.]{0,40}\\bwcag\\b)",
+        "\\bwcag\\b(?=[^.]{0,40}\\bcontrast\\b)"
+      ],
+      "notes": "Bare 'contrast' is a visual-design word ('high-contrast palette'). Requires a ratio, a qualifier or WCAG nearby."
+    },
+    "a11y.reduced_motion": {
+      "patterns": [
+        "\\bprefers[- ]reduced[- ]motion\\b",
+        "\\breduced[- ]motion\\b",
+        "\\bmotion\\s+sensitiv\\w+"
+      ]
+    },
+    "layout.responsive": {
+      "patterns": [
+        "\\bresponsive\\b(?!\\s+(feedback|to\\s+user|interaction))",
+        "\\bbreakpoints?\\b",
+        "\\bmobile[- ]first\\b",
+        "\\b(mobile|tablet|desktop)\\b(?=[^.]{0,40}\\b(mobile|tablet|desktop)\\b)",
+        "\\ball\\s+(device|screen)\\s+sizes\\b",
+        "\\bviewports?\\b"
+      ],
+      "notes": "Two measured errors fixed: 'responsive feedback on every action' (FP, reactive not layout) and 'desktop and mobile' (FN, the old pattern only accepted mobile-first ordering)."
+    },
+    "layout.dark_mode": {
+      "patterns": [
+        "\\bdark\\s+(and|/)\\s+light\\s+(mode|theme)",
+        "\\blight\\s+(and|/)\\s+dark\\s+(mode|theme)",
+        "\\bdark[- ]mode\\b(?=[^.]{0,60}\\b(toggle|switch|theme|system|preference|light|render|contrast)\\w*\\b)",
+        "\\b(theme|mode)\\s+(toggle|switcher)\\b",
+        "\\bprefers[- ]colou?r[- ]scheme\\b",
+        "\\bcolou?r\\s+schemes?\\b(?=[^.]{0,50}\\b(dark|light|system)\\b)"
+      ],
+      "notes": "Palette names ('gunmetal gray dark mode', 'dark-mode-neon') were measured FPs; dark mode now requires a toggle/theming collocation."
+    },
+    "layout.rtl": {
+      "patterns": [
+        "\\brtl\\b",
+        "\\bright[- ]to[- ]left\\b",
+        "\\bbidirectional\\s+text\\b"
+      ]
+    },
+    "motion.animation": {
+      "patterns": [
+        "\\banimat(e|ed|ion|ions|ing)\\b",
+        "\\btransitions?\\b",
+        "\\bparallax\\b",
+        "\\bframer[- ]motion\\b",
+        "\\bscroll[- ](driven|triggered|linked)\\b",
+        "\\bkeyframes?\\b",
+        "\\bstagger\\w*\\b",
+        "\\bspring\\s+physics\\b"
+      ],
+      "notes": "Broadest rule in the set (~71% of records). Retained because it is genuinely near-universal in this corpus, which also means it carries little discriminative power for routing. Flagged in the coverage report."
+    },
+    "forms.input": {
+      "patterns": [
+        "\\bforms?\\b",
+        "\\binput\\s+fields?\\b",
+        "\\btext\\s+(field|input)s?\\b",
+        "\\bcheckbox\\w*\\b",
+        "\\bradio\\s+buttons?\\b",
+        "\\bdate\\s+pickers?\\b",
+        "\\bdropdowns?\\b(?=[^.]{0,40}\\b(select|choose|option)\\w*\\b)"
+      ],
+      "notes": "'form' must be word-bounded: perform/platform/information/transform would otherwise inflate this by 176%."
+    },
+    "forms.validation": {
+      "patterns": [
+        "\\bvalidat(e|ed|es|ion|ing)\\b(?=[^.]{0,50}\\b(form|field|input|email|entry|submission)s?\\b)",
+        "\\b(form|field|input|email)s?\\b(?=[^.]{0,40}\\bvalidat\\w+\\b)",
+        "\\binline\\s+(error|feedback|validation)\\b",
+        "\\berror\\s+messages?\\b(?=[^.]{0,60}\\b(field|input|form)s?\\b)",
+        "\\brequired\\s+fields?\\b"
+      ],
+      "notes": "'validating web components against WCAG' was a measured FP; validation now requires a form/field object."
+    },
+    "data.search": {
+      "patterns": [
+        "\\bsearch(es|ing|able)?\\b",
+        "\\bsearch\\s+bar\\b",
+        "\\bfuzzy\\s+(search|match\\w*)\\b",
+        "\\bdebounced?\\s+(input|search)\\b"
+      ]
+    },
+    "data.filter_sort": {
+      "patterns": [
+        "\\bfilter(s|ed|ing)?\\b",
+        "\\bsort(s|ed|ing|able)?\\b",
+        "\\bfacet(s|ed)?\\b",
+        "\\bcolumn\\s+sort\\w*\\b"
+      ]
+    },
+    "data.pagination": {
+      "patterns": [
+        "\\bpaginat(e|ed|ion)\\b",
+        "\\binfinite\\s+scroll\\w*\\b",
+        "\\bvirtual(ized|ization)?\\s+scroll\\w*\\b",
+        "\\bload\\s+more\\b",
+        "\\bvirtualiz\\w+\\b",
+        "\\blarge\\s+datasets?\\b(?=[^.]{0,40}\\bvirtualiz\\w+\\b)"
+      ]
+    },
+    "data.table": {
+      "patterns": [
+        "\\bdata\\s+tables?\\b",
+        "\\b\\w+\\s+table\\b(?=[^.]{0,60}\\b(row|column|sort|filter|pagina|track|display)\\w*\\b)",
+        "\\btables?\\b(?=[^.]{0,60}\\b(row|column|sort|filter|pagina)\\w*\\b)",
+        "\\brows?\\s+and\\s+columns?\\b"
+      ],
+      "notes": "Bare 'table' also means a piece of furniture in restaurant pages and 'pricing table' which is not tabular data. Requires a tabular-data collocation."
+    },
+    "data.charts": {
+      "patterns": [
+        "\\bcharts?\\b",
+        "\\bgraphs?\\b",
+        "\\bplots?\\b(?=[^.]{0,40}\\b(data|axis|series)\\b)",
+        "\\bvisuali[sz]ations?\\b",
+        "\\bheat\\s?maps?\\b",
+        "\\bsankey\\b",
+        "\\btreemaps?\\b",
+        "\\bgauges?\\b",
+        "\\bsparklines?\\b",
+        "\\bd3\\b",
+        "\\brecharts\\b",
+        "\\bchart\\.js\\b"
+      ],
+      "notes": "'graph' word-bounded only: 'graphics'/'graphic design'/'infographic' would inflate this by 586%."
+    },
+    "data.export": {
+      "patterns": [
+        "\\bexport(s|ed|ing)?\\b(?=[^.]{0,50}\\b(csv|pdf|json|xlsx|excel|report|data|file|image|chart)s?\\b)",
+        "\\b(csv|pdf|json|xlsx)\\b(?=[^.]{0,40}\\bexport\\w*\\b)",
+        "\\bexport\\s+(functionality|options?|button)\\b",
+        "\\bdownloadable?\\b(?=[^.]{0,40}\\b(csv|pdf|json|report|data|file)s?\\b)",
+        "\\bcsv\\b",
+        "\\bto\\s+pdf\\b",
+        "\\bpdf\\s+export\\b"
+      ],
+      "notes": "'exported props interface' (TypeScript) was a measured false positive; export now requires a data-bearing object nearby."
+    },
+    "data.realtime": {
+      "patterns": [
+        "\\breal[- ]?time\\b",
+        "\\bwebsockets?\\b",
+        "\\blive\\s+(data|update|feed|metric|stream)\\w*\\b",
+        "\\bstreaming\\b(?=[^.]{0,40}\\b(data|update|response)s?\\b)",
+        "\\bpolling\\b"
+      ],
+      "notes": "Bare 'live' matches 'delivery', 'lively', 'livestream' contexts unrelated to data freshness — inflation measured at +456%. Requires a data-bearing noun."
+    },
+    "state.loading": {
+      "patterns": [
+        "\\bloading\\s+(state|indicator|skeleton|spinner)s?\\b",
+        "\\bskeletons?\\b",
+        "\\bshimmer\\b",
+        "\\bspinners?\\b",
+        "\\bloading\\b(?=[^.]{0,40}\\b(async|fetch|request)\\w*\\b)"
+      ]
+    },
+    "state.empty": {
+      "patterns": [
+        "\\bempty\\s+states?\\b",
+        "\\bzero[- ]data\\b",
+        "\\bno\\s+results?\\s+(state|message|found)\\b"
+      ]
+    },
+    "state.error": {
+      "patterns": [
+        "\\berror\\s+(state|handling|boundar)\\w*\\b",
+        "\\bretry\\b",
+        "\\bfallbacks?\\b(?=[^.]{0,40}\\b(error|fail|denial)\\w*\\b)",
+        "\\bgraceful(ly)?\\s+(degrad|handl|fail)\\w*\\b"
+      ]
+    },
+    "feedback.notification": {
+      "patterns": [
+        "\\btoasts?\\b",
+        "\\bsnackbars?\\b",
+        "\\bnotifications?\\b",
+        "\\balert\\s+banners?\\b"
+      ]
+    },
+    "feedback.overlay": {
+      "patterns": [
+        "\\bmodals?\\b",
+        "\\bdialogs?\\b",
+        "\\bdrawers?\\b",
+        "\\bbottom\\s+sheets?\\b",
+        "\\blightbox(es)?\\b"
+      ]
+    },
+    "flow.onboarding": {
+      "patterns": [
+        "\\bonboard(ing)?\\b",
+        "\\bwizards?\\b(?=[^.]{0,40}\\b(step|flow|form)s?\\b)",
+        "\\bmulti[- ]step\\b",
+        "\\bsteppers?\\b",
+        "\\bguided\\s+(tour|setup)\\b"
+      ]
+    },
+    "flow.drag_drop": {
+      "patterns": [
+        "\\bdrag[- ]and[- ]drop\\b",
+        "\\bdrag[- ]drop\\b",
+        "\\bdraggable\\b",
+        "\\bdrag\\s+to\\s+(reorder|move)\\b",
+        "\\breorder\\w*\\b(?=[^.]{0,40}\\bdrag\\w*\\b)"
+      ]
+    },
+    "media.upload": {
+      "patterns": [
+        "\\bupload(s|ed|ing|er)?\\b",
+        "\\bfile\\s+pickers?\\b",
+        "\\bdrop\\s?zones?\\b"
+      ]
+    },
+    "auth.accounts": {
+      "patterns": [
+        "\\bauthenticat\\w+\\b",
+        "\\boauth\\b",
+        "\\bpasswords?\\b",
+        "\\blog[- ]?in\\b",
+        "\\blog[- ]?out\\b",
+        "(?<!newsletter )\\bsign[- ]?(in|up)\\b(?![^.]{0,20}\\bnewsletter\\b)",
+        "\\bsessions?\\b(?=[^.]{0,40}\\b(user|login|auth)\\w*\\b)",
+        "\\baccount\\s+(creation|management|settings)\\b",
+        "\\buser\\s+accounts?\\b"
+      ],
+      "notes": "'newsletter signup' was a measured FP; sign-up now excludes a newsletter context."
+    },
+    "commerce.cart": {
+      "patterns": [
+        "\\bshopping\\s+carts?\\b",
+        "\\bmini[- ]carts?\\b",
+        "\\bcart\\s+(item|total|drawer|icon|badge)\\w*\\b",
+        "\\bcarts?\\b(?=[^.]{0,60}\\b(add|item|quantity|total|checkout|remove|persist)\\w*\\b)",
+        "\\bbaskets?\\b(?=[^.]{0,40}\\b(item|shop|add)\\w*\\b)"
+      ]
+    },
+    "commerce.checkout": {
+      "patterns": [
+        "\\bcheckouts?\\b",
+        "\\bpayments?\\b",
+        "\\bstripe\\b",
+        "\\border\\s+confirmation\\b",
+        "\\bbilling\\b(?=[^.]{0,40}\\b(address|info\\w*|details?|cycle|payment)\\b)"
+      ],
+      "notes": "Bare 'billing' matched SaaS invoicing dashboards (measured FP); now requires a payment-bearing collocation."
+    }
+  },
+  "subcategory_rules": {
+    "_note": "Applied at HIGH confidence, and ONLY where the artifact IS the capability — i.e. a record in this subcategory provides the capability by definition, regardless of wording. Kept deliberately short (26 of 200 subcategories). Everything else is left to text evidence, because 'a dashboard probably has charts' is an assumption, not a rule.",
+    "forms_inputs": [
+      "forms.input"
+    ],
+    "date_pickers_calendars": [
+      "forms.input"
+    ],
+    "search_bars": [
+      "data.search"
+    ],
+    "paginations": [
+      "data.pagination"
+    ],
+    "modals_dialogs": [
+      "feedback.overlay"
+    ],
+    "toasts_notifications": [
+      "feedback.notification"
+    ],
+    "loadings_skeletons": [
+      "state.loading"
+    ],
+    "shopping_carts": [
+      "commerce.cart"
+    ],
+    "checkout_flows": [
+      "commerce.checkout"
+    ],
+    "product_filters": [
+      "data.filter_sort"
+    ],
+    "interactive_filters": [
+      "data.filter_sort"
+    ],
+    "onboarding_flows": [
+      "flow.onboarding"
+    ],
+    "charts_dashboards": [
+      "data.charts"
+    ],
+    "comparison_charts": [
+      "data.charts"
+    ],
+    "financial_charts": [
+      "data.charts"
+    ],
+    "gauge_displays": [
+      "data.charts"
+    ],
+    "heatmaps": [
+      "data.charts"
+    ],
+    "network_graphs": [
+      "data.charts"
+    ],
+    "sankey_diagrams": [
+      "data.charts"
+    ],
+    "treemaps": [
+      "data.charts"
+    ],
+    "hierarchical_visuals": [
+      "data.charts"
+    ],
+    "3d_data_visuals": [
+      "data.charts"
+    ],
+    "map_visualizations": [
+      "data.charts"
+    ],
+    "scientific_visualizations": [
+      "data.charts"
+    ],
+    "kpi_boards": [
+      "data.charts"
+    ],
+    "real_time_data_displays": [
+      "data.charts",
+      "data.realtime"
+    ]
+  },
+  "known_false_positive_risks": [
+    "motion.animation matches ~71% of records — near-universal, low discriminative value. Not a defect, but do not weight it highly in ranking.",
+    "data.filter_sort: 'filter' also appears as a visual filter (blur, image filter) in photo/design contexts.",
+    "forms.input: 'dropdown' is a navigation control as often as a form control; the pattern requires a selection collocation but this remains the weakest sub-pattern.",
+    "commerce.checkout: 'billing' also appears in SaaS dashboard contexts meaning invoicing views rather than a payment flow."
+  ],
+  "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2026-07-30",
+      "reason": "Targeted fixes for false positives and false negatives measured on review sample seed=7 (n=20). Validated on a FRESH sample (seed=42) to avoid tuning on the evaluation set.",
+      "fixed_false_positives": [
+        "data.export <- 'exported props interface'",
+        "commerce.checkout <- SaaS 'billing overview'",
+        "auth.accounts <- 'newsletter signup'",
+        "layout.responsive <- 'responsive feedback'",
+        "layout.dark_mode <- palette names",
+        "forms.validation <- 'validating web components'"
+      ],
+      "fixed_false_negatives": [
+        "layout.responsive <- 'desktop and mobile' word order",
+        "commerce.cart <- 'mini-cart'",
+        "data.table <- 'user table'",
+        "data.pagination <- 'using virtualization'",
+        "a11y.screen_reader <- 'ARIA improvements', 'accessibility descriptions'"
+      ]
+    }
+  ]
+}

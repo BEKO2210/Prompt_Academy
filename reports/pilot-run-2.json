@@ -1,0 +1,4287 @@
+{
+ "kind": "infrastructure_pilot",
+ "not_an_h1_result": true,
+ "split": "dev",
+ "pilotSubsetVersion": "pilot-subset-v1",
+ "taskSplitVersion": "task-split-v1",
+ "config": {
+  "temperature": 0,
+  "maxTokens": 1536,
+  "seed": 7,
+  "retrievalK": 3,
+  "maxQueryTerms": 3,
+  "nRuns": 1,
+  "arms": [
+   "A",
+   "B",
+   "D",
+   "E"
+  ],
+  "taskOrderSeed": 20260730,
+  "armOrderSeed": 20260731,
+  "datasetVersion": "data-jsonl",
+  "taskSetVersion": "task-set-v1",
+  "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6"
+ },
+ "provider": {
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b-16k",
+  "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+  "host": "http://127.0.0.1:11434",
+  "timeoutMs": 180000,
+  "maxRetries": 2
+ },
+ "versions": {
+  "checks": "1.0.0",
+  "evaluator": "2.0.0",
+  "eligibility": "1.0.0",
+  "review": "1.0.0"
+ },
+ "wallMs": 209276,
+ "providerFailures": [],
+ "sentRequests": [
+  {
+   "bodyHash": "df0450f8beebda0ff0b340443ad0e7a1b221208c06eacbf679fdcc3d4960c7ab",
+   "systemChars": 137,
+   "userChars": 580,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "68ddb036f641fbc047d1d09ede58cf33e9b5f5f087ca85e435ee8ae8b701ea54",
+   "systemChars": 137,
+   "userChars": 1039,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "0abda33c29fa0e65d4e05fa047fdf0a513a11cfe6b26374129eb48c56075c27b",
+   "systemChars": 137,
+   "userChars": 1555,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "2ae013ebfa6aae415c70c3d81a921bdc84b613fd8e9a6ba9460b27726b490ea5",
+   "systemChars": 137,
+   "userChars": 102,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "22bc09820f6e76aeb51b59918d1781ea9185a55b1e35959900ec4b2bfeb1e864",
+   "systemChars": 137,
+   "userChars": 581,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "2f852d7556d444137a0b77987c15a7afb5bdc759cb76959fce35253fb1149928",
+   "systemChars": 137,
+   "userChars": 1230,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "6e91abf4deb1d6a103c0720d72f43a913bb3aef1dab8f23e6f47aa03375cf256",
+   "systemChars": 137,
+   "userChars": 1372,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "99a7f6965b1b3234e816feff37238a14ca7165fdb69c5851ff9d0c4d3dd62338",
+   "systemChars": 137,
+   "userChars": 117,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "ebd1f6546c8f78132e02ca9cd5f27927be28382eb63fe99a9d5d4bf4f7f136d2",
+   "systemChars": 137,
+   "userChars": 747,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "77b9f4b5bb4a8451a2fefd42088164600fbbdd2de86bdfea6c0e9b02f2f0aedd",
+   "systemChars": 137,
+   "userChars": 1320,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "3313b9009a9823c0e0a4863b4a7d3c4df98008d0bd72f8fab2e54b923a4db98f",
+   "systemChars": 137,
+   "userChars": 1709,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "7652d94d4cc108c31f74e8a52f2d45cc02914d35cc2ce0849e916f7e0bb194bc",
+   "systemChars": 137,
+   "userChars": 124,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "1757c0f070d186ac07a00f15547470148a3637bd07276b70ce2fa815a3843de6",
+   "systemChars": 137,
+   "userChars": 829,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "2028aab620a38ff1eebbe6ffec966c2a2cb8679cc6f396c2197e24e3e175fbcc",
+   "systemChars": 137,
+   "userChars": 1814,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "028b4d0a4c3b4a67813f9a2a39d57f1ebc18afa1a10cacbc4399cb582379a566",
+   "systemChars": 137,
+   "userChars": 1575,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "850a06de271555ee9253fcf7d290ca4f9a6d71d338665247787ad0ea40150c0c",
+   "systemChars": 137,
+   "userChars": 155,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "04ace9dceaa1ab7ba116a175b3c4ecea52c4539b98184707b93206252146d270",
+   "systemChars": 137,
+   "userChars": 702,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "a0d0ee7a40ce9be4d43cf01e4c11d31bf5b157d2f08c2a8c3c51c578b1b8a9de",
+   "systemChars": 137,
+   "userChars": 1496,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "ae190a086c7040f827e6c8199544bb77d84c3a1186c54c161e9127158bf00b32",
+   "systemChars": 137,
+   "userChars": 1603,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "0d8f5ad4cf01623180d0589bd33399a749c31dee88ceedd9ff1ca9e6d7256ae8",
+   "systemChars": 137,
+   "userChars": 87,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "e93bfece7ae9b84ca8d183dd3aedbfbcbb492146b9a4c62a3e4185273acbc862",
+   "systemChars": 137,
+   "userChars": 968,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "d7b30ab1d6c7b77e8355e48b1e9dfb3e641408658fe4ccedddd252a69251973d",
+   "systemChars": 137,
+   "userChars": 1733,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "462c949860fc23148fc935ef4edfbfc56674b5ac0e14ee1b7942d394c997997e",
+   "systemChars": 137,
+   "userChars": 1810,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "e9f5bb9fa436c4d0b6a1def1286d805b772fdfcab17d0029414982c908a7365d",
+   "systemChars": 137,
+   "userChars": 89,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "234ee11ffa5a9a1012fa6cd827f7d520091dedf883813701b58bf7190277f29e",
+   "systemChars": 137,
+   "userChars": 583,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "eb85324f14af7869c9f1ca0712580828358f98e5a005b717a194110bb3fa0263",
+   "systemChars": 137,
+   "userChars": 1154,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "9eea032cdfe7a6379a2861674725b01499574cfb7f32cd9232ebb72e00b78491",
+   "systemChars": 137,
+   "userChars": 1372,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "a5c643af165c55a180cf6ee52a8ce5ab5c3dbbcc789a9bb78a7724e457561a74",
+   "systemChars": 137,
+   "userChars": 112,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "9db406925c45e3e56783c1527dcabd9fdb6bd476b96ae5827e58c283ee17ed84",
+   "systemChars": 137,
+   "userChars": 564,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "f3021b9912882ee360a1a18c0a7751f147281422915c6bbb196902a5076dfc9b",
+   "systemChars": 137,
+   "userChars": 1311,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "ab8f62d4be9ef2cb105c2815270a98e28c28d5e6b043ac045a4c6a63ae06232f",
+   "systemChars": 137,
+   "userChars": 1359,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "8acba16972ae1a20881185226d8564d65f783242353a5f2132a16e6569b78289",
+   "systemChars": 137,
+   "userChars": 93,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "1e576e304ddc5fdd38f8200e436aaf63351eda3b0bf963e77f1a74470c0e76bb",
+   "systemChars": 137,
+   "userChars": 812,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "74ecc150c15210cf5523e0c4a6f6401997eddd95a5fa146d29f82803bb44fbce",
+   "systemChars": 137,
+   "userChars": 1673,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "3ca75318b54bbf1fb58d050a11debd87d8a858704b074f74fd2784c5f955d496",
+   "systemChars": 137,
+   "userChars": 1619,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "74422dd1805b6e49d2fb8cdf338dd119bb8248cc815ba501c8b002ae090b6c41",
+   "systemChars": 137,
+   "userChars": 127,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "a041a02583934abc1748715768bb5f18a0dc546572bef6e2ec56f69f1dc3c682",
+   "systemChars": 137,
+   "userChars": 766,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "826dc0d56543fa636692967e4288182148ef4c642edf1ee3ad39a1d86eb0aa3e",
+   "systemChars": 137,
+   "userChars": 2001,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "a9358bd90b678394b488878444ae2d3b81034285f69fd51ff006b197c643770f",
+   "systemChars": 137,
+   "userChars": 1542,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  },
+  {
+   "bodyHash": "2702a983428ccfa962caf09a3d14d959c9da2101c58fbf103de7d60e87968511",
+   "systemChars": 137,
+   "userChars": 114,
+   "options": {
+    "temperature": 0,
+    "num_predict": 1536,
+    "seed": 7
+   }
+  }
+ ],
+ "unretrieved": [],
+ "eligibility": [
+  {
+   "taskId": "T014",
+   "eligible": true,
+   "reasons": [],
+   "deterministicChecks": 5,
+   "humanChecks": 2
+  },
+  {
+   "taskId": "T018",
+   "eligible": true,
+   "reasons": [],
+   "deterministicChecks": 2,
+   "humanChecks": 3
+  },
+  {
+   "taskId": "T022",
+   "eligible": true,
+   "reasons": [],
+   "deterministicChecks": 1,
+   "humanChecks": 3
+  },
+  {
+   "taskId": "T025",
+   "eligible": true,
+   "reasons": [],
+   "deterministicChecks": 2,
+   "humanChecks": 3
+  },
+  {
+   "taskId": "T031",
+   "eligible": true,
+   "reasons": [],
+   "deterministicChecks": 3,
+   "humanChecks": 3
+  },
+  {
+   "taskId": "T033",
+   "eligible": true,
+   "reasons": [],
+   "deterministicChecks": 3,
+   "humanChecks": 3
+  },
+  {
+   "taskId": "T039",
+   "eligible": true,
+   "reasons": [],
+   "deterministicChecks": 3,
+   "humanChecks": 3
+  },
+  {
+   "taskId": "T040",
+   "eligible": true,
+   "reasons": [],
+   "deterministicChecks": 3,
+   "humanChecks": 2
+  },
+  {
+   "taskId": "T047",
+   "eligible": true,
+   "reasons": [],
+   "deterministicChecks": 3,
+   "humanChecks": 2
+  },
+  {
+   "taskId": "T049",
+   "eligible": true,
+   "reasons": [],
+   "deterministicChecks": 6,
+   "humanChecks": 2
+  }
+ ],
+ "records": [
+  {
+   "arm": "D",
+   "taskId": "T033",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-000509"
+   ],
+   "retrievalQuery": "roles",
+   "recordHashes": [
+    "3fec0995254602b79ac73a3cfadb678ea0523f7bba9089d64678c7d9284189e0"
+   ],
+   "promptHash": "885bf14b6bd82679849e45ba932817c4908b85b58a466dcb415267dd01b33398",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:46:20.111Z",
+   "output": "```json\n{\n  \"file_path\": \"pages/about.js\",\n  \"file_content\": \"import React from 'react';\\nimport styles from './about.module.scss';\\n\\nconst About = () => {\\n  return (\\n    <div className={styles.container}>\\n      <h1>About Me</h1>\\n      <p>Short bio goes here...</p>\\n      <h2>Timeline of Previous Roles</h2>\\n      <ul>\\n        <li>Role 1 - Company 1</li>\\n        <li>Role 2 - Company 2</li>\\n      </ul>\\n      <h2>Profiles Elsewhere</h2>\\n      <ul>\\n        <li><a href='https://linkedin.com/in/username'>LinkedIn</a></li>\\n        <li><a href='https://github.com/username'>GitHub</a></li>\\n      </ul>\\n    </div>\\n  );\\n};\\n\\nexport default About;\\n\"\n}\n```",
+   "inputTokens": 159,
+   "outputTokens": 225,
+   "latencyMs": 3069,
+   "contextChars": 478,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "regex_absent",
+      "status": "fail",
+      "detail": "a violation is present"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a3h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 1,
+     "total": 3,
+     "rate": 0.6666666666666666
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T033",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-000509",
+    "PRM-000529",
+    "PRM-000549"
+   ],
+   "retrievalQuery": "roles",
+   "recordHashes": [
+    "3fec0995254602b79ac73a3cfadb678ea0523f7bba9089d64678c7d9284189e0",
+    "519a584ca330e1021c6638fd8117211ee407134ba0db8f65e25e7ccd8e197957",
+    "f9278e6a5c057e4d1d25715aa41d51f789046779a07b6115177945c59b68a498"
+   ],
+   "promptHash": "353f85137aa3f20e350076b9442d2de309987ce45ebc652e780f7d87c21840be",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:46:24.834Z",
+   "output": "```json\n{\n  \"file_path\": \"pages/about.js\",\n  \"file_content\": \"import React from 'react';\\nimport { HiOutlineUser, HiOutlineBriefcase, HiOutlineLink } from 'lucide-react';\\n\\nconst About = () => {\\n  return (\\n    <div className='container mx-auto p-4'>\\n      <h1 className='text-3xl font-bold mb-4'>About Me</h1>\\n      <div className='flex flex-col gap-4'>\\n        <div className='flex items-center gap-2'>\\n          <HiOutlineUser className='w-6 h-6' />\\n          <p>Short bio goes here.</p>\\n        </div>\\n        <div className='flex items-center gap-2'>\\n          <HiOutlineBriefcase className='w-6 h-6' />\\n          <ul className='list-disc pl-4'>\\n            <li>Role 1 - Company 1</li>\\n            <li>Role 2 - Company 2</li>\\n          </ul>\\n        </div>\\n        <div className='flex items-center gap-2'>\\n          <HiOutlineLink className='w-6 h-6' />\\n          <ul className='list-disc pl-4'>\\n            <li><a href='#'>LinkedIn</a></li>\\n            <li><a href='#'>GitHub</a></li>\\n          </ul>\\n        </div>\\n      </div>\\n    </div>\\n  );\\n};\\n\\nexport default About;\"\n}\n```",
+   "inputTokens": 252,
+   "outputTokens": 354,
+   "latencyMs": 4723,
+   "contextChars": 937,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "regex_absent",
+      "status": "pass",
+      "detail": "no violation found"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a3h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     }
+    ],
+    "deterministic": {
+     "passed": 3,
+     "failed": 0,
+     "total": 3,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T033",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-000509"
+   ],
+   "retrievalQuery": "roles",
+   "recordHashes": [
+    "3fec0995254602b79ac73a3cfadb678ea0523f7bba9089d64678c7d9284189e0"
+   ],
+   "promptHash": "e1dfec40859cb171bcfb5372189b67540bd5015b1a53fe275d822e557e6b2e7f",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:46:25.328Z",
+   "output": "```json\n{\n  \"error\": \"The requested artifact does not match the reference context or acceptance criteria.\"\n}\n```",
+   "inputTokens": 330,
+   "outputTokens": 25,
+   "latencyMs": 494,
+   "contextChars": 1453,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "regex_absent",
+      "status": "pass",
+      "detail": "no violation found"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "fail",
+      "detail": "no component artifact"
+     },
+     {
+      "id": "a3h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 1,
+     "total": 3,
+     "rate": 0.6666666666666666
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T033",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "roles",
+   "recordHashes": [],
+   "promptHash": "51f70f1af8575fcb6c32848727e694823190228e82e22dadcfd88c771d0e3812",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:46:33.111Z",
+   "output": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Personal About Page</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            margin: 20px;\n        }\n        .container {\n            max-width: 800px;\n            margin: auto;\n        }\n        h1 {\n            color: #333;\n        }\n        p {\n            color: #666;\n        }\n        .timeline {\n            list-style-type: none;\n            padding: 0;\n        }\n        .timeline-item {\n            margin-bottom: 20px;\n        }\n        .timeline-item h2 {\n            font-size: 1.5em;\n            margin-bottom: 5px;\n        }\n        .timeline-item p {\n            font-size: 1em;\n        }\n        .links {\n            margin-top: 20px;\n        }\n        .links a {\n            margin-right: 10px;\n            text-decoration: none;\n            color: #007BFF;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>About Me</h1>\n        <p>Hi, I'm John Doe. I'm a passionate frontend developer with over 5 years of experience creating engaging and user-friendly web applications.</p>\n\n        <h2>Timeline of Previous Roles</h2>\n        <ul class=\"timeline\">\n            <li class=\"timeline-item\">\n                <h2>Senior Frontend Developer at Tech Innovations Inc.</h2>\n                <p>June 2018 - Present</p>\n                <p>Developed and maintained complex web applications using React, Angular, and Vue.js. Led a team of developers in implementing new features and improving performance.</p>\n            </li>\n            <li class=\"timeline-item\">\n                <h2>Frontend Developer at Creative Solutions</h2>\n                <p>January 2015 - May 2018</p>\n                <p>Worked on a variety of projects, from small landing pages to large e-commerce platforms. Utilized HTML, CSS, and JavaScript to create responsive and interactive designs.</p>\n            </li>\n        </ul>\n\n        <div class=\"links\">\n            <a href=\"https://www.linkedin.com/in/johndoe\" target=\"_blank\">LinkedIn</a>\n            <a href=\"https://github.com/johndoe\" target=\"_blank\">GitHub</a>\n            <a href=\"https://twitter.com/johndoe\" target=\"_blank\">Twitter</a>\n        </div>\n    </div>\n</body>\n</html>\n```",
+   "inputTokens": 61,
+   "outputTokens": 593,
+   "latencyMs": 7783,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "regex_absent",
+      "status": "fail",
+      "detail": "a violation is present"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a3h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 1,
+     "total": 3,
+     "rate": 0.6666666666666666
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T039",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-006216"
+   ],
+   "retrievalQuery": "links man",
+   "recordHashes": [
+    "59829d041e67d6a21d3ef5e2d5b8f7e0a970c163f03d38dbfb78d811e08328a2"
+   ],
+   "promptHash": "ce57096887853a141571801e0694e62292d04bce4442b7969b709511a54f3eeb",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:46:40.812Z",
+   "output": "```json\n{\n  \"code\": {\n    \"src/components/SwipeableList.js\": {\n      \"content\": \"// SwipeableList.js\\nimport React, { useState } from 'react';\\nimport { motion } from 'framer-motion';\\n\\nconst SwipeableList = ({ items }) => {\\n  const [swipedIndex, setSwipedIndex] = useState(null);\\n\\n  const handleSwipeLeft = (index) => {\\n    setSwipedIndex(index);\\n  };\\n\\n  const handleUndo = () => {\\n    setSwipedIndex(null);\\n  };\\n\\n  return (\\n    <div className='flex flex-col'>\\n      {items.map((item, index) => (\\n        <motion.div\\n          key={index}\\n          className='flex items-center justify-between p-4 bg-white rounded-lg shadow'\\n          drag='x'\\n          dragConstraints={{ left: 0, right: 0 }}\\n          onDragEnd={(e, { offset }) => {\\n            if (offset.x < -100) {\\n              handleSwipeLeft(index);\\n            } else {\\n              setSwipedIndex(null);\\n            }\\n          }}\\n        >\\n          {item}\\n          {swipedIndex === index && (\\n            <motion.div\\n              className='absolute right-0 bg-red-500 text-white p-2 rounded-l-lg'\\n              drag='x'\\n              dragConstraints={{ left: -100, right: 0 }}\\n              onDragEnd={(e, { offset }) => {\\n                if (offset.x > -50) {\\n                  handleUndo();\\n                }\\n              }}\\n            >\\n              Undo\\n            </motion.div>\\n          )}\\n        </motion.div>\\n      ))}\\n    </div>\\n  );\\n};\\n\\nexport default SwipeableList;\\n\"\n    },\n    \"src/App.js\": {\n      \"content\": \"// App.js\\nimport React from 'react';\\nimport SwipeableList from './components/SwipeableList';\\n\\nconst App = () => {\\n  const items = ['Item 1', 'Item 2', 'Item 3'];\\n\\n  return (\\n    <div className='flex flex-col items-center justify-center h-screen'>\\n      <h1 className='text-2xl font-bold mb-4'>Swipeable List</h1>\\n      <SwipeableList items={items} />\\n    </div>\\n  );\\n};\\n\\nexport default App;\\n\"\n    }\n  }\n}\n```",
+   "inputTokens": 171,
+   "outputTokens": 570,
+   "latencyMs": 7556,
+   "contextChars": 464,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 3,
+     "failed": 0,
+     "total": 3,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T039",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-006216",
+    "PRM-006293",
+    "PRM-006961"
+   ],
+   "retrievalQuery": "links man",
+   "recordHashes": [
+    "59829d041e67d6a21d3ef5e2d5b8f7e0a970c163f03d38dbfb78d811e08328a2",
+    "1eb3d254b37566ae9acd40f38f16ccd746ec1635a2b625294ad2e9d23bd03f8a",
+    "839808a8593bfa7d4805d0b67d5e1026fd2a82784c10e59e26f975944023590d"
+   ],
+   "promptHash": "114398460199a49f99a241dcadc0e6d837acf4bae1107028886f3fb1d0c765c7",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:46:47.133Z",
+   "output": "```json\n{\n  \"file_name\": \"MobileListView.tsx\",\n  \"file_content\": \"import React, { useState } from 'react';\\nimport { View, Text, TouchableOpacity, StyleSheet } from 'react-native';\\n\\nconst MobileListView = () => {\\n  const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);\\n  const [undoStack, setUndoStack] = useState<string[]>([]);\\n\\n  const handleSwipeLeft = (index: number) => {\\n    const newItems = [...items];\\n    const removedItem = newItems.splice(index, 1)[0];\\n    setItems(newItems);\\n    setUndoStack([...undoStack, removedItem]);\\n  };\\n\\n  const handleUndo = () => {\\n    if (undoStack.length > 0) {\\n      const lastRemovedItem = undoStack.pop() as string;\\n      setItems([...items, lastRemovedItem]);\\n    }\\n  };\\n\\n  return (\\n    <View style={styles.container}>\\n      {items.map((item, index) => (\\n        <TouchableOpacity\\n          key={index}\\n          style={styles.item}\\n          onSwipeLeft={() => handleSwipeLeft(index)}\\n        >\\n          <Text>{item}</Text>\\n        </TouchableOpacity>\\n      ))}\\n      <TouchableOpacity onPress={handleUndo} style={styles.undoButton}>\\n        <Text>Undo</Text>\\n      </TouchableOpacity>\\n    </View>\\n  );\\n};\\n\\nconst styles = StyleSheet.create({\\n  container: {\\n    flex: 1,\\n    padding: 16,\\n  },\\n  item: {\\n    backgroundColor: '#f0f0f0',\\n    padding: 12,\\n    marginVertical: 8,\\n    borderRadius: 4,\\n  },\\n  undoButton: {\\n    backgroundColor: '#007bff',\\n    padding: 12,\\n    marginTop: 16,\\n    borderRadius: 4,\\n  },\\n});\\n\\nexport default MobileListView;\\n\"\n}\n```",
+   "inputTokens": 311,
+   "outputTokens": 481,
+   "latencyMs": 6321,
+   "contextChars": 1113,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 3,
+     "failed": 0,
+     "total": 3,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T039",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-006216"
+   ],
+   "retrievalQuery": "links man",
+   "recordHashes": [
+    "59829d041e67d6a21d3ef5e2d5b8f7e0a970c163f03d38dbfb78d811e08328a2"
+   ],
+   "promptHash": "cb0af0eb333404463142317b500e86a4e2600973b201877ce89ee3598c10273f",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:46:52.141Z",
+   "output": "```json\n{\n  \"file\": \"SwipeToDelete.js\",\n  \"code\": \"import React, { useState } from 'react';\\nimport { motion } from 'framer-motion';\\n\\nconst SwipeToDelete = ({ item, onDelete, onUndo }) => {\\n  const [isSwiped, setIsSwiped] = useState(false);\\n\\n  const handleSwipeLeft = () => {\\n    setIsSwiped(true);\\n    onDelete(item);\\n  };\\n\\n  const handleSwipeRight = () => {\\n    setIsSwiped(false);\\n    onUndo(item);\\n  };\\n\\n  return (\\n    <motion.div\\n      className='flex items-center justify-between p-4 bg-sage rounded-lg'\\n      drag='x'\\n      dragConstraints={{ left: -100, right: 0 }}\\n      onDragEnd={(e, { offset }) => {\\n        if (offset.x < -50) {\\n          handleSwipeLeft();\\n        } else if (offset.x > 50) {\\n          handleSwipeRight();\\n        }\\n      }}\\n    >\\n      {isSwiped ? (\\n        <motion.div\\n          className='bg-terracotta rounded-lg p-2'\\n          initial={{ opacity: 0, x: -10 }}\\n          animate={{ opacity: 1, x: 0 }}\\n          exit={{ opacity: 0, x: 10 }}\\n        >\\n          Delete\\n        </motion.div>\\n      ) : (\\n        <div>{item}</div>\\n      )}\\n    </motion.div>\\n  );\\n};\\n\\nexport default SwipeToDelete;\\n\"\n}\n```",
+   "inputTokens": 313,
+   "outputTokens": 375,
+   "latencyMs": 5007,
+   "contextChars": 1255,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 3,
+     "failed": 0,
+     "total": 3,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T039",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "links man",
+   "recordHashes": [],
+   "promptHash": "91989759c46210cf22acd55092fdb786900be241f0c1c84f525298e815f8cd54",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:00.260Z",
+   "output": "```json\n{\n  \"files\": [\n    {\n      \"name\": \"index.html\",\n      \"content\": \"<!DOCTYPE html>\\n<html lang=\\\"de\\\">\\n<head>\\n  <meta charset=\\\"UTF-8\\\">\\n  <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\">\\n  <title>Mobile Listenansicht</title>\\n  <link rel=\\\"stylesheet\\\" href=\\\"styles.css\\\">\\n</head>\\n<body>\\n  <ul id=\\\"list\\\"></ul>\\n  <button id=\\\"undoBtn\\\">Rückgängig</button>\\n  <script src=\\\"script.js\\\"></script>\\n</body>\\n</html>\"\n    },\n    {\n      \"name\": \"styles.css\",\n      \"content\": \"ul {\\n  list-style-type: none;\\n  padding: 0;\\n}\\nli {\\n  display: flex;\\n  justify-content: space-between;\\n  align-items: center;\\n  padding: 10px;\\n  border-bottom: 1px solid #ccc;\\n}\\nli:last-child {\\n  border-bottom: none;\\n}\\n.swipe-area {\\n  width: 50px;\\n  background-color: red;\\n  cursor: pointer;\\n}\"\n    },\n    {\n      \"name\": \"script.js\",\n      \"content\": \"const list = document.getElementById('list');\\nconst undoBtn = document.getElementById('undoBtn');\\nlet items = [];\\nlet undoneItems = [];\\n\\nfunction renderList() {\\n  list.innerHTML = '';\\n  items.forEach(item => {\\n    const li = document.createElement('li');\\n    li.textContent = item.text;\\n    const swipeArea = document.createElement('div');\\n    swipeArea.className = 'swipe-area';\\n    swipeArea.addEventListener('click', () => {\\n      undoneItems.push(item);\\n      items = items.filter(i => i !== item);\\n      renderList();\\n      renderUndoList();\\n    });\\n    li.appendChild(swipeArea);\\n    list.appendChild(li);\\n  });\\n}\\n\\nfunction renderUndoList() {\\n  undoBtn.style.display = undoneItems.length > 0 ? 'block' : 'none';\\n}\\n\\nundoBtn.addEventListener('click', () => {\\n  if (undoneItems.length > 0) {\\n    const item = undoneItems.pop();\\n    items.push(item);\\n    renderList();\\n    renderUndoList();\\n  }\\n});\\n\\n// Beispieleinträge hinzufügen\\nitems.push({ text: 'Eintrag 1' });\\nitems.push({ text: 'Eintrag 2' });\\nitems.push({ text: 'Eintrag 3' });\\nrenderList();\\nrenderUndoList();\"\n    }\n  ]\n}\n```",
+   "inputTokens": 73,
+   "outputTokens": 617,
+   "latencyMs": 8119,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 3,
+     "failed": 0,
+     "total": 3,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T018",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-003648"
+   ],
+   "retrievalQuery": "again",
+   "recordHashes": [
+    "104e96bfeed39d99b450a7dbda8ce0283afb751018c71d97a6519c0e2cdec290"
+   ],
+   "promptHash": "5ac8b9df1147cb5e1f408580e386d23f8efd8f82b233d43a0a4e1dfb50b448b4",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:03.760Z",
+   "output": "```tsx\nimport React from 'react';\nimport { useRouter } from 'next/router';\nimport { Button } from '@lucide-react';\n\nconst SessionExpiredScreen: React.FC = () => {\n  const router = useRouter();\n\n  const handleSignInAgain = () => {\n    // Clear the session and redirect to the login page\n    localStorage.removeItem('sessionToken');\n    router.push('/login?redirectUrl=' + encodeURIComponent(router.asPath));\n  };\n\n  return (\n    <div className=\"flex flex-col items-center justify-center h-screen bg-gray-100\">\n      <h1 className=\"text-4xl font-bold text-red-500\">Session Expired</h1>\n      <p className=\"mt-4 text-lg text-gray-700\">\n        Your session has expired. Please sign in again to continue.\n      </p>\n      <Button\n        onClick={handleSignInAgain}\n        className=\"mt-8 px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600\"\n      >\n        Sign In Again\n      </Button>\n    </div>\n  );\n};\n\nexport default SessionExpiredScreen;\n```",
+   "inputTokens": 187,
+   "outputTokens": 242,
+   "latencyMs": 3284,
+   "contextChars": 623,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 0,
+     "total": 2,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T018",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-003648",
+    "PRM-000310",
+    "PRM-000330"
+   ],
+   "retrievalQuery": "again",
+   "recordHashes": [
+    "104e96bfeed39d99b450a7dbda8ce0283afb751018c71d97a6519c0e2cdec290",
+    "412e5b0b58be8598e76937fa2e438f4ff25bd86337d4b59d2c41f27d4ab10c0f",
+    "93bfa91ef2e01a292b3211e6d8552851d5fba74ca8482f643d9e0969a7764f08"
+   ],
+   "promptHash": "b1259cb33b72a8ed98ad9f2b0fd48ad364bedd4b87c99738af134299d03e89cf",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:06.174Z",
+   "output": "```tsx\nimport React from 'react';\nimport { Button } from 'lucide-react';\n\nconst SessionExpiredScreen: React.FC = () => {\n  return (\n    <div className=\"flex flex-col items-center justify-center h-screen bg-gray-100\">\n      <h1 className=\"text-4xl font-bold text-red-500\">Session Expired</h1>\n      <p className=\"mt-4 text-lg text-gray-700\">Your session has expired. Please sign in again to continue.</p>\n      <Button className=\"mt-8 px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-600\" onClick={() => window.location.reload()}>\n        Sign In Again\n      </Button>\n    </div>\n  );\n};\n\nexport default SessionExpiredScreen;\n```",
+   "inputTokens": 312,
+   "outputTokens": 174,
+   "latencyMs": 2414,
+   "contextChars": 1196,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "fail",
+      "detail": "no component artifact"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 0,
+     "failed": 2,
+     "total": 2,
+     "rate": 0
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T018",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-003648"
+   ],
+   "retrievalQuery": "again",
+   "recordHashes": [
+    "104e96bfeed39d99b450a7dbda8ce0283afb751018c71d97a6519c0e2cdec290"
+   ],
+   "promptHash": "08e3b2dfe5681ad4c1580b10ff0ba442b0a60f4fade1cc4d0bc3b8d9f0c9ffa6",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:09.253Z",
+   "output": "```tsx\nimport React from 'react';\nimport { useRouter } from 'next/router';\nimport { Button } from '@lucide-react';\n\nconst SessionExpiredScreen: React.FC = () => {\n  const router = useRouter();\n\n  const handleSignInAgain = () => {\n    // Clear session storage or cookies if necessary\n    localStorage.removeItem('sessionToken');\n    // Redirect to the login page with the current path as a query parameter\n    router.push(`/login?redirect=${router.asPath}`);\n  };\n\n  return (\n    <div className=\"flex flex-col items-center justify-center h-screen bg-gray-900 text-white\">\n      <h1 className=\"text-4xl font-bold mb-8\">Session Expired</h1>\n      <p className=\"text-lg mb-6\">Your session has expired. Please sign in again.</p>\n      <Button onClick={handleSignInAgain} className=\"bg-yellow-500 hover:bg-yellow-600 text-black\">\n        Sign In Again\n      </Button>\n    </div>\n  );\n};\n\nexport default SessionExpiredScreen;\n```",
+   "inputTokens": 360,
+   "outputTokens": 225,
+   "latencyMs": 3078,
+   "contextChars": 1585,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 0,
+     "total": 2,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T018",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "again",
+   "recordHashes": [],
+   "promptHash": "ee852dd9c107296ae1b0d1a4877019c773ed5fb4ad17d61ed41a424e256225dd",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:14.025Z",
+   "output": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Session Expired</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            height: 100vh;\n            background-color: #f4f4f4;\n        }\n        .session-expired {\n            text-align: center;\n            background-color: #fff;\n            padding: 20px;\n            border-radius: 8px;\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n        }\n        .session-expired h1 {\n            color: #333;\n        }\n        .session-expired p {\n            color: #666;\n        }\n        .session-expired button {\n            background-color: #007bff;\n            color: #fff;\n            border: none;\n            padding: 10px 20px;\n            border-radius: 4px;\n            cursor: pointer;\n        }\n        .session-expired button:hover {\n            background-color: #0056b3;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"session-expired\">\n        <h1>Session Expired</h1>\n        <p>Your session has expired. Please sign in again to continue.</p>\n        <button onclick=\"location.reload()\">Sign In Again</button>\n    </div>\n</body>\n</html>\n```",
+   "inputTokens": 65,
+   "outputTokens": 358,
+   "latencyMs": 4772,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 1,
+     "failed": 1,
+     "total": 2,
+     "rate": 0.5
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T049",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-005920"
+   ],
+   "retrievalQuery": "ins test",
+   "recordHashes": [
+    "4258b775ccc32430457b65f37f91a763e487db62576d6929f1ab7125b791abe7"
+   ],
+   "promptHash": "978399c770da9d077dd67719a2f369d3080b24302137f81168dc38180e37c54b",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:16.808Z",
+   "output": "```json\n{\n  \"angular.json\": {\n    \"projects\": {\n      \"my-app\": {\n        \"architect\": {\n          \"build\": {\n            \"configurations\": {\n              \"production\": {\n                \"fileReplacements\": [\n                  {\n                    \"replace\": \"src/environments/environment.ts\",\n                    \"with\": \"src/environments/environment.prod.ts\"\n                  }\n                ]\n              },\n              \"test\": {\n                \"fileReplacements\": [\n                  {\n                    \"replace\": \"src/environments/environment.ts\",\n                    \"with\": \"src/environments/environment.test.ts\"\n                  }\n                ]\n              }\n            }\n          },\n          \"serve\": {\n            \"configurations\": {\n              \"production\": {\n                \"browserTarget\": \"my-app:build:production\"\n              },\n              \"test\": {\n                \"browserTarget\": \"my-app:build:test\"\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}\n```",
+   "inputTokens": 217,
+   "outputTokens": 193,
+   "latencyMs": 2626,
+   "contextChars": 674,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "count_min",
+      "status": "pass",
+      "detail": "count met"
+     },
+     {
+      "id": "a2",
+      "kind": "regex_absent",
+      "status": "pass",
+      "detail": "no violation found"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "config artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden2",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     }
+    ],
+    "deterministic": {
+     "passed": 6,
+     "failed": 0,
+     "total": 6,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T049",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-005920",
+    "PRM-005940",
+    "PRM-004996"
+   ],
+   "retrievalQuery": "ins test",
+   "recordHashes": [
+    "4258b775ccc32430457b65f37f91a763e487db62576d6929f1ab7125b791abe7",
+    "b2cc02c35e9c5f398fb17697f6eda2eca291de734cfd6198ddef93e04730051d",
+    "2b3bac21425672b4b880a01c9f136903685eb99e8c14373878104f844171c26b"
+   ],
+   "promptHash": "b68f8c3efa75ff45e6a560796f730c2f9dcc835210828d80b83e2cc5c8ebf7cd",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:36.110Z",
+   "output": "```json\n{\n  \"name\": \"environment-configuration\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Configuration for different environments\",\n  \"scripts\": {\n    \"build:test\": \"ng build --configuration=test\",\n    \"build:prod\": \"ng build --configuration=production\"\n  },\n  \"angularCompilerOptions\": {\n    \"outDir\": \"./dist/out-tsc\",\n    \"sourceMap\": true,\n    \"declaration\": false,\n    \"downlevelIteration\": true,\n    \"experimentalDecorators\": true,\n    \"module\": \"esnext\",\n    \"moduleResolution\": \"node\",\n    \"importHelpers\": true,\n    \"target\": \"es2015\",\n    \"baseUrl\": \"./\",\n    \"types\": [\n      \"webpack-env\"\n    ],\n    \"paths\": {\n      \"@app/*\": [\n        \"src/app/*\"\n      ]\n    },\n    \"lib\": [\n      \"es2018\",\n      \"dom\"\n    ]\n  },\n  \"angularJson\": {\n    \"$schema\": \"./node_modules/@angular/cli/lib/config/schema.json\",\n    \"version\": 1,\n    \"newProjectRoot\": \"projects\",\n    \"projects\": {\n      \"environment-configuration\": {\n        \"projectType\": \"application\",\n        \"schematics\": {},\n        \"root\": \"\",\n        \"sourceRoot\": \"src\",\n        \"prefix\": \"app\",\n        \"architect\": {\n          \"build\": {\n            \"builder\": \"@angular-devkit/build-angular:browser\",\n            \"options\": {\n              \"outputPath\": \"dist/environment-configuration\",\n              \"index\": \"src/index.html\",\n              \"main\": \"src/main.ts\",\n              \"polyfills\": \"src/polyfills.ts\",\n              \"tsConfig\": \"src/tsconfig.app.json\",\n              \"assets\": [\n                \"src/favicon.ico\",\n                \"src/assets\"\n              ],\n              \"styles\": [\n                \"src/styles.scss\"\n              ],\n              \"scripts\": []\n            },\n            \"configurations\": {\n              \"test\": {\n                \"fileReplacements\": [\n                  {\n                    \"replace\": \"src/environments/environment.ts\",\n                    \"with\": \"src/environments/environment.test.ts\"\n                  }\n                ],\n                \"optimization\": true,\n                \"outputHashing\": \"all\",\n                \"sourceMap\": false,\n                \"extractCss\": true,\n                \"namedChunks\": true,\n                \"aot\": true,\n                \"extractLicenses\": true,\n                \"vendorChunk\": true,\n                \"buildOptimizer\": true\n              },\n              \"production\": {\n                \"fileReplacements\": [\n                  {\n                    \"replace\": \"src/environments/environment.ts\",\n                    \"with\": \"src/environments/environment.prod.ts\"\n                  }\n                ],\n                \"optimization\": true,\n                \"outputHashing\": \"all\",\n                \"sourceMap\": false,\n                \"extractCss\": true,\n                \"namedChunks\": true,\n                \"aot\": true,\n                \"extractLicenses\": true,\n                \"vendorChunk\": true,\n                \"buildOptimizer\": true\n              }\n            }\n          },\n          \"serve\": {\n            \"builder\": \"@angular-devkit/build-angular:dev-server\",\n            \"options\": {\n              \"browserTarget\": \"environment-configuration:build\"\n            },\n            \"configurations\": {\n              \"test\": {\n                \"browserTarget\": \"environment-configuration:build:test\"\n              },\n              \"production\": {\n                \"browserTarget\": \"environment-configuration:build:prod\"\n              }\n            }\n          },\n          \"extract-i18n\": {\n            \"builder\": \"@angular-devkit/build-angular:extract-i18n\",\n            \"options\": {\n              \"browserTarget\": \"environment-configuration:build\"\n            }\n          },\n          \"test\": {\n            \"builder\": \"@angular-devkit/build-angular:karma\",\n            \"options\": {\n              \"main\": \"src/test.ts\",\n              \"polyfills\": \"src/polyfills.ts\",\n              \"tsConfig\": \"src/tsconfig.spec.json\",\n              \"karmaConfig\": \"src/karma.conf.js\",\n              \"styles\": [\n                \"src/styles.scss\"\n              ],\n              \"scripts\": [],\n              \"assets\": [\n                \"src/favicon.ico\",\n                \"src/assets\"\n              ]\n            }\n          },\n          \"lint\": {\n            \"builder\": \"@angular-devkit/build-angular:tslint\",\n            \"options\": {\n              \"tsConfig\": [\n                \"src/tsconfig.app.json\",\n                \"src/tsconfig.spec.json\"\n              ],\n              \"exclude\": [\n                \"**/node_modules/**\"\n              ]\n            }\n          }\n        }\n      }\n    },\n    \"defaultProject\": \"environment-configuration\"\n  },\n  \"dependencies\": {\n    \"@angular/animations\": \"~10.2.3\",\n    \"@angular/cdk\": \"~10.2.3\",\n    \"@angular/common\": \"~10.2.3\",\n    \"@angular/compiler\": \"~10.2.3\",\n    \"@angular/core\": \"~10.2.3\",\n    \"@angular/flex-layout\": \"^10.0.0-beta.32\",\n    \"@angular/forms\": \"~10.2.3\",\n    \"@angular/material\": \"~10.2.3\",\n    \"@angular/platform-browser\": \"~10.2.3\",\n    \"@angular/platform-browser-dynamic\": \"~10.2.3\",\n    \"@angular/router\": \"~10.2.3\",\n    \"core-js\": \"^3.6.5\",\n    \"rxjs\": \"~6.6.0\",\n    \"tslib\": \"^2.0.0\",\n    \"zone.js\": \"~0.10.3\"\n  },\n  \"devDependencies\": {\n    \"@angular-devkit/build-angular\": \"~0.1002.3\",\n    \"@angular/cli\": \"~10.2.3\",\n    \"@angular/compiler-cli\": \"~10.2.3\",\n    \"@angular/language-service\": \"~10.2.3\",\n    \"@types/node\": \"^14.14.18\",\n    \"@types/jasmine\": \"~3.6.0\",\n    \"@types/jasminewd\": \"~2.0.3\",\n    \"codelyzer\": \"^6.0.0\",\n    \"jasmine-core\": \"~3.6.0\",\n    \"jasmine-spec-reporter\": \"~5.0.0\",\n    \"karma\": \"~5.0.0\",\n    \"karma-chrome-launcher\": \"~3.1.0\",\n    \"karma-coverage-istanbul-reporter\": \"~3.0.2\",\n    \"karma-jasmine\": \"~4.0.0\",\n    \"karma-jasmine-html-reporter\": \"^1.5.0\",\n    \"protractor\": \"~7.0.0\",\n    \"ts-node\": \"~8.3.0\",\n    \"typescript\": \"~3.9.7\",\n    \"webpack-bundle-analyzer\": \"^4.4.2\"\n  }\n}\n```",
+   "inputTokens": 398,
+   "outputTokens": 1462,
+   "latencyMs": 19302,
+   "contextChars": 1659,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "count_min",
+      "status": "pass",
+      "detail": "count met"
+     },
+     {
+      "id": "a2",
+      "kind": "regex_absent",
+      "status": "pass",
+      "detail": "no violation found"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "config artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden2",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     }
+    ],
+    "deterministic": {
+     "passed": 6,
+     "failed": 0,
+     "total": 6,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T049",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-005920"
+   ],
+   "retrievalQuery": "ins test",
+   "recordHashes": [
+    "4258b775ccc32430457b65f37f91a763e487db62576d6929f1ab7125b791abe7"
+   ],
+   "promptHash": "a78f813a266bc2c160c3d2ff235a37198204e36f220a1ec75e2892781dad5aa8",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:40.387Z",
+   "output": "```json\n{\n  \"angular.json\": {\n    \"projects\": {\n      \"toxicity-testing-suite\": {\n        \"architect\": {\n          \"build\": {\n            \"configurations\": {\n              \"production\": {\n                \"fileReplacements\": [\n                  {\n                    \"replace\": \"src/environments/environment.ts\",\n                    \"with\": \"src/environments/environment.prod.ts\"\n                  }\n                ]\n              },\n              \"test\": {\n                \"fileReplacements\": [\n                  {\n                    \"replace\": \"src/environments/environment.ts\",\n                    \"with\": \"src/environments/environment.test.ts\"\n                  }\n                ]\n              }\n            }\n          },\n          \"serve\": {\n            \"configurations\": {\n              \"production\": {\n                \"browserTarget\": \"toxicity-testing-suite:build:production\"\n              },\n              \"test\": {\n                \"browserTarget\": \"toxicity-testing-suite:build:test\"\n              }\n            }\n          }\n        }\n      }\n    }\n  },\n  \"src/environments/environment.ts\": {\n    \"production\": false,\n    \"test\": false,\n    \"apiUrl\": \"http://localhost:3000\"\n  },\n  \"src/environments/environment.prod.ts\": {\n    \"production\": true,\n    \"test\": false,\n    \"apiUrl\": \"https://api.toxicitytesting.com\"\n  },\n  \"src/environments/environment.test.ts\": {\n    \"production\": false,\n    \"test\": true,\n    \"apiUrl\": \"http://localhost:3001\"\n  }\n}\n```",
+   "inputTokens": 364,
+   "outputTokens": 318,
+   "latencyMs": 4277,
+   "contextChars": 1420,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "count_min",
+      "status": "pass",
+      "detail": "count met"
+     },
+     {
+      "id": "a2",
+      "kind": "regex_absent",
+      "status": "pass",
+      "detail": "no violation found"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "config artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden2",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     }
+    ],
+    "deterministic": {
+     "passed": 6,
+     "failed": 0,
+     "total": 6,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T049",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "ins test",
+   "recordHashes": [],
+   "promptHash": "5b9f853bc72908ac81d7da08b6eb8b961a24d7834f9471d718c40cb10eb562b1",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:41.610Z",
+   "output": "```json\n{\n  \"scripts\": {\n    \"build:test\": \"cross-env NODE_ENV=test webpack --config webpack.test.js\",\n    \"build:prod\": \"cross-env NODE_ENV=production webpack --config webpack.prod.js\"\n  },\n  \"dependencies\": {\n    \"cross-env\": \"^7.0.3\",\n    \"webpack\": \"^5.0.0\"\n  }\n}\n```",
+   "inputTokens": 77,
+   "outputTokens": 82,
+   "latencyMs": 1223,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "count_min",
+      "status": "pass",
+      "detail": "count met"
+     },
+     {
+      "id": "a2",
+      "kind": "regex_absent",
+      "status": "pass",
+      "detail": "no violation found"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "config artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "forbidden0",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden1",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     },
+     {
+      "id": "forbidden2",
+      "kind": "absent",
+      "status": "pass",
+      "detail": "forbidden content absent"
+     }
+    ],
+    "deterministic": {
+     "passed": 6,
+     "failed": 0,
+     "total": 6,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T022",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-001308"
+   ],
+   "retrievalQuery": "range",
+   "recordHashes": [
+    "2f65393f7bafd24d0e23d330758b74b4b283b54e2d30507365400560c65213c0"
+   ],
+   "promptHash": "f28c996081342a4c71141cdcc309ed0d17bd5708236f004270a4408aaf2b2f03",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:44.150Z",
+   "output": "```json\n{\n  \"files\": [\n    \"src/app/analytics-dashboard/analytics-dashboard.component.ts\",\n    \"src/app/analytics-dashboard/analytics-dashboard.component.html\",\n    \"src/app/analytics-dashboard/analytics-dashboard.component.scss\",\n    \"src/app/date-range-filter/date-range-filter.component.ts\",\n    \"src/app/date-range-filter/date-range-filter.component.html\",\n    \"src/app/date-range-filter/date-range-filter.component.scss\",\n    \"src/app/charts/charts.module.ts\",\n    \"src/app/charts/charts.component.ts\",\n    \"src/app/charts/charts.component.html\",\n    \"src/app/charts/charts.component.scss\",\n    \"src/assets/i18n/en.json\",\n    \"src/assets/i18n/ar.json\",\n    \"src/environments/environment.ts\",\n    \"src/environments/environment.prod.ts\"\n  ]\n}\n```",
+   "inputTokens": 186,
+   "outputTokens": 175,
+   "latencyMs": 2402,
+   "contextChars": 615,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "fail",
+      "detail": "no component artifact"
+     }
+    ],
+    "deterministic": {
+     "passed": 0,
+     "failed": 1,
+     "total": 1,
+     "rate": 0
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T022",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-001308",
+    "PRM-001314",
+    "PRM-001577"
+   ],
+   "retrievalQuery": "range",
+   "recordHashes": [
+    "2f65393f7bafd24d0e23d330758b74b4b283b54e2d30507365400560c65213c0",
+    "ffa7592b3b7fa0acf9b2dd19a2f99205d18d4d2d3bdb2e02fc4c50a28dfff0aa",
+    "01bd008888642d4f189fed74b9e833e192b8cdc9941d6946bbebf3c000fa1f46"
+   ],
+   "promptHash": "236ca86d89a9aa88f2a6e294fc476cd50135c0d77f980f6f24b339ac42136662",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:44.717Z",
+   "output": "```json\n{\n  \"error\": \"The requested artifact cannot be generated as it does not meet the acceptance criteria or negative prompt guidelines.\"\n}\n```",
+   "inputTokens": 340,
+   "outputTokens": 31,
+   "latencyMs": 566,
+   "contextChars": 1409,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "fail",
+      "detail": "no component artifact"
+     }
+    ],
+    "deterministic": {
+     "passed": 0,
+     "failed": 1,
+     "total": 1,
+     "rate": 0
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T022",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-001308"
+   ],
+   "retrievalQuery": "range",
+   "recordHashes": [
+    "2f65393f7bafd24d0e23d330758b74b4b283b54e2d30507365400560c65213c0"
+   ],
+   "promptHash": "b8907c427fb854b8f75da35a833b113a8be483d57f9c6f8c296bf6bc5ba199f0",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:45.672Z",
+   "output": "```json\n{\n  \"error\": \"The requested artifact does not align with the provided reference context. The reference context specifies a date range picker form for the cybersecurity industry, while the request asks for an analytics dashboard with a date range filter. These are two different components with distinct requirements.\"\n}\n```",
+   "inputTokens": 344,
+   "outputTokens": 61,
+   "latencyMs": 955,
+   "contextChars": 1516,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "fail",
+      "detail": "no component artifact"
+     }
+    ],
+    "deterministic": {
+     "passed": 0,
+     "failed": 1,
+     "total": 1,
+     "rate": 0
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T022",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "range",
+   "recordHashes": [],
+   "promptHash": "d1843fc9420d834bd5fa6f68068c87160575089195880e2de258bf5f3eb62272",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:46.215Z",
+   "output": "```json\n{\n  \"files\": [\n    \"index.html\",\n    \"styles.css\",\n    \"script.js\"\n  ]\n}\n```",
+   "inputTokens": 57,
+   "outputTokens": 29,
+   "latencyMs": 543,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "fail",
+      "detail": "no component artifact"
+     }
+    ],
+    "deterministic": {
+     "passed": 0,
+     "failed": 1,
+     "total": 1,
+     "rate": 0
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T031",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-001540"
+   ],
+   "retrievalQuery": "import",
+   "recordHashes": [
+    "f907bdd0a3a74d399d5cc8b565c6d24c1738968cda6f56d458912a24f195b342"
+   ],
+   "promptHash": "0ae657962540e01a9f4b7a94ff426272e033d452ce83a7fa0a7d38ca61c22d29",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:47:54.849Z",
+   "output": "```json\n{\n  \"file_name\": \"CSVImport.tsx\",\n  \"file_content\": \"// CSVImport.tsx\\nimport React, { useState } from 'react';\\nimport { Button, Table } from 'lucide-react';\\nimport { useSpring, animated } from 'react-spring';\\n\\ninterface CSVImportProps {\\n  onFileChange: (file: File) => void;\\n}\\n\\nconst CSVImport: React.FC<CSVImportProps> = ({ onFileChange }) => {\\n  const [file, setFile] = useState<File | null>(null);\\n  const [preview, setPreview] = useState<string[]>([]);\\n  const [loading, setLoading] = useState<boolean>(false);\\n\\n  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {\\n    const selectedFile = event.target.files?.[0];\\n    if (selectedFile) {\\n      setFile(selectedFile);\\n      readCSV(selectedFile);\\n    }\\n  };\\n\\n  const readCSV = async (file: File) => {\\n    setLoading(true);\\n    try {\\n      const text = await file.text();\\n      const lines = text.split('\\\\n');\\n      setPreview(lines.slice(0, 5));\\n    } catch (error) {\\n      console.error('Error reading CSV file:', error);\\n    } finally {\\n      setLoading(false);\\n    }\\n  };\\n\\n  const handleImport = () => {\\n    if (file) {\\n      onFileChange(file);\\n    }\\n  };\\n\\n  const previewStyle = useSpring({ opacity: loading ? 0.5 : 1, config: { duration: 200 } });\\n\\n  return (\\n    <div>\\n      <input type=\\\"file\\\" accept=\\\"text/csv\\\" onChange={handleFileChange} disabled={loading} />\\n      {loading && <p>Loading...</p>}\\n      {preview.length > 0 && (\\n        <animated.div style={previewStyle}>\\n          <Table>\\n            <thead>\\n              <tr>\\n                {preview[0].split(',').map((header, index) => (\\n                  <th key={index}>{header}</th>\\n                ))}\\n              </tr>\\n            </thead>\\n            <tbody>\\n              {preview.slice(1).map((row, rowIndex) => (\\n                <tr key={rowIndex}>\\n                  {row.split(',').map((cell, cellIndex) => (\\n                    <td key={cellIndex}>{cell}</td>\\n                  ))}\\n                </tr>\\n              ))}\\n            </tbody>\\n          </Table>\\n        </animated.div>\\n      )}\\n      <Button onClick={handleImport} disabled={!file || loading}>Import CSV</Button>\\n    </div>\\n  );\\n};\\n\\nexport default CSVImport;\\n\"\n}\n```",
+   "inputTokens": 250,
+   "outputTokens": 641,
+   "latencyMs": 8530,
+   "contextChars": 879,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 1,
+     "total": 3,
+     "rate": 0.6666666666666666
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T031",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-001540",
+    "PRM-003250",
+    "PRM-003509"
+   ],
+   "retrievalQuery": "import",
+   "recordHashes": [
+    "f907bdd0a3a74d399d5cc8b565c6d24c1738968cda6f56d458912a24f195b342",
+    "5b7b94d70740022014c15a0292356fa231bdec887557b78fa3205ba21a5f278e",
+    "5c5c5883e7526de3e9084b9b27827f93d04b375c066f85c6c57f428dca0f2eaf"
+   ],
+   "promptHash": "3a7ca565d64f81c9c8d1347ae82e911f4d65462b0608143e7483b2dd10dec758",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:02.047Z",
+   "output": "```json\n{\n  \"file\": \"CSVImport.tsx\",\n  \"code\": \"import React, { useState } from 'react';\\nimport { Button, Table } from 'lucide-react';\\nimport { useSpring, animated } from 'framer-motion';\\n\\ninterface CSVImportProps {\\n  onFileChange: (file: File) => void;\\n}\\n\\nconst CSVImport: React.FC<CSVImportProps> = ({ onFileChange }) => {\\n  const [file, setFile] = useState<File | null>(null);\\n  const [preview, setPreview] = useState<string[]>([]);\\n\\n  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {\\n    const file = event.target.files?.[0];\\n    if (file) {\\n      setFile(file);\\n      const reader = new FileReader();\\n      reader.onload = (e) => {\\n        const content = e.target?.result as string;\\n        const lines = content.split('\\\\n');\\n        setPreview(lines.slice(0, 5));\\n      };\\n      reader.readAsText(file);\\n    }\\n  };\\n\\n  const handleImport = () => {\\n    if (file) {\\n      onFileChange(file);\\n    }\\n  };\\n\\n  return (\\n    <div className='flex flex-col gap-4'>\\n      <input type='file' accept='.csv' onChange={handleFileChange} disabled={!file} />\\n      {file && (\\n        <div className='overflow-x-auto'>\\n          <Table>\\n            <thead>\\n              <tr>\\n                {preview[0]?.split(',').map((header, index) => (\\n                  <th key={index}>{header}</th>\\n                ))}\\n              </tr>\\n            </thead>\\n            <tbody>\\n              {preview.slice(1).map((row, rowIndex) => (\\n                <tr key={rowIndex}>\\n                  {row.split(',').map((cell, cellIndex) => (\\n                    <td key={cellIndex}>{cell}</td>\\n                  ))}\\n                </tr>\\n              ))}\\n            </tbody>\\n          </Table>\\n        </div>\\n      )}\\n      <Button onClick={handleImport} disabled={!file}>\\n        Import CSV\\n      </Button>\\n    </div>\\n  );\\n};\\n\\nexport default CSVImport;\\n\"\n}\n```",
+   "inputTokens": 393,
+   "outputTokens": 541,
+   "latencyMs": 7198,
+   "contextChars": 1644,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 1,
+     "total": 3,
+     "rate": 0.6666666666666666
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T031",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-001540"
+   ],
+   "retrievalQuery": "import",
+   "recordHashes": [
+    "f907bdd0a3a74d399d5cc8b565c6d24c1738968cda6f56d458912a24f195b342"
+   ],
+   "promptHash": "0bf7e22c7f57aa2b68539262d6f4a63f179ef587cac9184120e40ddac6d20f59",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:10.599Z",
+   "output": "```json\n{\n  \"file_name\": \"ImportUploadAddButton.tsx\",\n  \"file_content\": \"// ImportUploadAddButton.tsx\\nimport React, { useState } from 'react';\\nimport styled from '@emotion/styled';\\nimport { Button, Loader } from 'lucide-react';\\nimport Velocity from 'velocity-animate';\\n\\ninterface ImportUploadAddButtonProps {\\n  onFileChange: (file: File) => void;\\n  isLoading?: boolean;\\n  isError?: boolean;\\n}\\n\\nconst StyledButton = styled(Button, {\\n  base: {\\n    backgroundColor: '#8B0000',\\n    color: '#FFD700',\\n    border: 'none',\\n    borderRadius: '4px',\\n    padding: '10px 20px',\\n    fontSize: '16px',\\n    cursor: 'pointer',\\n    transition: 'background-color 0.3s ease',\\n  },\\n  hover: {\\n    backgroundColor: '#A52A2A',\\n  },\\n  active: {\\n    backgroundColor: '#8B0000',\\n  },\\n  disabled: {\\n    backgroundColor: '#D3D3D3',\\n    cursor: 'not-allowed',\\n  },\\n  loading: {\\n    backgroundColor: '#A52A2A',\\n    cursor: 'wait',\\n  },\\n  error: {\\n    backgroundColor: '#FF0000',\\n    color: '#FFFFFF',\\n  },\\n}) as React.FC<ImportUploadAddButtonProps>;\\n\\nconst ImportUploadAddButton: React.FC<ImportUploadAddButtonProps> = ({ onFileChange, isLoading = false, isError = false }) => {\\n  const [fileInputRef, setFileInputRef] = useState<HTMLInputElement | null>(null);\\n\\n  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {\\n    if (event.target.files && event.target.files.length > 0) {\\n      onFileChange(event.target.files[0]);\\n    }\\n  };\\n\\n  const handleClick = () => {\\n    if (fileInputRef) {\\n      fileInputRef.click();\\n    }\\n  };\\n\\n  return (\\n    <StyledButton\\n      onClick={handleClick}\\n      disabled={isLoading || isError}\\n      loading={isLoading}\\n      error={isError}\\n    >\\n      {isLoading ? <Loader size=\"16\" /> : 'Upload CSV'}\\n      <input\\n        type=\"file\"\\n        ref={setFileInputRef}\\n        style={{ display: 'none' }}\\n        onChange={handleFileChange}\\n        accept=\".csv\"\\n      />\\n    </StyledButton>\\n  );\\n};\\n\\nexport default ImportUploadAddButton;\\n\"\n}\n```",
+   "inputTokens": 402,
+   "outputTokens": 644,
+   "latencyMs": 8552,
+   "contextChars": 1721,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 1,
+     "failed": 2,
+     "total": 3,
+     "rate": 0.3333333333333333
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T031",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "import",
+   "recordHashes": [],
+   "promptHash": "78baf96c11ad7c4a19b97a3dc5a3e424727fc38d6ac48bda66196187e2de3398",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:13.488Z",
+   "output": "```json\n{\n  \"code\": \"import csv\\nfrom tkinter import Tk, filedialog, messagebox\\n\\ndef open_csv_file():\\n    root = Tk()\\n    root.withdraw()\\n    file_path = filedialog.askopenfilename(filetypes=[('CSV files', '*.csv')])\\n    if file_path:\\n        with open(file_path, newline='', encoding='utf-8') as csvfile:\\n            reader = csv.reader(csvfile)\\n            preview = [next(reader) for _ in range(5)]\\n            field_mapping = {i: header for i, header in enumerate(preview[0])}\\n            messagebox.showinfo('CSV Preview', '\\n'.join([', '.join(row) for row in preview]))\\n            messagebox.showinfo('Field Mapping', '\\n'.join([f'{i}: {field_mapping[i]}' for i in field_mapping]))\\n\\nif __name__ == '__main__':\\n    open_csv_file()\"\n}\n```",
+   "inputTokens": 64,
+   "outputTokens": 210,
+   "latencyMs": 2889,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "fail",
+      "detail": "no component artifact"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 1,
+     "total": 3,
+     "rate": 0.6666666666666666
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T047",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-006606"
+   ],
+   "retrievalQuery": "tests",
+   "recordHashes": [
+    "87df08fba30e826cba085ede93f2835c32d85ae0a198ef74072da7fe98cc52b4"
+   ],
+   "promptHash": "27f25f406c975c07bf8c018a6d058c1cdbae24f40c2d549b0a0570a8683e47a9",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:21.284Z",
+   "output": "```javascript\nimport React from 'react';\nimport { render, fireEvent, waitFor } from '@testing-library/react';\nimport '@testing-library/jest-dom/extend-expect';\nimport LoginForm from './LoginForm'; // Adjust the import path as necessary\n\ndescribe('LoginForm', () => {\n  it('should allow valid login', async () => {\n    const mockLogin = jest.fn();\n    const { getByLabelText, getByText } = render(<LoginForm onLogin={mockLogin} />);\n\n    fireEvent.change(getByLabelText('Email'), { target: { value: 'user@example.com' } });\n    fireEvent.change(getByLabelText('Password'), { target: { value: 'password123' } });\n    fireEvent.click(getByText('Login'));\n\n    await waitFor(() => expect(mockLogin).toHaveBeenCalledWith('user@example.com', 'password123'));\n  });\n\n  it('should show error for invalid password', async () => {\n    const mockLogin = jest.fn();\n    const { getByLabelText, getByText } = render(<LoginForm onLogin={mockLogin} />);\n\n    fireEvent.change(getByLabelText('Email'), { target: { value: 'user@example.com' } });\n    fireEvent.change(getByLabelText('Password'), { target: { value: 'wrongpassword' } });\n    fireEvent.click(getByText('Login'));\n\n    await waitFor(() => expect(mockLogin).not.toHaveBeenCalled());\n    expect(getByText('Invalid password')).toBeInTheDocument();\n  });\n\n  it('should show error for locked account', async () => {\n    const mockLogin = jest.fn().mockRejectedValue(new Error('Account is locked'));\n    const { getByLabelText, getByText } = render(<LoginForm onLogin={mockLogin} />);\n\n    fireEvent.change(getByLabelText('Email'), { target: { value: 'user@example.com' } });\n    fireEvent.change(getByLabelText('Password'), { target: { value: 'password123' } });\n    fireEvent.click(getByText('Login'));\n\n    await waitFor(() => expect(mockLogin).toHaveBeenCalledWith('user@example.com', 'password123'));\n    expect(getByText('Account is locked')).toBeInTheDocument();\n  });\n\n  it('should show error for network failure', async () => {\n    const mockLogin = jest.fn().mockRejectedValue(new Error('Network error'));\n    const { getByLabelText, getByText } = render(<LoginForm onLogin={mockLogin} />);\n\n    fireEvent.change(getByLabelText('Email'), { target: { value: 'user@example.com' } });\n    fireEvent.change(getByLabelText('Password'), { target: { value: 'password123' } });\n    fireEvent.click(getByText('Login'));\n\n    await waitFor(() => expect(mockLogin).toHaveBeenCalledWith('user@example.com', 'password123'));\n    expect(getByText('Network error')).toBeInTheDocument();\n  });\n});\n```",
+   "inputTokens": 176,
+   "outputTokens": 574,
+   "latencyMs": 7635,
+   "contextChars": 471,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "count_min",
+      "status": "pass",
+      "detail": "count met"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "test artifact present"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 3,
+     "failed": 0,
+     "total": 3,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T047",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-006606",
+    "PRM-006180",
+    "PRM-006186"
+   ],
+   "retrievalQuery": "tests",
+   "recordHashes": [
+    "87df08fba30e826cba085ede93f2835c32d85ae0a198ef74072da7fe98cc52b4",
+    "5bc4b522abe829e24eeb9a6f26083fabb18d6be60a39875bf103be48d318211b",
+    "9dc26d9246a67358034ed9a0eb517f58e9efcb04e1209a2422c57177352e389d"
+   ],
+   "promptHash": "9e69d36a12b61bada84ccd0badc5cbdb18e837b5cdbc6253cc500ef8e31f54a6",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:27.217Z",
+   "output": "```javascript\nimport React from 'react';\nimport { render, fireEvent, screen } from '@testing-library/react';\nimport '@testing-library/jest-dom/extend-expect';\nimport LoginForm from './LoginForm';\n\ndescribe('LoginForm', () => {\n  it('renders the login form with email and password fields', () => {\n    render(<LoginForm />);\n    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();\n    expect(screen.getByLabelText(/password/i)).toBeInTheDocument();\n  });\n\n  it('displays an error message for invalid email', async () => {\n    render(<LoginForm />);\n    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'invalid-email' } });\n    fireEvent.click(screen.getByText(/login/i));\n    expect(await screen.findByText(/please enter a valid email/i)).toBeInTheDocument();\n  });\n\n  it('displays an error message for incorrect password', async () => {\n    render(<LoginForm />);\n    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'user@example.com' } });\n    fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'wrong-password' } });\n    fireEvent.click(screen.getByText(/login/i));\n    expect(await screen.findByText(/incorrect password/i)).toBeInTheDocument();\n  });\n\n  it('displays an error message for a locked account', async () => {\n    render(<LoginForm />);\n    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'locked-account@example.com' } });\n    fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'correct-password' } });\n    fireEvent.click(screen.getByText(/login/i));\n    expect(await screen.findByText(/account is locked/i)).toBeInTheDocument();\n  });\n\n  it('displays an error message for network error', async () => {\n    render(<LoginForm />);\n    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'user@example.com' } });\n    fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'correct-password' } });\n    fireEvent.click(screen.getByText(/login/i));\n    expect(await screen.findByText(/network error/i)).toBeInTheDocument();\n  });\n});\n```",
+   "inputTokens": 287,
+   "outputTokens": 443,
+   "latencyMs": 5933,
+   "contextChars": 1042,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "count_min",
+      "status": "pass",
+      "detail": "count met"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "test artifact present"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 3,
+     "failed": 0,
+     "total": 3,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T047",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-006606"
+   ],
+   "retrievalQuery": "tests",
+   "recordHashes": [
+    "87df08fba30e826cba085ede93f2835c32d85ae0a198ef74072da7fe98cc52b4"
+   ],
+   "promptHash": "1119f0c4487436151619a9ca89010b0dde285a1b8cd8032ca8f5e19ecdbb2288",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:30.428Z",
+   "output": "```json\n{\n  \"tests\": [\n    {\n      \"description\": \"Gültige Eingabe\",\n      \"input\": {\n        \"username\": \"testuser\",\n        \"password\": \"testpassword\"\n      },\n      \"expected_output\": \"Erfolg: Sie sind angemeldet.\"\n    },\n    {\n      \"description\": \"Falsches Passwort\",\n      \"input\": {\n        \"username\": \"testuser\",\n        \"password\": \"wrongpassword\"\n      },\n      \"expected_output\": \"Fehler: Ungültiges Passwort.\"\n    },\n    {\n      \"description\": \"Gesperrtes Konto\",\n      \"input\": {\n        \"username\": \"lockeduser\",\n        \"password\": \"lockedpassword\"\n      },\n      \"expected_output\": \"Fehler: Ihr Konto ist gesperrt.\"\n    },\n    {\n      \"description\": \"Netzwerkfehler\",\n      \"input\": {\n        \"username\": \"networkuser\",\n        \"password\": \"networkpassword\"\n      },\n      \"expected_output\": \"Fehler: Netzwerkverbindung fehlt.\"\n    }\n  ]\n}\n```",
+   "inputTokens": 316,
+   "outputTokens": 236,
+   "latencyMs": 3211,
+   "contextChars": 1260,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "count_min",
+      "status": "fail",
+      "detail": "count not met"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "fail",
+      "detail": "no test artifact"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 1,
+     "failed": 2,
+     "total": 3,
+     "rate": 0.3333333333333333
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T047",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "tests",
+   "recordHashes": [],
+   "promptHash": "a05dcd46815814670d14ea909d800fdc60b1b7542f3c6d81ce37e3f9e76dcdc3",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:37.313Z",
+   "output": "```javascript\ndescribe('Anmeldeformular Tests', () => {\n  it('gültige Eingabe', async () => {\n    // Simuliere die Eingabe eines gültigen Benutzernamens und Passworts\n    await page.type('#username', 'validUser');\n    await page.type('#password', 'validPassword');\n\n    // Simuliere das Klicken auf den Anmeldebutton\n    await page.click('#loginButton');\n\n    // Überprüfe, ob der Benutzer erfolgreich angemeldet wurde\n    expect(await page.isVisible('#loggedInMessage')).toBe(true);\n  });\n\n  it('falsches Passwort', async () => {\n    // Simuliere die Eingabe eines gültigen Benutzernamens und eines falschen Passworts\n    await page.type('#username', 'validUser');\n    await page.type('#password', 'wrongPassword');\n\n    // Simuliere das Klicken auf den Anmeldebutton\n    await page.click('#loginButton');\n\n    // Überprüfe, ob der Fehlermeldung für falsches Passwort sichtbar ist\n    expect(await page.isVisible('#wrongPasswordError')).toBe(true);\n  });\n\n  it('gesperrtes Konto', async () => {\n    // Simuliere die Eingabe eines gesperrten Benutzernamens und Passworts\n    await page.type('#username', 'lockedUser');\n    await page.type('#password', 'lockedPassword');\n\n    // Simuliere das Klicken auf den Anmeldebutton\n    await page.click('#loginButton');\n\n    // Überprüfe, ob der Fehlermeldung für gesperrtes Konto sichtbar ist\n    expect(await page.isVisible('#lockedAccountError')).toBe(true);\n  });\n\n  it('Netzwerkfehler', async () => {\n    // Simuliere einen Netzwerkfehler\n    jest.spyOn(global, 'fetch').mockImplementation(() => Promise.reject(new Error('Network error')));\n\n    // Simuliere die Eingabe eines gültigen Benutzernamens und Passworts\n    await page.type('#username', 'validUser');\n    await page.type('#password', 'validPassword');\n\n    // Simuliere das Klicken auf den Anmeldebutton\n    await page.click('#loginButton');\n\n    // Überprüfe, ob der Fehlermeldung für Netzwerkfehler sichtbar ist\n    expect(await page.isVisible('#networkError')).toBe(true);\n  });\n});\n```",
+   "inputTokens": 77,
+   "outputTokens": 520,
+   "latencyMs": 6885,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "count_min",
+      "status": "pass",
+      "detail": "count met"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "test artifact present"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 3,
+     "failed": 0,
+     "total": 3,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T040",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-006156"
+   ],
+   "retrievalQuery": "pairs",
+   "recordHashes": [
+    "7676114f88d195dc129057c6916c2d0021aa91d2a055d053d81ffe8e5ce5deb8"
+   ],
+   "promptHash": "399ec4bc1efba977b964b9b3464ddadbca99a86114e8b2ba8310f217616d52be",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:38.341Z",
+   "output": "```json\n{\n  \"files\": [\n    \"src/components/GameBoard.js\",\n    \"src/components/MoveCounter.js\",\n    \"src/components/Timer.js\",\n    \"src/App.js\",\n    \"public/index.html\"\n  ]\n}\n```",
+   "inputTokens": 159,
+   "outputTokens": 51,
+   "latencyMs": 853,
+   "contextChars": 471,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "fail",
+      "detail": "no component artifact"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 0,
+     "failed": 3,
+     "total": 3,
+     "rate": 0
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T040",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-006156",
+    "PRM-006042",
+    "PRM-006148"
+   ],
+   "retrievalQuery": "pairs",
+   "recordHashes": [
+    "7676114f88d195dc129057c6916c2d0021aa91d2a055d053d81ffe8e5ce5deb8",
+    "523a352e5f96cce4c8045fd06892edd0e3590f98700277c8c1541ef947528ef5",
+    "fe0334f00612684487a83d722741313cb3a6dc18077586f1f31925e73ac59e41"
+   ],
+   "promptHash": "f890333606c5e4a3ceccdbf0258520b48a52c774812c341cc1d5e0814a82a499",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:39.668Z",
+   "output": "```json\n{\n  \"files\": [\n    \"src/components/MemoryCardGameBoard.tsx\",\n    \"src/components/MoveCounter.tsx\",\n    \"src/components/Timer.tsx\",\n    \"src/styles/MemoryCardGameBoard.module.css\",\n    \"src/styles/MoveCounter.module.css\",\n    \"src/styles/Timer.module.css\",\n    \"src/utils/gameLogic.ts\",\n    \"public/index.html\"\n  ]\n}\n```",
+   "inputTokens": 314,
+   "outputTokens": 90,
+   "latencyMs": 1327,
+   "contextChars": 1218,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "fail",
+      "detail": "no component artifact"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 0,
+     "failed": 3,
+     "total": 3,
+     "rate": 0
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T040",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-006156"
+   ],
+   "retrievalQuery": "pairs",
+   "recordHashes": [
+    "7676114f88d195dc129057c6916c2d0021aa91d2a055d053d81ffe8e5ce5deb8"
+   ],
+   "promptHash": "9229c4476bb60cc6d216ec6e2e587d7693e0bb537632873a16469dd18c00b0d1",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:40.651Z",
+   "output": "```json\n{\n  \"error\": \"The requested artifact does not match the reference context or negative prompt. The reference context specifies a matching pairs quiz with draggable lines, while the request asks for a memory card game board with a move counter and a timer. These are two different types of games.\"\n}\n```",
+   "inputTokens": 297,
+   "outputTokens": 63,
+   "latencyMs": 983,
+   "contextChars": 1266,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "fail",
+      "detail": "no component artifact"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 0,
+     "failed": 3,
+     "total": 3,
+     "rate": 0
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T040",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "pairs",
+   "recordHashes": [],
+   "promptHash": "c436f4c9af77e8c046733eb241f7f3839c5b775503415dabbc0388a8e11bb572",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:51.322Z",
+   "output": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Memory Card Game</title>\n<style>\n  body {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    height: 100vh;\n    margin: 0;\n    font-family: Arial, sans-serif;\n  }\n  .game-board {\n    display: grid;\n    grid-template-columns: repeat(4, 100px);\n    grid-gap: 10px;\n  }\n  .card {\n    width: 100px;\n    height: 100px;\n    background-color: #f0f0f0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 24px;\n    cursor: pointer;\n    transition: background-color 0.3s;\n  }\n  .card.flipped {\n    background-color: #fff;\n  }\n  .move-counter, .timer {\n    margin-top: 20px;\n    font-size: 18px;\n  }\n</style>\n</head>\n<body>\n<div class=\"game-board\" id=\"gameBoard\"></div>\n<div class=\"move-counter\">Moves: <span id=\"moveCounter\">0</span></div>\n<div class=\"timer\">Time: <span id=\"timer\">00:00</span></div>\n\n<script>\n  const cardValues = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];\n  const gameBoard = document.getElementById('gameBoard');\n  const moveCounterElement = document.getElementById('moveCounter');\n  const timerElement = document.getElementById('timer');\n\n  let cards = [];\n  let moves = 0;\n  let time = 0;\n  let interval;\n\n  function shuffleArray(array) {\n    for (let i = array.length - 1; i > 0; i--) {\n      const j = Math.floor(Math.random() * (i + 1));\n      [array[i], array[j]] = [array[j], array[i]];\n    }\n  }\n\n  function createBoard() {\n    shuffleArray(cardValues);\n    for (let i = 0; i < cardValues.length; i++) {\n      const card = document.createElement('div');\n      card.classList.add('card');\n      card.dataset.value = cardValues[i];\n      card.addEventListener('click', flipCard);\n      gameBoard.appendChild(card);\n      cards.push(card);\n    }\n  }\n\n  function flipCard(event) {\n    const card = event.target;\n    if (card.classList.contains('flipped')) return;\n\n    card.classList.add('flipped');\n    moves++;\n    moveCounterElement.textContent = moves;\n\n    if (cards.filter(c => c.classList.contains('flipped')).length === 2) {\n      const flippedCards = cards.filter(c => c.classList.contains('flipped'));\n      setTimeout(() => {\n        if (flippedCards[0].dataset.value !== flippedCards[1].dataset.value) {\n          flippedCards.forEach(c => c.classList.remove('flipped'));\n        }\n      }, 1000);\n    }\n\n    if (moves === cardValues.length * 2) {\n      clearInterval(interval);\n      alert('Congratulations! You found all pairs!');\n    }\n  }\n\n  function startTimer() {\n    interval = setInterval(() => {\n      time++;\n      const minutes = Math.floor(time / 60);\n      const seconds = time % 60;\n      timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;\n    }, 1000);\n  }\n\n  createBoard();\n  startTimer();\n</script>\n</body>\n</html>\n```",
+   "inputTokens": 60,
+   "outputTokens": 812,
+   "latencyMs": 10671,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a1h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 3,
+     "failed": 0,
+     "total": 3,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T014",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-003428"
+   ],
+   "retrievalQuery": "early",
+   "recordHashes": [
+    "9399be3916f4b9f7b7cc818f54282cdf5033f0485992473c2c681c0e3c9722ef"
+   ],
+   "promptHash": "80f6ef675483e47079e231d58600069790110f1deff849b932b1f038ccb34984",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:48:57.135Z",
+   "output": "```tsx\nimport React, { useState, useEffect } from 'react';\nimport { motion } from 'framer-motion';\n\ninterface Toast {\n  id: number;\n  message: string;\n  type: 'success' | 'error' | 'info';\n}\n\nconst ToastNotification: React.FC = () => {\n  const [toasts, setToasts] = useState<Toast[]>([]);\n\n  useEffect(() => {\n    const timer = setInterval(() => {\n      setToasts((prevToasts) =>\n        prevToasts.filter((toast) => toast.id !== prevToasts[0].id)\n      );\n    }, 5000);\n\n    return () => clearInterval(timer);\n  }, []);\n\n  const addToast = (message: string, type: 'success' | 'error' | 'info') => {\n    setToasts((prevToasts) => [\n      ...prevToasts,\n      { id: Date.now(), message, type },\n    ]);\n  };\n\n  const dismissToast = (id: number) => {\n    setToasts((prevToasts) =>\n      prevToasts.filter((toast) => toast.id !== id)\n    );\n  };\n\n  return (\n    <div className=\"fixed bottom-4 right-4 flex flex-col gap-2\">\n      {toasts.map((toast) => (\n        <motion.div\n          key={toast.id}\n          initial={{ opacity: 0, y: 20 }}\n          animate={{ opacity: 1, y: 0 }}\n          exit={{ opacity: 0, y: 20 }}\n          className={`bg-${toast.type}-500 text-white p-4 rounded-lg shadow-md flex items-center justify-between`}\n        >\n          <span>{toast.message}</span>\n          <button\n            onClick={() => dismissToast(toast.id)}\n            className=\"text-white hover:text-gray-300\"\n          >\n            &times;\n          </button>\n        </motion.div>\n      ))}\n    </div>\n  );\n};\n\nexport default ToastNotification;\n```",
+   "inputTokens": 200,
+   "outputTokens": 419,
+   "latencyMs": 5595,
+   "contextChars": 685,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a3",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a4",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 4,
+     "failed": 1,
+     "total": 5,
+     "rate": 0.8
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T014",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-003428",
+    "PRM-003712",
+    "PRM-003786"
+   ],
+   "retrievalQuery": "early",
+   "recordHashes": [
+    "9399be3916f4b9f7b7cc818f54282cdf5033f0485992473c2c681c0e3c9722ef",
+    "062c31b808b94da3791ecca88d509848e5a544ddd69eb0d7ea977ea030f67a32",
+    "fc7a0cc9127f249dd50efadf3be7eec359bdea2551f6bd5d4a33009217958ce4"
+   ],
+   "promptHash": "b5eec319f7d6bb18eaac2093a41f3835e8337d35ba9923e091ae82c8f729ea0e",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:49:02.331Z",
+   "output": "```tsx\nimport React, { useState, useEffect } from 'react';\nimport { motion } from 'framer-motion';\n\ninterface Toast {\n  id: number;\n  message: string;\n  type: 'success' | 'error' | 'info';\n}\n\nconst ToastNotification: React.FC = () => {\n  const [toasts, setToasts] = useState<Toast[]>([]);\n\n  useEffect(() => {\n    const timer = setInterval(() => {\n      setToasts((prevToasts) =>\n        prevToasts.map((toast) =>\n          toast.id === toasts[0].id ? { ...toast, autoDismissed: true } : toast\n        )\n      );\n    }, 5000);\n\n    return () => clearInterval(timer);\n  }, []);\n\n  const dismissToast = (id: number) => {\n    setToasts((prevToasts) =>\n      prevToasts.filter((toast) => toast.id !== id)\n    );\n  };\n\n  return (\n    <div className=\"fixed bottom-4 right-4 flex flex-col gap-2\">\n      {toasts.map((toast) => (\n        <motion.div\n          key={toast.id}\n          initial={{ opacity: 0, y: 20 }}\n          animate={{ opacity: 1, y: 0 }}\n          exit={{ opacity: 0, y: 20 }}\n          transition={{ duration: 0.3 }}\n          className={`bg-${toast.type}-500 text-white p-4 rounded-lg shadow-md flex items-center justify-between`}\n        >\n          <span>{toast.message}</span>\n          <button\n            onClick={() => dismissToast(toast.id)}\n            className=\"text-white hover:bg-opacity-80\"\n          >\n            &times;\n          </button>\n        </motion.div>\n      ))}\n    </div>\n  );\n};\n\nexport default ToastNotification;\n```",
+   "inputTokens": 351,
+   "outputTokens": 386,
+   "latencyMs": 5196,
+   "contextChars": 1546,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a4",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 3,
+     "failed": 2,
+     "total": 5,
+     "rate": 0.6
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T014",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-003428"
+   ],
+   "retrievalQuery": "early",
+   "recordHashes": [
+    "9399be3916f4b9f7b7cc818f54282cdf5033f0485992473c2c681c0e3c9722ef"
+   ],
+   "promptHash": "a6c0c62b785b85aeb4589baf7f59909a18bfdc7ddde817dd266fa0657e473bb9",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:49:05.959Z",
+   "output": "```tsx\nimport React, { useState, useEffect } from 'react';\nimport { motion } from 'framer-motion';\n\nconst ToastNotification: React.FC<{ message: string; onDismiss?: () => void }> = ({ message, onDismiss }) => {\n  const [isVisible, setIsVisible] = useState(true);\n\n  useEffect(() => {\n    const timer = setTimeout(() => {\n      setIsVisible(false);\n    }, 5000);\n\n    return () => clearTimeout(timer);\n  }, []);\n\n  const dismiss = () => {\n    setIsVisible(false);\n    onDismiss?.();\n  };\n\n  return (\n    <motion.div\n      initial={{ opacity: 0, y: -20 }}\n      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}\n      exit={{ opacity: 0, y: -20 }}\n      transition={{ duration: 0.3 }}\n      className=\"bg-slate-800 text-white px-4 py-2 rounded-md shadow-md flex items-center justify-between\"\n    >\n      {message}\n      <button onClick={dismiss} className=\"text-white hover:text-slate-100\">\n        &times;\n      </button>\n    </motion.div>\n  );\n};\n\nexport default ToastNotification;\n```",
+   "inputTokens": 341,
+   "outputTokens": 266,
+   "latencyMs": 3628,
+   "contextChars": 1492,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a4",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 3,
+     "failed": 2,
+     "total": 5,
+     "rate": 0.6
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T014",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "early",
+   "recordHashes": [],
+   "promptHash": "3f48ffe14b0eb59d7d7a3f3009d754f8e3f2c4e2731c555ff5e0fb403bfb091e",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:49:11.757Z",
+   "output": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Toast Notification System</title>\n    <style>\n        .toast-container {\n            position: fixed;\n            bottom: 20px;\n            right: 20px;\n            z-index: 1000;\n        }\n        .toast {\n            background-color: #333;\n            color: white;\n            padding: 10px 20px;\n            border-radius: 5px;\n            margin-bottom: 10px;\n            display: flex;\n            align-items: center;\n        }\n        .toast .close-btn {\n            margin-left: auto;\n            cursor: pointer;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"toast-container\" id=\"toast-container\"></div>\n\n    <script>\n        class Toast {\n            constructor(message, options = {}) {\n                this.message = message;\n                this.options = {\n                    duration: 5000,\n                    autoDismiss: true,\n                    ...options\n                };\n                this.element = document.createElement('div');\n                this.element.classList.add('toast');\n                this.element.innerHTML = `\n                    <span>${this.message}</span>\n                    <span class=\"close-btn\">X</span>\n                `;\n                document.getElementById('toast-container').appendChild(this.element);\n                if (this.options.autoDismiss) {\n                    setTimeout(() => this.dismiss(), this.options.duration);\n                }\n                this.element.querySelector('.close-btn').addEventListener('click', () => this.dismiss());\n            }\n\n            dismiss() {\n                this.element.remove();\n            }\n        }\n\n        function showToast(message, options = {}) {\n            new Toast(message, options);\n        }\n\n        // Example usage:\n        setTimeout(() => showToast('This is a toast message!'), 1000);\n        setTimeout(() => showToast('Another toast!', { duration: 3000 }), 2000);\n    </script>\n</body>\n</html>\n```",
+   "inputTokens": 64,
+   "outputTokens": 436,
+   "latencyMs": 5798,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "regex",
+      "status": "pass",
+      "detail": "pattern matched"
+     },
+     {
+      "id": "a2",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a3",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "a4",
+      "kind": "regex",
+      "status": "fail",
+      "detail": "pattern did not match"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a3h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 3,
+     "total": 5,
+     "rate": 0.4
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "fail",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "fail"
+   }
+  },
+  {
+   "arm": "D",
+   "taskId": "T025",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-003215"
+   ],
+   "retrievalQuery": "warenkorb button",
+   "recordHashes": [
+    "f33a5920a77b3e6d0d296ce88d10e537e15ac38c44cf95618fa52f221b4cf8f7"
+   ],
+   "promptHash": "7cbefaad76fb69fb4a24c03ebd0518c25f2885ee22a1b75de2c639e32dc8cfc4",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:49:22.465Z",
+   "output": "```tsx\nimport React, { useState } from 'react';\nimport { LucideShoppingCart } from 'lucide-react';\nimport { motion } from 'framer-motion';\n\nconst ProductDetailPage: React.FC = () => {\n  const [selectedSize, setSelectedSize] = useState<string | null>(null);\n  const [selectedColor, setSelectedColor] = useState<string | null>(null);\n\n  const handleAddToCart = () => {\n    // Add to cart logic here\n  };\n\n  return (\n    <div className=\"container mx-auto p-4\">\n      <h1 className=\"text-2xl font-bold mb-4\">Product Name</h1>\n      <motion.div className=\"grid grid-cols-3 gap-4\" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>\n        <img src=\"/product-image.jpg\" alt=\"Product\" className=\"w-full h-auto\" />\n        <div className=\"col-span-2\">\n          <h2 className=\"text-xl font-semibold mb-2\">Product Description</h2>\n          <p className=\"mb-4\">Product details go here...</p>\n          <div className=\"flex flex-wrap gap-2 mb-4\">\n            <button\n              onClick={() => setSelectedSize('S')}\n              className={`px-3 py-1 border rounded ${selectedSize === 'S' ? 'bg-blue-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              S\n            </button>\n            <button\n              onClick={() => setSelectedSize('M')}\n              className={`px-3 py-1 border rounded ${selectedSize === 'M' ? 'bg-blue-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              M\n            </button>\n            <button\n              onClick={() => setSelectedSize('L')}\n              className={`px-3 py-1 border rounded ${selectedSize === 'L' ? 'bg-blue-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              L\n            </button>\n          </div>\n          <div className=\"flex flex-wrap gap-2 mb-4\">\n            <button\n              onClick={() => setSelectedColor('Red')}\n              className={`px-3 py-1 border rounded ${selectedColor === 'Red' ? 'bg-red-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              Red\n            </button>\n            <button\n              onClick={() => setSelectedColor('Blue')}\n              className={`px-3 py-1 border rounded ${selectedColor === 'Blue' ? 'bg-blue-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              Blue\n            </button>\n            <button\n              onClick={() => setSelectedColor('Green')}\n              className={`px-3 py-1 border rounded ${selectedColor === 'Green' ? 'bg-green-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              Green\n            </button>\n          </div>\n          <motion.button\n            whileHover={{ scale: 1.05 }}\n            whileTap={{ scale: 0.95 }}\n            onClick={handleAddToCart}\n            className=\"px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none\"\n          >\n            <LucideShoppingCart className=\"mr-2\" />\n            Add to Cart\n          </motion.button>\n        </div>\n      </motion.div>\n    </div>\n  );\n};\n\nexport default ProductDetailPage;\n```",
+   "inputTokens": 200,
+   "outputTokens": 799,
+   "latencyMs": 10601,
+   "contextChars": 652,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "count_min",
+      "status": "pass",
+      "detail": "count met"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 0,
+     "total": 2,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "E",
+   "taskId": "T025",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-003215",
+    "PRM-003232",
+    "PRM-001509"
+   ],
+   "retrievalQuery": "warenkorb button",
+   "recordHashes": [
+    "f33a5920a77b3e6d0d296ce88d10e537e15ac38c44cf95618fa52f221b4cf8f7",
+    "e4b849ade6a17ec50dc3f156b563ae6ae439296dd87c9b46fff4ba1197f68dfe",
+    "89a6430bd580dac95f06ee3afbb9078ee17f267956724d641e4ae0c9497c0cb4"
+   ],
+   "promptHash": "53a72a7ed612a0c93a07f83ed574f4894204961737a3c32671344cd30af5cd24",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:49:27.509Z",
+   "output": "```html\n<!-- ProductDetailPage.svelte -->\n<script lang=\"ts\">\n  import { useState } from 'svelte';\n  import { ImageGallery } from './ImageGallery';\n  import { SizeSelector } from './SizeSelector';\n  import { ColorSelector } from './ColorSelector';\n  import { addToCart } from './cart';\n\n  const product = {\n    id: 1,\n    name: 'Example Product',\n    images: ['image1.jpg', 'image2.jpg', 'image3.jpg'],\n    sizes: ['S', 'M', 'L'],\n    colors: ['Red', 'Blue', 'Green'],\n    price: 99.99\n  };\n\n  const [selectedSize, setSelectedSize] = useState('');\n  const [selectedColor, setSelectedColor] = useState('');\n\n  const handleAddToCart = () => {\n    addToCart(product.id, selectedSize, selectedColor);\n  };\n</script>\n\n<div class=\"product-detail\">\n  <ImageGallery images={product.images} />\n  <div class=\"details\">\n    <h1>{product.name}</h1>\n    <p>Price: ${product.price}</p>\n    <SizeSelector sizes={product.sizes} onSizeChange={(size) => setSelectedSize(size)} />\n    <ColorSelector colors={product.colors} onColorChange={(color) => setSelectedColor(color)} />\n    <button on:click={handleAddToCart}>Add to Cart</button>\n  </div>\n</div>\n\n<style lang=\"css\">\n  .product-detail {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    max-width: 1200px;\n    margin: 0 auto;\n  }\n  .details {\n    flex: 1;\n    margin-left: 2rem;\n  }\n</style>\n```",
+   "inputTokens": 419,
+   "outputTokens": 378,
+   "latencyMs": 5044,
+   "contextChars": 1887,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "count_min",
+      "status": "pass",
+      "detail": "count met"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 0,
+     "total": 2,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "B",
+   "taskId": "T025",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [
+    "PRM-003215"
+   ],
+   "retrievalQuery": "warenkorb button",
+   "recordHashes": [
+    "f33a5920a77b3e6d0d296ce88d10e537e15ac38c44cf95618fa52f221b4cf8f7"
+   ],
+   "promptHash": "7a84579f1685eb12e17dca4721ff8e001883c8f07aa0c3c17bf637df16366c01",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:49:36.504Z",
+   "output": "```tsx\nimport React, { useState } from 'react';\nimport { FaShoppingCart } from 'lucide-react';\nimport { motion } from 'framer-motion';\n\nconst ProductDetailPage: React.FC = () => {\n  const [selectedSize, setSelectedSize] = useState<string | null>(null);\n  const [selectedColor, setSelectedColor] = useState<string | null>(null);\n\n  const product = {\n    id: 1,\n    name: 'Futuristic Product',\n    price: 99.99,\n    images: [\n      'https://via.placeholder.com/300',\n      'https://via.placeholder.com/300',\n      'https://via.placeholder.com/300'\n    ],\n    sizes: ['S', 'M', 'L'],\n    colors: ['Deep Emerald', 'Gold']\n  };\n\n  const handleAddToCart = () => {\n    // Add to cart logic here\n  };\n\n  return (\n    <div className=\"bg-emerald-800 text-white p-4\">\n      <motion.div\n        initial={{ opacity: 0, y: -20 }}\n        animate={{ opacity: 1, y: 0 }}\n        transition={{ duration: 0.5 }}\n        className=\"flex flex-col items-center\"\n      >\n        <div className=\"carousel\">\n          {product.images.map((image, index) => (\n            <img key={index} src={image} alt={product.name} className=\"w-full h-auto\" />\n          ))}\n        </div>\n        <h1 className=\"text-3xl font-bold mt-4\">{product.name}</h1>\n        <p className=\"text-xl mt-2\">${product.price}</p>\n        <div className=\"flex flex-col mt-4\">\n          <label htmlFor=\"size\">Size:</label>\n          <select\n            id=\"size\"\n            value={selectedSize}\n            onChange={(e) => setSelectedSize(e.target.value)}\n            className=\"bg-emerald-700 text-white p-2 rounded\"\n          >\n            {product.sizes.map((size) => (\n              <option key={size} value={size}>\n                {size}\n              </option>\n            ))}\n          </select>\n        </div>\n        <div className=\"flex flex-col mt-4\">\n          <label htmlFor=\"color\">Color:</label>\n          <select\n            id=\"color\"\n            value={selectedColor}\n            onChange={(e) => setSelectedColor(e.target.value)}\n            className=\"bg-emerald-700 text-white p-2 rounded\"\n          >\n            {product.colors.map((color) => (\n              <option key={color} value={color}>\n                {color}\n              </option>\n            ))}\n          </select>\n        </div>\n        <motion.button\n          whileHover={{ scale: 1.05 }}\n          whileTap={{ scale: 0.95 }}\n          onClick={handleAddToCart}\n          className=\"bg-gold text-emerald-800 p-4 rounded mt-4\"\n        >\n          <FaShoppingCart className=\"mr-2\" />\n          Add to Cart\n        </motion.button>\n      </motion.div>\n    </div>\n  );\n};\n\nexport default ProductDetailPage;\n```",
+   "inputTokens": 341,
+   "outputTokens": 677,
+   "latencyMs": 8995,
+   "contextChars": 1428,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "count_min",
+      "status": "pass",
+      "detail": "count met"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 0,
+     "total": 2,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  },
+  {
+   "arm": "A",
+   "taskId": "T025",
+   "runIndex": 0,
+   "nRuns": 1,
+   "provider": "ollama",
+   "model": "qwen2.5-coder:7b-16k",
+   "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+   "temperature": 0,
+   "seed": 7,
+   "outputBudget": 1536,
+   "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+   "fieldSplitVersion": "1.0.0",
+   "datasetVersion": "data-jsonl",
+   "taskSetVersion": "task-set-v1",
+   "evaluationHash": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+   "retrievedRecordIds": [],
+   "retrievalQuery": "warenkorb button",
+   "recordHashes": [],
+   "promptHash": "0b73ed832bc5dacbef051f03fdd45d6f046ce4846bea92085af280b1f60a1baf",
+   "armsInRun": [
+    "A",
+    "B",
+    "D",
+    "E"
+   ],
+   "formulationVersion": "1.1.0",
+   "minDocumentFrequency": 5,
+   "taskOrderSeed": 20260730,
+   "armOrderSeed": 20260731,
+   "timestamp": "2026-07-30T20:49:46.149Z",
+   "output": "```html\n<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Produkt Detailseite</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n        }\n        .product-container {\n            max-width: 800px;\n            margin: 0 auto;\n            padding: 20px;\n        }\n        .product-image {\n            width: 100%;\n            max-width: 600px;\n            margin-bottom: 20px;\n        }\n        .gallery {\n            display: flex;\n            justify-content: space-between;\n        }\n        .gallery img {\n            width: calc(33.33% - 10px);\n            cursor: pointer;\n        }\n        .product-info {\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n        }\n        .product-info h2 {\n            margin: 0;\n        }\n        .product-info p {\n            margin: 5px 0;\n        }\n        .variant-selection {\n            margin-bottom: 20px;\n        }\n        .variant-selection label {\n            margin-right: 10px;\n        }\n        .add-to-cart-btn {\n            padding: 10px 20px;\n            background-color: #007bff;\n            color: white;\n            border: none;\n            cursor: pointer;\n        }\n        .add-to-cart-btn:hover {\n            background-color: #0056b3;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"product-container\">\n        <img src=\"produkt-bild.jpg\" alt=\"Produktbild\" class=\"product-image\">\n        <div class=\"gallery\">\n            <img src=\"bild1.jpg\" alt=\"Bild 1\" onclick=\"changeImage(this.src)\">\n            <img src=\"bild2.jpg\" alt=\"Bild 2\" onclick=\"changeImage(this.src)\">\n            <img src=\"bild3.jpg\" alt=\"Bild 3\" onclick=\"changeImage(this.src)\">\n        </div>\n        <div class=\"product-info\">\n            <h2>Produktname</h2>\n            <p>Produktbeschreibung</p>\n            <p>Preis: 99,99 €</p>\n        </div>\n        <div class=\"variant-selection\">\n            <label for=\"size\">Größe:</label>\n            <select id=\"size\">\n                <option value=\"s\">S</option>\n                <option value=\"m\">M</option>\n                <option value=\"l\">L</option>\n            </select>\n            <label for=\"color\">Farbe:</label>\n            <select id=\"color\">\n                <option value=\"rot\">Rot</option>\n                <option value=\"blau\">Blau</option>\n                <option value=\"grau\">Grau</option>\n            </select>\n        </div>\n        <button class=\"add-to-cart-btn\" onclick=\"addToCart()\">In den Warenkorb</button>\n    </div>\n\n    <script>\n        function changeImage(src) {\n            document.querySelector('.product-image').src = src;\n        }\n\n        function addToCart() {\n            alert('Produkt erfolgreich zum Warenkorb hinzugefügt!');\n        }\n    </script>\n</body>\n</html>\n```",
+   "inputTokens": 70,
+   "outputTokens": 732,
+   "latencyMs": 9645,
+   "contextChars": 0,
+   "evaluation": {
+    "checks": [
+     {
+      "id": "a1",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "a2",
+      "kind": "count_min",
+      "status": "pass",
+      "detail": "count met"
+     },
+     {
+      "id": "a3",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     },
+     {
+      "id": "art0",
+      "kind": "artifact",
+      "status": "pass",
+      "detail": "component artifact present"
+     },
+     {
+      "id": "a2h",
+      "kind": "human",
+      "status": "unresolved",
+      "detail": "requires human judgement"
+     }
+    ],
+    "deterministic": {
+     "passed": 2,
+     "failed": 0,
+     "total": 2,
+     "rate": 1
+    },
+    "human": {
+     "passed": 0,
+     "failed": 0,
+     "total": 0,
+     "rate": null
+    },
+    "deterministicVerdict": "pass",
+    "humanVerdict": "pending",
+    "independentTaskSuccess": "pending"
+   }
+  }
+ ]
+}
