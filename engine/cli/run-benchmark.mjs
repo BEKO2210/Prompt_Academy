@@ -18,7 +18,10 @@ import { runBenchmark } from "../core/runner.ts";
 import { loadCorpus } from "../core/retrieval.ts";
 import { loadTasksForAssembly } from "../core/taskset.ts";
 import { evaluationHash, loadEvaluation } from "../core/evaluation.ts";
-import { evaluate } from "../core/evaluator.ts";
+import { evaluate, EVALUATOR_VERSION } from "../core/evaluator.ts";
+import { CHECKS_VERSION } from "../core/checks.ts";
+import { assessEligibility, summarise, ELIGIBILITY_VERSION } from "../core/eligibility.ts";
+import { REVIEW_PROTOCOL_VERSION } from "../core/humanReview.ts";
 import { StubProvider } from "../core/provider.ts";
 
 const ROOT = fileURLToPath(new URL("../..", import.meta.url));
@@ -73,8 +76,19 @@ const scored = out.records.map((r) => ({
   evaluation: evaluate(r.output, evalSet.evaluations[r.taskId]),
 }));
 
+// ENG-014 §9: only eligible tasks enter the cross-arm comparison. Ineligible
+// ones are reported by reason, never deleted and never silently scored.
+const elig = assessEligibility({
+  tasks: taskSet.tasks,
+  evaluations: evalSet,
+  unretrieved: out.unretrieved,
+});
+const eligibleIds = new Set(elig.filter((e) => e.eligible).map((e) => e.taskId));
+const es = summarise(elig);
+
 const byArm = new Map();
 for (const r of scored) {
+  if (!eligibleIds.has(r.taskId)) continue;
   if (!byArm.has(r.arm)) byArm.set(r.arm, []);
   byArm.get(r.arm).push(r);
 }
@@ -84,25 +98,47 @@ console.log(`tasks scored: ${new Set(scored.map((r) => r.taskId)).size} of ${tas
 if (out.unretrieved.length) {
   console.log(`EXCLUDED (retrieval found nothing): ${out.unretrieved.join(", ")}`);
 }
-console.log("\narm  structural  autoPass  autoFail  unresolved  ctxChars");
+console.log(`H1-eligible: ${es.eligible}/${es.total}`);
+for (const [reason, n] of Object.entries(es.byReason)) console.log(`  excluded, ${reason}: ${n}`);
+console.log(`tasks with >=1 deterministic check: ${es.withDeterministic}/${es.total}`);
+console.log(`human-only tasks: ${es.humanOnly}/${es.total}`);
+
+// ENG-014 §5: three dimensions, never merged into one number by accident.
+console.log("\narm  detPass  detFail  detRate  humanPending  ITS:pass/fail/pending/na  ctxChars");
 for (const arm of [...byArm.keys()].sort()) {
   const rs = byArm.get(arm);
-  const s = rs.filter((r) => r.evaluation.structuralSuccess).length;
-  const p = rs.reduce((a, r) => a + r.evaluation.automatedPassed, 0);
-  const f = rs.reduce((a, r) => a + r.evaluation.automatedFailed, 0);
-  const u = rs.reduce((a, r) => a + r.evaluation.unresolved, 0);
+  const dp = rs.reduce((a, r) => a + r.evaluation.deterministic.passed, 0);
+  const df = rs.reduce((a, r) => a + r.evaluation.deterministic.failed, 0);
+  const rate = dp + df > 0 ? (dp / (dp + df)).toFixed(3) : "  n/a";
+  const hp = rs.filter((r) => r.evaluation.humanVerdict === "pending").length;
+  const v = (x) => rs.filter((r) => r.evaluation.independentTaskSuccess === x).length;
   const c = Math.round(rs.reduce((a, r) => a + r.contextChars, 0) / rs.length);
-  console.log(`  ${arm}  ${String(s).padStart(9)}  ${String(p).padStart(8)}  ${String(f).padStart(8)}  ${String(u).padStart(10)}  ${String(c).padStart(8)}`);
+  console.log(
+    `  ${arm}  ${String(dp).padStart(7)}  ${String(df).padStart(7)}  ${String(rate).padStart(7)}` +
+    `  ${String(hp).padStart(12)}  ${`${v("pass")}/${v("fail")}/${v("pending")}/${v("not_applicable")}`.padStart(24)}` +
+    `  ${String(c).padStart(8)}`,
+  );
 }
 console.log(
   "\nNOTE: with the stub provider these numbers describe the HARNESS, not any model.\n" +
-  "'structural' counts only tasks whose automated checks all passed AND that have\n" +
-  "no unresolved human assertions — see engine/core/evaluator.ts.",
+  "Deterministic checks verify STRUCTURE, not behaviour: a bound handler is not a\n" +
+  "working interaction. Independent Task Success stays `pending` until a human\n" +
+  "rubric pass has run — pending is not failure, and a task with no deterministic\n" +
+  "check is not_applicable, not false.",
+);
+console.log(
+  `\nversions  checks=${CHECKS_VERSION} evaluator=${EVALUATOR_VERSION} ` +
+  `eligibility=${ELIGIBILITY_VERSION} review=${REVIEW_PROTOCOL_VERSION}`,
 );
 
 if (outFile) {
   const path = join(ROOT, outFile);
   mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, JSON.stringify({ config: cfg, unretrieved: out.unretrieved, records: scored }, null, 1));
+  writeFileSync(path, JSON.stringify({
+    config: cfg,
+    versions: { checks: CHECKS_VERSION, evaluator: EVALUATOR_VERSION,
+                eligibility: ELIGIBILITY_VERSION, review: REVIEW_PROTOCOL_VERSION },
+    unretrieved: out.unretrieved, eligibility: elig, records: scored,
+  }, null, 1));
   console.log(`\nwrote ${outFile}`);
 }

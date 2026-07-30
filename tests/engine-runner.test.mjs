@@ -129,31 +129,36 @@ test("human assertions are never counted as passes", () => {
   // The whole validity of "task success" rests on this. A harness that quietly
   // scored human judgement as passing would inflate every arm equally and make
   // the comparison look more decisive than it is.
-  const ev = evalSet.evaluations.T007;
+  const ev = evalSet.evaluations.T022;   // all three criteria are class C
   const r = evaluate("nothing useful", ev);
   const humanIds = ev.assertions.filter((a) => a.kind === "human").map((a) => a.id);
   assert.ok(humanIds.length > 0, "fixture has no human assertions to test");
   for (const id of humanIds) {
     assert.equal(r.checks.find((c) => c.id === id).status, "unresolved");
   }
-  assert.ok(r.unresolved >= humanIds.length);
+  assert.equal(r.humanVerdict, "pending", "unjudged human checks must be pending");
 });
 
-test("a task with unresolved checks is not reported as a success", () => {
-  // Unmeasured is neither pass nor fail. Merging it into either fabricates a
-  // result, which ENG-008 forbids outright.
+test("an unjudged task is pending, not a success and not a failure", () => {
+  // ENG-014 §6: missing measurement is not failure. Before the rework this
+  // asserted `structuralSuccess === false`, which is exactly the conflation
+  // that made the headline metric zero for every arm.
   const ev = evalSet.evaluations.T007;
-  const perfect = 'role="dialog" aria-modal="true" Escape';
-  const r = evaluate(perfect, ev);
-  assert.ok(r.automatedFailed === 0, "the automated checks should pass for this output");
-  assert.ok(r.unresolved > 0);
-  assert.equal(r.structuralSuccess, false, "unresolved checks must block structuralSuccess");
+  const good = 'export function Modal({triggerRef}){ const ref=useRef(); ' +
+    'useEffect(()=>{ref.current?.focus(); return ()=>triggerRef.current?.focus();},[]); ' +
+    'return <div role="dialog" aria-modal="true" ref={ref} ' +
+    'onKeyDown={e=>{if(e.key==="Escape")close(); if(e.key==="Tab"){}}}>x</div>; }';
+  const r = evaluate(good, ev);
+  assert.equal(r.deterministicVerdict, "pass", r.checks.filter(c=>c.status==="fail").map(c=>c.id).join(","));
+  assert.equal(r.humanVerdict, "pending");
+  assert.equal(r.independentTaskSuccess, "pending", "pending must not collapse to fail");
 });
 
 test("forbidden content fails the task", () => {
   const ev = evalSet.evaluations.T006;
   const r = evaluate("const key = 'stripe_live_xxx'", ev);
-  assert.ok(r.automatedFailed > 0, "a forbidden string did not fail");
+  assert.ok(r.deterministic.failed > 0, "a forbidden string did not fail");
+  assert.equal(r.independentTaskSuccess, "fail");
 });
 
 test("a broken pattern in Layer 2 is unresolved, not a model failure", () => {

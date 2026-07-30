@@ -256,3 +256,38 @@ test("the umlaut fix did not loosen ordinary matching", () => {
   assert.equal(count("pricing page"), 162);
   assert.equal(count("sign in screen"), 2);
 });
+
+test("ENG-014 §11: the full German regression set", () => {
+  requireBuild();
+  // Every term the hardening brief names, plus the English queries that must
+  // not have moved. Against the real module — there is no mirror any more.
+  for (const w of ["Übersicht", "Uebersicht", "größe", "schaltfläche", "oberfläche"]) {
+    assert.deepEqual(tokenize(w), [w.toLowerCase()], `${w} was split by the tokenizer`);
+  }
+  // schaltfläche and oberfläche are vocabulary keys that were unreachable dead
+  // code before the fix, because tokenisation could never produce them.
+  assert.ok(count("schaltfläche") > 0, "schaltfläche reaches nothing");
+  assert.ok(count("oberfläche") > 0, "oberfläche reaches nothing");
+  assert.equal(count("schaltfläche"), count("schaltflaeche"), "ä and ae disagree");
+  assert.equal(count("oberfläche"), count("oberflaeche"), "ä and ae disagree");
+
+  // German word boundaries: a term must still start at one.
+  assert.equal(count("größe"), 0, "größe is absent from an English corpus");
+
+  // Existing English queries, unmoved.
+  assert.equal(count("dashboard"), 3391);
+  assert.equal(count("pricing page"), 162);
+  assert.equal(count("accessible dashboard"), 100);
+  assert.equal(count("zzzznomatch"), 0);
+});
+
+test("the test suite imports the product, not a copy", () => {
+  // ENG-014 §11: no mirror code. The mirror had drifted and was asserting
+  // behaviour the product no longer had.
+  const self = readFileSync(new URL(import.meta.url), "utf8");
+  assert.match(self, /from "\.\.\/site\/src\/lib\/search\.ts"/, "search.ts is not imported");
+  assert.ok(
+    !/const tokenize = \(|function matchesParsed\(/.test(self),
+    "a local reimplementation of the matcher is back",
+  );
+});

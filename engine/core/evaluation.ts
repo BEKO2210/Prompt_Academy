@@ -22,10 +22,17 @@
  */
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
+import type { CheckSpec } from "./checks.ts";
 
 export interface TaskEvaluation {
-  /** Checks the artifact must satisfy. Deterministic where possible. */
-  assertions: Array<{ id: string; kind: "contains" | "absent" | "regex" | "human"; value: string }>;
+  /**
+   * Checks the artifact must satisfy.
+   *
+   * The kind union lives in checks.ts, so adding a check kind does not require
+   * editing this file — a duplicate union here drifted once already and made a
+   * valid `breakpoint` check look like a schema error.
+   */
+  assertions: CheckSpec[];
   /** Things whose presence is a failure. */
   forbidden: string[];
   /** Files the output must produce. */
@@ -99,7 +106,11 @@ export function validateEvaluationSet(
       if (!a.id) problems.push(`${id}: an assertion has no id`);
       if (seenIds.has(a.id)) problems.push(`${id}: duplicate assertion id ${a.id}`);
       seenIds.add(a.id);
-      if (!a.value?.trim()) problems.push(`${id}: assertion ${a.id} has an empty value`);
+      // `breakpoint` is the one kind that takes no value — it asks whether ANY
+      // breakpoint is declared, so there is nothing to parameterise.
+      if (a.kind !== "breakpoint" && !a.value?.trim()) {
+        problems.push(`${id}: assertion ${a.id} has an empty value`);
+      }
     }
 
     // A forbidden string that an assertion also requires makes the task
