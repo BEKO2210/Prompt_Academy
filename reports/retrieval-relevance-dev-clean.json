@@ -1,0 +1,95 @@
+{
+ "kind": "task_to_skill_retrieval_relevance",
+ "split": "dev_clean",
+ "n": 20,
+ "method": "the top-1 retrieved record read against the task request; RELEVANT = same component and purpose; PARTIAL = related but a different component or scope; IRRELEVANT = topically unrelated; NOTHING = retrieval empty",
+ "reviewer": "reviewer-01",
+ "counts": {
+  "RELEVANT": 2,
+  "PARTIAL": 7,
+  "IRRELEVANT": 9,
+  "NOTHING": 2
+ },
+ "judgements": {
+  "T002": {
+   "verdict": "RELEVANT",
+   "note": "login form -> Welcome Back Login Prompt"
+  },
+  "T013": {
+   "verdict": "RELEVANT",
+   "note": "autocomplete -> Address Autocomplete Input"
+  },
+  "T003": {
+   "verdict": "PARTIAL",
+   "note": "sortable table -> a finance dashboard that contains a table"
+  },
+  "T006": {
+   "verdict": "PARTIAL",
+   "note": "checkout step -> an address form dialog, one part of it"
+  },
+  "T007": {
+   "verdict": "PARTIAL",
+   "note": "accessible modal -> an image lightbox modal"
+  },
+  "T028": {
+   "verdict": "PARTIAL",
+   "note": "card payment form -> a generic real-time validation input"
+  },
+  "T032": {
+   "verdict": "PARTIAL",
+   "note": "photographer portfolio -> an agency portfolio homepage"
+  },
+  "T035": {
+   "verdict": "PARTIAL",
+   "note": "compare prompt results -> a prompt builder interface"
+  },
+  "T045": {
+   "verdict": "PARTIAL",
+   "note": "accessible form -> skeleton form fields"
+  },
+  "T010": {
+   "verdict": "IRRELEVANT",
+   "note": "hero with a code snippet -> Code Snippet Library Sidebar (query collapsed to 'snippet')"
+  },
+  "T015": {
+   "verdict": "IRRELEVANT",
+   "note": "responsive sidebar -> CRM Dashboards (query collapsed to 'desktop')"
+  },
+  "T016": {
+   "verdict": "IRRELEVANT",
+   "note": "registration form -> Hackathon Registration Page"
+  },
+  "T020": {
+   "verdict": "IRRELEVANT",
+   "note": "contact form -> Peer Review Exchange System (query 'submit')"
+  },
+  "T030": {
+   "verdict": "IRRELEVANT",
+   "note": "image upload with crop -> Food Shop with Best Before Display (query 'before')"
+  },
+  "T036": {
+   "verdict": "IRRELEVANT",
+   "note": "course overview -> Social-First Product Launch (query 'pro')"
+  },
+  "T037": {
+   "verdict": "IRRELEVANT",
+   "note": "quiz screen -> High-End Brand Landing Page (query 'end')"
+  },
+  "T041": {
+   "verdict": "IRRELEVANT",
+   "note": "leaderboard -> Domain Name Search (query 'name')"
+  },
+  "T046": {
+   "verdict": "IRRELEVANT",
+   "note": "unit tests for a cart -> AP Exam Practice Tests (query 'tests')"
+  },
+  "T017": {
+   "verdict": "NOTHING",
+   "note": "German compound, absent from the corpus"
+  },
+  "T027": {
+   "verdict": "NOTHING",
+   "note": "German compound, absent from the corpus"
+  }
+ }
+}

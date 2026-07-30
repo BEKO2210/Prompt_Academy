@@ -36,23 +36,34 @@ const taskSet = loadTasksForAssembly(join(ROOT, "benchmarks/tasks/v1/tasks.json"
 const evalsFile = join(ROOT, "benchmarks/tasks/v1/evaluation.json");
 const evalSet = loadEvaluation(evalsFile);
 
-// The holdout guard. Not a warning: a spent holdout cannot be unspent.
+// --split picks which frozen subset to run. Default stays the pilot; dev_clean
+// is the untouched comparison set. `holdout` is not accepted at all — the guard
+// below is a second line of defence, not the first.
+const splitName = arg("split", "pilot");
+if (splitName === "holdout") {
+  console.error("ABORT: the holdout is not runnable from this CLI.");
+  process.exit(2);
+}
+const selected = new Set(
+  splitName === "dev_clean" ? splits.dev_clean
+  : splitName === "dev_pilot" ? splits.dev_pilot
+  : pilot.task_ids,
+);
 const holdout = new Set(splits.holdout);
-for (const tid of pilot.task_ids) {
+for (const tid of selected) {
   if (holdout.has(tid)) {
-    console.error(`ABORT: pilot task ${tid} is in the HOLDOUT split.`);
+    console.error(`ABORT: task ${tid} is in the HOLDOUT split.`);
     process.exit(2);
   }
 }
 
-const selected = new Set(pilot.task_ids);
 const tasks = taskSet.tasks.filter((t) => selected.has(t.task_id));
-if (tasks.length !== pilot.task_ids.length) {
-  console.error("ABORT: the frozen pilot subset references a task that is not in the task set.");
+if (tasks.length !== selected.size) {
+  console.error("ABORT: the frozen subset references a task that is not in the task set.");
   process.exit(2);
 }
 
-const ARMS = (arg("arms", "A,B,D,E")).split(",");
+const ARMS = (arg("arms", "A,B,C,D,E_concat")).split(",");
 const provider = new OllamaProvider({
   model: arg("model", "qwen2.5-coder:7b-16k"),
   timeoutMs: Number(arg("timeout", "180000")),
@@ -80,7 +91,7 @@ const cfg = {
 
 const info = await provider.info();
 console.log(`provider=${info.provider} model=${info.model} version=${info.modelVersion.slice(0, 20)}`);
-console.log(`arms=${ARMS.join(",")}  tasks=${tasks.length}  n=${cfg.nRuns}  split=DEV only`);
+console.log(`arms=${ARMS.join(",")}  tasks=${tasks.length}  n=${cfg.nRuns}  split=${splitName}`);
 console.log(`calls planned: ${tasks.length * ARMS.length * cfg.nRuns}\n`);
 
 const wallStart = Date.now();
@@ -166,7 +177,7 @@ if (arg("out", null)) {
   writeFileSync(p, JSON.stringify({
     kind: "infrastructure_pilot",
     not_an_h1_result: true,
-    split: "dev",
+    split: splitName,
     pilotSubsetVersion: pilot.version,
     taskSplitVersion: splits.version,
     config: cfg,
