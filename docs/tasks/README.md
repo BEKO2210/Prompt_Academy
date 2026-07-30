@@ -27,7 +27,7 @@ no ticket is here because it is tidy; each one gates something downstream.
 | # | ID | Title | M | Cx | Status | Unblocks |
 |---|---|---|---|---|---|---|
 | 1 | [ENG-002](ENG-002-baselines.md) | Measure and commit performance baselines | M1 | S | **DONE** | Any "faster/better" claim; corrected D1 and exposed D3/D3b/D10–D12 |
-| 2 | [ENG-004](ENG-004-content-hash.md) | Per-record `content_hash` | M1 | XS | READY | Cache keys, idempotent import, benchmark traceability |
+| 2 | [ENG-004](ENG-004-content-hash.md) | Per-record `content_hash` | M1 | XS | **DONE** | Cache keys, idempotent import, benchmark traceability; `--check` is ready for ENG-003 to wire into CI |
 | 3 | [ENG-003](ENG-003-ci-gates.md) | CI: dataset validation, typecheck, lint, first tests | M1 | M | READY | Safe iteration on data and site (closes D4) |
 | 4 | [ENG-001](ENG-001-capability-vocabulary.md) | Capability vocabulary + subcategory mapping | M1 | M | READY | Capability ranking signal (R3); the resolver |
 | 5 | [ENG-005](ENG-005-labelled-query-set.md) | Labelled query set for retrieval benchmark | M2 | M | READY | H0 — makes ranking falsifiable |

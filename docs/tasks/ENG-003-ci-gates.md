@@ -21,9 +21,14 @@ CI that blocks a bad dataset or a broken build before it reaches the live site.
 - CI workflow (separate from deploy) running on pull requests and pushes to `main`:
   - `python scripts/validate_dataset.py`
   - `python scripts/dedupe_dataset.py`
+  - `python scripts/compute_content_hashes.py --check` (ENG-004; fails on a stale manifest)
+  - `python scripts/compute_content_hashes.py --self-test` (16 assertions, no dataset needed)
   - `tsc --noEmit` (typecheck, independent of the build)
   - `eslint .`
   - test suite
+- **Pin the Node version** (finding D12): system Node v18 cannot build this repo (Vite 8 needs
+  `>=20.19` or `>=22.12`). Add `.nvmrc` and/or an `engines` field so a fresh checkout fails loudly
+  with a clear message rather than a confusing Vite error.
 - Introduce a test runner in `site/` and the first tests:
   - dataset invariants (10 files, 1,000 records each, schema-conformant, unique ids/slugs/titles)
   - `build_site_data.mjs` output shape (index/meta/stats/category files present, expected fields)

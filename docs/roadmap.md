@@ -88,7 +88,9 @@ change risks a dataset or site regression that nothing currently catches.
 - Introduce a test runner and the first tests: dataset invariants, `build_site_data.mjs` output shape.
 - Author `schema/capabilities.vocabulary.json` — controlled, versioned vocabulary (schema A1).
 - Author the subcategory → capabilities mapping table (200 rows, hand-reviewed).
-- Add `content_hash` per record (cheap, enables later idempotency).
+- ~~Add `content_hash` per record~~ **DONE (ENG-004, 2026-07-30)** —
+  `scripts/compute_content_hashes.py` → `reports/content_hashes.json`. 10,000 distinct hashes;
+  `--check` and `--self-test` ready for CI.
 
 **Non-goals:** changing ranking; touching the UI; embeddings; anything user-visible.
 
@@ -331,6 +333,15 @@ Completed:
     landing LCP         380-412 ms, driven by Qualität.png (1.49 MB, incompressible)
     noise floor         ~10-15% session-to-session on search timings at this repeat count
 
+  ENG-004 content_hash — DONE 2026-07-30. scripts/compute_content_hashes.py ->
+  reports/content_hashes.json (861 KB, NOT shipped to browser). 10,000 records ->
+  10,000 distinct hashes, 0 identical-content groups, 0.39 s.
+  Modes: default write | --check (CI, names changed ids) | --self-test (16/16 pass).
+  Verified: byte-identical manifest across two runs; mutating one char in PRM-000001 made
+  --check exit 1; index.json and dist byte-identical before/after (6,908,069 and 33,910,949).
+  ALGO_VERSION=1.0.0 -- bump it if normalization changes; --check then reports
+  "regenerate all" rather than "10,000 records changed".
+
 In Progress:
   none
 
@@ -391,8 +402,18 @@ Files Changed:
   nothing in the shipped site or build path was modified.
 
 Next Recommended Ticket:
-  ENG-004 (content_hash, XS) -> ENG-003 (CI gates, M) -> ENG-001 (capabilities, M)
-  -> ENG-005 (labelled query set, M). ENG-002 is done.
+  ENG-003 (CI gates, M) -> ENG-001 (capabilities, M) -> ENG-005 (labelled query set, M).
+  ENG-002 and ENG-004 are done.
+
+  ENG-003 now has more to wire up than originally scoped: validate_dataset, dedupe_dataset,
+  compute_content_hashes --check AND --self-test, tsc, eslint, plus pinning the Node version
+  (D12: system v18 cannot build this repo, nothing declares the requirement).
+
+  Priority note: after ENG-003, consider going STRAIGHT to the D3/D3b search fix rather than
+  finishing all of M1's theory first. D3 is a measured, user-visible defect ("accessible
+  dashboard" -> 0 hits) and D3b is a cheap independent win (precompute haystack). Both deliver
+  value regardless of how H1 turns out, which de-risks the whole project. ENG-001 (capabilities)
+  only pays off if the engine is built.
 
 Findings from ENG-002 that changed the plan:
   - D1 WAS MIS-FRAMED. Transfer is 738 KB, not 6.9 MB. The uncompressible costs are parse
