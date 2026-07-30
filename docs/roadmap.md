@@ -485,6 +485,35 @@ Completed:
   guideline: AC evidence counts when CONSISTENT with the record's subject, and is suspect only
   when it CONTRADICTS it (the ENG-001 kids-game case).
 
+  BASELINE MEASUREMENT (dev split) — DONE 2026-07-30. NO new ranking written.
+    reports/retrieval-baseline-dev.{json,md} | scripts/eval_retrieval.py | tests/retrieval-eval.test.mjs
+                    P@1     P@5    R@10  nDCG@10    MRR
+    r0 substring  0.200   0.200   0.087   0.200   0.200   (pre-ENG-010)
+    r1 AND-terms  0.400   0.280   0.113   0.248   0.467   (shipped today)
+    ENG-010 INDEPENDENTLY CONFIRMED -- every metric up, MRR more than doubled.
+    But the absolute level is poor: 1 of 5 real queries works.
+
+  THE FINDING THAT MATTERS -- a severe substring defect in the SHIPPED search:
+    "sign in screen" returns 404 records, none of them the login form.
+        'sign'   as substring: 6,936/10,000   with word boundary:  16
+        'in'     as substring: 9,866/10,000   with word boundary: 664
+    'sign' matches 6,936 records because it is inside de-SIGN-. 'in' matches almost
+    everything. The query is effectively design ∩ anything-with-in ∩ screen.
+    ENG-010 fixed multi-word AND semantics but kept SUBSTRING matching per term.
+    Same error class ENG-001 measured in the capability rules -- now in the product.
+    -> Highest-value fix available, and small: word-boundary + stopwords. No ranking needed.
+
+  Cross-language is not weak, it is ZERO: "Preisseite" returns 0 of 22 relevant records
+  while the English "pricing page" scores nDCG 1.00 on the SAME relevant set.
+
+  Matching without ranking turns "nothing" into "noise": "sign in screen" went 0 -> 404
+  results with P@1 still 0. "heatmap visualization" has P@1 1.00 but P@5 0.20.
+  That is the concrete argument for ENG-006 which did not exist before this measurement.
+
+  CAVEAT: 6 dev queries only, directional not tight. The easy query flatters the mean --
+  excluding "pricing page", nDCG@10 over the other four is ~0.06. HOLDOUT NOT MEASURED
+  and must stay untouched; the harness refuses it without an explicit final-measurement flag.
+
 In Progress:
   none
 
@@ -550,8 +579,14 @@ Files Changed:
   nothing in the shipped site or build path was modified.
 
 Next Recommended Ticket:
-  The smallest honest retrieval test -- see the recommendation at the end of the ENG-005
-  handoff. NOT a full ranker.
+  ENG-012 (new): word-boundary + stopword matching in site/src/lib/search.ts.
+  Smallest change with the largest measured payoff. NOT ranking -- it fixes WHICH records
+  match, exactly as ENG-010 did. Re-measure on dev afterwards; the baseline above is the
+  number to beat.
+
+  THEN ENG-006 (ranking), with reports/retrieval-baseline-dev.md as the baseline.
+  Cross-language stays open and is the strongest concrete case for actually testing
+  embeddings (arm R7) rather than assuming lexical retrieval suffices.
 
   ENG-005 discipline, agreed and binding:
     - Ground truth frozen BEFORE any ranking exists.
