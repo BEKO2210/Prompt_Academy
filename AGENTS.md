@@ -48,14 +48,22 @@ Confirmed in Phase 0; none of these are derivable from reading the code.
   (p50 15.7 ms on the full 6.9 MB) and ~14 MB retained heap are**, and compression cannot reduce
   either. Every field added costs parse and heap directly. Measure before and after — budgets are in
   `reports/baseline-2026-07-30.json`.
-- Library search is one lowercase substring `includes()` over a concatenated haystack, plus
-  five exact-equality facet filters. The `relevance` sort key does **not** compute relevance.
-  **It silently returns nothing for ordinary queries:** `dashboard` → 3,391 hits, but
-  `accessible dashboard` → **0** and `barrierefrei` → **0**. Multi-word queries only match if the
-  words appear adjacently in that order. Treat this as a defect, not merely as missing ranking.
+- Library search matches **all query terms** (AND) as substrings over a concatenated haystack, plus
+  five exact-equality facet filters. Logic lives in `site/src/lib/search.ts`; keep
+  `tests/search.test.mjs` and `scripts/baseline/measure_parse_and_search.mjs` in step with it — both
+  mirror the predicate and will otherwise measure/assert behaviour the app no longer has.
+- There is still **no ranking**. The `relevance` sort key does **not** compute relevance, and result
+  sets can be wide (`data visualization chart` → 451). Ranking is ENG-006.
+- Queries can legitimately return zero for reasons that are **not** bugs: `stripe checkout` → 0
+  because `stripe` occurs in **0** records (dataset gap), and German queries → 0 against a ~91%
+  English corpus (language gap). Do not "fix" these by loosening the matcher.
 - `haystack()` is called **inside** the filter predicate, so up to 10,000 array joins +
   `toLowerCase()` run per keystroke — ~83% of filter cost. But keystroke→paint (~50 ms) is ~7x the
-  filter cost, so React re-render dominates what the user feels. There is no debounce.
+  filter cost, so React re-render dominates what the user feels, and there is no debounce.
+  Precomputing is ENG-011; its honest ceiling is ~12% of felt latency.
+- **Verify UI changes in the running app, not only in tests.** `Cache-Control: max-age=600` on
+  `index.html` will serve the previous build — and therefore the previous content-hashed bundle — so
+  a verification harness must disable cache. This produced a false negative once.
 - Both pages request **fonts.googleapis.com** at runtime. The site ships Impressum and Datenschutz
   pages, so this is a privacy/GDPR matter, not a performance one.
 - `quality.*_score` fields are self-reported by the agents that generated the dataset. They

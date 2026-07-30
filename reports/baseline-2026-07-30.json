@@ -138,21 +138,40 @@
 
   "retrieval_correctness_findings": {
     "note": "Discovered while building the fixed query set. These are correctness defects, not performance, and they were not previously recorded. They matter because they define the R0 baseline that ENG-006 must beat.",
+    "CORRECTION_three_causes_not_one": {
+      "detail": "This section originally listed 'accessible dashboard', 'stripe checkout' and the German queries together under one multi-word heading, implying a single cause. Measured during ENG-010, they have THREE distinct causes and only the first is a bug.",
+      "causes": {
+        "matching_bug": "'accessible dashboard' -> 0 while both terms exist in the corpus ('accessible' in 460 records, 'dashboard' in 3391). Genuine defect. FIXED by ENG-010.",
+        "dataset_gap": "'stripe checkout' -> 0 because 'stripe' appears in ZERO records. Returning nothing is CORRECT over a corpus with no Stripe content. This is a skill-gap signal for the dataset, not a search defect, and ENG-010 does not and should not change it.",
+        "language_gap": "'barrierefrei', 'dunkelmodus', 'anmeldeformular' -> 0 because the terms are absent from a ~91% English corpus. Needs translation or embeddings (ENG-006 arm R7), not term splitting."
+      },
+      "why_recorded": "Kept rather than silently rewritten: conflating a bug with a data gap would have made ENG-010 look like it fixed more than it did, and would have set an unreachable acceptance criterion."
+    },
     "multi_word_queries_return_nothing": {
-      "evidence": [
+      "status": "FIXED by ENG-010 (2026-07-30)",
+      "evidence_before": [
         { "query": "dashboard", "hits": 3391 },
         { "query": "accessible dashboard", "hits": 0 },
-        { "query": "stripe checkout", "hits": 0 }
+        { "query": "react pricing table", "hits": 0 },
+        { "query": "ecommerce product page", "hits": 0 }
       ],
-      "cause": "Search is a single substring test over one joined string (Library.tsx:76). A multi-word query only matches if those words appear adjacently, in that order, in the concatenation. Term-wise matching does not exist.",
-      "severity": "high — a natural two-word query silently returns an empty result set"
+      "evidence_after": [
+        { "query": "dashboard", "hits": 3391, "note": "unchanged" },
+        { "query": "accessible dashboard", "hits": 100 },
+        { "query": "react pricing table", "hits": 21 },
+        { "query": "ecommerce product page", "hits": 330 }
+      ],
+      "cause": "Search was a single substring test over one joined string (Library.tsx:76). A multi-word query only matched if those words appeared adjacently, in that order, in the concatenation. Term-wise matching did not exist.",
+      "fix": "site/src/lib/search.ts — query split into terms, record must contain ALL terms (AND). Still a boolean filter, not a ranker; ranking remains ENG-006.",
+      "severity": "was high — a natural two-word query silently returned an empty result set"
     },
     "german_queries_return_nothing": {
       "evidence": [
         { "query": "barrierefrei", "hits": 0 },
         { "query": "dunkelmodus", "hits": 0 }
       ],
-      "cause": "The corpus is ~91% English while the UI is German. Lexical substring matching cannot bridge that.",
+      "cause": "The corpus is ~91% English while the UI is German. Lexical matching cannot bridge that, term-splitting included — ENG-010 confirmed these stay at 0 and does not claim otherwise.",
+      "status": "OPEN — not addressed by ENG-010, by design",
       "severity": "medium — verified as a real failure mode, and the strongest concrete argument for the embeddings ablation arm R7"
     },
     "single_character_matches_everything": {

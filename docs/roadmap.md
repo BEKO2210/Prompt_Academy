@@ -358,6 +358,30 @@ Completed:
   The last one was caught ONLY by the new tests: validate_dataset.py checks slug
   UNIQUENESS but never the slug PATTERN.
 
+  ENG-010 multi-word search (D3) — DONE 2026-07-30. site/src/lib/search.ts: query split into
+  terms, record must contain ALL of them (AND). Still a boolean filter -- NO ranking added.
+  Verified IN THE RUNNING APP via CDP: "accessible dashboard" 0 -> 100, "react pricing table"
+  0 -> 21 (21 cards rendered), "dashboard" unchanged at 3,391, guaranteed misses still 0.
+  Performance held: keystroke->paint p50 49.9 ms (identical to baseline), p95 51.3 vs 50.6
+  (inside the ~10-15% noise floor), heap 24.2-24.3 vs 24.4 MB, JS bundle +204 B.
+  45 tests green.
+
+  CORRECTED A CONFLATION OF MY OWN MAKING: the ENG-002 baseline listed three zero-hit queries
+  as one defect. They have THREE causes and only one was a bug:
+      "accessible dashboard"  matching BUG      both terms exist (460 + 3,391)  -> FIXED
+      "stripe checkout"       DATASET gap       "stripe" in 0 records -> 0 is CORRECT
+      "barrierefrei"          LANGUAGE gap      absent from ~91% English corpus -> still open
+  Conflating them overstated the defect and would have set an unreachable acceptance criterion.
+
+  FALSE NEGATIVE WORTH REMEMBERING: first UI check showed the fix NOT working, while all tests
+  were green. Cause: Cache-Control max-age=600 served the previous index.html, pointing at the
+  previous content-hashed bundle. Verification harness now disables cache. Tests alone would
+  have shipped false confidence -- always verify in the running app.
+
+  Also updated scripts/baseline/measure_parse_and_search.mjs: it mirrored the OLD predicate and
+  would have kept measuring behaviour the app no longer has. Now mirrors AND-terms and reports
+  the legacy predicate separately, labelled, so before/after stays comparable.
+
 In Progress:
   none
 
@@ -423,18 +447,20 @@ Files Changed:
   nothing in the shipped site or build path was modified.
 
 Next Recommended Ticket:
-  M1 infrastructure is COMPLETE (ENG-002, ENG-004, ENG-003). Remaining M1 item: ENG-001.
+  ENG-011 (D3b: precompute haystack, S). Then -- BINDING -- back to ENG-001/ENG-005 and H1.
 
-  RECOMMENDED: go to the D3/D3b search fix (ENG-006 territory) BEFORE ENG-001.
-    - D3 is a measured, user-visible defect: "accessible dashboard" -> 0 hits while
-      "dashboard" -> 3,391. That is broken search, not missing ranking.
-    - D3b is a cheap independent win: precompute haystack (~83% of filter cost).
-    - Both pay off REGARDLESS of how H1 turns out, which de-risks the project.
-    - ENG-001 (capabilities) only pays off IF the engine gets built, i.e. it is a bet on H1.
-  The safety net now exists to make that change safely, which is exactly why it was built first.
+  ENG-011 scope discipline: it is a PERFORMANCE ticket only. Behaviour must be identical; the
+  ENG-010 tests are the neutrality proof. Honest ceiling stated in the ticket: haystack is
+  ~5.8-6.8 ms of a ~50 ms keystroke, so at most ~12% of what a user feels. React re-render
+  dominates. Worth doing because it is cheap and removes waste that would scale with every
+  future ranking signal -- NOT because it will feel transformative. Do not oversell it.
 
-  ENG-005 (labelled query set) should accompany ENG-006, not follow it -- ground truth before
-  the thing it judges.
+  After ENG-011 there are no further out-of-band detours. ENG-001 (capabilities) and ENG-005
+  (labelled query set) are next, and both serve H1: ENG-001 supplies the capability ranking
+  signal (arm R3) and ENG-005 supplies the ground truth that makes H0 falsifiable.
+
+  Note: ENG-001 is a BET ON H1 -- it only pays off if the engine gets built. That is fine and
+  intended, now that the H1-independent wins have been banked.
 
 Findings from ENG-002 that changed the plan:
   - D1 WAS MIS-FRAMED. Transfer is 738 KB, not 6.9 MB. The uncompressible costs are parse

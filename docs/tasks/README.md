@@ -35,6 +35,14 @@ no ticket is here because it is tidy; each one gates something downstream.
 | 7 | [ENG-006](ENG-006-ranking-module.md) | Isomorphic ranking module + central config | M2 | L | PLANNED | H0; the retrieval stage reused by the M3 engine |
 | 8 | [ENG-008](ENG-008-benchmark-harness.md) | End-to-end benchmark harness (arms A–E) | M3 | XL | BLOCKED — **spec approved** | H1a/H1b/H1c; gates all of M4 |
 | — | [ENG-009](ENG-009-accepted-debt.md) | Clear the debt ENG-003 recorded | M6 | M | PLANNED | 5 eslint violations back to `error`; 10 schema-invalid slugs; slug-pattern gap in the validator |
+| 9 | [ENG-010](ENG-010-multiword-search.md) | Multi-word search returns nothing (D3) | M1* | S | **DONE** | User-visible correctness; independent of H1 |
+| 10 | [ENG-011](ENG-011-haystack-precompute.md) | Precompute the search haystack (D3b) | M1* | S | READY | ~83% of filter cost; independent of H1 |
+
+*M1\* = out of band. ENG-010 and ENG-011 are not part of the original M1 scope. They address measured,
+user-visible defects that pay off **regardless of how H1 turns out**, which de-risks the project — and
+they were only safe to do once ENG-003's test gate existed. Split into two tickets deliberately:
+ENG-010 is correctness, ENG-011 is performance, each with its own measurement, so neither can hide
+behind the other. **After ENG-011, work returns to ENG-001/ENG-005 and the H1 question.**
 
 **Sequencing rationale:** measurement before change (1), cheap and irreversible-if-late groundwork
 (2), then the safety net that makes everything after it safe (3), then the one schema addition the

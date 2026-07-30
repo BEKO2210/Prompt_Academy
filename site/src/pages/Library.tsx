@@ -12,24 +12,9 @@ import {
 } from "../components/ExplorerControls";
 import { PromptCard } from "../components/PromptCard";
 import { PromptDrawer } from "../components/PromptDrawer";
+import { matchesTerms, queryTerms } from "../lib/search";
 
 const PAGE = 48;
-
-function haystack(it: IndexItem): string {
-  return [
-    it.t,
-    it.hl,
-    it.sum,
-    it.fw,
-    it.in,
-    it.sc,
-    it.a,
-    ...(it.tags ?? []),
-    ...(it.kw ?? []),
-  ]
-    .join(" ")
-    .toLowerCase();
-}
 
 export function Library() {
   const [params, setParams] = useSearchParams();
@@ -64,6 +49,10 @@ export function Library() {
   }, [filters.category]);
 
   const q = query.trim().toLowerCase();
+  // AND over terms, so a two-word query no longer requires the words to be
+  // adjacent in the joined haystack (ENG-010 / finding D3). Memoised on `q` so
+  // the split is not redone per record.
+  const terms = useMemo(() => queryTerms(q), [q]);
 
   const results = useMemo(() => {
     if (!index) return [];
@@ -73,7 +62,7 @@ export function Library() {
       if (filters.framework && it.fw !== filters.framework) return false;
       if (filters.language && it.lang !== filters.language) return false;
       if (filters.audience && it.a !== filters.audience) return false;
-      if (q && !haystack(it).includes(q)) return false;
+      if (!matchesTerms(it, terms)) return false;
       return true;
     });
 
@@ -83,7 +72,7 @@ export function Library() {
       list = [...list].sort((a, b) => a.t.localeCompare(b.t));
     }
     return list;
-  }, [index, filters, q, sort]);
+  }, [index, filters, terms, sort]);
 
   // Reset window when the result set changes.
   useEffect(() => setVisible(PAGE), [filters, q, sort]);

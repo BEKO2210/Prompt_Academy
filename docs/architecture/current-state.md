@@ -224,31 +224,45 @@ Capability-based routing — the core idea of the target architecture — has no
 `tags`, `subcategory`, and `use_case` are the closest proxies but are presentation-oriented and
 were not designed as a controlled vocabulary.
 
-### D3 — Retrieval is binary substring matching, and it silently fails on ordinary queries
+### D3 — Multi-word search returned nothing — **RESOLVED 2026-07-30 (ENG-010)**
 
-See §4. There is no ranking signal to improve, only a filter to replace.
+*Original finding (ENG-002):* the filter was one substring test against a single joined string
+(`Library.tsx:76`), so a multi-word query matched only if those words appeared **adjacently in that
+order** in the concatenation. There was no term-wise matching.
 
-**Measured 2026-07-30 (ENG-002).** This is worse than "unranked" — it returns nothing for queries a
-user would plausibly type:
+| Query | Before | After |
+|---|---|---|
+| `dashboard` | 3,391 | 3,391 *(unchanged)* |
+| `accessible dashboard` | **0** | **100** |
+| `react pricing table` | **0** | **21** |
+| `ecommerce product page` | **0** | **330** |
+| `mobile onboarding flow` | **0** | **57** |
+| `zzzznomatch` | 0 | 0 *(correct)* |
 
-| Query | Hits |
-|---|---|
-| `dashboard` | 3,391 |
-| `accessible dashboard` | **0** |
-| `stripe checkout` | **0** |
-| `barrierefrei` | **0** |
-| `dunkelmodus` | **0** |
-| `d` | 10,000 |
+**Fixed** in `site/src/lib/search.ts`: the query is split into terms and a record must contain **all**
+of them. Still a boolean filter, not a ranker — ranking remains ENG-006. Verified in the running
+application, not only in tests. Performance unchanged (keystroke→paint p50 49.9 ms, identical to
+baseline; JS bundle +204 B).
 
-**Cause:** the filter is one substring test against a single joined string
-(`Library.tsx:76`), so a multi-word query matches only if those words appear *adjacently in that
-order* in the concatenation. There is no term-wise matching. German queries fail additionally because
-the corpus is ~91% English while the UI is German.
+**Correction to the original finding.** It listed three zero-hit queries together, implying one cause.
+Measurement during ENG-010 showed **three distinct causes**, and only the first was a bug:
 
-Severity: **high**. A two-word query returning an empty result set, while one of its words returns
-3,391 records, is a defect rather than a ranking shortfall. It is also the clearest justification for
-ENG-006, and the German failures are the strongest concrete argument for the embeddings ablation
+| Query | Cause | Status |
+|---|---|---|
+| `accessible dashboard` | **matching bug** — both terms present in corpus (460 + 3,391) | fixed |
+| `stripe checkout` | **dataset gap** — `stripe` occurs in **0** records | not a bug; returning nothing is correct |
+| `barrierefrei`, `dunkelmodus` | **language gap** — absent from a ~91% English corpus | open, see below |
+
+Conflating these overstated the defect. `stripe checkout` returning nothing over a corpus with no
+Stripe content is correct behaviour and a useful *skill-gap* signal for the dataset.
+
+**Still open:** cross-language retrieval. German queries against an English corpus cannot be fixed by
+term splitting, and are the strongest concrete argument for actually running the embeddings ablation
 (arm R7) rather than assuming lexical retrieval suffices.
+
+**Still open:** ranking. Some result sets are now *wide* rather than empty
+(`data visualization chart`: 50 → 451). A wide unranked set beats an empty one, but ordering it is
+ENG-006.
 
 ### D3b — Search cost is re-derivation, not matching
 

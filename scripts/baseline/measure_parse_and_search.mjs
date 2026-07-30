@@ -37,24 +37,41 @@ const after = process.memoryUsage().heapUsed;
 const heapDelta = after - before;
 if (held.length !== 10000) throw new Error(`expected 10000, got ${held.length}`);
 
-// ---- EXACT haystack from Library.tsx:18-31 --------------------------
+// ---- EXACT haystack from site/src/lib/search.ts ---------------------
 function haystack(it) {
   return [it.t, it.hl, it.sum, it.fw, it.in, it.sc, it.a,
           ...(it.tags ?? []), ...(it.kw ?? [])]
     .join(" ").toLowerCase();
 }
 
-// ---- EXACT filter path from Library.tsx:70-77 -----------------------
+// ---- CURRENT predicate: AND over terms (ENG-010 / D3) ---------------
+// Mirrors site/src/lib/search.ts. Keep in step with it, or this harness
+// measures something the app no longer does.
+function queryTerms(q) {
+  return q.trim().toLowerCase().split(/\s+/).filter((t) => t.length > 0);
+}
 function search(list, q, filters = {}) {
+  const terms = queryTerms(q);
   return list.filter((it) => {
     if (filters.category && it.c !== filters.category) return false;
     if (filters.difficulty && it.d !== filters.difficulty) return false;
     if (filters.framework && it.fw !== filters.framework) return false;
     if (filters.language && it.lang !== filters.language) return false;
     if (filters.audience && it.a !== filters.audience) return false;
-    if (q && !haystack(it).includes(q)) return false;
+    if (terms.length) {
+      const h = haystack(it);
+      for (const t of terms) if (!h.includes(t)) return false;
+    }
     return true;
   });
+}
+
+// ---- PRE-D3 predicate, retained for comparability only --------------
+// One substring test over the joined haystack. This is what the ENG-002
+// baseline measured. Kept so before/after numbers stay comparable on the same
+// machine; it is NOT what the app does any more.
+function searchLegacySubstring(list, q) {
+  return list.filter((it) => (q ? haystack(it).includes(q) : true));
 }
 
 // Fixed query set — repeatable. Simulates typing "dashboard" char by char,
@@ -99,6 +116,16 @@ for (let r = 0; r < REPEATS; r++) {
   hsTs.push(performance.now() - t0);
 }
 
+// pre-D3 predicate on the same machine, so before/after stays comparable
+const legacyTs = [];
+for (const q of QUERIES) {
+  for (let r = 0; r < REPEATS; r++) {
+    const t0 = performance.now();
+    searchLegacySubstring(index, q);
+    legacyTs.push(performance.now() - t0);
+  }
+}
+
 console.log(JSON.stringify({
   index_file: INDEX,
   records: index.length,
@@ -111,11 +138,17 @@ console.log(JSON.stringify({
     max_ms: fmt(Math.max(...parseTimes)),
   },
   heap_after_parse: { delta_bytes: heapDelta, delta_mb: mb(heapDelta) },
+  predicate: "AND-over-terms (ENG-010 / D3) — mirrors site/src/lib/search.ts",
   search_all_queries: {
     n_measurements: allLatencies.length,
     p50_ms: fmt(pct(allLatencies, 50)),
     p95_ms: fmt(pct(allLatencies, 95)),
     max_ms: fmt(Math.max(...allLatencies)),
+  },
+  search_legacy_substring_ms: {
+    note: "pre-D3 single-substring predicate, same machine, for comparability only",
+    p50: fmt(pct(legacyTs, 50)),
+    p95: fmt(pct(legacyTs, 95)),
   },
   search_facet_only_ms: { p50: fmt(pct(facetTs, 50)), p95: fmt(pct(facetTs, 95)) },
   haystack_build_all_10k_ms: { p50: fmt(pct(hsTs, 50)), p95: fmt(pct(hsTs, 95)) },
