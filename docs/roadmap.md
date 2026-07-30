@@ -382,6 +382,32 @@ Completed:
   would have kept measuring behaviour the app no longer has. Now mirrors AND-terms and reports
   the legacy predicate separately, labelled, so before/after stays comparable.
 
+  ENG-011 haystack precompute (D3b) — REJECTED 2026-07-30. Implemented, measured, REVERTED.
+  No code ships. Full numbers: reports/eng-011-haystack-precompute-rejected.md
+      filter-only p50      7.73 -> 1.21 ms      6.4x faster
+      keystroke -> paint   49.9 -> 49.7 ms      NO CHANGE (inside noise)
+      JS heap after load   24.4 -> 34.3 MB      budget <=24.5 MB FAILED by 10 MB
+  The filter got 6.4x faster and the user experiences nothing: React's commit+paint of the
+  48 visible cards is ~42 of the ~50 ms, so removing ~6.5 ms is invisible. The ticket had
+  predicted a ~12% ceiling; actual was 0%.
+  Verified behaviour-neutral BEFORE rejecting (byte-identical haystacks for all 10,000
+  records; 9 queries selected identical record ids in identical order) -- so this was a
+  sound implementation with no payoff, not a bug.
+  Rejected per release gates + master prompt §47: complexity that does not measurably help
+  gets removed, not kept.
+
+  WHAT THIS REDIRECTS (matters for ENG-006/ENG-007):
+    - The bottleneck is REACT RE-RENDER, not retrieval. Any filter/scoring optimisation is
+      dominated by rendered work.
+    - A DEBOUNCE on the search input is likely the highest-value change and costs no memory.
+      NOT ticketed yet. Worth measuring before ENG-006 adds per-keystroke scoring.
+    - Solve retrieval cost OFFLINE. ADR-0003 already specifies a build-time inverted/BM25
+      index -- no heap-for-CPU trade. Per-keystroke precomputation would have been discarded
+      by ENG-006 anyway.
+    - THE HEAP BUDGET HAS NO SLACK: 24.4 MB against a 24.5 MB ceiling. Any in-memory
+      retrieval structure must have its budget argued up WITH A MEASUREMENT FIRST, not
+      discovered afterwards.
+
 In Progress:
   none
 
@@ -447,20 +473,16 @@ Files Changed:
   nothing in the shipped site or build path was modified.
 
 Next Recommended Ticket:
-  ENG-011 (D3b: precompute haystack, S). Then -- BINDING -- back to ENG-001/ENG-005 and H1.
+  ENG-001 (capability vocabulary) and ENG-005 (labelled query set).
 
-  ENG-011 scope discipline: it is a PERFORMANCE ticket only. Behaviour must be identical; the
-  ENG-010 tests are the neutrality proof. Honest ceiling stated in the ticket: haystack is
-  ~5.8-6.8 ms of a ~50 ms keystroke, so at most ~12% of what a user feels. React re-render
-  dominates. Worth doing because it is cheap and removes waste that would scale with every
-  future ranking signal -- NOT because it will feel transformative. Do not oversell it.
+  The out-of-band detour is CLOSED. ENG-010 shipped (real user-visible fix), ENG-011 was
+  measured and rejected. Work returns to the H1 question as agreed:
+    - ENG-001 supplies the capability ranking signal (ablation arm R3)
+    - ENG-005 supplies the ground truth that makes H0 falsifiable
+  Both are BETS ON H1 -- they only pay off if the engine gets built. That is fine and
+  intended, now that the H1-independent win (ENG-010) is banked.
 
-  After ENG-011 there are no further out-of-band detours. ENG-001 (capabilities) and ENG-005
-  (labelled query set) are next, and both serve H1: ENG-001 supplies the capability ranking
-  signal (arm R3) and ENG-005 supplies the ground truth that makes H0 falsifiable.
-
-  Note: ENG-001 is a BET ON H1 -- it only pays off if the engine gets built. That is fine and
-  intended, now that the H1-independent wins have been banked.
+  Do NOT start ENG-011-style per-keystroke optimisation again. See the redirect above.
 
 Findings from ENG-002 that changed the plan:
   - D1 WAS MIS-FRAMED. Transfer is 738 KB, not 6.9 MB. The uncompressible costs are parse

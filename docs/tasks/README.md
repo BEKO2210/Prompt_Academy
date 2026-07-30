@@ -36,7 +36,7 @@ no ticket is here because it is tidy; each one gates something downstream.
 | 8 | [ENG-008](ENG-008-benchmark-harness.md) | End-to-end benchmark harness (arms A–E) | M3 | XL | BLOCKED — **spec approved** | H1a/H1b/H1c; gates all of M4 |
 | — | [ENG-009](ENG-009-accepted-debt.md) | Clear the debt ENG-003 recorded | M6 | M | PLANNED | 5 eslint violations back to `error`; 10 schema-invalid slugs; slug-pattern gap in the validator |
 | 9 | [ENG-010](ENG-010-multiword-search.md) | Multi-word search returns nothing (D3) | M1* | S | **DONE** | User-visible correctness; independent of H1 |
-| 10 | [ENG-011](ENG-011-haystack-precompute.md) | Precompute the search haystack (D3b) | M1* | S | READY | ~83% of filter cost; independent of H1 |
+| 10 | [ENG-011](ENG-011-haystack-precompute.md) | Precompute the search haystack (D3b) | M1* | S | **REJECTED** | Measured: 6.4× faster filter, **0%** felt gain, heap budget failed by 10 MB. Reverted. |
 
 *M1\* = out of band. ENG-010 and ENG-011 are not part of the original M1 scope. They address measured,
 user-visible defects that pay off **regardless of how H1 turns out**, which de-risks the project — and

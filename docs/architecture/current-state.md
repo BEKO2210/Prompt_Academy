@@ -264,7 +264,7 @@ term splitting, and are the strongest concrete argument for actually running the
 (`data visualization chart`: 50 → 451). A wide unranked set beats an empty one, but ordering it is
 ENG-006.
 
-### D3b — Search cost is re-derivation, not matching
+### D3b — Search cost is re-derivation, but fixing it changes nothing (ENG-011, rejected)
 
 Measured 2026-07-30. `haystack()` is called **inside** the filter predicate (`Library.tsx:76`), so up
 to 10,000 array joins plus `toLowerCase()` are redone on every keystroke; nothing is precomputed or
@@ -277,10 +277,18 @@ memoised per record.
 | Facet-only (no text) | p50 **0.64 ms** — ~11x cheaper |
 | Keystroke → paint (browser) | p50 **49.9 ms**, p95 50.6 ms |
 
-Two consequences: precomputing the haystack is a real win available **independently of any ranking
-change**; and since the full keystroke cost is ~7x the filter cost, React re-render of the 48 visible
-cards dominates, so optimising the filter alone addresses roughly one seventh of what the user feels.
-There is no debounce on the input.
+**Tested and rejected 2026-07-30 (ENG-011).** Precomputing the haystack once per index made the filter
+**6.4× faster** (7.73 → 1.21 ms) and changed keystroke→paint by **nothing** (49.9 → 49.7 ms, inside noise),
+while pushing JS heap from 24.4 MB to **34.3 MB** — breaching the 24.5 MB budget by 10 MB. Reverted.
+Full measurement: `reports/eng-011-haystack-precompute-rejected.md`.
+
+The finding stands but its reading is inverted: the filter was **never the bottleneck**. React's commit and
+paint of the 48 visible cards is ~42 of the ~50 ms. Consequences for later work:
+
+- Retrieval cost must be solved **offline** (ADR-0003's build-time BM25 index), not per keystroke.
+- A **debounce** on the input is the likely high-value change and costs no memory. Not ticketed yet.
+- The heap budget has essentially no slack (24.4 vs 24.5 MB) — any in-memory retrieval structure needs
+  its budget argued up with a measurement *before* implementation.
 
 ### D4 — No tests, no CI gates — **RESOLVED 2026-07-30 (ENG-003)**
 

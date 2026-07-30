@@ -1,9 +1,49 @@
 # ENG-011 — Precompute the search haystack (D3b)
 
 **Type:** Performance
-**Milestone:** M1 (out of band — cheap win, independent of H1)
-**Status:** BLOCKED — do after ENG-010 lands, so correctness and performance are measured apart
+**Milestone:** M1 (out of band)
+**Status:** **REJECTED** (2026-07-30) — implemented, measured, reverted
 **Complexity:** S
+
+## Result: no code ships
+
+Full measurement in `reports/eng-011-haystack-precompute-rejected.md`.
+
+| | Baseline | With precomputation | |
+|---|---|---|---|
+| Filter-only p50 | 7.73 ms | **1.21 ms** | 6.4× faster |
+| **keystroke → paint p50** | 49.9 ms | **49.7 ms** | **no change** |
+| **JS heap after load** | 24.4 MB (budget **≤ 24.5**) | **34.3 MB** | **budget FAILED** |
+
+The filter got 6.4× faster and **the user experiences nothing**. Removing ~6.5 ms from
+a ~50 ms interaction is invisible, because React's commit and paint of the 48 visible
+cards account for ~42 ms of it. The ticket predicted a ceiling of ~12%; the measurement
+came in at 0%.
+
+One hard acceptance criterion (heap ≤ 24.5 MB) fails by 10 MB. Per the release gates and
+master prompt §47, a component that does not measurably help is removed rather than kept.
+**Reverted.**
+
+The change was verified behaviour-neutral before rejection — precomputed haystacks were
+byte-identical for all 10,000 records, and 9 representative queries selected the same
+record ids in the same order. This was not a broken implementation; the payoff simply was
+not there.
+
+## What this redirects
+
+- **The bottleneck is React re-render, not retrieval.** Any filter or scoring
+  optimisation is dominated by rendered work.
+- **A debounce on the search input is likely the highest-value next change** and costs no
+  memory. Not ticketed yet; worth measuring before ENG-006 adds per-keystroke scoring.
+- **Do not solve retrieval cost per keystroke.** ADR-0003 already specifies an
+  **offline-built** inverted/BM25 index for ENG-006 — build-time work, no heap-for-CPU
+  trade. Per-keystroke precomputation would have been discarded by ENG-006 anyway.
+- **The heap budget has no slack.** 24.4 MB against a 24.5 MB ceiling. ENG-006/ENG-007
+  must argue any in-memory structure's budget up *with a measurement first*.
+
+---
+
+*Original ticket below, kept for the record.*
 
 ## Problem
 
