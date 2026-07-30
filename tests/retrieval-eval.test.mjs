@@ -37,7 +37,8 @@ test("every evaluated method mirrors something real, none is invented here", () 
     "r0_substring",       // pre-ENG-010, historical
     "r1_and_terms",       // ENG-010, historical
     "r2_token_boundary",  // ENG-012, shipped matching
-    "r3_ranked",          // ENG-006, shipped ranking
+    "r3_ranked",          // ENG-006, ranking WITHOUT vocabulary
+    "r4_ranked_vocab",    // ENG-013, what the product ships
   ].sort(), "an unrecognised method appeared in the evaluation harness");
 });
 

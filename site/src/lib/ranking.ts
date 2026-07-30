@@ -15,6 +15,7 @@
  */
 import type { IndexItem } from "./data";
 import type { ParsedQuery } from "./search";
+import { SYNONYM_SCORE_FACTOR } from "./vocabulary";
 
 export const RANKING_VERSION = "1.0.0";
 
@@ -144,9 +145,15 @@ export function scoreRecord(it: IndexItem, parsed: ParsedQuery, terms: string[])
   const lowerSub = (it.sc ?? "").replace(/_/g, " ").toLowerCase();
 
   let score = 0;
-  for (const term of terms) {
-    score += WEIGHTS.title * fieldScore(lowerTitle, term);
-    score += WEIGHTS.subcategory * fieldScore(lowerSub, term);
+  for (const c of parsed.conditions) {
+    // The user's own word counts fully; a vocabulary variant counts less, so a
+    // synonym hit never outranks a direct one (ENG-013).
+    score += WEIGHTS.title * fieldScore(lowerTitle, c.term);
+    score += WEIGHTS.subcategory * fieldScore(lowerSub, c.term);
+    for (const v of c.variants) {
+      score += SYNONYM_SCORE_FACTOR * WEIGHTS.title * fieldScore(lowerTitle, v);
+      score += SYNONYM_SCORE_FACTOR * WEIGHTS.subcategory * fieldScore(lowerSub, v);
+    }
   }
 
   // Aboutness: every query term present in the title.

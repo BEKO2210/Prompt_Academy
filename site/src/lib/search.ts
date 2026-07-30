@@ -21,6 +21,7 @@
  * not in which order.
  */
 import type { IndexItem } from "./data";
+import { expandPhrase, expandToken } from "./vocabulary";
 
 /** Bump when tokenisation, phrases or the low-information set change. */
 export const MATCHING_VERSION = "1.0.0";
@@ -92,12 +93,26 @@ function phrasePattern(phrase: string): RegExp {
   return new RegExp("\\b" + parts.join("[^a-z0-9]+"), "i");
 }
 
+/**
+ * One required condition: the user's own term, plus any vocabulary variants.
+ * The condition is satisfied when ANY alternative matches — that is what lets a
+ * German query reach an English corpus (ENG-013).
+ */
+export interface TermCondition {
+  /** What the user typed. Scored at full weight. */
+  term: string;
+  /** term + variants, all as boundary-anchored patterns. */
+  patterns: RegExp[];
+  /** Variant strings only, for ranking to score at a reduced factor. */
+  variants: string[];
+}
+
 export interface ParsedQuery {
-  /** Multi-word units that must appear adjacently. */
-  phrases: RegExp[];
-  /** Content terms that must all match. */
-  required: RegExp[];
-  /** The plain strings behind `required` — what ranking scores on. */
+  /** Multi-word units that must appear adjacently (any variant satisfies). */
+  phrases: RegExp[][];
+  /** Content conditions that must all be satisfied. */
+  conditions: TermCondition[];
+  /** The plain strings behind the conditions — what ranking scores on. */
   requiredTerms: string[];
   /** Low-information terms, kept for the record but not enforced. */
   soft: string[];
@@ -114,18 +129,22 @@ export interface ParsedQuery {
 export function parseQuery(query: string): ParsedQuery {
   const tokens = tokenize(query);
   if (tokens.length === 0) {
-    return { phrases: [], required: [], requiredTerms: [], soft: [], empty: true };
+    return { phrases: [], conditions: [], requiredTerms: [], soft: [], empty: true };
   }
 
   const consumed = new Array<boolean>(tokens.length).fill(false);
-  const phrases: RegExp[] = [];
+  const phrases: RegExp[][] = [];
 
   for (const phrase of MEANINGFUL_PHRASES) {
     const pt = tokenize(phrase);
     for (let i = 0; i + pt.length <= tokens.length; i++) {
       if (consumed.slice(i, i + pt.length).some(Boolean)) continue;
       if (pt.every((p, j) => tokens[i + j] === p)) {
-        phrases.push(phrasePattern(phrase));
+        // The phrase itself, plus what the corpus actually calls it.
+        phrases.push([
+          phrasePattern(phrase),
+          ...expandPhrase(phrase).map(phrasePattern),
+        ]);
         for (let j = 0; j < pt.length; j++) consumed[i + j] = true;
       }
     }
@@ -138,14 +157,21 @@ export function parseQuery(query: string): ParsedQuery {
   // If every token was low-information ("in", "a for"), enforce them anyway —
   // otherwise the query would silently match the entire corpus.
   const requiredTerms = content.length > 0 ? content : soft;
-  const required = requiredTerms.map(termPattern);
+  const conditions: TermCondition[] = requiredTerms.map((term) => {
+    const variants = [...expandToken(term)];
+    return {
+      term,
+      variants,
+      patterns: [termPattern(term), ...variants.map(phrasePattern)],
+    };
+  });
 
   return {
     phrases,
-    required,
+    conditions,
     requiredTerms,
     soft: content.length > 0 ? soft : [],
-    empty: phrases.length === 0 && required.length === 0,
+    empty: phrases.length === 0 && conditions.length === 0,
   };
 }
 
@@ -178,8 +204,14 @@ export function haystack(it: IndexItem): string {
 export function matchesParsed(it: IndexItem, parsed: ParsedQuery): boolean {
   if (parsed.empty) return true;
   const h = haystack(it);
-  for (const rx of parsed.phrases) if (!rx.test(h)) return false;
-  for (const rx of parsed.required) if (!rx.test(h)) return false;
+  // Each condition is an OR over the user's term and its variants; the
+  // conditions themselves are ANDed, so ENG-010's semantics survive.
+  for (const alts of parsed.phrases) {
+    if (!alts.some((rx) => rx.test(h))) return false;
+  }
+  for (const c of parsed.conditions) {
+    if (!c.patterns.some((rx) => rx.test(h))) return false;
+  }
   return true;
 }
 

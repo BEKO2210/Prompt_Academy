@@ -74,6 +74,8 @@ def r2_token_boundary(query, recs, hays):
     """Shipped since ENG-012: boundary-anchored prefix terms, phrase-aware,
     low-information tokens soft. Mirrors site/src/lib/search.ts."""
     import re as _re
+    syn = SYN if vocab else {}
+    psyn = PHRASE_SYN if vocab else {}
     toks = _tok(query)
     if not toks:
         return [r["id"] for r in recs]
@@ -119,7 +121,7 @@ def _field_score(field, term):
     return (1 + math.log(hits)) * (1.0 if exact else PREFIX_ONLY)
 
 
-def score_record(r, terms, n_phrases, weights=None):
+def score_record(r, conds, n_phrases, weights=None):
     w = weights if weights is not None else W
     wc = r.get("website_card", {})
     fields = {
@@ -130,18 +132,68 @@ def score_record(r, terms, n_phrases, weights=None):
         "industry": r["industry"], "audience": r["audience"].replace("_"," "),
     }
     s = 0.0
-    for t in terms:
+    for term, variants, _ in conds:
         for k, txt in fields.items():
-            if w.get(k): s += w[k] * _field_score(txt, t)
+            if w.get(k): s += w[k] * _field_score(txt, term)
+        for v in variants:
+            for k, txt in fields.items():
+                if w.get(k): s += SYNONYM_FACTOR * w[k] * _field_score(txt, v)
     lt = r["title"].lower()
+    terms = [c[0] for c in conds]
     if terms and all((lt.find(t) == 0) or (lt.find(t) > 0 and not lt[lt.find(t)-1].isalnum()) for t in terms):
         s += TITLE_COVERAGE_BONUS
     s += n_phrases * PHRASE_BONUS
     return s
 
 
-def _ranked(query, recs, hays, weights=None):
+SYN = {
+ "preis":["pricing","price"],"preise":["pricing","price"],"seite":["page"],"seiten":["page"],
+ "startseite":["homepage","landing"],"anmeldung":["login","signup","registration"],
+ "anmelden":["login","sign in"],"anmeldeformular":["login","form"],
+ "registrierung":["registration","signup"],"passwort":["password"],"benutzer":["user"],
+ "nutzer":["user"],"konto":["account"],"einstellungen":["settings"],"formular":["form"],
+ "suche":["search"],"suchen":["search"],"warenkorb":["cart","shopping cart"],
+ "kasse":["checkout"],"bezahlung":["payment","checkout"],"zahlung":["payment"],
+ "bestellung":["order"],"produkt":["product"],"produkte":["product"],
+ "onlineshop":["ecommerce","shop","storefront"],"laden":["shop","store"],
+ "barrierefrei":["accessible","accessibility"],"barrierefreiheit":["accessibility"],
+ "dunkelmodus":["dark mode"],"hell":["light"],"dunkel":["dark"],"tabelle":["table"],
+ "diagramm":["chart","graph"],"diagramme":["chart","graph"],
+ "uebersicht":["overview","dashboard"],"übersicht":["overview","dashboard"],
+ "bericht":["report"],"berichte":["report"],"benachrichtigung":["notification","toast"],
+ "benachrichtigungen":["notification"],"navigation":["navbar"],
+ "schaltflaeche":["button"],"schaltfläche":["button"],"knopf":["button"],
+ "karte":["card"],"karten":["card"],"formulare":["form"],"anmeldeseite":["login"],
+ "bezahlseite":["checkout"],"produktseite":["product"],
+ "landingpage":["landing"],"zielseite":["landing"],
+ "kalender":["calendar","date picker"],"hochladen":["upload"],
+ "herunterladen":["download","export"],"filtern":["filter"],"sortieren":["sort"],
+ "bewertung":["review","rating"],"bewertungen":["review","rating"],
+ "lernen":["learning","education"],"spiel":["game"],"spiele":["game"],
+ "gesundheit":["healthcare","health"],"finanzen":["finance","financial"],
+ "vorlage":["template"],"vorlagen":["template"],
+ "preisseite":["pricing","price"], "preistabelle":["pricing table","pricing"], "suchseite":["search"], "kontoseite":["account"], "uebersichtsseite":["overview","dashboard"], "einstellungsseite":["settings"], "screen":["page","view","interface","form"], "view":["page","interface"], "maske":["form","page"], "ansicht":["view","page","interface"], "oberflaeche":["interface","ui"], "oberfläche":["interface","ui"],
+ "signin":["login","sign in"],"login":["sign in","authentication"],
+ "auth":["authentication","login"],"signup":["registration","sign up"],
+ "basket":["cart"],"storefront":["shop","ecommerce"],
+ "a11y":["accessibility","accessible"],"i18n":["localization","rtl"],
+ "navbar":["navigation"],"dropdown":["menu","select"],"spinner":["loading","skeleton"],
+ "kpi":["metric","dashboard"],"crud":["table","form"],"wizard":["multi-step","onboarding"]}
+PHRASE_SYN = {"sign in":["login","authentication"],"log in":["login","authentication"],
+ "sign up":["registration","signup"],"check out":["checkout"]}
+SYNONYM_FACTOR = 0.6
+
+
+def _pat(t):
     import re as _re
+    parts = _tok(t)
+    return _re.compile(r"\b" + r"[^a-z0-9]+".join(map(_re.escape, parts)), _re.I)
+
+
+def _ranked(query, recs, hays, weights=None, vocab=True):
+    import re as _re
+    syn = SYN if vocab else {}
+    psyn = PHRASE_SYN if vocab else {}
     toks = _tok(query)
     if not toks: return [r["id"] for r in recs]
     used=[False]*len(toks); phrases=[]
@@ -150,26 +202,40 @@ def _ranked(query, recs, hays, weights=None):
         for i in range(len(toks)-len(pt)+1):
             if any(used[i:i+len(pt)]): continue
             if all(toks[i+j]==pt[j] for j in range(len(pt))):
-                phrases.append(_re.compile(r"\b"+r"[^a-z0-9]+".join(map(_re.escape,pt)),_re.I))
+                phrases.append([_re.compile(r"\b"+r"[^a-z0-9]+".join(map(_re.escape,pt)),_re.I)]
+                               + [_pat(v) for v in psyn.get(p,[])])
                 for j in range(len(pt)): used[i+j]=True
     rest=[t for i,t in enumerate(toks) if not used[i]]
     content=[t for t in rest if t not in LOW_INFO]; soft=[t for t in rest if t in LOW_INFO]
     terms = content or soft
-    req=[_re.compile(r"\b"+_re.escape(t),_re.I) for t in terms]
+    conds=[( t, syn.get(t,[]), [_re.compile(r"\b"+_re.escape(t),_re.I)]+[_pat(v) for v in syn.get(t,[])]) for t in terms]
     hit=[(r,h) for r,h in zip(recs,hays)
-         if all(x.search(h) for x in phrases) and all(x.search(h) for x in req)]
-    scored=[(score_record(r, terms, len(phrases), weights), i, r["id"]) for i,(r,h) in enumerate(hit)]
+         if all(any(y.search(h) for y in x) for x in phrases)
+         and all(any(y.search(h) for y in c[2]) for c in conds)]
+    scored=[(score_record(r, conds, len(phrases), weights), i, r["id"]) for i,(r,h) in enumerate(hit)]
     scored.sort(key=lambda x: (-x[0], x[1]))
     return [rid for _,_,rid in scored]
 
 
 def r3_ranked(query, recs, hays):
-    """ENG-006: same matched set as r2, ordered by field-weighted relevance."""
+    """ENG-006: same matched set as r2, ordered by field-weighted relevance.
+
+    Vocabulary expansion is OFF here on purpose. Without that, r3 and r4 are the
+    same function and the measured contribution of ENG-013 cannot be separated
+    from ENG-006's -- which is exactly what had silently happened."""
+    return _ranked(query, recs, hays, vocab=False)
+
+
+def r4_ranked_vocab(query, recs, hays):
+    """ENG-013: r3 plus query vocabulary expansion (German->English, synonyms).
+
+    This is what the product ships."""
     return _ranked(query, recs, hays)
 
 
 METHODS = {"r0_substring": r0_substring, "r1_and_terms": r1_and_terms,
-           "r2_token_boundary": r2_token_boundary, "r3_ranked": r3_ranked}
+           "r2_token_boundary": r2_token_boundary, "r3_ranked": r3_ranked,
+           "r4_ranked_vocab": r4_ranked_vocab}
 
 
 # --- metrics --------------------------------------------------------------
