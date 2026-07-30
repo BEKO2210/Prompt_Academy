@@ -1,5 +1,5 @@
 {
-  "ground_truth_version": "retrieval-ground-truth-v1",
+  "ground_truth_version": "retrieval-ground-truth-v1.1",
   "query_schema_version": "1.0.0",
   "dataset_hash": "7bb8bec4fda48bd9c6f3e6918130a1c577370f1504d8d16048a40127279b40a7",
   "pool_schema_version": "1.0.0",
@@ -30,11 +30,11 @@
   ],
   "totals": {
     "queries_annotated": 12,
-    "judged_pairs": 454,
-    "grade_3": 138,
-    "grade_2": 46,
-    "grade_1": 82,
-    "grade_0": 188
+    "judged_pairs": 483,
+    "grade_3": 149,
+    "grade_2": 48,
+    "grade_1": 91,
+    "grade_0": 195
   },
   "queries": {
     "Q001": {
@@ -43,10 +43,10 @@
       "type": "exact_lexical",
       "difficulty": "easy",
       "split": "dev",
-      "pool_size": 25,
-      "judged": 25,
+      "pool_size": 31,
+      "judged": 31,
       "grade_counts": {
-        "3": 23,
+        "3": 29,
         "2": 0,
         "1": 0,
         "0": 2
@@ -76,9 +76,15 @@
         "PRM-000069": 3,
         "PRM-000070": 3,
         "PRM-000071": 3,
+        "PRM-000072": 3,
+        "PRM-000075": 3,
         "PRM-000076": 3,
         "PRM-000077": 3,
-        "PRM-000091": 3
+        "PRM-000079": 3,
+        "PRM-000089": 3,
+        "PRM-000091": 3,
+        "PRM-000092": 3,
+        "PRM-000095": 3
       },
       "judged_not_relevant": [
         "PRM-000013",
@@ -338,13 +344,13 @@
       "type": "ambiguous",
       "difficulty": "medium",
       "split": "dev",
-      "pool_size": 54,
-      "judged": 54,
+      "pool_size": 65,
+      "judged": 65,
       "grade_counts": {
         "3": 21,
         "2": 7,
-        "1": 9,
-        "0": 17
+        "1": 13,
+        "0": 24
       },
       "flags": [
         "many_relevant_by_design"
@@ -380,19 +386,30 @@
         "PRM-002102": 2,
         "PRM-002109": 1,
         "PRM-002110": 2,
+        "PRM-002111": 1,
         "PRM-002113": 1,
         "PRM-002115": 1,
         "PRM-002117": 1,
+        "PRM-002118": 1,
         "PRM-002122": 1,
         "PRM-002123": 1,
         "PRM-002129": 1,
         "PRM-002130": 1,
-        "PRM-002131": 1
+        "PRM-002131": 1,
+        "PRM-002178": 1,
+        "PRM-002535": 1
       },
       "judged_not_relevant": [
         "PRM-000051",
         "PRM-000071",
         "PRM-000091",
+        "PRM-002164",
+        "PRM-002181",
+        "PRM-002518",
+        "PRM-002525",
+        "PRM-002529",
+        "PRM-002532",
+        "PRM-002534",
         "PRM-007001",
         "PRM-007002",
         "PRM-007009",
@@ -420,12 +437,12 @@
       "type": "exact_lexical",
       "difficulty": "easy",
       "split": "dev",
-      "pool_size": 29,
-      "judged": 29,
+      "pool_size": 41,
+      "judged": 41,
       "grade_counts": {
-        "3": 16,
-        "2": 0,
-        "1": 13,
+        "3": 21,
+        "2": 2,
+        "1": 18,
         "0": 0
       },
       "flags": [
@@ -442,11 +459,18 @@
         "PRM-002066": 1,
         "PRM-002075": 1,
         "PRM-002076": 1,
+        "PRM-002078": 1,
         "PRM-002079": 1,
         "PRM-002082": 1,
         "PRM-002083": 1,
         "PRM-002085": 3,
         "PRM-002086": 1,
+        "PRM-002092": 1,
+        "PRM-002266": 1,
+        "PRM-002268": 2,
+        "PRM-002955": 2,
+        "PRM-002960": 1,
+        "PRM-002962": 1,
         "PRM-006806": 3,
         "PRM-009401": 3,
         "PRM-009402": 3,
@@ -461,7 +485,12 @@
         "PRM-009411": 3,
         "PRM-009412": 3,
         "PRM-009413": 3,
-        "PRM-009414": 3
+        "PRM-009414": 3,
+        "PRM-009424": 3,
+        "PRM-009426": 3,
+        "PRM-009428": 3,
+        "PRM-009431": 3,
+        "PRM-009440": 3
       },
       "judged_not_relevant": [],
       "reasons_sample": {
@@ -815,5 +844,19 @@
         "PRM-001038": "corpus contains no record for this intent (verified corpus-wide)"
       }
     }
-  }
+  },
+  "updated_at": "2026-07-30T16:39:12Z",
+  "version_history": [
+    {
+      "version": "retrieval-ground-truth-v1.1",
+      "date": "2026-07-30",
+      "change": "Pool extended by 29 candidates on the DEV split, judged under the unchanged guideline.",
+      "reason": "Standard pooled-evaluation practice: when a new system is compared, its top-k enters the pool and is judged. Measuring r3_ranked against a pool built only from r0/r1/r2 punished it for surfacing relevant records nobody had judged — 5 heatmaps records in the top-10 of Q019 counted as misses purely because they were unjudged.",
+      "not_a_reason": "NO existing label was changed. Labels are never revised because a ranker scores badly against them; only unjudged candidates were added.",
+      "splits_touched": [
+        "dev"
+      ],
+      "holdout": "untouched"
+    }
+  ]
 }

@@ -13,6 +13,7 @@ import {
 import { PromptCard } from "../components/PromptCard";
 import { PromptDrawer } from "../components/PromptDrawer";
 import { matchesParsed, parseQuery } from "../lib/search";
+import { rankResults } from "../lib/ranking";
 
 const PAGE = 48;
 
@@ -48,7 +49,17 @@ export function Library() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters.category]);
 
-  const q = query.trim().toLowerCase();
+  // Debounced so mid-typing states ("d", "da", "das") never run a full search.
+  // Identified in the ENG-011 report as the highest-value latency measure and
+  // deferred then; ENG-006's ranking made it necessary, because scoring cost
+  // scales with the matched set and short prefixes match thousands of records.
+  const [debounced, setDebounced] = useState("");
+  useEffect(() => {
+    const t = setTimeout(() => setDebounced(query), 140);
+    return () => clearTimeout(t);
+  }, [query]);
+
+  const q = debounced.trim().toLowerCase();
   // Parsed once per query, not per record: phrase detection and the regex
   // construction are the expensive part (ENG-010 / ENG-012).
   const parsed = useMemo(() => parseQuery(q), [q]);
@@ -69,6 +80,10 @@ export function Library() {
       list = [...list].sort((a, b) => (b.q ?? 0) - (a.q ?? 0));
     } else if (sort === "az") {
       list = [...list].sort((a, b) => a.t.localeCompare(b.t));
+    } else {
+      // "relevance" finally computes relevance (ENG-006). Before this it was a
+      // label on arbitrary index order.
+      list = rankResults(list, parsed, parsed.requiredTerms);
     }
     return list;
   }, [index, filters, parsed, sort]);

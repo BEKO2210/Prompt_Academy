@@ -97,6 +97,8 @@ export interface ParsedQuery {
   phrases: RegExp[];
   /** Content terms that must all match. */
   required: RegExp[];
+  /** The plain strings behind `required` — what ranking scores on. */
+  requiredTerms: string[];
   /** Low-information terms, kept for the record but not enforced. */
   soft: string[];
   /** True when the query carries no matchable condition at all. */
@@ -112,7 +114,7 @@ export interface ParsedQuery {
 export function parseQuery(query: string): ParsedQuery {
   const tokens = tokenize(query);
   if (tokens.length === 0) {
-    return { phrases: [], required: [], soft: [], empty: true };
+    return { phrases: [], required: [], requiredTerms: [], soft: [], empty: true };
   }
 
   const consumed = new Array<boolean>(tokens.length).fill(false);
@@ -135,11 +137,13 @@ export function parseQuery(query: string): ParsedQuery {
 
   // If every token was low-information ("in", "a for"), enforce them anyway —
   // otherwise the query would silently match the entire corpus.
-  const required = (content.length > 0 ? content : soft).map(termPattern);
+  const requiredTerms = content.length > 0 ? content : soft;
+  const required = requiredTerms.map(termPattern);
 
   return {
     phrases,
     required,
+    requiredTerms,
     soft: content.length > 0 ? soft : [],
     empty: phrases.length === 0 && required.length === 0,
   };

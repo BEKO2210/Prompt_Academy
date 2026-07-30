@@ -10,7 +10,8 @@
     "any_term": "loose OR over terms, ranked by term count — deliberately noisy",
     "facet": "hand-written category/subcategory expansion per query",
     "synonyms": "hand-written vocabulary variants per query, incl. German↔English",
-    "facet_and_synonym": "intersection of facet and synonym — added after a measured pooling failure on Q002, see the coverage report"
+    "facet_and_synonym": "intersection of facet and synonym — added after a measured pooling failure on Q002, see the coverage report",
+    "ranked_system_topk": "top-k of a compared ranking system, added to the pool and then judged (standard pooled-evaluation practice)"
   },
   "rule": "Sources PROPOSE candidates. Sources never assign relevance. Grades come from a human reading the record against RELEVANCE-GUIDELINE.md.",
   "pool": {
@@ -41,7 +42,13 @@
         "PRM-000053",
         "PRM-000067",
         "PRM-000069",
-        "PRM-000070"
+        "PRM-000070",
+        "PRM-000072",
+        "PRM-000075",
+        "PRM-000079",
+        "PRM-000089",
+        "PRM-000092",
+        "PRM-000095"
       ],
       "provenance": {
         "PRM-000051": [
@@ -177,6 +184,24 @@
         "PRM-000077": [
           "facet_and_synonym",
           "synonyms"
+        ],
+        "PRM-000072": [
+          "ranked_system_topk"
+        ],
+        "PRM-000075": [
+          "ranked_system_topk"
+        ],
+        "PRM-000079": [
+          "ranked_system_topk"
+        ],
+        "PRM-000089": [
+          "ranked_system_topk"
+        ],
+        "PRM-000092": [
+          "ranked_system_topk"
+        ],
+        "PRM-000095": [
+          "ranked_system_topk"
         ]
       },
       "source_totals": {
@@ -185,7 +210,8 @@
         "any_term": 3928,
         "facet": 100,
         "synonyms": 1010,
-        "facet_and_synonym": 100
+        "facet_and_synonym": 100,
+        "ranked_system_topk": 6
       },
       "source_truncated_at_cap": {
         "substring": 50,
@@ -1803,7 +1829,18 @@
         "PRM-002034",
         "PRM-002129",
         "PRM-001999",
-        "PRM-001149"
+        "PRM-001149",
+        "PRM-002111",
+        "PRM-002118",
+        "PRM-002164",
+        "PRM-002178",
+        "PRM-002181",
+        "PRM-002518",
+        "PRM-002525",
+        "PRM-002529",
+        "PRM-002532",
+        "PRM-002534",
+        "PRM-002535"
       ],
       "provenance": {
         "PRM-007001": [
@@ -1997,6 +2034,39 @@
         ],
         "PRM-001999": [
           "synonyms"
+        ],
+        "PRM-002111": [
+          "ranked_system_topk"
+        ],
+        "PRM-002118": [
+          "ranked_system_topk"
+        ],
+        "PRM-002164": [
+          "ranked_system_topk"
+        ],
+        "PRM-002178": [
+          "ranked_system_topk"
+        ],
+        "PRM-002181": [
+          "ranked_system_topk"
+        ],
+        "PRM-002518": [
+          "ranked_system_topk"
+        ],
+        "PRM-002525": [
+          "ranked_system_topk"
+        ],
+        "PRM-002529": [
+          "ranked_system_topk"
+        ],
+        "PRM-002532": [
+          "ranked_system_topk"
+        ],
+        "PRM-002534": [
+          "ranked_system_topk"
+        ],
+        "PRM-002535": [
+          "ranked_system_topk"
         ]
       },
       "source_totals": {
@@ -2005,7 +2075,8 @@
         "any_term": 2938,
         "facet": 100,
         "synonyms": 289,
-        "facet_and_synonym": 42
+        "facet_and_synonym": 42,
+        "ranked_system_topk": 11
       },
       "source_truncated_at_cap": {
         "substring": 232,
@@ -3819,7 +3890,19 @@
         "PRM-006806",
         "PRM-002058",
         "PRM-009401",
-        "PRM-009404"
+        "PRM-009404",
+        "PRM-002078",
+        "PRM-002092",
+        "PRM-002266",
+        "PRM-002268",
+        "PRM-002955",
+        "PRM-002960",
+        "PRM-002962",
+        "PRM-009424",
+        "PRM-009426",
+        "PRM-009428",
+        "PRM-009431",
+        "PRM-009440"
       ],
       "provenance": {
         "PRM-002054": [
@@ -3949,6 +4032,42 @@
         ],
         "PRM-006806": [
           "synonyms"
+        ],
+        "PRM-002078": [
+          "ranked_system_topk"
+        ],
+        "PRM-002092": [
+          "ranked_system_topk"
+        ],
+        "PRM-002266": [
+          "ranked_system_topk"
+        ],
+        "PRM-002268": [
+          "ranked_system_topk"
+        ],
+        "PRM-002955": [
+          "ranked_system_topk"
+        ],
+        "PRM-002960": [
+          "ranked_system_topk"
+        ],
+        "PRM-002962": [
+          "ranked_system_topk"
+        ],
+        "PRM-009424": [
+          "ranked_system_topk"
+        ],
+        "PRM-009426": [
+          "ranked_system_topk"
+        ],
+        "PRM-009428": [
+          "ranked_system_topk"
+        ],
+        "PRM-009431": [
+          "ranked_system_topk"
+        ],
+        "PRM-009440": [
+          "ranked_system_topk"
         ]
       },
       "source_totals": {
@@ -3957,7 +4076,8 @@
         "any_term": 2425,
         "facet": 50,
         "synonyms": 222,
-        "facet_and_synonym": 50
+        "facet_and_synonym": 50,
+        "ranked_system_topk": 12
       },
       "source_truncated_at_cap": {
         "all_terms": 146,

@@ -93,8 +93,83 @@ def r2_token_boundary(query, recs, hays):
             if all(x.search(h) for x in phrases) and all(x.search(h) for x in req)]
 
 
+# Mirrors site/src/lib/ranking.ts WEIGHTS. Seven further fields were measured
+# and removed — see the ablation table in that file.
+W = {"title": 10, "subcategory": 8}
+PREFIX_ONLY = 0.55
+TITLE_COVERAGE_BONUS = 12
+PHRASE_BONUS = 8
+
+
+def _field_score(field, term):
+    import math
+    if not field:
+        return 0.0
+    low = field.lower(); hits = 0; exact = False; i = 0
+    while True:
+        at = low.find(term, i)
+        if at == -1: break
+        before = low[at-1] if at else ""
+        if not before.isalnum():
+            hits += 1
+            after = low[at+len(term):at+len(term)+1]
+            if not after or not after.isalnum(): exact = True
+        i = at + 1
+    if not hits: return 0.0
+    return (1 + math.log(hits)) * (1.0 if exact else PREFIX_ONLY)
+
+
+def score_record(r, terms, n_phrases, weights=None):
+    w = weights if weights is not None else W
+    wc = r.get("website_card", {})
+    fields = {
+        "title": r["title"], "subcategory": r["subcategory"].replace("_"," "),
+        "headline": wc.get("headline", r["title"]), "keywords": " ".join(wc.get("search_keywords", [])),
+        "tags": " ".join(r.get("tags", [])), "summary": wc.get("summary",""),
+        "framework": r.get("tech_stack", {}).get("framework",""),
+        "industry": r["industry"], "audience": r["audience"].replace("_"," "),
+    }
+    s = 0.0
+    for t in terms:
+        for k, txt in fields.items():
+            if w.get(k): s += w[k] * _field_score(txt, t)
+    lt = r["title"].lower()
+    if terms and all((lt.find(t) == 0) or (lt.find(t) > 0 and not lt[lt.find(t)-1].isalnum()) for t in terms):
+        s += TITLE_COVERAGE_BONUS
+    s += n_phrases * PHRASE_BONUS
+    return s
+
+
+def _ranked(query, recs, hays, weights=None):
+    import re as _re
+    toks = _tok(query)
+    if not toks: return [r["id"] for r in recs]
+    used=[False]*len(toks); phrases=[]
+    for p in PHRASES:
+        pt=_tok(p)
+        for i in range(len(toks)-len(pt)+1):
+            if any(used[i:i+len(pt)]): continue
+            if all(toks[i+j]==pt[j] for j in range(len(pt))):
+                phrases.append(_re.compile(r"\b"+r"[^a-z0-9]+".join(map(_re.escape,pt)),_re.I))
+                for j in range(len(pt)): used[i+j]=True
+    rest=[t for i,t in enumerate(toks) if not used[i]]
+    content=[t for t in rest if t not in LOW_INFO]; soft=[t for t in rest if t in LOW_INFO]
+    terms = content or soft
+    req=[_re.compile(r"\b"+_re.escape(t),_re.I) for t in terms]
+    hit=[(r,h) for r,h in zip(recs,hays)
+         if all(x.search(h) for x in phrases) and all(x.search(h) for x in req)]
+    scored=[(score_record(r, terms, len(phrases), weights), i, r["id"]) for i,(r,h) in enumerate(hit)]
+    scored.sort(key=lambda x: (-x[0], x[1]))
+    return [rid for _,_,rid in scored]
+
+
+def r3_ranked(query, recs, hays):
+    """ENG-006: same matched set as r2, ordered by field-weighted relevance."""
+    return _ranked(query, recs, hays)
+
+
 METHODS = {"r0_substring": r0_substring, "r1_and_terms": r1_and_terms,
-           "r2_token_boundary": r2_token_boundary}
+           "r2_token_boundary": r2_token_boundary, "r3_ranked": r3_ranked}
 
 
 # --- metrics --------------------------------------------------------------

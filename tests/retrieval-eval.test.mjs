@@ -25,13 +25,20 @@ test("harness defaults to the dev split", () => {
   assert.match(SRC, /--split", default="dev"/);
 });
 
-test("harness implements no new ranking", () => {
-  // Both methods must mirror what the product did or does. A third method
-  // appearing here means ranking work leaked into a measurement ticket.
-  const methods = SRC.match(/^METHODS = \{(.*)\}$/m);
-  assert.ok(methods, "METHODS table not found");
-  assert.equal((methods[1].match(/:/g) || []).length, 2,
-    "eval harness gained a method — ranking belongs in ENG-006, not here");
+test("every evaluated method mirrors something real, none is invented here", () => {
+  // The guard is not "no ranking" any more — ENG-006 shipped ranking, so it is
+  // legitimately measured. The guard is that the harness only evaluates methods
+  // the product actually had or has, so a flattering method cannot be invented
+  // for the benchmark.
+  const block = SRC.match(/METHODS = \{([\s\S]*?)\}/);
+  assert.ok(block, "METHODS table not found");
+  const names = [...block[1].matchAll(/"(\w+)"\s*:/g)].map((m) => m[1]);
+  assert.deepEqual(names.sort(), [
+    "r0_substring",       // pre-ENG-010, historical
+    "r1_and_terms",       // ENG-010, historical
+    "r2_token_boundary",  // ENG-012, shipped matching
+    "r3_ranked",          // ENG-006, shipped ranking
+  ].sort(), "an unrecognised method appeared in the evaluation harness");
 });
 
 test("k values match the benchmark plan", () => {
