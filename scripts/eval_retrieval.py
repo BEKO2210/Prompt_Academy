@@ -298,7 +298,7 @@ def main():
         "queries": len(qs),
         "k_values": K_VALUES,
         "unjudged_convention": rel_all["unjudged_convention"],
-        "note": "No new ranking was implemented for this measurement. Both methods are what the product did or does.",
+        "note": "Every method here is what the product did or does at some point in its history; none was invented for the benchmark.",
         "methods": {},
     }
 

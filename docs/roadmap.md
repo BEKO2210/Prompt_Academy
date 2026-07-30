@@ -613,16 +613,30 @@ Files Changed:
   No dataset, site source, or CI files touched. scripts/baseline/ is measurement-only tooling;
   nothing in the shipped site or build path was modified.
 
-Next Recommended Ticket:
-  ENG-006 (ranking). Baseline to beat: reports/eng-012-token-boundary.md.
-  OLD, now done: ENG-012 word-boundary + stopword matching.
-  Smallest change with the largest measured payoff. NOT ranking -- it fixes WHICH records
-  match, exactly as ENG-010 did. Re-measure on dev afterwards; the baseline above is the
-  number to beat.
+Retrieval track, measured on dev against retrieval-ground-truth-v1.1 (holdout untouched):
 
-  THEN ENG-006 (ranking), with reports/retrieval-baseline-dev.md as the baseline.
-  Cross-language stays open and is the strongest concrete case for actually testing
-  embeddings (arm R7) rather than assuming lexical retrieval suffices.
+    nDCG@10   what
+    0.332     r2  ENG-012 token-boundary matching, no ranking       DONE 2026-07-30
+    0.429     r3  ENG-006 field-weighted ranking                    DONE 2026-07-30
+    0.755     r4  ENG-013 query vocabulary expansion                DONE 2026-07-30
+
+  Cross-language went from total failure to working: Preisseite 0 -> nDCG 1.00.
+  Reports: reports/eng-012-token-boundary.md, reports/eng-013-vocabulary.md.
+
+Next Recommended Ticket:
+  ENG-008 (benchmark harness) — the H1 experiment with arms A-F. This is the binding
+  order the user set: capability vocabulary, labelled query set, retrieval measurement,
+  THEN H1. The first three are done.
+
+  Still open, in priority order:
+  - Cross-language recall is non-zero but thin (sign in screen: 2 records for 3 relevant).
+    This remains the strongest concrete case for actually testing embeddings (arm R7)
+    rather than assuming lexical retrieval suffices.
+  - The holdout split has never been measured. It is the only honest test of ENG-013,
+    part of which was tuned on dev. Spend it once, deliberately, not casually.
+  - Keystroke -> results is p50 174.7 ms, of which 140 ms is the debounce. No ticket
+    owns whether that trade is right. Note that the previously reported 33.3 ms was a
+    measurement artifact — see reports/eng-013-vocabulary.md.
 
   ENG-005 discipline, agreed and binding:
     - Ground truth frozen BEFORE any ranking exists.

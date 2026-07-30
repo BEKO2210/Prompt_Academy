@@ -10,7 +10,7 @@
     10
   ],
   "unjudged_convention": "Records outside a query's candidate pool are UNJUDGED and must be treated as non-relevant when computing metrics (standard pooled-evaluation practice). Pool depth per query is recorded so this assumption stays visible.",
-  "note": "No new ranking was implemented for this measurement. Both methods are what the product did or does.",
+  "note": "Every method here is what the product did or does at some point in its history; none was invented for the benchmark.",
   "methods": {
     "r4_ranked_vocab": {
       "aggregate": {
