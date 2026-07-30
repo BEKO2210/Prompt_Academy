@@ -148,25 +148,40 @@ at all — not to accept the regression.
 
 **Scope (deliberately tiny — master prompt §66):**
 - Local CLI (no service, no hosting, no public surface), against the existing isolated ollama.
-- Pipeline: normalize → capabilities → retrieve+rank (reuse M2 module) → compile → local model →
-  deterministic validate → telemetry JSONL.
+- Pipeline: normalize → capabilities → retrieve+rank (reuse M2 module) → **extract/compile** →
+  local model → deterministic validate → telemetry JSONL.
+- **Deterministic field split** separating descriptive content (`prompt` prose, `style`) from
+  actionable content (`acceptance_criteria`, `negative_prompt`, `tech_stack` constraints). Documented
+  and committed — this split is the experiment's independent variable and must not be model-decided.
 - Prompt compiler: dedup, conflict resolution, precedence, acceptance-criteria preservation,
   provenance trace.
 - Deterministic validators only (parse, typecheck, imports, forbidden packages, required exports).
-- Benchmark harness with arms A/B/C/D from `benchmark-plan.md`.
+- Benchmark harness with **arms A–E** from `benchmark-plan.md` §4.
 
-**Explicitly excluded:** decomposer, DAG, reranker-as-separate-stage, repair, model routing,
-composition of >1 skill if unnecessary, any UI.
+**Explicitly excluded:** decomposer, DAG, reranker-as-separate-stage, repair, model routing, any UI.
+Arm F (full router/reranker/repair) is M4.
 
 **Exit criteria:**
-- Benchmark run on the task set, results committed with full reproducibility metadata
-  (§48: model, version, temperature, seed, dataset version, config, timestamp).
-- **H1 answered with evidence.** A negative result is a valid and valuable outcome.
-- Token accounting per run (§89).
+- Benchmark run on the task set; the §4 cross-arm table filled from real runs, with full
+  reproducibility metadata (§48: model, version, temperature, seed, dataset version, config,
+  timestamp, hardware).
+- **H1a, H1b, H1c each answered with evidence.** Negative results are valid and valuable outcomes —
+  four of the seven H1 decision branches lead to building *less* than currently planned.
+- Token accounting per run (§89), including whether arm D achieves comparable success at **lower**
+  input-token cost than arm B.
 
-**Risks:** local 8 GB model quality may be the limiting factor rather than prompt quality,
-confounding H1. Mitigate by running at least one arm against a stronger model to separate
-"scaffolding doesn't help" from "this model can't use it".
+**Why the arms matter more than the pipeline here:** the central question is no longer "does
+retrieval help" but **"description vs. instruction vs. compiled instruction"** (benchmark-plan §1a).
+Published evidence (arXiv:2602.11988) found bulk repository context unhelpful while instructions
+were followed. If that split reproduces here, the product's job is extraction and compilation, not
+context loading — which would change the architecture's centre of gravity toward the compiler.
+
+**Risks:**
+- Local 8 GB model quality may be the limiting factor rather than context quality, confounding H1.
+  Mitigate by running at least one arm against a stronger model on the identical compiled prompt, to
+  separate "scaffolding doesn't help" from "this model can't use it".
+- The C/D field split is the experiment's independent variable; a sloppy or shifting split would
+  invalidate the result. It must be deterministic, documented, and frozen before the run.
 
 **Complexity:** L
 
@@ -179,10 +194,14 @@ confounding H1. Mitigate by running at least one arm against a stronger model to
 **Status:** BLOCKED — requires H1 supported in M3
 **Goal:** Add only the components M3 showed were missing.
 
-**Candidate scope, in likely order of value:** repair engine (needs validation signal first),
-task decomposer (only if multi-task requests are common in real use), skill composition,
-model router + second provider, execution modes, context budget manager refinement,
-model-specific performance learning (§33).
+**Candidate scope, in likely order of value — but the M3 result reorders this:**
+arm F (full router/reranker + validation + targeted repair), repair engine (needs validation signal
+first), skill composition (**only if H1c held, i.e. E > D**), task decomposer (only if multi-task
+requests are common in real use), model router + second provider, execution modes, context budget
+manager refinement, model-specific performance learning (§33).
+
+If **D > B** (H1b) the compiler/extractor is the proven core and should receive the effort. If
+**E ≈ D** (H1c fails) the composer is explicitly **not** built.
 
 Each component enters scope **only** with a measurement showing the gap it closes. §47 applies:
 components that do not help are removed, not kept "for completeness".
@@ -283,46 +302,69 @@ known for this project.
 ## Handoff
 
 ```text
-CURRENT STATE
+CURRENT STATE                                    (last updated 2026-07-30)
+
+Branch:
+  phase-0/skill-engine-foundation  (NOT merged to main; main is production)
+  Commit 1  docs: add Phase 0 skill engine discovery and roadmap      (23 files, docs/ only)
+  Commit 2  docs: add AGENTS.md as agent source of truth, CLAUDE.md as import
 
 Completed:
-  M0 Discovery & Planning — all Phase 0 docs written (architecture, security, benchmark, ADRs, tickets).
-  Measured: 10,000 records, schema-clean; index.json = 6.9 MB; search = substring includes();
-  no tests; CI = deploy only; no backend; no capability vocabulary.
+  M0 Discovery & Planning — all Phase 0 docs written (architecture, security, benchmark,
+  7 ADRs, 7 tickets) plus AGENTS.md (92 lines) + CLAUDE.md (@AGENTS.md import).
+  Measured: 10,000 records, schema-clean, 200 subcategories / 18 frameworks / 65 industries;
+  acceptance_criteria (3-6) and non-empty negative_prompt on ALL 10,000 records;
+  index.json = 6,908,075 bytes; search = one substring includes() + 5 exact facets;
+  no tests; CI = deploy only; no backend; no capabilities[] field.
 
 In Progress:
   none
 
 Blocked:
-  M3 — blocked on ADR-0001 (runtime decision: local CLI vs. service vs. cloud vs. BYO-key).
-       Recommendation on record: local CLI first.
-  M4, M5 — contingent on H1 being supported by M3 evidence.
+  M3 — blocked on ADR-0001 (runtime: local CLI vs. self-hosted service vs. cloud vs. BYO-key).
+       Recommendation on record: local CLI against existing ollama, written as a LIBRARY with a
+       thin CLI entry point so later promotion is a deployment change, not a rewrite.
+  M4, M5 — contingent on the M3 H1 result.
 
 Tests:
-  None exist. Establishing them is M1 scope (finding D4).
+  None exist. Establishing them is M1 scope (finding D4). CI currently publishes an invalid
+  dataset without complaint.
 
 Important Decisions:
-  - Reordered the master prompt's M0–M22: falsify the core premise (H1/H2) before building
-    infrastructure that assumes it.
-  - Schema evolution is additive only; provenance/license/permissions deferred until data exists
-    to populate them.
-  - No vector DB. Embeddings deferred pending an ablation against BM25.
+  - Reordered the master prompt's M0-M22: falsify the core premise before building on it.
+  - H1 REFINED (2026-07-30) after reviewing arXiv:2602.11988, which found repository-level
+    context files do not generally improve success (+20% cost) while INSTRUCTIONS were well
+    followed and OVERVIEWS were not. That study used static repo-wide context, so it does not
+    refute our task-specific retrieval + extraction + compilation approach — but it lowers the
+    prior on naive injection and reshapes the experiment. H1 is now tested as three sub-claims:
+      H1a  instruction > description         (arm D > arm C)
+      H1b  extraction > bulk injection       (arm D > arm B)   <- load-bearing
+      H1c  compilation > single extraction   (arm E > arm D)
+    Benchmark arms are now A-E in M3 (F deferred to M4). See benchmark-plan.md §1a and §4.
+  - Schema evolution additive only; provenance/licence/permissions deferred until data exists.
+  - No vector DB. Embeddings deferred pending ablation against BM25 (arm R7).
   - External skill import sequenced last (largest attack-surface increase).
-  - Layer 0-2 work needs no new infrastructure and is the recommended first real work.
+  - Layers 0-2 need no new infrastructure and are the recommended first real work.
+  - AGENTS.md is the single source of truth; CLAUDE.md only imports it (no duplication).
 
 Files Changed:
-  docs/** only. No source, dataset, site, or CI files touched. Working tree otherwise untouched.
+  docs/**, AGENTS.md, CLAUDE.md. No source, dataset, site, CI or runtime files touched.
 
 Next Recommended Ticket:
-  ENG-001 (capability vocabulary) and ENG-002 (baselines + CI gates) — both in M1.
-  Decide ADR-0001 before M3 planning begins.
+  ENG-002 (baselines) -> ENG-004 (content_hash) -> ENG-003 (CI gates) -> ENG-001 (capabilities)
+  -> ENG-005 (labelled query set). Decide ADR-0001 before M3 is planned in detail.
 
 Do Not Forget:
-  - index.json is already 6.9 MB. Any retrieval enrichment MUST NOT make the page slower (D1).
-  - quality.*_score values are self-reported by the generating agents, not validated (D6).
-    Do not treat them as ground truth for ranking.
-  - Committed reports/ have rounded/hardcoded timestamps and do not prove current state (D5).
-  - The local repo `prompt-forge` is a DIFFERENT repository (Prompt-Academy), not this project.
-  - RTX 3070 / 8 GB: one local model resident at a time; ComfyUI contends for VRAM.
-  - H1 is unproven. Everything in P4-P6 rests on it.
+  - index.json is already 6.9 MB and is parsed by every Library visitor. Retrieval enrichment
+    MUST NOT make the page slower (D1). Measure before and after.
+  - quality.*_score is self-reported by the generating agents, never independently validated
+    (D6). Not ground truth for ranking, not evidence of output quality.
+  - reports/ has rounded/hardcoded timestamps and does NOT prove current state (D5).
+  - Local repo `prompt-forge` is a DIFFERENT repository (Prompt-Academy), not this project.
+  - cleanup_dataset.py once modified 6,678 records in one pass; bulk mutation needs review + diff.
+  - RTX 3070 / 8 GB: one resident local model; ComfyUI contends for VRAM.
+  - The C/D field split is the M3 experiment's independent variable. It must be deterministic,
+    documented and frozen before the run, never model-decided.
+  - Four of seven H1 decision branches lead to building LESS than planned; one leads to stopping.
+    That is intended, not a failure mode.
 ```

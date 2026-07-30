@@ -21,18 +21,24 @@ done together. The goal is not 20 half-finished features.
 
 ## Current tickets
 
-| ID | Title | Milestone | Complexity | Status |
-|---|---|---|---|---|
-| [ENG-001](ENG-001-capability-vocabulary.md) | Capability vocabulary + subcategory mapping | M1 | M | READY |
-| [ENG-002](ENG-002-baselines.md) | Measure and commit performance baselines | M1 | S | READY |
-| [ENG-003](ENG-003-ci-gates.md) | CI: dataset validation, typecheck, lint, first tests | M1 | M | READY |
-| [ENG-004](ENG-004-content-hash.md) | Per-record `content_hash` | M1 | XS | READY |
-| [ENG-005](ENG-005-labelled-query-set.md) | Labelled query set for retrieval benchmark | M2 | M | PLANNED |
-| [ENG-006](ENG-006-ranking-module.md) | Isomorphic ranking module + central config | M2 | L | PLANNED |
-| [ENG-007](ENG-007-index-byte-budget.md) | Resolve the 6.9 MB index byte budget | M2 | L | PLANNED |
+Ordered by recommended execution sequence. The rightmost column states what each ticket unblocks —
+no ticket is here because it is tidy; each one gates something downstream.
 
-Recommended start: **ENG-002 and ENG-004** (both small, unblock measurement), then **ENG-003**,
-then **ENG-001**.
+| # | ID | Title | M | Cx | Status | Unblocks |
+|---|---|---|---|---|---|---|
+| 1 | [ENG-002](ENG-002-baselines.md) | Measure and commit performance baselines | M1 | S | READY | Any "faster/better" claim; the D1 byte-budget constraint |
+| 2 | [ENG-004](ENG-004-content-hash.md) | Per-record `content_hash` | M1 | XS | READY | Cache keys, idempotent import, benchmark traceability |
+| 3 | [ENG-003](ENG-003-ci-gates.md) | CI: dataset validation, typecheck, lint, first tests | M1 | M | READY | Safe iteration on data and site (closes D4) |
+| 4 | [ENG-001](ENG-001-capability-vocabulary.md) | Capability vocabulary + subcategory mapping | M1 | M | READY | Capability ranking signal (R3); the resolver |
+| 5 | [ENG-005](ENG-005-labelled-query-set.md) | Labelled query set for retrieval benchmark | M2 | M | READY | H0 — makes ranking falsifiable |
+| 6 | [ENG-007](ENG-007-index-byte-budget.md) | Resolve the 6.9 MB index byte budget | M2 | L | PLANNED | Lets ranking ship without a perf regression |
+| 7 | [ENG-006](ENG-006-ranking-module.md) | Isomorphic ranking module + central config | M2 | L | PLANNED | H0; the retrieval stage reused by the M3 engine |
 
-M3+ tickets are deliberately not written yet: M3 is gated on ADR-0001, and writing detailed tickets
-for contingent milestones before their gate is decided produces plans that get discarded.
+**Sequencing rationale:** measurement before change (1), cheap and irreversible-if-late groundwork
+(2), then the safety net that makes everything after it safe (3), then the one schema addition the
+whole architecture routes on (4), then ground truth before the thing it judges (5), then the
+constraint before the feature that would violate it (6 before 7).
+
+M3+ tickets are deliberately unwritten: M3 is gated on ADR-0001, and its shape now depends on the
+refined H1 arms (`../benchmark-plan.md` §1a). Writing detailed tickets for contingent milestones
+before their gate is decided produces plans that get discarded.

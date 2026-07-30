@@ -20,22 +20,34 @@ The master prompt's central goal:
 This is a **falsifiable technical claim**, not a design goal. It decomposes into two independent
 sub-claims:
 
-- **H1 — Retrieval helps.** Injecting a well-matched library prompt into a request produces better
-  output than the user's raw request alone.
+- **H1 — The right *executable* context helps.** Task-specific actionable instructions, extracted and
+  compiled from library records, improve validated task success — whereas injecting whole retrieved
+  records (mostly descriptive prose) does not. Decomposed into H1a (instruction > description),
+  H1b (extraction > bulk injection), H1c (compilation > single-record extraction).
+  **See `benchmark-plan.md` §1a for the tested form and the prior evidence bearing on it.**
 - **H2 — Scaffolding substitutes for model capability.** A small local model plus the full engine
   approaches a strong model's quality on the same task.
 
-Neither is currently supported by any evidence in this repository. Both are plausible. Both are
-also plausibly false in specific ways worth naming:
+Neither is supported by any evidence in this repository. Both are plausible. Both are also plausibly
+false in specific ways worth naming:
 
 - H1 fails if a capable model, given a bare request, already produces output as good as one guided
-  by a generic library prompt. For well-trodden tasks ("build a pricing page"), this is a real
-  possibility — the library prompt may add words without adding information the model lacked.
-- H1 also fails if retrieval precision is low: injecting a *mismatched* prompt is worse than
+  by a library record. For well-trodden tasks ("build a pricing page"), this is a real possibility —
+  the record may add words without adding information the model lacked.
+- H1 also fails if retrieval precision is low: injecting a *mismatched* record is worse than
   injecting nothing, because it actively misdirects.
 - H2 fails if the binding constraint on small-model output is capability (reasoning depth, instruction
   adherence, long-range coherence) rather than specification quality. Scaffolding can supply
   specification; it cannot supply reasoning the model cannot perform.
+
+**External evidence exists and is unfavourable to the naive version of H1.** arXiv:2602.11988 found
+that repository-level context files do not generally improve task success and cost >20% more, and
+specifically that *repository overviews did not help while instructions were well followed*. That
+setup differs from this project's in exactly the dimension under test — static repo-wide context vs.
+task-specific retrieval, extraction and compilation — so it does not refute H1. It does two useful
+things: it lowers the prior on "just inject the retrieved record", and its description/instruction
+split suggests where the value would actually be. That is why H1 is tested in the decomposed form
+above rather than as a single yes/no. Full treatment in `benchmark-plan.md` §1a.
 
 **Architectural consequence:** the roadmap is ordered to test H1 as early and as cheaply as
 possible, before building anything that presupposes it. A benchmark is not milestone 16 of 22 —

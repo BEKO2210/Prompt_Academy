@@ -16,8 +16,8 @@ metadata in §8. Fabricated or illustrative numbers are forbidden (§ NICHT ERLA
 
 Two hypotheses from `architecture/target-state.md` §1:
 
-- **H1 — Retrieval helps.** Injecting a well-matched library prompt produces better output than the
-  raw user request alone.
+- **H1 — The right *executable* context helps.** See §1a for the refined form, which is the version
+  actually tested.
 - **H2 — Scaffolding substitutes for capability.** Small local model + full engine approaches a
   strong model on the same tasks.
 
@@ -28,6 +28,82 @@ Plus one prerequisite that is cheaper and independent:
   measurement.
 
 H0 is measured in M2. H1/H2 in M3.
+
+---
+
+## 1a. H1, refined: description vs. instruction vs. compiled instruction
+
+### Prior evidence, and why it does not settle the question
+
+Published work bears on this. **arXiv:2602.11988** — *"Evaluating AGENTS.md: Are Repository-Level
+Context Files Helpful for Coding Agents?"* (Gloaguen, Mündler, Müller, Raychev, Vechev) reports,
+verbatim:
+
+> "Surprisingly, we find that providing context files does not generally improve task success rates,
+> while increasing inference cost by over 20% on average."
+
+> "repository overviews, although popular and recommended by model providers, are not helpful"
+> — while "instructions in the context files are well followed by coding agents."
+
+This is **relevant negative evidence and must shape our expectations and method. It is not a
+refutation of H1**, because the experimental setup differs in the specific dimension this project
+is about:
+
+| | arXiv:2602.11988 | This project |
+|---|---|---|
+| Context selection | static, repository-wide | task-specific retrieval |
+| Per-task variation | none — same file every task | reranked per task |
+| Content treatment | whole file injected | instructions extracted from descriptive prose |
+| Assembly | concatenation | compilation with dedup, conflict resolution, precedence |
+| Budget | unbounded | explicit context budget |
+
+The paper measures "more context, always the same". This project proposes "less context, selected
+and compiled per task". Those are different interventions, and the difference **is** the product
+thesis.
+
+Crucially, the paper's own decomposition points toward this project's mechanism rather than away
+from it: **descriptions did not help, instructions were followed.** If that split holds here, the
+implication is not "retrieval is useless" but "retrieve and extract the instructions, discard the
+prose".
+
+### The refined hypothesis
+
+> **H1 (refined):** Task-specific *actionable instructions* extracted and compiled from library
+> records improve validated task success, whereas injecting whole retrieved records — which are
+> mostly descriptive prose — does not.
+
+This is decomposed into three testable sub-claims:
+
+- **H1a — Instruction beats description.** Arm D (actionable only) > Arm C (descriptive only).
+- **H1b — Extraction beats bulk injection.** Arm D > Arm B (whole record).
+- **H1c — Compilation beats single-record extraction.** Arm E (compiled from several records) > Arm D.
+
+### Why this is well-suited to *this* dataset
+
+Measured: **all 10,000 records carry 3–6 `acceptance_criteria`, and all 10,000 carry a non-empty
+`negative_prompt`.** So every record already contains a clean separation between:
+
+- **descriptive content** — `prompt` prose ("cinematic depth", "biomorphic blobs", style narration)
+- **actionable content** — `acceptance_criteria`, `negative_prompt`, explicit `tech_stack`
+  constraints
+
+The arms below exploit that separation directly. No new annotation is required to run this
+experiment, which is why it is cheap and why it belongs in the first slice rather than later.
+
+### What each outcome would mean architecturally
+
+Stated in advance, because this determines what gets built:
+
+| Outcome | Architectural implication |
+|---|---|
+| **D and/or E > B** | The product is **not** "load more context" but "extract and compile the right executable context". The Prompt Compiler becomes the core component, and the descriptive prose in 10,000 records is largely dead weight for generation (though still useful for human browsing). This would be a substantial change of emphasis. |
+| **B ≈ D ≈ E > A** | Bulk injection is sufficient; the compiler's added complexity is not justified. Simplify: retrieve and inject, drop extraction. |
+| **C > D** | Surprising, and would mean style/description carries the value. Re-examine the dataset's value proposition. |
+| **A ≈ B ≈ C ≈ D ≈ E** | H1 falsified for this corpus and model. Stop before M4; keep the improved library as a browsing product (roadmap §Decision rules). |
+| **E > D > B > A** | Strongest possible result: the full mechanism is justified end to end. |
+
+Note that two of these five outcomes argue for *less* machinery than currently planned. That is the
+point of running it first.
 
 ---
 
@@ -103,19 +179,43 @@ negative results.
 
 ## 4. End-to-end benchmark (H1/H2) — M3
 
-### Arms (master prompt §BENCHMARK BASELINES)
+### Arms
 
-| Arm | Configuration |
-|---|---|
-| **A** | user request → model (no library at all) — **the baseline that matters** |
-| **B** | user request + single best-matching prompt (raw) → model |
-| **C** | user request + top-N raw prompts concatenated → model |
-| **D** | user request + engine (retrieve → rank → compile) → model |
-| **E** | D + validation + targeted repair → model |
+Refined per §1a to isolate **description vs. instruction vs. compiled instruction**. This replaces a
+simpler A–E ladder that would have confounded "more context" with "better-selected context" — the
+exact confound arXiv:2602.11988 shows matters.
 
-H1 is supported only if **D > B and D > A** by a margin exceeding measurement noise.
-Arm C is important: it tests whether the *compiler* adds anything over naive concatenation, which is
-the compiler's entire justification.
+| Arm | Configuration | Isolates |
+|---|---|---|
+| **A** | user request → model | the baseline that matters — no library at all |
+| **B** | user request + full best-matching record (verbatim) → model | bulk injection, the paper's condition |
+| **C** | user request + **descriptive parts only** (`prompt` prose, `style`) → model | does description help? |
+| **D** | user request + **actionable parts only** (`acceptance_criteria`, `negative_prompt`, `tech_stack` constraints) → model | does instruction help? |
+| **E** | user request + **compiled instructions from several records** (dedup, conflict resolution, precedence, budget) → model | does compilation beat single-record extraction? |
+| **F** | E + full router/reranker + validation + targeted repair loop | the full mechanism (later; M4) |
+
+Arms **A–E run in M3**. Arm **F is deferred to M4** and only exists if M3 justifies it.
+
+Interpretation rules, fixed in advance:
+
+- **H1b** holds iff **D > B** beyond noise. This is the load-bearing comparison: it tests whether
+  extraction beats the bulk injection the paper found unhelpful.
+- **H1a** holds iff **D > C**. Together with H1b, this replicates or refutes the paper's
+  description-vs-instruction split on our corpus.
+- **H1c** holds iff **E > D**. This is the compiler's entire justification.
+- **B vs. C** is diagnostic: if B ≈ C, the whole record is behaving like its prose, which would mean
+  the acceptance criteria are being diluted by surrounding narration — itself an argument for D/E.
+- If **A ≈ B** but **D > A**, the honest headline is *"bulk retrieval does not help; instruction
+  extraction does"* — consistent with the paper rather than contradicting it, and a stronger
+  positioning for the product than a naive "retrieval helps" claim.
+
+Arms C and D must be constructed by a **deterministic, documented split** of the record fields — not
+by a model deciding what counts as "actionable". Otherwise the split becomes an uncontrolled
+variable. The exact field mapping is committed with the harness.
+
+Token accounting matters especially here: D should be substantially *cheaper* than B (fewer tokens,
+prose discarded). If D matches or beats B at lower cost, that is a compound win and the single most
+commercially relevant result the benchmark can produce.
 
 ### Model tiers (§43)
 
@@ -153,24 +253,47 @@ prompt separates these.
 
 ### Metrics (§45, §46)
 
+Recorded **per arm** (A–F), for every run:
+
 **Outcome**
 - task success rate (deterministic validators pass)
 - acceptance-criteria pass rate
-- first-pass success / final success
+- **first-pass success** (before any repair)
+- final success
 - repair rate, average repairs
 - validation failure counts by type (§28 taxonomy)
 
 **Cost**
-- input / output / total tokens
+- input tokens
+- output tokens
+- total tokens
+- total cost (0 for local models; recorded anyway for comparability — never reported as
+  "infinite success per dollar")
 - latency
-- cost (0 for local; recorded anyway for comparability)
-- context size, compiled context size, **token reduction vs. arm C**
+- context size; compiled context size; **token reduction of D and E vs. B**
 
 **Efficiency (§46)**
 - success per 1k tokens
 - success per dollar
 - success per second
 - router overhead, compiler savings
+
+The cross-arm table that answers the central question is:
+
+| | A | B | C | D | E |
+|---|---|---|---|---|---|
+| success rate | | | | | |
+| acceptance-criteria pass rate | | | | | |
+| first-pass success | | | | | |
+| input tokens | | | | | |
+| output tokens | | | | | |
+| total cost | | | | | |
+| latency | | | | | |
+| success per 1k tokens | | | | | |
+
+Empty by design — it is filled only by a recorded run. **D beating B while using fewer input
+tokens** is the outcome to watch for: it would mean the product's job is extraction and compilation,
+not context loading.
 
 ### Scoring — deterministic first
 
@@ -245,24 +368,49 @@ numbers do not transfer to other hardware and must be labelled as such.
 | `benchmarks/queries/` labelled query set (versioned) | M2 |
 | `benchmarks/tasks/` task set (versioned) | M3 |
 | Retrieval ablation table R0–R7, incl. negative results | M2 |
-| End-to-end results A–E × model tiers | M3 |
+| Documented deterministic field split for arms C and D | M3 |
+| End-to-end results **A–E** × model tiers (the §4 cross-arm table) | M3 |
 | Failure taxonomy breakdown | M3 |
 | Efficiency table | M3 |
-| Written conclusion on H0/H1/H2, including any falsification | M3 |
+| Written conclusion on H0 / H1a / H1b / H1c / H2, including any falsification | M3 |
+| Arm F results (full router/reranker/repair) | M4 |
 
 ---
 
 ## 10. Decision rules
 
-Stated in advance, so results cannot be reinterpreted after the fact:
+Stated in advance, so results cannot be reinterpreted after the fact.
+
+**H0 (ranking):**
 
 | Outcome | Action |
 |---|---|
-| H0 false (ranking no better than substring) | Do not ship the ranking. Investigate the query set and the signals before proceeding. |
-| H0 true, H1 false | **Stop before M4.** Keep the improved library (a good product). Document the negative result. Do not build the engine. |
-| H1 true, H2 false | Engine helps, but does not replace capability. Continue M4 with realistic framing; drop "small model matches strong model" as a goal. |
-| H1 true, H2 true | Proceed to M4 with the strongest possible justification. |
-| Inconclusive | Report as inconclusive. Increase n or improve validators before deciding — do not proceed on a hunch. |
+| H0 false | Do not ship the ranking. Investigate the query set and the signals first. |
 
-Committing to these rules before seeing data is the main defence against motivated reasoning, and
-it is the reason this document is written now rather than at M16.
+**H1 (the refined description/instruction/compilation question — see §1a):**
+
+| Outcome | Action |
+|---|---|
+| **D > B** (H1b holds) | Product thesis confirmed as *extraction*, not context loading. The Prompt Compiler becomes the core component; prioritize it in M4. Reconsider how much of the descriptive prose in 10,000 records matters for generation at all. |
+| **E > D** (H1c holds) | Multi-record compilation justified. Build the composer. |
+| **E ≈ D** | Single-record extraction suffices. **Do not build the composer.** |
+| **B ≈ D** | Extraction adds nothing over bulk injection. Drop extraction; simplify to retrieve-and-inject. |
+| **C > D** | Description carries the value, contrary to prior evidence. Stop and re-examine the dataset's value proposition before building anything. |
+| **A ≈ B ≈ C ≈ D ≈ E** | H1 falsified for this corpus and model. **Stop before M4.** Keep the improved library as a browsing product. Document the negative result. |
+
+**H2 (capability substitution):**
+
+| Outcome | Action |
+|---|---|
+| H1 true, H2 false | Engine helps but does not replace capability. Continue M4 with realistic framing; drop "small model matches strong model" as a project goal. |
+| H1 true, H2 true | Proceed to M4 with the strongest possible justification. |
+
+**Always:**
+
+| Outcome | Action |
+|---|---|
+| Inconclusive | Report as inconclusive. Increase n or improve validators — do not proceed on a hunch. |
+
+Note that four of the seven H1 outcomes above lead to building **less** than currently planned, and
+one leads to stopping entirely. Committing to these rules before seeing data is the main defence
+against motivated reasoning, and it is the reason this document exists now rather than at M16.

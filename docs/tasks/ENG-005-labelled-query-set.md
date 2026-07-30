@@ -2,7 +2,7 @@
 
 **Type:** Measurement / Data
 **Milestone:** M2
-**Status:** PLANNED
+**Status:** READY
 **Complexity:** M
 
 ## Problem
