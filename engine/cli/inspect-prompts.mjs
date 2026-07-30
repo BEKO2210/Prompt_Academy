@@ -43,7 +43,7 @@ const corpus = loadCorpus(
 
 const ARMS_UNDER_TEST = (process.argv.includes("--arms")
   ? process.argv[process.argv.indexOf("--arms") + 1].split(",")
-  : ["A", "B", "D", "E"]).filter((a) => ARMS.includes(a));
+  : ["A", "B", "C", "D", "E_concat"]).filter((a) => ARMS.includes(a));
 
 const problems = [];
 const manifest = [];
@@ -96,12 +96,36 @@ for (const tid of pilot.task_ids) {
       if (injected.includes(line)) problems.push(`${tid}/D: descriptive content leaked into arm D`);
     }
   }
-  // Arm B: superset of C and D.
-  if (prompts.B && prompts.D) {
-    const bInj = prompts.B.user.replace(task.request, "");
-    const dInj = prompts.D.user.replace(task.request, "");
-    for (const line of dInj.split("\n").filter((l) => l.trim().length > 8 && !l.startsWith("##"))) {
-      if (!bInj.includes(line)) problems.push(`${tid}: arm B is missing actionable content that arm D has`);
+  // Arm C: exactly the frozen descriptive split, and no actionable leakage.
+  if (prompts.C) {
+    const expected = renderContext(descriptiveContext(r.primary));
+    const injected = prompts.C.user.replace(task.request, "");
+    if (!injected.includes(expected)) problems.push(`${tid}/C: arm C does not carry the descriptive split verbatim`);
+    const actionable = renderContext(actionableContext(r.primary));
+    for (const line of actionable.split("\n").filter((l) => l.trim().length > 25)) {
+      if (injected.includes(line)) problems.push(`${tid}/C: actionable content leaked into arm C`);
+    }
+  }
+
+  // B = C union D, enforced on the ACTUAL prompts rather than on the field list.
+  // Every non-heading line of C and of D must appear in B, and B must contain
+  // nothing beyond the two splits except the structural headings. Content that
+  // exists in only one arm would make a B-vs-D difference a content difference.
+  if (prompts.B && prompts.C && prompts.D) {
+    const strip = (p) => p.user.replace(task.request, "");
+    const lines = (t) => t.split("\n").map((l) => l.trim())
+      .filter((l) => l.length > 8 && !l.startsWith("##") && l !== "# Reference context" && l !== "# Request");
+    const bInj = strip(prompts.B);
+    const bLines = new Set(lines(bInj));
+    for (const l of lines(strip(prompts.C))) {
+      if (!bLines.has(l)) problems.push(`${tid}: B is missing descriptive content that C has: ${l.slice(0, 40)}`);
+    }
+    for (const l of lines(strip(prompts.D))) {
+      if (!bLines.has(l)) problems.push(`${tid}: B is missing actionable content that D has: ${l.slice(0, 40)}`);
+    }
+    const cd = new Set([...lines(strip(prompts.C)), ...lines(strip(prompts.D))]);
+    for (const l of lines(bInj)) {
+      if (!cd.has(l)) problems.push(`${tid}: B carries content in NEITHER C nor D: ${l.slice(0, 40)}`);
     }
   }
   // The system wrapper is the same everywhere.

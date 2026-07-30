@@ -1,0 +1,98 @@
+{
+ "freezeVersion": "1.0.0",
+ "frozenAt": "2026-07-30T21:32:11.105Z",
+ "taskSetVersion": "task-set-v1",
+ "groundTruthVersion": "task-set-v1-eval4",
+ "datasetHash": "7442fd2f93bda28e9fedd0d7970a04b63c80c143e107f65869ccb2adbfefaab1",
+ "files": {
+  "benchmarks/tasks/v1/tasks.json": "a5179dde03d8a7f2f567a32e6b36f11435344df508ac1c9a9e4b50f0deaa2a72",
+  "benchmarks/tasks/v1/evaluation.json": "6fbf70ed593a7c2775cf31b927962657c01a530cae6020b5e0e4eb37be742ed6",
+  "benchmarks/tasks/v1/splits.json": "766f4b4e70050f089b7c5766044fed35e11b01ae907c9214ceec3a38d60930d1",
+  "benchmarks/tasks/v1/pilot-subset.json": "bf46443d2317cede1ebbb26e4580de78c56d46615842c030d598b5ed8c8c3c35",
+  "benchmarks/tasks/v1/check-audit.json": "ac1394c8ab249c6660d510c372e1b779fee2a596903d603c38d2d9d0514c0fe8",
+  "engine/core/checks.ts": "4f9e124e34655354ba2e3fbdd33717643f01a455eff1abb4cd9053173718e408",
+  "engine/core/evaluator.ts": "3b498e19c155539986fab9220417b53e335717605ab334e5ec9bc7a2e2ad5ac2",
+  "engine/core/eligibility.ts": "05316f912363164b6d4b3ed9cde5e68982d3c359554f46b57218b06b75d957c4",
+  "engine/core/humanReview.ts": "01e4735f87b889d735f0a144607543e1ad6fa66b96a86096ae751512008e9944",
+  "engine/core/fieldSplit.ts": "cd8e71143265aed4aca05745f7fea7af845a4b83ec200ee4726092a1844c8047",
+  "engine/core/arms.ts": "1a05db7f7a0dd96d9735b188782efacb0e5392270c39b87be9523fdfb8d8e35e",
+  "engine/core/queryFormulation.ts": "3e1087e993001d9a51662ac2e31318504c06eb090842c81ea91bdeaf49251728",
+  "engine/core/retrieval.ts": "2d2e2bfc64b4fa06da9b7b095259e95acf65fae0bbf3f4e4abdd664703d5cbcc",
+  "engine/core/runner.ts": "c840b46931721f8ae8b2876fe74af6e49aa9724ae4031f1ee78294640060df0e",
+  "engine/providers/ollama.ts": "cc5a3b3951856a967f71ff09dcde0565a7b675ee37451364030220ee0d7e224d",
+  "site/src/lib/search.ts": "1f548e2fb4a517a35f6a5abb0993064342fb61e86dc18e0e947daa50e9778959",
+  "site/src/lib/ranking.ts": "8ae75a21be3a9caa2a02600d5746ffc95355d6d65727b1525e71619ba9af79b9",
+  "site/src/lib/vocabulary.ts": "a9ce02df61ad1c2282a5c5f29353b4473a7ec98f803c38d52e5d5a948bf3e2a0"
+ },
+ "versions": {
+  "checks": "1.0.0",
+  "evaluator": "2.0.0",
+  "eligibility": "1.0.0",
+  "reviewProtocol": "1.0.0",
+  "fieldSplit": "1.0.0",
+  "matching": "1.1.0",
+  "ranking": "1.0.0",
+  "formulation": "1.1.0"
+ },
+ "model": {
+  "provider": "ollama",
+  "model": "qwen2.5-coder:7b-16k",
+  "modelVersion": "3ebbcb3fc2d3f3112cca7c34700521c1486fa4f056a2eb80e2b8f48a1aeecdf2",
+  "temperature": 0,
+  "maxTokens": 1536,
+  "seed": 7
+ },
+ "arms": [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E_concat"
+ ],
+ "systemWrapperHash": "eb5d24b1b2505b52b432a48330aeda01eb461a733cc8d21e9f297296fdf388ae",
+ "splitAlgorithmVersion": "task-split-v1",
+ "splitSeed": 20260730,
+ "devTasks": 30,
+ "holdoutTasks": 20,
+ "holdoutIds": [
+  "T001",
+  "T004",
+  "T005",
+  "T008",
+  "T009",
+  "T011",
+  "T012",
+  "T019",
+  "T021",
+  "T023",
+  "T024",
+  "T026",
+  "T029",
+  "T034",
+  "T038",
+  "T042",
+  "T043",
+  "T044",
+  "T048",
+  "T050"
+ ],
+ "holdoutPolicy": "UNTOUCHED. No retrieval measurement, no model call, no human evaluation, no prompt inspection for tuning, no weight fitting. Released only after every architecture and parameter decision is frozen.",
+ "retrievalConfig": {
+  "maxQueryTerms": 3,
+  "retrievalK": 3,
+  "minDocumentFrequency": 5
+ },
+ "armSemantics": {
+  "A": "user request only, no injected context",
+  "B": "the full injectable record, verbatim",
+  "C": "the descriptive portion of that record (prompt prose, style)",
+  "D": "the actionable portion of that record (acceptance_criteria, negative_prompt, tech_stack)",
+  "E_concat": "multi-skill actionable CONCATENATION with exact-duplicate removal. No conflict resolution, no precedence, no context budget — it is not a compiler."
+ },
+ "notImplementedArms": {
+  "F_compiled": "compiled multi-skill instructions: dedup + conflict resolution + precedence + context budget. Not built. It must earn its existence from evidence that multi-skill context helps at all (E_concat vs D)."
+ },
+ "seedPolicy": "seed=7 on every call. Ollama does not guarantee determinism from it; measured, not assumed.",
+ "repetitionPolicy": "set from the measured noise floor — see reports/eng-016-readiness.md",
+ "manifestHash": "bae523778b13489182efeb785c4171c397aaae8982e41cf86a658b14a91d7291"
+}

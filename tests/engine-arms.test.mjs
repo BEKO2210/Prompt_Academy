@@ -251,7 +251,7 @@ test("arms B, C and D use the identical record", () => {
 });
 
 test("arm E deduplicates identical instructions across records", () => {
-  const e = buildPrompt("E", task, RECORD, [SECOND_RECORD]);
+  const e = buildPrompt("E_concat", task, RECORD, [SECOND_RECORD]);
   const occurrences = e.user.split("Toggle switches all prices").length - 1;
   assert.equal(occurrences, 1, "an instruction present in both records was injected twice");
   assert.ok(e.user.includes("Annual pricing shows the saving"), "arm E dropped a distinct instruction");
@@ -336,4 +336,44 @@ test("no task request was copied from the dataset", () => {
     const chunk = t.request.toLowerCase().slice(0, 60);
     assert.ok(!corpusText.includes(chunk), `${t.task_id}: request appears verbatim in the dataset`);
   }
+});
+
+// --- ENG-016: honest arm naming and the B = C u D invariant ---------------
+
+test("no arm claims more than it implements", async () => {
+  const { ARM_SEMANTICS, NOT_IMPLEMENTED_ARMS } = await import("../engine/core/arms.ts");
+  // E is concatenation. Calling it "compiled" would make `E ~= D` read as
+  // "compilation adds nothing" when the measured claim is only "concatenation
+  // adds nothing" — a much weaker statement about a much cheaper mechanism.
+  assert.ok(ARMS.includes("E_concat"), "arm E must be named for what it does");
+  assert.ok(!ARMS.includes("E"), "the bare 'E' label is back");
+  assert.match(ARM_SEMANTICS.E_concat, /not a compiler/i);
+  assert.ok(NOT_IMPLEMENTED_ARMS.F_compiled, "the compiler arm must be listed as absent, not omitted");
+  for (const arm of ARMS) assert.ok(ARM_SEMANTICS[arm], `arm ${arm} has no declared semantics`);
+  const src = readFileSync(join(ROOT, "engine/core/arms.ts"), "utf8");
+  assert.ok(!/function compileActionable/.test(src), "a function named for compiling is back");
+});
+
+test("B = C union D on the assembled prompts, not just on the field list", () => {
+  // The field-level assertion can hold while the rendered prompts diverge.
+  // Content present in only one arm would turn a B-vs-D difference into a
+  // content difference.
+  const lines = (p) => p.user
+    .replace(task.request, "")
+    .split("\n").map((l) => l.trim())
+    .filter((l) => l.length > 8 && !l.startsWith("##") && !l.startsWith("# "));
+  const b = buildPrompt("B", task, RECORD);
+  const c = buildPrompt("C", task, RECORD);
+  const d = buildPrompt("D", task, RECORD);
+  const bSet = new Set(lines(b));
+  for (const l of lines(c)) assert.ok(bSet.has(l), `B lost descriptive line: ${l}`);
+  for (const l of lines(d)) assert.ok(bSet.has(l), `B lost actionable line: ${l}`);
+  const cd = new Set([...lines(c), ...lines(d)]);
+  for (const l of lines(b)) assert.ok(cd.has(l), `B carries content in neither C nor D: ${l}`);
+});
+
+test("arms B, C and D share one record", () => {
+  const ids = ["B", "C", "D"].map((a) => buildPrompt(a, task, RECORD).recordIds);
+  assert.deepEqual(ids[0], ids[1]);
+  assert.deepEqual(ids[1], ids[2]);
 });

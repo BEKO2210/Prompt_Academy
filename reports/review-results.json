@@ -1,0 +1,476 @@
+{
+ "rubricVersion": "task-set-v1-eval4",
+ "protocolVersion": "1.0.0",
+ "reviewer": "reviewer-01 (the assistant conducting this session)",
+ "reviewerCount": 1,
+ "interRaterReliability": "NOT MEASURED — a single reviewer. No agreement statistic is invented.",
+ "evaluationTimestamp": "2026-07-30",
+ "priorExposureDisclosure": "The reviewer had SEEN SOME OF THESE OUTPUTS BEFORE, while hunting harness bugs in ENG-015: T014/A, T018/A, T022/A, T031/A, T040/A, and all arms of T033 and T049. For those the reviewer knew the arm at the time of inspection, so blinding is partial, not complete, for roughly a quarter of the packets. Recorded rather than claimed away.",
+ "method": "Each criterion judged as its own proposition against the output text. No overall-impression scoring. PASS / FAIL / UNCERTAIN, where UNCERTAIN means the proposition could not be settled from the artifact and is NOT a disguised FAIL.",
+ "results": {
+  "P0001": {
+   "a1": {
+    "result": "PASS"
+   },
+   "a2": {
+    "result": "PASS"
+   },
+   "a3h": {
+    "result": "PASS",
+    "note": "3 external links with target=_blank; they open, page intact. The deterministic proxy (rel present) fails — that is the proxy/residual split working, not a disagreement."
+   }
+  },
+  "P0002": {
+   "a3": {
+    "result": "FAIL",
+    "note": "output is an upload button only; no row handling"
+   },
+   "a1h": {
+    "result": "FAIL",
+    "note": "no preview"
+   },
+   "a2h": {
+    "result": "FAIL",
+    "note": "no mapping"
+   }
+  },
+  "P0003": {
+   "a2h": {
+    "result": "PASS"
+   },
+   "a3h": {
+    "result": "PASS"
+   }
+  },
+  "P0004": {
+   "a1": {
+    "result": "FAIL",
+    "note": "output is a list of filenames, no artifact"
+   },
+   "a2": {
+    "result": "FAIL",
+    "note": "same"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "same"
+   }
+  },
+  "P0005": {
+   "a3": {
+    "result": "PASS",
+    "note": "one command `ng build`, parameterised by --configuration"
+   },
+   "a2h": {
+    "result": "UNCERTAIN",
+    "note": "no secret is written, but none is referenced either; the compound criterion cannot be settled from this file"
+   }
+  },
+  "P0006": {
+   "a1": {
+    "result": "FAIL",
+    "note": "3 images all rendered at once; no way to change the shown image"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "no availability logic"
+   },
+   "a2h": {
+    "result": "PASS"
+   }
+  },
+  "P0007": {
+   "a2h": {
+    "result": "PASS"
+   },
+   "a3h": {
+    "result": "PASS"
+   }
+  },
+  "P0008": {
+   "a1": {
+    "result": "PASS"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "location.reload() discards state; nothing is said about it"
+   },
+   "a2h": {
+    "result": "FAIL",
+    "note": "no destination is preserved"
+   }
+  },
+  "P0009": {
+   "a3": {
+    "result": "FAIL",
+    "note": "expected_output asserts the exact string 'Fehler: Netzwerkverbindung fehlt.'"
+   },
+   "a1h": {
+    "result": "PASS",
+    "note": "all four cases present as described tests"
+   }
+  },
+  "P0010": {
+   "a3": {
+    "result": "PASS",
+    "note": "assertions are on element visibility, not on a message string"
+   },
+   "a1h": {
+    "result": "PASS"
+   }
+  },
+  "P0011": {
+   "a2h": {
+    "result": "FAIL",
+    "note": "a single-toast component; no list, nothing stacks"
+   },
+   "a3h": {
+    "result": "PASS"
+   }
+  },
+  "P0012": {
+   "a2": {
+    "result": "FAIL",
+    "note": "filename list only"
+   },
+   "a1h": {
+    "result": "FAIL",
+    "note": "filename list only"
+   }
+  },
+  "P0013": {
+   "a2h": {
+    "result": "PASS"
+   },
+   "a3h": {
+    "result": "PASS"
+   }
+  },
+  "P0014": {
+   "a3": {
+    "result": "PASS"
+   },
+   "a2h": {
+    "result": "UNCERTAIN",
+    "note": "no secret written; none referenced; not settleable"
+   }
+  },
+  "P0015": {
+   "a1": {
+    "result": "FAIL",
+    "note": "a single image, no gallery"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "no availability logic"
+   },
+   "a2h": {
+    "result": "PASS"
+   }
+  },
+  "P0016": {
+   "a3": {
+    "result": "FAIL",
+    "note": "the undo button persists; no expiry"
+   },
+   "a2h": {
+    "result": "PASS"
+   },
+   "a1h": {
+    "result": "FAIL",
+    "note": "deletion is triggered by a CLICK on a coloured div, not by a swipe"
+   }
+  },
+  "P0017": {
+   "a3": {
+    "result": "FAIL",
+    "note": "asserts findByText(/network error/i)"
+   },
+   "a1h": {
+    "result": "FAIL",
+    "note": "no valid-login test; the first case is a render check and the second is invalid email"
+   }
+  },
+  "P0018": {
+   "a3": {
+    "result": "FAIL",
+    "note": "asserts getByText('Network error')"
+   },
+   "a1h": {
+    "result": "PASS"
+   }
+  },
+  "P0019": {
+   "a1": {
+    "result": "FAIL",
+    "note": "filename list only"
+   },
+   "a2": {
+    "result": "FAIL",
+    "note": "filename list only"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "filename list only"
+   }
+  },
+  "P0020": {
+   "a3": {
+    "result": "FAIL",
+    "note": "no expiry, and nothing is actually deleted"
+   },
+   "a2h": {
+    "result": "FAIL",
+    "note": "the item is never removed, so there is nothing to restore"
+   },
+   "a1h": {
+    "result": "FAIL",
+    "note": "the swipe reveals an 'Undo' label, not a deletion"
+   }
+  },
+  "P0021": {
+   "a1": {
+    "result": "PASS"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "nothing is said about unsaved work"
+   },
+   "a2h": {
+    "result": "PASS"
+   }
+  },
+  "P0022": {
+   "a1": {
+    "result": "PASS"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "nothing is said about unsaved work"
+   },
+   "a2h": {
+    "result": "PASS"
+   }
+  },
+  "P0023": {
+   "a3": {
+    "result": "PASS",
+    "note": "one command `webpack`, parameterised by --config"
+   },
+   "a2h": {
+    "result": "UNCERTAIN",
+    "note": "no secret written; none referenced"
+   }
+  },
+  "P0024": {
+   "a1": {
+    "result": "UNCERTAIN",
+    "note": "delegated to an <ImageGallery> component that is not shown; whether it can change the image cannot be judged"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "no availability logic"
+   },
+   "a2h": {
+    "result": "PASS"
+   }
+  },
+  "P0025": {
+   "a1": {
+    "result": "FAIL",
+    "note": "'Short bio goes here.' is a placeholder, not a biography"
+   },
+   "a2": {
+    "result": "FAIL",
+    "note": "'Role 1 - Company 1' has no dates and no chronological structure"
+   },
+   "a3h": {
+    "result": "UNCERTAIN",
+    "note": "href='#' — there are no external links to judge"
+   }
+  },
+  "P0026": {
+   "a1": {
+    "result": "PASS"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "no availability logic"
+   },
+   "a2h": {
+    "result": "PASS"
+   }
+  },
+  "P0027": {
+   "a2": {
+    "result": "FAIL",
+    "note": "filename list only"
+   },
+   "a1h": {
+    "result": "FAIL",
+    "note": "filename list only"
+   }
+  },
+  "P0028": {
+   "a1": {
+    "result": "FAIL",
+    "note": "the model refused: 'does not match the reference context'"
+   },
+   "a2": {
+    "result": "FAIL",
+    "note": "refusal"
+   },
+   "a3h": {
+    "result": "FAIL",
+    "note": "refusal"
+   }
+  },
+  "P0029": {
+   "a3": {
+    "result": "FAIL",
+    "note": "no mapping and no row reporting"
+   },
+   "a1h": {
+    "result": "PASS"
+   },
+   "a2h": {
+    "result": "FAIL",
+    "note": "headers are displayed but the user maps nothing"
+   }
+  },
+  "P0030": {
+   "a1": {
+    "result": "FAIL",
+    "note": "the model refused, citing a mismatch with the reference context"
+   },
+   "a2": {
+    "result": "FAIL",
+    "note": "refusal"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "refusal"
+   }
+  },
+  "P0031": {
+   "a2": {
+    "result": "FAIL",
+    "note": "moves++ sits inside flipCard, so it counts flips, not attempted pairs"
+   },
+   "a1h": {
+    "result": "PASS"
+   }
+  },
+  "P0032": {
+   "a2": {
+    "result": "FAIL",
+    "note": "refusal citing the reference context"
+   },
+   "a1h": {
+    "result": "FAIL",
+    "note": "refusal"
+   }
+  },
+  "P0033": {
+   "a1": {
+    "result": "FAIL",
+    "note": "refusal citing acceptance criteria"
+   },
+   "a2": {
+    "result": "FAIL",
+    "note": "refusal"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "refusal"
+   }
+  },
+  "P0034": {
+   "a1": {
+    "result": "FAIL",
+    "note": "'Short bio goes here...' is a placeholder"
+   },
+   "a2": {
+    "result": "FAIL",
+    "note": "no dates, no chronological structure"
+   },
+   "a3h": {
+    "result": "PASS"
+   }
+  },
+  "P0035": {
+   "a3": {
+    "result": "FAIL",
+    "note": "no row reporting"
+   },
+   "a1h": {
+    "result": "PASS"
+   },
+   "a2h": {
+    "result": "FAIL",
+    "note": "no user-driven mapping"
+   }
+  },
+  "P0036": {
+   "a3": {
+    "result": "PASS"
+   },
+   "a2h": {
+    "result": "UNCERTAIN",
+    "note": "no secret written; none referenced"
+   }
+  },
+  "P0037": {
+   "a3": {
+    "result": "FAIL",
+    "note": "no row reporting"
+   },
+   "a1h": {
+    "result": "PASS"
+   },
+   "a2h": {
+    "result": "FAIL",
+    "note": "the mapping is derived automatically from the header row, not chosen by the user"
+   }
+  },
+  "P0038": {
+   "a3": {
+    "result": "FAIL",
+    "note": "no expiry"
+   },
+   "a2h": {
+    "result": "FAIL",
+    "note": "after deletion the row shows 'Delete', not an undo affordance"
+   },
+   "a1h": {
+    "result": "PASS"
+   }
+  },
+  "P0039": {
+   "a1": {
+    "result": "PASS"
+   },
+   "a3": {
+    "result": "FAIL",
+    "note": "nothing is said about unsaved work"
+   },
+   "a2h": {
+    "result": "FAIL",
+    "note": "window.location.reload() preserves nothing"
+   }
+  },
+  "P0040": {
+   "a3": {
+    "result": "FAIL",
+    "note": "no expiry"
+   },
+   "a2h": {
+    "result": "PASS"
+   },
+   "a1h": {
+    "result": "FAIL",
+    "note": "onSwipeLeft is not a TouchableOpacity prop; the swipe cannot fire"
+   }
+  }
+ }
+}

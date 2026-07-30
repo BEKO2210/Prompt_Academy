@@ -1,0 +1,703 @@
+{
+ "protocolVersion": "1.0.0",
+ "orderSeed": 424242,
+ "note": "BLINDED. No arm, model, record or score appears here. Judge each criterion as its own proposition against the output — never by overall impression. PASS / FAIL / UNCERTAIN. Uncertain is a real answer; do not guess.",
+ "packets": [
+  {
+   "packetId": "P0001",
+   "request": "A personal about page with a short bio, a timeline of previous roles, and links to profiles elsewhere.",
+   "output": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Personal About Page</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            margin: 20px;\n        }\n        .container {\n            max-width: 800px;\n            margin: auto;\n        }\n        h1 {\n            color: #333;\n        }\n        p {\n            color: #666;\n        }\n        .timeline {\n            list-style-type: none;\n            padding: 0;\n        }\n        .timeline-item {\n            margin-bottom: 20px;\n        }\n        .timeline-item h2 {\n            font-size: 1.5em;\n            margin-bottom: 5px;\n        }\n        .timeline-item p {\n            font-size: 1em;\n        }\n        .links {\n            margin-top: 20px;\n        }\n        .links a {\n            margin-right: 10px;\n            text-decoration: none;\n            color: #007BFF;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>About Me</h1>\n        <p>Hi, I'm John Doe. I'm a passionate frontend developer with over 5 years of experience creating engaging and user-friendly web applications.</p>\n\n        <h2>Timeline of Previous Roles</h2>\n        <ul class=\"timeline\">\n            <li class=\"timeline-item\">\n                <h2>Senior Frontend Developer at Tech Innovations Inc.</h2>\n                <p>June 2018 - Present</p>\n                <p>Developed and maintained complex web applications using React, Angular, and Vue.js. Led a team of developers in implementing new features and improving performance.</p>\n            </li>\n            <li class=\"timeline-item\">\n                <h2>Frontend Developer at Creative Solutions</h2>\n                <p>January 2015 - May 2018</p>\n                <p>Worked on a variety of projects, from small landing pages to large e-commerce platforms. Utilized HTML, CSS, and JavaScript to create responsive and interactive designs.</p>\n            </li>\n        </ul>\n\n        <div class=\"links\">\n            <a href=\"https://www.linkedin.com/in/johndoe\" target=\"_blank\">LinkedIn</a>\n            <a href=\"https://github.com/johndoe\" target=\"_blank\">GitHub</a>\n            <a href=\"https://twitter.com/johndoe\" target=\"_blank\">Twitter</a>\n        </div>\n    </div>\n</body>\n</html>\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "A short biography is present."
+    },
+    {
+     "id": "a2",
+     "text": "Previous roles appear in a chronological structure."
+    },
+    {
+     "id": "a3h",
+     "text": "External links open without breaking the page."
+    }
+   ]
+  },
+  {
+   "packetId": "P0002",
+   "request": "Ein CSV-Import mit Vorschau der ersten Zeilen und einer Zuordnung von Spalten zu Feldern.",
+   "output": "```json\n{\n  \"file_name\": \"ImportUploadAddButton.tsx\",\n  \"file_content\": \"// ImportUploadAddButton.tsx\\nimport React, { useState } from 'react';\\nimport styled from '@emotion/styled';\\nimport { Button, Loader } from 'lucide-react';\\nimport Velocity from 'velocity-animate';\\n\\ninterface ImportUploadAddButtonProps {\\n  onFileChange: (file: File) => void;\\n  isLoading?: boolean;\\n  isError?: boolean;\\n}\\n\\nconst StyledButton = styled(Button, {\\n  base: {\\n    backgroundColor: '#8B0000',\\n    color: '#FFD700',\\n    border: 'none',\\n    borderRadius: '4px',\\n    padding: '10px 20px',\\n    fontSize: '16px',\\n    cursor: 'pointer',\\n    transition: 'background-color 0.3s ease',\\n  },\\n  hover: {\\n    backgroundColor: '#A52A2A',\\n  },\\n  active: {\\n    backgroundColor: '#8B0000',\\n  },\\n  disabled: {\\n    backgroundColor: '#D3D3D3',\\n    cursor: 'not-allowed',\\n  },\\n  loading: {\\n    backgroundColor: '#A52A2A',\\n    cursor: 'wait',\\n  },\\n  error: {\\n    backgroundColor: '#FF0000',\\n    color: '#FFFFFF',\\n  },\\n}) as React.FC<ImportUploadAddButtonProps>;\\n\\nconst ImportUploadAddButton: React.FC<ImportUploadAddButtonProps> = ({ onFileChange, isLoading = false, isError = false }) => {\\n  const [fileInputRef, setFileInputRef] = useState<HTMLInputElement | null>(null);\\n\\n  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {\\n    if (event.target.files && event.target.files.length > 0) {\\n      onFileChange(event.target.files[0]);\\n    }\\n  };\\n\\n  const handleClick = () => {\\n    if (fileInputRef) {\\n      fileInputRef.click();\\n    }\\n  };\\n\\n  return (\\n    <StyledButton\\n      onClick={handleClick}\\n      disabled={isLoading || isError}\\n      loading={isLoading}\\n      error={isError}\\n    >\\n      {isLoading ? <Loader size=\"16\" /> : 'Upload CSV'}\\n      <input\\n        type=\"file\"\\n        ref={setFileInputRef}\\n        style={{ display: 'none' }}\\n        onChange={handleFileChange}\\n        accept=\".csv\"\\n      />\\n    </StyledButton>\\n  );\\n};\\n\\nexport default ImportUploadAddButton;\\n\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "A row that cannot be mapped is reported rather than dropped."
+    },
+    {
+     "id": "a1h",
+     "text": "A preview of the first rows is shown before import."
+    },
+    {
+     "id": "a2h",
+     "text": "Columns are mapped to fields by the user, not guessed silently."
+    }
+   ]
+  },
+  {
+   "packetId": "P0003",
+   "request": "Build a toast notification system that stacks messages, auto-dismisses after five seconds, and lets the user dismiss one early.",
+   "output": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Toast Notification System</title>\n    <style>\n        .toast-container {\n            position: fixed;\n            bottom: 20px;\n            right: 20px;\n            z-index: 1000;\n        }\n        .toast {\n            background-color: #333;\n            color: white;\n            padding: 10px 20px;\n            border-radius: 5px;\n            margin-bottom: 10px;\n            display: flex;\n            align-items: center;\n        }\n        .toast .close-btn {\n            margin-left: auto;\n            cursor: pointer;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"toast-container\" id=\"toast-container\"></div>\n\n    <script>\n        class Toast {\n            constructor(message, options = {}) {\n                this.message = message;\n                this.options = {\n                    duration: 5000,\n                    autoDismiss: true,\n                    ...options\n                };\n                this.element = document.createElement('div');\n                this.element.classList.add('toast');\n                this.element.innerHTML = `\n                    <span>${this.message}</span>\n                    <span class=\"close-btn\">X</span>\n                `;\n                document.getElementById('toast-container').appendChild(this.element);\n                if (this.options.autoDismiss) {\n                    setTimeout(() => this.dismiss(), this.options.duration);\n                }\n                this.element.querySelector('.close-btn').addEventListener('click', () => this.dismiss());\n            }\n\n            dismiss() {\n                this.element.remove();\n            }\n        }\n\n        function showToast(message, options = {}) {\n            new Toast(message, options);\n        }\n\n        // Example usage:\n        setTimeout(() => showToast('This is a toast message!'), 1000);\n        setTimeout(() => showToast('Another toast!', { duration: 3000 }), 2000);\n    </script>\n</body>\n</html>\n```",
+   "criteria": [
+    {
+     "id": "a2h",
+     "text": "Multiple toasts stack rather than replacing one another."
+    },
+    {
+     "id": "a3h",
+     "text": "A per-toast dismiss control exists and removes only that toast."
+    }
+   ]
+  },
+  {
+   "packetId": "P0004",
+   "request": "An analytics dashboard with a date range filter that all charts on the page respond to.",
+   "output": "```json\n{\n  \"files\": [\n    \"index.html\",\n    \"styles.css\",\n    \"script.js\"\n  ]\n}\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "One date range control governs every chart on the page."
+    },
+    {
+     "id": "a2",
+     "text": "Changing the range updates all charts, not only the first."
+    },
+    {
+     "id": "a3",
+     "text": "The currently selected range is visible without opening the control."
+    }
+   ]
+  },
+  {
+   "packetId": "P0005",
+   "request": "Eine Konfiguration, die dieselbe Anwendung mit verschiedenen Umgebungsvariablen für Test und Produktion baut, ohne Geheimnisse ins Repository zu schreiben.",
+   "output": "```json\n{\n  \"name\": \"project-config\",\n  \"version\": \"1.0.0\",\n  \"scripts\": {\n    \"build:test\": \"ng build --configuration=test\",\n    \"build:prod\": \"ng build --configuration=production\"\n  },\n  \"angularCompilerOptions\": {\n    \"outDir\": \"./dist\",\n    \"assets\": [\n      \"src/favicon.ico\",\n      \"src/assets\"\n    ],\n    \"styles\": [\n      \"src/styles.scss\"\n    ],\n    \"scripts\": []\n  },\n  \"projects\": {\n    \"project-name\": {\n      \"architect\": {\n        \"build\": {\n          \"configurations\": {\n            \"test\": {\n              \"fileReplacements\": [\n                {\n                  \"replace\": \"src/environments/environment.ts\",\n                  \"with\": \"src/environments/environment.test.ts\"\n                }\n              ]\n            },\n            \"production\": {\n              \"fileReplacements\": [\n                {\n                  \"replace\": \"src/environments/environment.ts\",\n                  \"with\": \"src/environments/environment.prod.ts\"\n                }\n              ],\n              \"optimization\": true,\n              \"outputHashing\": \"all\",\n              \"sourceMap\": false,\n              \"extractCss\": true,\n              \"namedChunks\": true,\n              \"aot\": true,\n              \"extractLicenses\": true,\n              \"vendorChunk\": true,\n              \"buildOptimizer\": true\n            }\n          }\n        }\n      }\n    }\n  },\n  \"dependencies\": {\n    \"@angular/animations\": \"~12.0.0\",\n    \"@angular/common\": \"~12.0.0\",\n    \"@angular/compiler\": \"~12.0.0\",\n    \"@angular/core\": \"~12.0.0\",\n    \"@angular/forms\": \"~12.0.0\",\n    \"@angular/platform-browser\": \"~12.0.0\",\n    \"@angular/platform-browser-dynamic\": \"~12.0.0\",\n    \"@angular/router\": \"~12.0.0\",\n    \"core-js\": \"^3.6.5\",\n    \"rxjs\": \"~6.6.0\",\n    \"tslib\": \"^2.0.0\",\n    \"zone.js\": \"~0.11.4\"\n  },\n  \"devDependencies\": {\n    \"@angular-devkit/build-angular\": \"~12.0.0\",\n    \"@angular/cli\": \"~12.0.0\",\n    \"@angular/compiler-cli\": \"~12.0.0\",\n    \"@types/node\": \"^14.14.37\",\n    \"@types/jasmine\": \"~3.6.0\",\n    \"@types/karma\": \"~6.0.0\",\n    \"jasmine-core\": \"~3.6.0\",\n    \"karma\": \"~6.3.0\",\n    \"karma-chrome-launcher\": \"~3.1.0\",\n    \"karma-coverage\": \"~2.0.3\",\n    \"karma-jasmine\": \"~4.0.0\",\n    \"karma-jasmine-html-reporter\": \"^1.5.0\",\n    \"typescript\": \"~4.2.3\"\n  }\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The same build command serves both environments."
+    },
+    {
+     "id": "a2h",
+     "text": "Secrets are referenced, never written into the file."
+    }
+   ]
+  },
+  {
+   "packetId": "P0006",
+   "request": "Eine Produktdetailseite mit Bildergalerie, Variantenauswahl für Größe und Farbe und einem Button in den Warenkorb.",
+   "output": "```tsx\nimport React, { useState } from 'react';\nimport { FaShoppingCart } from 'lucide-react';\nimport { motion } from 'framer-motion';\n\nconst ProductDetailPage: React.FC = () => {\n  const [selectedSize, setSelectedSize] = useState<string | null>(null);\n  const [selectedColor, setSelectedColor] = useState<string | null>(null);\n\n  const product = {\n    id: 1,\n    name: 'Futuristic Product',\n    price: 99.99,\n    images: [\n      'https://via.placeholder.com/300',\n      'https://via.placeholder.com/300',\n      'https://via.placeholder.com/300'\n    ],\n    sizes: ['S', 'M', 'L'],\n    colors: ['Deep Emerald', 'Gold']\n  };\n\n  const handleAddToCart = () => {\n    // Add to cart logic here\n  };\n\n  return (\n    <div className=\"bg-emerald-800 text-white p-4\">\n      <motion.div\n        initial={{ opacity: 0, y: -20 }}\n        animate={{ opacity: 1, y: 0 }}\n        transition={{ duration: 0.5 }}\n        className=\"flex flex-col items-center\"\n      >\n        <div className=\"carousel\">\n          {product.images.map((image, index) => (\n            <img key={index} src={image} alt={product.name} className=\"w-full h-auto\" />\n          ))}\n        </div>\n        <h1 className=\"text-3xl font-bold mt-4\">{product.name}</h1>\n        <p className=\"text-xl mt-2\">${product.price}</p>\n        <div className=\"flex flex-col mt-4\">\n          <label htmlFor=\"size\">Size:</label>\n          <select\n            id=\"size\"\n            value={selectedSize}\n            onChange={(e) => setSelectedSize(e.target.value)}\n            className=\"bg-emerald-700 text-white p-2 rounded\"\n          >\n            {product.sizes.map((size) => (\n              <option key={size} value={size}>\n                {size}\n              </option>\n            ))}\n          </select>\n        </div>\n        <div className=\"flex flex-col mt-4\">\n          <label htmlFor=\"color\">Color:</label>\n          <select\n            id=\"color\"\n            value={selectedColor}\n            onChange={(e) => setSelectedColor(e.target.value)}\n            className=\"bg-emerald-700 text-white p-2 rounded\"\n          >\n            {product.colors.map((color) => (\n              <option key={color} value={color}>\n                {color}\n              </option>\n            ))}\n          </select>\n        </div>\n        <motion.button\n          whileHover={{ scale: 1.05 }}\n          whileTap={{ scale: 0.95 }}\n          onClick={handleAddToCart}\n          className=\"bg-gold text-emerald-800 p-4 rounded mt-4\"\n        >\n          <FaShoppingCart className=\"mr-2\" />\n          Add to Cart\n        </motion.button>\n      </motion.div>\n    </div>\n  );\n};\n\nexport default ProductDetailPage;\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "An image gallery with more than one image and a way to change the shown image."
+    },
+    {
+     "id": "a3",
+     "text": "An unavailable combination is indicated rather than silently addable."
+    },
+    {
+     "id": "a2h",
+     "text": "Size and colour are separate selections, not one combined list."
+    }
+   ]
+  },
+  {
+   "packetId": "P0007",
+   "request": "Build a toast notification system that stacks messages, auto-dismisses after five seconds, and lets the user dismiss one early.",
+   "output": "```tsx\nimport React, { useState, useEffect } from 'react';\nimport { motion } from 'framer-motion';\n\ninterface Toast {\n  id: number;\n  message: string;\n  type: 'success' | 'error' | 'info';\n}\n\nconst ToastNotification: React.FC = () => {\n  const [toasts, setToasts] = useState<Toast[]>([]);\n\n  useEffect(() => {\n    const timer = setInterval(() => {\n      setToasts((prevToasts) =>\n        prevToasts.filter((toast) => toast.id !== prevToasts[0].id)\n      );\n    }, 5000);\n\n    return () => clearInterval(timer);\n  }, []);\n\n  const addToast = (message: string, type: 'success' | 'error' | 'info') => {\n    setToasts((prevToasts) => [\n      ...prevToasts,\n      { id: Date.now(), message, type },\n    ]);\n  };\n\n  const dismissToast = (id: number) => {\n    setToasts((prevToasts) =>\n      prevToasts.filter((toast) => toast.id !== id)\n    );\n  };\n\n  return (\n    <div className=\"fixed bottom-4 right-4 flex flex-col gap-2\">\n      {toasts.map((toast) => (\n        <motion.div\n          key={toast.id}\n          initial={{ opacity: 0, y: 20 }}\n          animate={{ opacity: 1, y: 0 }}\n          exit={{ opacity: 0, y: 20 }}\n          className={`bg-${toast.type}-500 text-white p-4 rounded-lg shadow-md flex items-center justify-between`}\n        >\n          <span>{toast.message}</span>\n          <button\n            onClick={() => dismissToast(toast.id)}\n            className=\"text-white hover:text-gray-300\"\n          >\n            &times;\n          </button>\n        </motion.div>\n      ))}\n    </div>\n  );\n};\n\nexport default ToastNotification;\n```",
+   "criteria": [
+    {
+     "id": "a2h",
+     "text": "Multiple toasts stack rather than replacing one another."
+    },
+    {
+     "id": "a3h",
+     "text": "A per-toast dismiss control exists and removes only that toast."
+    }
+   ]
+  },
+  {
+   "packetId": "P0008",
+   "request": "A session-expired screen that tells the user what happened and offers to sign in again without losing the page they were on.",
+   "output": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Session Expired</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            height: 100vh;\n            background-color: #f4f4f4;\n        }\n        .session-expired {\n            text-align: center;\n            background-color: #fff;\n            padding: 20px;\n            border-radius: 8px;\n            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n        }\n        .session-expired h1 {\n            color: #333;\n        }\n        .session-expired p {\n            color: #666;\n        }\n        .session-expired button {\n            background-color: #007bff;\n            color: #fff;\n            border: none;\n            padding: 10px 20px;\n            border-radius: 4px;\n            cursor: pointer;\n        }\n        .session-expired button:hover {\n            background-color: #0056b3;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"session-expired\">\n        <h1>Session Expired</h1>\n        <p>Your session has expired. Please sign in again to continue.</p>\n        <button onclick=\"location.reload()\">Sign In Again</button>\n    </div>\n</body>\n</html>\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "The message explains that the session expired rather than showing a generic error."
+    },
+    {
+     "id": "a3",
+     "text": "No unsaved work is silently discarded without saying so."
+    },
+    {
+     "id": "a2h",
+     "text": "The destination the user was on is preserved for after sign-in."
+    }
+   ]
+  },
+  {
+   "packetId": "P0009",
+   "request": "Schreibe Tests für ein Anmeldeformular: gültige Eingabe, falsches Passwort, gesperrtes Konto und Netzwerkfehler.",
+   "output": "```json\n{\n  \"tests\": [\n    {\n      \"description\": \"Gültige Eingabe\",\n      \"input\": {\n        \"username\": \"testuser\",\n        \"password\": \"testpassword\"\n      },\n      \"expected_output\": \"Erfolg: Sie sind angemeldet.\"\n    },\n    {\n      \"description\": \"Falsches Passwort\",\n      \"input\": {\n        \"username\": \"testuser\",\n        \"password\": \"wrongpassword\"\n      },\n      \"expected_output\": \"Fehler: Ungültiges Passwort.\"\n    },\n    {\n      \"description\": \"Gesperrtes Konto\",\n      \"input\": {\n        \"username\": \"lockeduser\",\n        \"password\": \"lockedpassword\"\n      },\n      \"expected_output\": \"Fehler: Ihr Konto ist gesperrt.\"\n    },\n    {\n      \"description\": \"Netzwerkfehler\",\n      \"input\": {\n        \"username\": \"networkuser\",\n        \"password\": \"networkpassword\"\n      },\n      \"expected_output\": \"Fehler: Netzwerkverbindung fehlt.\"\n    }\n  ]\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The network error case does not assert a specific error message string."
+    },
+    {
+     "id": "a1h",
+     "text": "Valid login, wrong password, locked account and network error each have a test."
+    }
+   ]
+  },
+  {
+   "packetId": "P0010",
+   "request": "Schreibe Tests für ein Anmeldeformular: gültige Eingabe, falsches Passwort, gesperrtes Konto und Netzwerkfehler.",
+   "output": "```javascript\ndescribe('Anmeldeformular Tests', () => {\n  it('gültige Eingabe', async () => {\n    // Simuliere die Eingabe eines gültigen Benutzernamens und Passworts\n    await page.type('#username', 'validUser');\n    await page.type('#password', 'validPassword');\n\n    // Simuliere das Klicken auf den Anmeldebutton\n    await page.click('#loginButton');\n\n    // Überprüfe, ob der Benutzer erfolgreich angemeldet wurde\n    expect(await page.isVisible('#loggedInMessage')).toBe(true);\n  });\n\n  it('falsches Passwort', async () => {\n    // Simuliere die Eingabe eines gültigen Benutzernamens und eines falschen Passworts\n    await page.type('#username', 'validUser');\n    await page.type('#password', 'wrongPassword');\n\n    // Simuliere das Klicken auf den Anmeldebutton\n    await page.click('#loginButton');\n\n    // Überprüfe, ob der Fehlermeldung für falsches Passwort sichtbar ist\n    expect(await page.isVisible('#wrongPasswordError')).toBe(true);\n  });\n\n  it('gesperrtes Konto', async () => {\n    // Simuliere die Eingabe eines gesperrten Benutzernamens und Passworts\n    await page.type('#username', 'lockedUser');\n    await page.type('#password', 'lockedPassword');\n\n    // Simuliere das Klicken auf den Anmeldebutton\n    await page.click('#loginButton');\n\n    // Überprüfe, ob der Fehlermeldung für gesperrtes Konto sichtbar ist\n    expect(await page.isVisible('#lockedAccountError')).toBe(true);\n  });\n\n  it('Netzwerkfehler', async () => {\n    // Simuliere einen Netzwerkfehler\n    jest.spyOn(global, 'fetch').mockImplementation(() => Promise.reject(new Error('Network error')));\n\n    // Simuliere die Eingabe eines gültigen Benutzernamens und Passworts\n    await page.type('#username', 'validUser');\n    await page.type('#password', 'validPassword');\n\n    // Simuliere das Klicken auf den Anmeldebutton\n    await page.click('#loginButton');\n\n    // Überprüfe, ob der Fehlermeldung für Netzwerkfehler sichtbar ist\n    expect(await page.isVisible('#networkError')).toBe(true);\n  });\n});\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The network error case does not assert a specific error message string."
+    },
+    {
+     "id": "a1h",
+     "text": "Valid login, wrong password, locked account and network error each have a test."
+    }
+   ]
+  },
+  {
+   "packetId": "P0011",
+   "request": "Build a toast notification system that stacks messages, auto-dismisses after five seconds, and lets the user dismiss one early.",
+   "output": "```tsx\nimport React, { useState, useEffect } from 'react';\nimport { motion } from 'framer-motion';\n\nconst ToastNotification: React.FC<{ message: string; onDismiss?: () => void }> = ({ message, onDismiss }) => {\n  const [isVisible, setIsVisible] = useState(true);\n\n  useEffect(() => {\n    const timer = setTimeout(() => {\n      setIsVisible(false);\n    }, 5000);\n\n    return () => clearTimeout(timer);\n  }, []);\n\n  const dismiss = () => {\n    setIsVisible(false);\n    onDismiss?.();\n  };\n\n  return (\n    <motion.div\n      initial={{ opacity: 0, y: -20 }}\n      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}\n      exit={{ opacity: 0, y: -20 }}\n      transition={{ duration: 0.3 }}\n      className=\"bg-slate-800 text-white px-4 py-2 rounded-md shadow-md flex items-center justify-between\"\n    >\n      {message}\n      <button onClick={dismiss} className=\"text-white hover:text-slate-100\">\n        &times;\n      </button>\n    </motion.div>\n  );\n};\n\nexport default ToastNotification;\n```",
+   "criteria": [
+    {
+     "id": "a2h",
+     "text": "Multiple toasts stack rather than replacing one another."
+    },
+    {
+     "id": "a3h",
+     "text": "A per-toast dismiss control exists and removes only that toast."
+    }
+   ]
+  },
+  {
+   "packetId": "P0012",
+   "request": "A memory card game board with a move counter and a timer that stops when all pairs are found.",
+   "output": "```json\n{\n  \"files\": [\n    \"src/components/MemoryCardGameBoard.tsx\",\n    \"src/components/MoveCounter.tsx\",\n    \"src/components/Timer.tsx\",\n    \"src/styles/MemoryCardGameBoard.module.css\",\n    \"src/styles/MoveCounter.module.css\",\n    \"src/styles/Timer.module.css\",\n    \"src/utils/gameLogic.ts\",\n    \"public/index.html\"\n  ]\n}\n```",
+   "criteria": [
+    {
+     "id": "a2",
+     "text": "A move counter increments per attempted pair, not per card flip."
+    },
+    {
+     "id": "a1h",
+     "text": "Cards are face down initially and flip on interaction."
+    }
+   ]
+  },
+  {
+   "packetId": "P0013",
+   "request": "Build a toast notification system that stacks messages, auto-dismisses after five seconds, and lets the user dismiss one early.",
+   "output": "```tsx\nimport React, { useState, useEffect } from 'react';\nimport { motion } from 'framer-motion';\n\ninterface Toast {\n  id: number;\n  message: string;\n  type: 'success' | 'error' | 'info';\n}\n\nconst ToastNotification: React.FC = () => {\n  const [toasts, setToasts] = useState<Toast[]>([]);\n\n  useEffect(() => {\n    const timer = setInterval(() => {\n      setToasts((prevToasts) =>\n        prevToasts.map((toast) =>\n          toast.id === toasts[0].id ? { ...toast, autoDismissed: true } : toast\n        )\n      );\n    }, 5000);\n\n    return () => clearInterval(timer);\n  }, []);\n\n  const dismissToast = (id: number) => {\n    setToasts((prevToasts) =>\n      prevToasts.filter((toast) => toast.id !== id)\n    );\n  };\n\n  return (\n    <div className=\"fixed bottom-4 right-4 flex flex-col gap-2\">\n      {toasts.map((toast) => (\n        <motion.div\n          key={toast.id}\n          initial={{ opacity: 0, y: 20 }}\n          animate={{ opacity: 1, y: 0 }}\n          exit={{ opacity: 0, y: 20 }}\n          transition={{ duration: 0.3 }}\n          className={`bg-${toast.type}-500 text-white p-4 rounded-lg shadow-md flex items-center justify-between`}\n        >\n          <span>{toast.message}</span>\n          <button\n            onClick={() => dismissToast(toast.id)}\n            className=\"text-white hover:bg-opacity-80\"\n          >\n            &times;\n          </button>\n        </motion.div>\n      ))}\n    </div>\n  );\n};\n\nexport default ToastNotification;\n```",
+   "criteria": [
+    {
+     "id": "a2h",
+     "text": "Multiple toasts stack rather than replacing one another."
+    },
+    {
+     "id": "a3h",
+     "text": "A per-toast dismiss control exists and removes only that toast."
+    }
+   ]
+  },
+  {
+   "packetId": "P0014",
+   "request": "Eine Konfiguration, die dieselbe Anwendung mit verschiedenen Umgebungsvariablen für Test und Produktion baut, ohne Geheimnisse ins Repository zu schreiben.",
+   "output": "```json\n{\n  \"angular.json\": {\n    \"projects\": {\n      \"toxicity-testing-suite\": {\n        \"architect\": {\n          \"build\": {\n            \"configurations\": {\n              \"production\": {\n                \"fileReplacements\": [\n                  {\n                    \"replace\": \"src/environments/environment.ts\",\n                    \"with\": \"src/environments/environment.prod.ts\"\n                  }\n                ]\n              },\n              \"test\": {\n                \"fileReplacements\": [\n                  {\n                    \"replace\": \"src/environments/environment.ts\",\n                    \"with\": \"src/environments/environment.test.ts\"\n                  }\n                ]\n              }\n            }\n          },\n          \"serve\": {\n            \"configurations\": {\n              \"production\": {\n                \"browserTarget\": \"toxicity-testing-suite:build:production\"\n              },\n              \"test\": {\n                \"browserTarget\": \"toxicity-testing-suite:build:test\"\n              }\n            }\n          }\n        }\n      }\n    }\n  },\n  \"src/environments/environment.ts\": {\n    \"production\": false,\n    \"test\": false,\n    \"apiUrl\": \"http://localhost:3000\"\n  },\n  \"src/environments/environment.prod.ts\": {\n    \"production\": true,\n    \"test\": false,\n    \"apiUrl\": \"https://api.toxicitytesting.com\"\n  },\n  \"src/environments/environment.test.ts\": {\n    \"production\": false,\n    \"test\": true,\n    \"apiUrl\": \"http://localhost:3001\"\n  }\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The same build command serves both environments."
+    },
+    {
+     "id": "a2h",
+     "text": "Secrets are referenced, never written into the file."
+    }
+   ]
+  },
+  {
+   "packetId": "P0015",
+   "request": "Eine Produktdetailseite mit Bildergalerie, Variantenauswahl für Größe und Farbe und einem Button in den Warenkorb.",
+   "output": "```tsx\nimport React, { useState } from 'react';\nimport { LucideShoppingCart } from 'lucide-react';\nimport { motion } from 'framer-motion';\n\nconst ProductDetailPage: React.FC = () => {\n  const [selectedSize, setSelectedSize] = useState<string | null>(null);\n  const [selectedColor, setSelectedColor] = useState<string | null>(null);\n\n  const handleAddToCart = () => {\n    // Add to cart logic here\n  };\n\n  return (\n    <div className=\"container mx-auto p-4\">\n      <h1 className=\"text-2xl font-bold mb-4\">Product Name</h1>\n      <motion.div className=\"grid grid-cols-3 gap-4\" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>\n        <img src=\"/product-image.jpg\" alt=\"Product\" className=\"w-full h-auto\" />\n        <div className=\"col-span-2\">\n          <h2 className=\"text-xl font-semibold mb-2\">Product Description</h2>\n          <p className=\"mb-4\">Product details go here...</p>\n          <div className=\"flex flex-wrap gap-2 mb-4\">\n            <button\n              onClick={() => setSelectedSize('S')}\n              className={`px-3 py-1 border rounded ${selectedSize === 'S' ? 'bg-blue-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              S\n            </button>\n            <button\n              onClick={() => setSelectedSize('M')}\n              className={`px-3 py-1 border rounded ${selectedSize === 'M' ? 'bg-blue-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              M\n            </button>\n            <button\n              onClick={() => setSelectedSize('L')}\n              className={`px-3 py-1 border rounded ${selectedSize === 'L' ? 'bg-blue-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              L\n            </button>\n          </div>\n          <div className=\"flex flex-wrap gap-2 mb-4\">\n            <button\n              onClick={() => setSelectedColor('Red')}\n              className={`px-3 py-1 border rounded ${selectedColor === 'Red' ? 'bg-red-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              Red\n            </button>\n            <button\n              onClick={() => setSelectedColor('Blue')}\n              className={`px-3 py-1 border rounded ${selectedColor === 'Blue' ? 'bg-blue-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              Blue\n            </button>\n            <button\n              onClick={() => setSelectedColor('Green')}\n              className={`px-3 py-1 border rounded ${selectedColor === 'Green' ? 'bg-green-500 text-white' : 'border-gray-300 text-gray-700'}`}\n            >\n              Green\n            </button>\n          </div>\n          <motion.button\n            whileHover={{ scale: 1.05 }}\n            whileTap={{ scale: 0.95 }}\n            onClick={handleAddToCart}\n            className=\"px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none\"\n          >\n            <LucideShoppingCart className=\"mr-2\" />\n            Add to Cart\n          </motion.button>\n        </div>\n      </motion.div>\n    </div>\n  );\n};\n\nexport default ProductDetailPage;\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "An image gallery with more than one image and a way to change the shown image."
+    },
+    {
+     "id": "a3",
+     "text": "An unavailable combination is indicated rather than silently addable."
+    },
+    {
+     "id": "a2h",
+     "text": "Size and colour are separate selections, not one combined list."
+    }
+   ]
+  },
+  {
+   "packetId": "P0016",
+   "request": "Eine mobile Listenansicht, bei der man einen Eintrag nach links wischt um ihn zu löschen, mit Rückgängig-Möglichkeit.",
+   "output": "```json\n{\n  \"files\": [\n    {\n      \"name\": \"index.html\",\n      \"content\": \"<!DOCTYPE html>\\n<html lang=\\\"de\\\">\\n<head>\\n  <meta charset=\\\"UTF-8\\\">\\n  <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\">\\n  <title>Mobile Listenansicht</title>\\n  <link rel=\\\"stylesheet\\\" href=\\\"styles.css\\\">\\n</head>\\n<body>\\n  <ul id=\\\"list\\\"></ul>\\n  <button id=\\\"undoBtn\\\">Rückgängig</button>\\n  <script src=\\\"script.js\\\"></script>\\n</body>\\n</html>\"\n    },\n    {\n      \"name\": \"styles.css\",\n      \"content\": \"ul {\\n  list-style-type: none;\\n  padding: 0;\\n}\\nli {\\n  display: flex;\\n  justify-content: space-between;\\n  align-items: center;\\n  padding: 10px;\\n  border-bottom: 1px solid #ccc;\\n}\\nli:last-child {\\n  border-bottom: none;\\n}\\n.swipe-area {\\n  width: 50px;\\n  background-color: red;\\n  cursor: pointer;\\n}\"\n    },\n    {\n      \"name\": \"script.js\",\n      \"content\": \"const list = document.getElementById('list');\\nconst undoBtn = document.getElementById('undoBtn');\\nlet items = [];\\nlet undoneItems = [];\\n\\nfunction renderList() {\\n  list.innerHTML = '';\\n  items.forEach(item => {\\n    const li = document.createElement('li');\\n    li.textContent = item.text;\\n    const swipeArea = document.createElement('div');\\n    swipeArea.className = 'swipe-area';\\n    swipeArea.addEventListener('click', () => {\\n      undoneItems.push(item);\\n      items = items.filter(i => i !== item);\\n      renderList();\\n      renderUndoList();\\n    });\\n    li.appendChild(swipeArea);\\n    list.appendChild(li);\\n  });\\n}\\n\\nfunction renderUndoList() {\\n  undoBtn.style.display = undoneItems.length > 0 ? 'block' : 'none';\\n}\\n\\nundoBtn.addEventListener('click', () => {\\n  if (undoneItems.length > 0) {\\n    const item = undoneItems.pop();\\n    items.push(item);\\n    renderList();\\n    renderUndoList();\\n  }\\n});\\n\\n// Beispieleinträge hinzufügen\\nitems.push({ text: 'Eintrag 1' });\\nitems.push({ text: 'Eintrag 2' });\\nitems.push({ text: 'Eintrag 3' });\\nrenderList();\\nrenderUndoList();\"\n    }\n  ]\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The undo window expires and the deletion becomes final."
+    },
+    {
+     "id": "a2h",
+     "text": "An undo affordance appears after deletion and restores the item."
+    },
+    {
+     "id": "a1h",
+     "text": "A left swipe reveals or triggers deletion."
+    }
+   ]
+  },
+  {
+   "packetId": "P0017",
+   "request": "Schreibe Tests für ein Anmeldeformular: gültige Eingabe, falsches Passwort, gesperrtes Konto und Netzwerkfehler.",
+   "output": "```javascript\nimport React from 'react';\nimport { render, fireEvent, screen } from '@testing-library/react';\nimport '@testing-library/jest-dom/extend-expect';\nimport LoginForm from './LoginForm';\n\ndescribe('LoginForm', () => {\n  it('renders the login form with email and password fields', () => {\n    render(<LoginForm />);\n    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();\n    expect(screen.getByLabelText(/password/i)).toBeInTheDocument();\n  });\n\n  it('displays an error message for invalid email', async () => {\n    render(<LoginForm />);\n    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'invalid-email' } });\n    fireEvent.click(screen.getByText(/login/i));\n    expect(await screen.findByText(/please enter a valid email/i)).toBeInTheDocument();\n  });\n\n  it('displays an error message for incorrect password', async () => {\n    render(<LoginForm />);\n    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'user@example.com' } });\n    fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'wrong-password' } });\n    fireEvent.click(screen.getByText(/login/i));\n    expect(await screen.findByText(/incorrect password/i)).toBeInTheDocument();\n  });\n\n  it('displays an error message for a locked account', async () => {\n    render(<LoginForm />);\n    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'locked-account@example.com' } });\n    fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'correct-password' } });\n    fireEvent.click(screen.getByText(/login/i));\n    expect(await screen.findByText(/account is locked/i)).toBeInTheDocument();\n  });\n\n  it('displays an error message for network error', async () => {\n    render(<LoginForm />);\n    fireEvent.change(screen.getByLabelText(/email/i), { target: { value: 'user@example.com' } });\n    fireEvent.change(screen.getByLabelText(/password/i), { target: { value: 'correct-password' } });\n    fireEvent.click(screen.getByText(/login/i));\n    expect(await screen.findByText(/network error/i)).toBeInTheDocument();\n  });\n});\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The network error case does not assert a specific error message string."
+    },
+    {
+     "id": "a1h",
+     "text": "Valid login, wrong password, locked account and network error each have a test."
+    }
+   ]
+  },
+  {
+   "packetId": "P0018",
+   "request": "Schreibe Tests für ein Anmeldeformular: gültige Eingabe, falsches Passwort, gesperrtes Konto und Netzwerkfehler.",
+   "output": "```javascript\nimport React from 'react';\nimport { render, fireEvent, waitFor } from '@testing-library/react';\nimport '@testing-library/jest-dom/extend-expect';\nimport LoginForm from './LoginForm'; // Adjust the import path as necessary\n\ndescribe('LoginForm', () => {\n  it('should allow valid login', async () => {\n    const mockLogin = jest.fn();\n    const { getByLabelText, getByText } = render(<LoginForm onLogin={mockLogin} />);\n\n    fireEvent.change(getByLabelText('Email'), { target: { value: 'user@example.com' } });\n    fireEvent.change(getByLabelText('Password'), { target: { value: 'password123' } });\n    fireEvent.click(getByText('Login'));\n\n    await waitFor(() => expect(mockLogin).toHaveBeenCalledWith('user@example.com', 'password123'));\n  });\n\n  it('should show error for invalid password', async () => {\n    const mockLogin = jest.fn();\n    const { getByLabelText, getByText } = render(<LoginForm onLogin={mockLogin} />);\n\n    fireEvent.change(getByLabelText('Email'), { target: { value: 'user@example.com' } });\n    fireEvent.change(getByLabelText('Password'), { target: { value: 'wrongpassword' } });\n    fireEvent.click(getByText('Login'));\n\n    await waitFor(() => expect(mockLogin).not.toHaveBeenCalled());\n    expect(getByText('Invalid password')).toBeInTheDocument();\n  });\n\n  it('should show error for locked account', async () => {\n    const mockLogin = jest.fn().mockRejectedValue(new Error('Account is locked'));\n    const { getByLabelText, getByText } = render(<LoginForm onLogin={mockLogin} />);\n\n    fireEvent.change(getByLabelText('Email'), { target: { value: 'user@example.com' } });\n    fireEvent.change(getByLabelText('Password'), { target: { value: 'password123' } });\n    fireEvent.click(getByText('Login'));\n\n    await waitFor(() => expect(mockLogin).toHaveBeenCalledWith('user@example.com', 'password123'));\n    expect(getByText('Account is locked')).toBeInTheDocument();\n  });\n\n  it('should show error for network failure', async () => {\n    const mockLogin = jest.fn().mockRejectedValue(new Error('Network error'));\n    const { getByLabelText, getByText } = render(<LoginForm onLogin={mockLogin} />);\n\n    fireEvent.change(getByLabelText('Email'), { target: { value: 'user@example.com' } });\n    fireEvent.change(getByLabelText('Password'), { target: { value: 'password123' } });\n    fireEvent.click(getByText('Login'));\n\n    await waitFor(() => expect(mockLogin).toHaveBeenCalledWith('user@example.com', 'password123'));\n    expect(getByText('Network error')).toBeInTheDocument();\n  });\n});\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The network error case does not assert a specific error message string."
+    },
+    {
+     "id": "a1h",
+     "text": "Valid login, wrong password, locked account and network error each have a test."
+    }
+   ]
+  },
+  {
+   "packetId": "P0019",
+   "request": "An analytics dashboard with a date range filter that all charts on the page respond to.",
+   "output": "```json\n{\n  \"files\": [\n    \"src/app/analytics-dashboard/analytics-dashboard.component.ts\",\n    \"src/app/analytics-dashboard/analytics-dashboard.component.html\",\n    \"src/app/analytics-dashboard/analytics-dashboard.component.scss\",\n    \"src/app/date-range-filter/date-range-filter.component.ts\",\n    \"src/app/date-range-filter/date-range-filter.component.html\",\n    \"src/app/date-range-filter/date-range-filter.component.scss\",\n    \"src/app/charts/charts.module.ts\",\n    \"src/app/charts/charts.component.ts\",\n    \"src/app/charts/charts.component.html\",\n    \"src/app/charts/charts.component.scss\",\n    \"src/assets/i18n/en.json\",\n    \"src/assets/i18n/ar.json\",\n    \"src/environments/environment.ts\",\n    \"src/environments/environment.prod.ts\"\n  ]\n}\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "One date range control governs every chart on the page."
+    },
+    {
+     "id": "a2",
+     "text": "Changing the range updates all charts, not only the first."
+    },
+    {
+     "id": "a3",
+     "text": "The currently selected range is visible without opening the control."
+    }
+   ]
+  },
+  {
+   "packetId": "P0020",
+   "request": "Eine mobile Listenansicht, bei der man einen Eintrag nach links wischt um ihn zu löschen, mit Rückgängig-Möglichkeit.",
+   "output": "```json\n{\n  \"code\": {\n    \"src/components/SwipeableList.js\": {\n      \"content\": \"// SwipeableList.js\\nimport React, { useState } from 'react';\\nimport { motion } from 'framer-motion';\\n\\nconst SwipeableList = ({ items }) => {\\n  const [swipedIndex, setSwipedIndex] = useState(null);\\n\\n  const handleSwipeLeft = (index) => {\\n    setSwipedIndex(index);\\n  };\\n\\n  const handleUndo = () => {\\n    setSwipedIndex(null);\\n  };\\n\\n  return (\\n    <div className='flex flex-col'>\\n      {items.map((item, index) => (\\n        <motion.div\\n          key={index}\\n          className='flex items-center justify-between p-4 bg-white rounded-lg shadow'\\n          drag='x'\\n          dragConstraints={{ left: 0, right: 0 }}\\n          onDragEnd={(e, { offset }) => {\\n            if (offset.x < -100) {\\n              handleSwipeLeft(index);\\n            } else {\\n              setSwipedIndex(null);\\n            }\\n          }}\\n        >\\n          {item}\\n          {swipedIndex === index && (\\n            <motion.div\\n              className='absolute right-0 bg-red-500 text-white p-2 rounded-l-lg'\\n              drag='x'\\n              dragConstraints={{ left: -100, right: 0 }}\\n              onDragEnd={(e, { offset }) => {\\n                if (offset.x > -50) {\\n                  handleUndo();\\n                }\\n              }}\\n            >\\n              Undo\\n            </motion.div>\\n          )}\\n        </motion.div>\\n      ))}\\n    </div>\\n  );\\n};\\n\\nexport default SwipeableList;\\n\"\n    },\n    \"src/App.js\": {\n      \"content\": \"// App.js\\nimport React from 'react';\\nimport SwipeableList from './components/SwipeableList';\\n\\nconst App = () => {\\n  const items = ['Item 1', 'Item 2', 'Item 3'];\\n\\n  return (\\n    <div className='flex flex-col items-center justify-center h-screen'>\\n      <h1 className='text-2xl font-bold mb-4'>Swipeable List</h1>\\n      <SwipeableList items={items} />\\n    </div>\\n  );\\n};\\n\\nexport default App;\\n\"\n    }\n  }\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The undo window expires and the deletion becomes final."
+    },
+    {
+     "id": "a2h",
+     "text": "An undo affordance appears after deletion and restores the item."
+    },
+    {
+     "id": "a1h",
+     "text": "A left swipe reveals or triggers deletion."
+    }
+   ]
+  },
+  {
+   "packetId": "P0021",
+   "request": "A session-expired screen that tells the user what happened and offers to sign in again without losing the page they were on.",
+   "output": "```tsx\nimport React from 'react';\nimport { useRouter } from 'next/router';\nimport { Button } from '@lucide-react';\n\nconst SessionExpiredScreen: React.FC = () => {\n  const router = useRouter();\n\n  const handleSignInAgain = () => {\n    // Clear session storage or cookies if necessary\n    localStorage.removeItem('sessionToken');\n    // Redirect to the login page with the current path as a query parameter\n    router.push(`/login?redirect=${router.asPath}`);\n  };\n\n  return (\n    <div className=\"flex flex-col items-center justify-center h-screen bg-gray-900 text-white\">\n      <h1 className=\"text-4xl font-bold mb-8\">Session Expired</h1>\n      <p className=\"text-lg mb-6\">Your session has expired. Please sign in again.</p>\n      <Button onClick={handleSignInAgain} className=\"bg-yellow-500 hover:bg-yellow-600 text-black\">\n        Sign In Again\n      </Button>\n    </div>\n  );\n};\n\nexport default SessionExpiredScreen;\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "The message explains that the session expired rather than showing a generic error."
+    },
+    {
+     "id": "a3",
+     "text": "No unsaved work is silently discarded without saying so."
+    },
+    {
+     "id": "a2h",
+     "text": "The destination the user was on is preserved for after sign-in."
+    }
+   ]
+  },
+  {
+   "packetId": "P0022",
+   "request": "A session-expired screen that tells the user what happened and offers to sign in again without losing the page they were on.",
+   "output": "```tsx\nimport React from 'react';\nimport { useRouter } from 'next/router';\nimport { Button } from '@lucide-react';\n\nconst SessionExpiredScreen: React.FC = () => {\n  const router = useRouter();\n\n  const handleSignInAgain = () => {\n    // Clear the session and redirect to the login page\n    localStorage.removeItem('sessionToken');\n    router.push('/login?redirectUrl=' + encodeURIComponent(router.asPath));\n  };\n\n  return (\n    <div className=\"flex flex-col items-center justify-center h-screen bg-gray-100\">\n      <h1 className=\"text-4xl font-bold text-red-500\">Session Expired</h1>\n      <p className=\"mt-4 text-lg text-gray-700\">\n        Your session has expired. Please sign in again to continue.\n      </p>\n      <Button\n        onClick={handleSignInAgain}\n        className=\"mt-8 px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600\"\n      >\n        Sign In Again\n      </Button>\n    </div>\n  );\n};\n\nexport default SessionExpiredScreen;\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "The message explains that the session expired rather than showing a generic error."
+    },
+    {
+     "id": "a3",
+     "text": "No unsaved work is silently discarded without saying so."
+    },
+    {
+     "id": "a2h",
+     "text": "The destination the user was on is preserved for after sign-in."
+    }
+   ]
+  },
+  {
+   "packetId": "P0023",
+   "request": "Eine Konfiguration, die dieselbe Anwendung mit verschiedenen Umgebungsvariablen für Test und Produktion baut, ohne Geheimnisse ins Repository zu schreiben.",
+   "output": "```json\n{\n  \"scripts\": {\n    \"build:test\": \"cross-env NODE_ENV=test webpack --config webpack.test.js\",\n    \"build:prod\": \"cross-env NODE_ENV=production webpack --config webpack.prod.js\"\n  },\n  \"dependencies\": {\n    \"cross-env\": \"^7.0.3\",\n    \"webpack\": \"^5.0.0\"\n  }\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The same build command serves both environments."
+    },
+    {
+     "id": "a2h",
+     "text": "Secrets are referenced, never written into the file."
+    }
+   ]
+  },
+  {
+   "packetId": "P0024",
+   "request": "Eine Produktdetailseite mit Bildergalerie, Variantenauswahl für Größe und Farbe und einem Button in den Warenkorb.",
+   "output": "```html\n<!-- ProductDetailPage.svelte -->\n<script lang=\"ts\">\n  import { useState } from 'svelte';\n  import { ImageGallery } from './ImageGallery';\n  import { SizeSelector } from './SizeSelector';\n  import { ColorSelector } from './ColorSelector';\n  import { addToCart } from './cart';\n\n  const product = {\n    id: 1,\n    name: 'Example Product',\n    images: ['image1.jpg', 'image2.jpg', 'image3.jpg'],\n    sizes: ['S', 'M', 'L'],\n    colors: ['Red', 'Blue', 'Green'],\n    price: 99.99\n  };\n\n  const [selectedSize, setSelectedSize] = useState('');\n  const [selectedColor, setSelectedColor] = useState('');\n\n  const handleAddToCart = () => {\n    addToCart(product.id, selectedSize, selectedColor);\n  };\n</script>\n\n<div class=\"product-detail\">\n  <ImageGallery images={product.images} />\n  <div class=\"details\">\n    <h1>{product.name}</h1>\n    <p>Price: ${product.price}</p>\n    <SizeSelector sizes={product.sizes} onSizeChange={(size) => setSelectedSize(size)} />\n    <ColorSelector colors={product.colors} onColorChange={(color) => setSelectedColor(color)} />\n    <button on:click={handleAddToCart}>Add to Cart</button>\n  </div>\n</div>\n\n<style lang=\"css\">\n  .product-detail {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    max-width: 1200px;\n    margin: 0 auto;\n  }\n  .details {\n    flex: 1;\n    margin-left: 2rem;\n  }\n</style>\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "An image gallery with more than one image and a way to change the shown image."
+    },
+    {
+     "id": "a3",
+     "text": "An unavailable combination is indicated rather than silently addable."
+    },
+    {
+     "id": "a2h",
+     "text": "Size and colour are separate selections, not one combined list."
+    }
+   ]
+  },
+  {
+   "packetId": "P0025",
+   "request": "A personal about page with a short bio, a timeline of previous roles, and links to profiles elsewhere.",
+   "output": "```json\n{\n  \"file_path\": \"pages/about.js\",\n  \"file_content\": \"import React from 'react';\\nimport { HiOutlineUser, HiOutlineBriefcase, HiOutlineLink } from 'lucide-react';\\n\\nconst About = () => {\\n  return (\\n    <div className='container mx-auto p-4'>\\n      <h1 className='text-3xl font-bold mb-4'>About Me</h1>\\n      <div className='flex flex-col gap-4'>\\n        <div className='flex items-center gap-2'>\\n          <HiOutlineUser className='w-6 h-6' />\\n          <p>Short bio goes here.</p>\\n        </div>\\n        <div className='flex items-center gap-2'>\\n          <HiOutlineBriefcase className='w-6 h-6' />\\n          <ul className='list-disc pl-4'>\\n            <li>Role 1 - Company 1</li>\\n            <li>Role 2 - Company 2</li>\\n          </ul>\\n        </div>\\n        <div className='flex items-center gap-2'>\\n          <HiOutlineLink className='w-6 h-6' />\\n          <ul className='list-disc pl-4'>\\n            <li><a href='#'>LinkedIn</a></li>\\n            <li><a href='#'>GitHub</a></li>\\n          </ul>\\n        </div>\\n      </div>\\n    </div>\\n  );\\n};\\n\\nexport default About;\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "A short biography is present."
+    },
+    {
+     "id": "a2",
+     "text": "Previous roles appear in a chronological structure."
+    },
+    {
+     "id": "a3h",
+     "text": "External links open without breaking the page."
+    }
+   ]
+  },
+  {
+   "packetId": "P0026",
+   "request": "Eine Produktdetailseite mit Bildergalerie, Variantenauswahl für Größe und Farbe und einem Button in den Warenkorb.",
+   "output": "```html\n<!DOCTYPE html>\n<html lang=\"de\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Produkt Detailseite</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n        }\n        .product-container {\n            max-width: 800px;\n            margin: 0 auto;\n            padding: 20px;\n        }\n        .product-image {\n            width: 100%;\n            max-width: 600px;\n            margin-bottom: 20px;\n        }\n        .gallery {\n            display: flex;\n            justify-content: space-between;\n        }\n        .gallery img {\n            width: calc(33.33% - 10px);\n            cursor: pointer;\n        }\n        .product-info {\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n        }\n        .product-info h2 {\n            margin: 0;\n        }\n        .product-info p {\n            margin: 5px 0;\n        }\n        .variant-selection {\n            margin-bottom: 20px;\n        }\n        .variant-selection label {\n            margin-right: 10px;\n        }\n        .add-to-cart-btn {\n            padding: 10px 20px;\n            background-color: #007bff;\n            color: white;\n            border: none;\n            cursor: pointer;\n        }\n        .add-to-cart-btn:hover {\n            background-color: #0056b3;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"product-container\">\n        <img src=\"produkt-bild.jpg\" alt=\"Produktbild\" class=\"product-image\">\n        <div class=\"gallery\">\n            <img src=\"bild1.jpg\" alt=\"Bild 1\" onclick=\"changeImage(this.src)\">\n            <img src=\"bild2.jpg\" alt=\"Bild 2\" onclick=\"changeImage(this.src)\">\n            <img src=\"bild3.jpg\" alt=\"Bild 3\" onclick=\"changeImage(this.src)\">\n        </div>\n        <div class=\"product-info\">\n            <h2>Produktname</h2>\n            <p>Produktbeschreibung</p>\n            <p>Preis: 99,99 €</p>\n        </div>\n        <div class=\"variant-selection\">\n            <label for=\"size\">Größe:</label>\n            <select id=\"size\">\n                <option value=\"s\">S</option>\n                <option value=\"m\">M</option>\n                <option value=\"l\">L</option>\n            </select>\n            <label for=\"color\">Farbe:</label>\n            <select id=\"color\">\n                <option value=\"rot\">Rot</option>\n                <option value=\"blau\">Blau</option>\n                <option value=\"grau\">Grau</option>\n            </select>\n        </div>\n        <button class=\"add-to-cart-btn\" onclick=\"addToCart()\">In den Warenkorb</button>\n    </div>\n\n    <script>\n        function changeImage(src) {\n            document.querySelector('.product-image').src = src;\n        }\n\n        function addToCart() {\n            alert('Produkt erfolgreich zum Warenkorb hinzugefügt!');\n        }\n    </script>\n</body>\n</html>\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "An image gallery with more than one image and a way to change the shown image."
+    },
+    {
+     "id": "a3",
+     "text": "An unavailable combination is indicated rather than silently addable."
+    },
+    {
+     "id": "a2h",
+     "text": "Size and colour are separate selections, not one combined list."
+    }
+   ]
+  },
+  {
+   "packetId": "P0027",
+   "request": "A memory card game board with a move counter and a timer that stops when all pairs are found.",
+   "output": "```json\n{\n  \"files\": [\n    \"src/components/GameBoard.js\",\n    \"src/components/MoveCounter.js\",\n    \"src/components/Timer.js\",\n    \"src/App.js\",\n    \"public/index.html\"\n  ]\n}\n```",
+   "criteria": [
+    {
+     "id": "a2",
+     "text": "A move counter increments per attempted pair, not per card flip."
+    },
+    {
+     "id": "a1h",
+     "text": "Cards are face down initially and flip on interaction."
+    }
+   ]
+  },
+  {
+   "packetId": "P0028",
+   "request": "A personal about page with a short bio, a timeline of previous roles, and links to profiles elsewhere.",
+   "output": "```json\n{\n  \"error\": \"The requested artifact does not match the reference context or acceptance criteria.\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "A short biography is present."
+    },
+    {
+     "id": "a2",
+     "text": "Previous roles appear in a chronological structure."
+    },
+    {
+     "id": "a3h",
+     "text": "External links open without breaking the page."
+    }
+   ]
+  },
+  {
+   "packetId": "P0029",
+   "request": "Ein CSV-Import mit Vorschau der ersten Zeilen und einer Zuordnung von Spalten zu Feldern.",
+   "output": "```json\n{\n  \"file_name\": \"CSVImport.tsx\",\n  \"file_content\": \"// CSVImport.tsx\\nimport React, { useState } from 'react';\\nimport { Button, Table } from 'lucide-react';\\nimport { useSpring, animated } from 'react-spring';\\n\\ninterface CSVImportProps {\\n  onFileChange: (file: File) => void;\\n}\\n\\nconst CSVImport: React.FC<CSVImportProps> = ({ onFileChange }) => {\\n  const [file, setFile] = useState<File | null>(null);\\n  const [preview, setPreview] = useState<string[]>([]);\\n  const [loading, setLoading] = useState<boolean>(false);\\n\\n  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {\\n    const selectedFile = event.target.files?.[0];\\n    if (selectedFile) {\\n      setFile(selectedFile);\\n      readCSV(selectedFile);\\n    }\\n  };\\n\\n  const readCSV = async (file: File) => {\\n    setLoading(true);\\n    try {\\n      const text = await file.text();\\n      const lines = text.split('\\\\n');\\n      setPreview(lines.slice(0, 5));\\n    } catch (error) {\\n      console.error('Error reading CSV file:', error);\\n    } finally {\\n      setLoading(false);\\n    }\\n  };\\n\\n  const handleImport = () => {\\n    if (file) {\\n      onFileChange(file);\\n    }\\n  };\\n\\n  const previewStyle = useSpring({ opacity: loading ? 0.5 : 1, config: { duration: 200 } });\\n\\n  return (\\n    <div>\\n      <input type=\\\"file\\\" accept=\\\"text/csv\\\" onChange={handleFileChange} disabled={loading} />\\n      {loading && <p>Loading...</p>}\\n      {preview.length > 0 && (\\n        <animated.div style={previewStyle}>\\n          <Table>\\n            <thead>\\n              <tr>\\n                {preview[0].split(',').map((header, index) => (\\n                  <th key={index}>{header}</th>\\n                ))}\\n              </tr>\\n            </thead>\\n            <tbody>\\n              {preview.slice(1).map((row, rowIndex) => (\\n                <tr key={rowIndex}>\\n                  {row.split(',').map((cell, cellIndex) => (\\n                    <td key={cellIndex}>{cell}</td>\\n                  ))}\\n                </tr>\\n              ))}\\n            </tbody>\\n          </Table>\\n        </animated.div>\\n      )}\\n      <Button onClick={handleImport} disabled={!file || loading}>Import CSV</Button>\\n    </div>\\n  );\\n};\\n\\nexport default CSVImport;\\n\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "A row that cannot be mapped is reported rather than dropped."
+    },
+    {
+     "id": "a1h",
+     "text": "A preview of the first rows is shown before import."
+    },
+    {
+     "id": "a2h",
+     "text": "Columns are mapped to fields by the user, not guessed silently."
+    }
+   ]
+  },
+  {
+   "packetId": "P0030",
+   "request": "An analytics dashboard with a date range filter that all charts on the page respond to.",
+   "output": "```json\n{\n  \"error\": \"The requested artifact does not align with the provided reference context. The reference context specifies a date range picker form for the cybersecurity industry, while the request asks for an analytics dashboard with a date range filter. These are two different components with distinct requirements.\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "One date range control governs every chart on the page."
+    },
+    {
+     "id": "a2",
+     "text": "Changing the range updates all charts, not only the first."
+    },
+    {
+     "id": "a3",
+     "text": "The currently selected range is visible without opening the control."
+    }
+   ]
+  },
+  {
+   "packetId": "P0031",
+   "request": "A memory card game board with a move counter and a timer that stops when all pairs are found.",
+   "output": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Memory Card Game</title>\n<style>\n  body {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    height: 100vh;\n    margin: 0;\n    font-family: Arial, sans-serif;\n  }\n  .game-board {\n    display: grid;\n    grid-template-columns: repeat(4, 100px);\n    grid-gap: 10px;\n  }\n  .card {\n    width: 100px;\n    height: 100px;\n    background-color: #f0f0f0;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 24px;\n    cursor: pointer;\n    transition: background-color 0.3s;\n  }\n  .card.flipped {\n    background-color: #fff;\n  }\n  .move-counter, .timer {\n    margin-top: 20px;\n    font-size: 18px;\n  }\n</style>\n</head>\n<body>\n<div class=\"game-board\" id=\"gameBoard\"></div>\n<div class=\"move-counter\">Moves: <span id=\"moveCounter\">0</span></div>\n<div class=\"timer\">Time: <span id=\"timer\">00:00</span></div>\n\n<script>\n  const cardValues = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];\n  const gameBoard = document.getElementById('gameBoard');\n  const moveCounterElement = document.getElementById('moveCounter');\n  const timerElement = document.getElementById('timer');\n\n  let cards = [];\n  let moves = 0;\n  let time = 0;\n  let interval;\n\n  function shuffleArray(array) {\n    for (let i = array.length - 1; i > 0; i--) {\n      const j = Math.floor(Math.random() * (i + 1));\n      [array[i], array[j]] = [array[j], array[i]];\n    }\n  }\n\n  function createBoard() {\n    shuffleArray(cardValues);\n    for (let i = 0; i < cardValues.length; i++) {\n      const card = document.createElement('div');\n      card.classList.add('card');\n      card.dataset.value = cardValues[i];\n      card.addEventListener('click', flipCard);\n      gameBoard.appendChild(card);\n      cards.push(card);\n    }\n  }\n\n  function flipCard(event) {\n    const card = event.target;\n    if (card.classList.contains('flipped')) return;\n\n    card.classList.add('flipped');\n    moves++;\n    moveCounterElement.textContent = moves;\n\n    if (cards.filter(c => c.classList.contains('flipped')).length === 2) {\n      const flippedCards = cards.filter(c => c.classList.contains('flipped'));\n      setTimeout(() => {\n        if (flippedCards[0].dataset.value !== flippedCards[1].dataset.value) {\n          flippedCards.forEach(c => c.classList.remove('flipped'));\n        }\n      }, 1000);\n    }\n\n    if (moves === cardValues.length * 2) {\n      clearInterval(interval);\n      alert('Congratulations! You found all pairs!');\n    }\n  }\n\n  function startTimer() {\n    interval = setInterval(() => {\n      time++;\n      const minutes = Math.floor(time / 60);\n      const seconds = time % 60;\n      timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;\n    }, 1000);\n  }\n\n  createBoard();\n  startTimer();\n</script>\n</body>\n</html>\n```",
+   "criteria": [
+    {
+     "id": "a2",
+     "text": "A move counter increments per attempted pair, not per card flip."
+    },
+    {
+     "id": "a1h",
+     "text": "Cards are face down initially and flip on interaction."
+    }
+   ]
+  },
+  {
+   "packetId": "P0032",
+   "request": "A memory card game board with a move counter and a timer that stops when all pairs are found.",
+   "output": "```json\n{\n  \"error\": \"The requested artifact does not match the reference context or negative prompt. The reference context specifies a matching pairs quiz with draggable lines, while the request asks for a memory card game board with a move counter and a timer. These are two different types of games.\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a2",
+     "text": "A move counter increments per attempted pair, not per card flip."
+    },
+    {
+     "id": "a1h",
+     "text": "Cards are face down initially and flip on interaction."
+    }
+   ]
+  },
+  {
+   "packetId": "P0033",
+   "request": "An analytics dashboard with a date range filter that all charts on the page respond to.",
+   "output": "```json\n{\n  \"error\": \"The requested artifact cannot be generated as it does not meet the acceptance criteria or negative prompt guidelines.\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "One date range control governs every chart on the page."
+    },
+    {
+     "id": "a2",
+     "text": "Changing the range updates all charts, not only the first."
+    },
+    {
+     "id": "a3",
+     "text": "The currently selected range is visible without opening the control."
+    }
+   ]
+  },
+  {
+   "packetId": "P0034",
+   "request": "A personal about page with a short bio, a timeline of previous roles, and links to profiles elsewhere.",
+   "output": "```json\n{\n  \"file_path\": \"pages/about.js\",\n  \"file_content\": \"import React from 'react';\\nimport styles from './about.module.scss';\\n\\nconst About = () => {\\n  return (\\n    <div className={styles.container}>\\n      <h1>About Me</h1>\\n      <p>Short bio goes here...</p>\\n      <h2>Timeline of Previous Roles</h2>\\n      <ul>\\n        <li>Role 1 - Company 1</li>\\n        <li>Role 2 - Company 2</li>\\n      </ul>\\n      <h2>Profiles Elsewhere</h2>\\n      <ul>\\n        <li><a href='https://linkedin.com/in/username'>LinkedIn</a></li>\\n        <li><a href='https://github.com/username'>GitHub</a></li>\\n      </ul>\\n    </div>\\n  );\\n};\\n\\nexport default About;\\n\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "A short biography is present."
+    },
+    {
+     "id": "a2",
+     "text": "Previous roles appear in a chronological structure."
+    },
+    {
+     "id": "a3h",
+     "text": "External links open without breaking the page."
+    }
+   ]
+  },
+  {
+   "packetId": "P0035",
+   "request": "Ein CSV-Import mit Vorschau der ersten Zeilen und einer Zuordnung von Spalten zu Feldern.",
+   "output": "```json\n{\n  \"file\": \"CSVImport.tsx\",\n  \"code\": \"import React, { useState } from 'react';\\nimport { Button, Table } from 'lucide-react';\\nimport { useSpring, animated } from 'framer-motion';\\n\\ninterface CSVImportProps {\\n  onFileChange: (file: File) => void;\\n}\\n\\nconst CSVImport: React.FC<CSVImportProps> = ({ onFileChange }) => {\\n  const [file, setFile] = useState<File | null>(null);\\n  const [preview, setPreview] = useState<string[]>([]);\\n\\n  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {\\n    const file = event.target.files?.[0];\\n    if (file) {\\n      setFile(file);\\n      const reader = new FileReader();\\n      reader.onload = (e) => {\\n        const content = e.target?.result as string;\\n        const lines = content.split('\\\\n');\\n        setPreview(lines.slice(0, 5));\\n      };\\n      reader.readAsText(file);\\n    }\\n  };\\n\\n  const handleImport = () => {\\n    if (file) {\\n      onFileChange(file);\\n    }\\n  };\\n\\n  return (\\n    <div className='flex flex-col gap-4'>\\n      <input type='file' accept='.csv' onChange={handleFileChange} disabled={!file} />\\n      {file && (\\n        <div className='overflow-x-auto'>\\n          <Table>\\n            <thead>\\n              <tr>\\n                {preview[0]?.split(',').map((header, index) => (\\n                  <th key={index}>{header}</th>\\n                ))}\\n              </tr>\\n            </thead>\\n            <tbody>\\n              {preview.slice(1).map((row, rowIndex) => (\\n                <tr key={rowIndex}>\\n                  {row.split(',').map((cell, cellIndex) => (\\n                    <td key={cellIndex}>{cell}</td>\\n                  ))}\\n                </tr>\\n              ))}\\n            </tbody>\\n          </Table>\\n        </div>\\n      )}\\n      <Button onClick={handleImport} disabled={!file}>\\n        Import CSV\\n      </Button>\\n    </div>\\n  );\\n};\\n\\nexport default CSVImport;\\n\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "A row that cannot be mapped is reported rather than dropped."
+    },
+    {
+     "id": "a1h",
+     "text": "A preview of the first rows is shown before import."
+    },
+    {
+     "id": "a2h",
+     "text": "Columns are mapped to fields by the user, not guessed silently."
+    }
+   ]
+  },
+  {
+   "packetId": "P0036",
+   "request": "Eine Konfiguration, die dieselbe Anwendung mit verschiedenen Umgebungsvariablen für Test und Produktion baut, ohne Geheimnisse ins Repository zu schreiben.",
+   "output": "```json\n{\n  \"angular.json\": {\n    \"projects\": {\n      \"my-app\": {\n        \"architect\": {\n          \"build\": {\n            \"configurations\": {\n              \"production\": {\n                \"fileReplacements\": [\n                  {\n                    \"replace\": \"src/environments/environment.ts\",\n                    \"with\": \"src/environments/environment.prod.ts\"\n                  }\n                ]\n              },\n              \"test\": {\n                \"fileReplacements\": [\n                  {\n                    \"replace\": \"src/environments/environment.ts\",\n                    \"with\": \"src/environments/environment.test.ts\"\n                  }\n                ]\n              }\n            }\n          },\n          \"serve\": {\n            \"configurations\": {\n              \"production\": {\n                \"browserTarget\": \"my-app:build:production\"\n              },\n              \"test\": {\n                \"browserTarget\": \"my-app:build:test\"\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The same build command serves both environments."
+    },
+    {
+     "id": "a2h",
+     "text": "Secrets are referenced, never written into the file."
+    }
+   ]
+  },
+  {
+   "packetId": "P0037",
+   "request": "Ein CSV-Import mit Vorschau der ersten Zeilen und einer Zuordnung von Spalten zu Feldern.",
+   "output": "```json\n{\n  \"code\": \"import csv\\nfrom tkinter import Tk, filedialog, messagebox\\n\\ndef open_csv_file():\\n    root = Tk()\\n    root.withdraw()\\n    file_path = filedialog.askopenfilename(filetypes=[('CSV files', '*.csv')])\\n    if file_path:\\n        with open(file_path, newline='', encoding='utf-8') as csvfile:\\n            reader = csv.reader(csvfile)\\n            preview = [next(reader) for _ in range(5)]\\n            field_mapping = {i: header for i, header in enumerate(preview[0])}\\n            messagebox.showinfo('CSV Preview', '\\n'.join([', '.join(row) for row in preview]))\\n            messagebox.showinfo('Field Mapping', '\\n'.join([f'{i}: {field_mapping[i]}' for i in field_mapping]))\\n\\nif __name__ == '__main__':\\n    open_csv_file()\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "A row that cannot be mapped is reported rather than dropped."
+    },
+    {
+     "id": "a1h",
+     "text": "A preview of the first rows is shown before import."
+    },
+    {
+     "id": "a2h",
+     "text": "Columns are mapped to fields by the user, not guessed silently."
+    }
+   ]
+  },
+  {
+   "packetId": "P0038",
+   "request": "Eine mobile Listenansicht, bei der man einen Eintrag nach links wischt um ihn zu löschen, mit Rückgängig-Möglichkeit.",
+   "output": "```json\n{\n  \"file\": \"SwipeToDelete.js\",\n  \"code\": \"import React, { useState } from 'react';\\nimport { motion } from 'framer-motion';\\n\\nconst SwipeToDelete = ({ item, onDelete, onUndo }) => {\\n  const [isSwiped, setIsSwiped] = useState(false);\\n\\n  const handleSwipeLeft = () => {\\n    setIsSwiped(true);\\n    onDelete(item);\\n  };\\n\\n  const handleSwipeRight = () => {\\n    setIsSwiped(false);\\n    onUndo(item);\\n  };\\n\\n  return (\\n    <motion.div\\n      className='flex items-center justify-between p-4 bg-sage rounded-lg'\\n      drag='x'\\n      dragConstraints={{ left: -100, right: 0 }}\\n      onDragEnd={(e, { offset }) => {\\n        if (offset.x < -50) {\\n          handleSwipeLeft();\\n        } else if (offset.x > 50) {\\n          handleSwipeRight();\\n        }\\n      }}\\n    >\\n      {isSwiped ? (\\n        <motion.div\\n          className='bg-terracotta rounded-lg p-2'\\n          initial={{ opacity: 0, x: -10 }}\\n          animate={{ opacity: 1, x: 0 }}\\n          exit={{ opacity: 0, x: 10 }}\\n        >\\n          Delete\\n        </motion.div>\\n      ) : (\\n        <div>{item}</div>\\n      )}\\n    </motion.div>\\n  );\\n};\\n\\nexport default SwipeToDelete;\\n\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The undo window expires and the deletion becomes final."
+    },
+    {
+     "id": "a2h",
+     "text": "An undo affordance appears after deletion and restores the item."
+    },
+    {
+     "id": "a1h",
+     "text": "A left swipe reveals or triggers deletion."
+    }
+   ]
+  },
+  {
+   "packetId": "P0039",
+   "request": "A session-expired screen that tells the user what happened and offers to sign in again without losing the page they were on.",
+   "output": "```tsx\nimport React from 'react';\nimport { Button } from 'lucide-react';\n\nconst SessionExpiredScreen: React.FC = () => {\n  return (\n    <div className=\"flex flex-col items-center justify-center h-screen bg-gray-100\">\n      <h1 className=\"text-4xl font-bold text-red-500\">Session Expired</h1>\n      <p className=\"mt-4 text-lg text-gray-700\">Your session has expired. Please sign in again to continue.</p>\n      <Button className=\"mt-8 px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-600\" onClick={() => window.location.reload()}>\n        Sign In Again\n      </Button>\n    </div>\n  );\n};\n\nexport default SessionExpiredScreen;\n```",
+   "criteria": [
+    {
+     "id": "a1",
+     "text": "The message explains that the session expired rather than showing a generic error."
+    },
+    {
+     "id": "a3",
+     "text": "No unsaved work is silently discarded without saying so."
+    },
+    {
+     "id": "a2h",
+     "text": "The destination the user was on is preserved for after sign-in."
+    }
+   ]
+  },
+  {
+   "packetId": "P0040",
+   "request": "Eine mobile Listenansicht, bei der man einen Eintrag nach links wischt um ihn zu löschen, mit Rückgängig-Möglichkeit.",
+   "output": "```json\n{\n  \"file_name\": \"MobileListView.tsx\",\n  \"file_content\": \"import React, { useState } from 'react';\\nimport { View, Text, TouchableOpacity, StyleSheet } from 'react-native';\\n\\nconst MobileListView = () => {\\n  const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);\\n  const [undoStack, setUndoStack] = useState<string[]>([]);\\n\\n  const handleSwipeLeft = (index: number) => {\\n    const newItems = [...items];\\n    const removedItem = newItems.splice(index, 1)[0];\\n    setItems(newItems);\\n    setUndoStack([...undoStack, removedItem]);\\n  };\\n\\n  const handleUndo = () => {\\n    if (undoStack.length > 0) {\\n      const lastRemovedItem = undoStack.pop() as string;\\n      setItems([...items, lastRemovedItem]);\\n    }\\n  };\\n\\n  return (\\n    <View style={styles.container}>\\n      {items.map((item, index) => (\\n        <TouchableOpacity\\n          key={index}\\n          style={styles.item}\\n          onSwipeLeft={() => handleSwipeLeft(index)}\\n        >\\n          <Text>{item}</Text>\\n        </TouchableOpacity>\\n      ))}\\n      <TouchableOpacity onPress={handleUndo} style={styles.undoButton}>\\n        <Text>Undo</Text>\\n      </TouchableOpacity>\\n    </View>\\n  );\\n};\\n\\nconst styles = StyleSheet.create({\\n  container: {\\n    flex: 1,\\n    padding: 16,\\n  },\\n  item: {\\n    backgroundColor: '#f0f0f0',\\n    padding: 12,\\n    marginVertical: 8,\\n    borderRadius: 4,\\n  },\\n  undoButton: {\\n    backgroundColor: '#007bff',\\n    padding: 12,\\n    marginTop: 16,\\n    borderRadius: 4,\\n  },\\n});\\n\\nexport default MobileListView;\\n\"\n}\n```",
+   "criteria": [
+    {
+     "id": "a3",
+     "text": "The undo window expires and the deletion becomes final."
+    },
+    {
+     "id": "a2h",
+     "text": "An undo affordance appears after deletion and restores the item."
+    },
+    {
+     "id": "a1h",
+     "text": "A left swipe reveals or triggers deletion."
+    }
+   ]
+  }
+ ]
+}

@@ -181,7 +181,7 @@ test("a human review packet cannot carry the arm, model or record", () => {
 });
 
 test("packet ids carry no information about the arm", () => {
-  const items = ["A", "B", "C", "D", "E"].map((arm) => ({
+  const items = ["A", "B", "C", "D", "E_concat"].map((arm) => ({
     taskId: "T001", arm, runIndex: 0, request: "r", output: `out-${arm}`,
     evaluation: evalSet.evaluations.T001,
   }));
@@ -206,7 +206,7 @@ test("review results reattach to the right arm", () => {
 });
 
 test("every arm is judged against the same rubric text", () => {
-  const items = ["A", "B", "C", "D", "E"].map((arm) => ({
+  const items = ["A", "B", "C", "D", "E_concat"].map((arm) => ({
     taskId: "T007", arm, runIndex: 0, request: "r", output: "o",
     evaluation: evalSet.evaluations.T007,
   }));
@@ -318,7 +318,7 @@ test("a context-blind output scores identically in every arm", () => {
   // of (output, Layer 2) alone. Same output, five notional arms, one verdict.
   const ev = evalSet.evaluations.T007;
   const verdicts = new Set(
-    ["A", "B", "C", "D", "E"].map(() => JSON.stringify(evaluate(PLAUSIBLE_GOOD.T007, ev))),
+    ["A", "B", "C", "D", "E_concat"].map(() => JSON.stringify(evaluate(PLAUSIBLE_GOOD.T007, ev))),
   );
   assert.equal(verdicts.size, 1);
 });
@@ -339,7 +339,7 @@ test("the freeze manifest detects a changed file, version or manifest", async ()
       fieldSplit: "1.0.0", matching: "1.1.0", ranking: "1.0.0", formulation: "1.1.0",
     },
     model: { provider: "stub", model: "stub", modelVersion: "stub-1", temperature: 0, maxTokens: 2048 },
-    arms: ["A", "B", "C", "D", "E"],
+    arms: ["A", "B", "C", "D", "E_concat"],
     systemWrapperHash: "wrap",
   };
   const m = seal(base);

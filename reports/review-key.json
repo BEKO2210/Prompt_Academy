@@ -1,0 +1,246 @@
+{
+ "warning": "THE REVIEWER MUST NOT OPEN THIS FILE UNTIL JUDGEMENTS ARE RECORDED.",
+ "orderSeed": 424242,
+ "keys": [
+  {
+   "packetId": "P0001",
+   "taskId": "T033",
+   "arm": "A",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0002",
+   "taskId": "T031",
+   "arm": "B",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0003",
+   "taskId": "T014",
+   "arm": "A",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0004",
+   "taskId": "T022",
+   "arm": "A",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0005",
+   "taskId": "T049",
+   "arm": "E",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0006",
+   "taskId": "T025",
+   "arm": "B",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0007",
+   "taskId": "T014",
+   "arm": "D",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0008",
+   "taskId": "T018",
+   "arm": "A",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0009",
+   "taskId": "T047",
+   "arm": "B",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0010",
+   "taskId": "T047",
+   "arm": "A",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0011",
+   "taskId": "T014",
+   "arm": "B",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0012",
+   "taskId": "T040",
+   "arm": "E",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0013",
+   "taskId": "T014",
+   "arm": "E",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0014",
+   "taskId": "T049",
+   "arm": "B",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0015",
+   "taskId": "T025",
+   "arm": "D",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0016",
+   "taskId": "T039",
+   "arm": "A",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0017",
+   "taskId": "T047",
+   "arm": "E",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0018",
+   "taskId": "T047",
+   "arm": "D",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0019",
+   "taskId": "T022",
+   "arm": "D",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0020",
+   "taskId": "T039",
+   "arm": "D",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0021",
+   "taskId": "T018",
+   "arm": "B",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0022",
+   "taskId": "T018",
+   "arm": "D",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0023",
+   "taskId": "T049",
+   "arm": "A",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0024",
+   "taskId": "T025",
+   "arm": "E",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0025",
+   "taskId": "T033",
+   "arm": "E",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0026",
+   "taskId": "T025",
+   "arm": "A",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0027",
+   "taskId": "T040",
+   "arm": "D",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0028",
+   "taskId": "T033",
+   "arm": "B",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0029",
+   "taskId": "T031",
+   "arm": "D",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0030",
+   "taskId": "T022",
+   "arm": "B",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0031",
+   "taskId": "T040",
+   "arm": "A",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0032",
+   "taskId": "T040",
+   "arm": "B",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0033",
+   "taskId": "T022",
+   "arm": "E",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0034",
+   "taskId": "T033",
+   "arm": "D",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0035",
+   "taskId": "T031",
+   "arm": "E",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0036",
+   "taskId": "T049",
+   "arm": "D",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0037",
+   "taskId": "T031",
+   "arm": "A",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0038",
+   "taskId": "T039",
+   "arm": "B",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0039",
+   "taskId": "T018",
+   "arm": "E",
+   "runIndex": 0
+  },
+  {
+   "packetId": "P0040",
+   "taskId": "T039",
+   "arm": "E",
+   "runIndex": 0
+  }
+ ]
+}

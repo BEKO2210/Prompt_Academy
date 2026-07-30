@@ -27,8 +27,38 @@ import {
 } from "./fieldSplit.ts";
 import type { AssemblyTask } from "./taskset.ts";
 
-export const ARMS = ["A", "B", "C", "D", "E"] as const;
+export const ARMS = ["A", "B", "C", "D", "E_concat"] as const;
 export type Arm = (typeof ARMS)[number];
+
+/**
+ * What each arm ACTUALLY is, as implemented.
+ *
+ * The names are load-bearing. An arm called "compiled instructions" that merely
+ * concatenates would make `E ≈ D` read as "compilation adds nothing" when the
+ * measured claim is only "concatenation adds nothing" — a much weaker statement
+ * about a much cheaper mechanism. So the arm is named for what it does.
+ *
+ * The compiler hypothesis gets its own arm when a compiler exists, and not
+ * before. `F_compiled` is listed here as NOT IMPLEMENTED so its absence is
+ * visible rather than assumed.
+ */
+export const ARM_SEMANTICS: Readonly<Record<string, string>> = {
+  A: "user request only, no injected context",
+  B: "the full injectable record, verbatim",
+  C: "the descriptive portion of that record (prompt prose, style)",
+  D: "the actionable portion of that record (acceptance_criteria, negative_prompt, tech_stack)",
+  E_concat:
+    "multi-skill actionable CONCATENATION with exact-duplicate removal. " +
+    "No conflict resolution, no precedence, no context budget — it is not a compiler.",
+};
+
+/** Declared, deliberately unimplemented. Named so its absence cannot be missed. */
+export const NOT_IMPLEMENTED_ARMS: Readonly<Record<string, string>> = {
+  F_compiled:
+    "compiled multi-skill instructions: dedup + conflict resolution + precedence + " +
+    "context budget. Not built. It must earn its existence from evidence that " +
+    "multi-skill context helps at all (E_concat vs D).",
+};
 
 /**
  * Byte-identical across every arm (§4). The single most fragile constant in the
@@ -98,30 +128,27 @@ export function buildPrompt(
       if (!record) return assemble("D", task, [], null);
       return assemble("D", task, [record.id], renderContext(actionableContext(record)));
 
-    case "E": {
-      // Multi-record compilation: the actionable side of several records, with
-      // the primary record first. Deduplication and conflict resolution are
-      // NOT implemented yet — arm E is structurally present so the harness
-      // schema is complete, but it must not be reported as measuring H1c until
-      // the compiler exists. compileActionable() is where that will live.
+    case "E_concat": {
+      // The actionable side of several records, primary first, concatenated
+      // with exact duplicates removed. Named E_concat because that is all it
+      // does — see ARM_SEMANTICS and NOT_IMPLEMENTED_ARMS above.
       const recs = record ? [record, ...extraRecords] : extraRecords;
-      if (!recs.length) return assemble("E", task, [], null);
-      return assemble("E", task, recs.map((r) => r.id), compileActionable(recs));
+      if (!recs.length) return assemble("E_concat", task, [], null);
+      return assemble("E_concat", task, recs.map((r) => r.id), concatenateActionable(recs));
     }
   }
 }
 
 /**
- * Compile the actionable side of several records into one context.
+ * Concatenate the actionable side of several records, removing exact duplicates.
  *
- * Current behaviour is CONCATENATION WITH EXACT-DUPLICATE REMOVAL. That is not
- * a compiler: it does not resolve conflicts (two records demanding different
- * frameworks), does not apply precedence, and does not enforce a context budget.
- * Those are the parts ENG-008 §3 calls "compilation", and until they exist
- * `E ≈ D` would mean "concatenation adds nothing", NOT "compilation adds
- * nothing" — a much weaker claim. Reporting must say so.
+ * Renamed from `concatenateActionable`: it does not compile. It does not resolve
+ * conflicts (two records demanding different frameworks), apply precedence, or
+ * enforce a context budget. Those are what ENG-008 §3 means by compilation, and
+ * a function named for work it does not do invites a claim the experiment
+ * cannot support.
  */
-export function compileActionable(records: SkillRecord[]): string {
+export function concatenateActionable(records: SkillRecord[]): string {
   const seen = new Set<string>();
   // Insertion-ordered, so the primary record's lines come first within a field.
   const byField = new Map<string, string[]>();
