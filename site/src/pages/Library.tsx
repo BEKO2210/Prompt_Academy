@@ -12,7 +12,7 @@ import {
 } from "../components/ExplorerControls";
 import { PromptCard } from "../components/PromptCard";
 import { PromptDrawer } from "../components/PromptDrawer";
-import { matchesTerms, queryTerms } from "../lib/search";
+import { matchesParsed, parseQuery } from "../lib/search";
 
 const PAGE = 48;
 
@@ -49,10 +49,9 @@ export function Library() {
   }, [filters.category]);
 
   const q = query.trim().toLowerCase();
-  // AND over terms, so a two-word query no longer requires the words to be
-  // adjacent in the joined haystack (ENG-010 / finding D3). Memoised on `q` so
-  // the split is not redone per record.
-  const terms = useMemo(() => queryTerms(q), [q]);
+  // Parsed once per query, not per record: phrase detection and the regex
+  // construction are the expensive part (ENG-010 / ENG-012).
+  const parsed = useMemo(() => parseQuery(q), [q]);
 
   const results = useMemo(() => {
     if (!index) return [];
@@ -62,7 +61,7 @@ export function Library() {
       if (filters.framework && it.fw !== filters.framework) return false;
       if (filters.language && it.lang !== filters.language) return false;
       if (filters.audience && it.a !== filters.audience) return false;
-      if (!matchesTerms(it, terms)) return false;
+      if (!matchesParsed(it, parsed)) return false;
       return true;
     });
 
@@ -72,7 +71,7 @@ export function Library() {
       list = [...list].sort((a, b) => a.t.localeCompare(b.t));
     }
     return list;
-  }, [index, filters, terms, sort]);
+  }, [index, filters, parsed, sort]);
 
   // Reset window when the result set changes.
   useEffect(() => setVisible(PAGE), [filters, q, sort]);

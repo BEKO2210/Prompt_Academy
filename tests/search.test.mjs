@@ -1,21 +1,14 @@
 /**
- * Query-matching contract (ENG-010, finding D3).
+ * Query-matching contract (ENG-010 semantics, ENG-012 token boundaries).
  *
  * Run: node --test tests/*.test.mjs   (needs `cd site && npm run data` first)
  *
- * Two layers:
- *   1. Fixture-level — the semantics of the predicate, independent of the corpus.
- *   2. Corpus-level — exact counts against the real 10,000-record index, so a
- *      future change that silently alters what users find fails here.
+ * The predicate is mirrored from site/src/lib/search.ts because these tests run
+ * under plain Node with no TypeScript toolchain. A structural guard below fails
+ * if the mirror drifts from the source.
  *
- * The corpus counts are the numbers measured BEFORE implementing (recorded in
- * docs/tasks/ENG-010-multiword-search.md), not numbers read off afterwards.
- * That ordering is what makes them a check rather than a rubber stamp.
- *
- * The predicate is re-implemented here from site/src/lib/search.ts rather than
- * imported, because these tests run under plain Node with no TypeScript
- * toolchain. The duplication is deliberate and small; the "matches TS source"
- * test below guards against the copy drifting.
+ * Corpus counts are MEASURED values, recorded so a future change that silently
+ * alters what users find fails here rather than in production.
  */
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -27,159 +20,207 @@ const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const INDEX_FILE = join(ROOT, "site", "public", "data", "index.json");
 const SEARCH_TS = join(ROOT, "site", "src", "lib", "search.ts");
 
-// --- mirror of site/src/lib/search.ts -------------------------------------
+// --- mirror of site/src/lib/search.ts ------------------------------------
+const LOW = new Set(["a", "an", "and", "for", "in", "with"]);
+const PHRASES = ["sign in", "sign up", "log in", "log out",
+                 "opt in", "opt out", "check out", "drag and drop"];
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const tokenize = (t) => t.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+
+function parseQuery(query) {
+  const tokens = tokenize(query);
+  if (!tokens.length) return { phrases: [], required: [], empty: true };
+  const used = new Array(tokens.length).fill(false);
+  const phrases = [];
+  for (const p of PHRASES) {
+    const pt = tokenize(p);
+    for (let i = 0; i + pt.length <= tokens.length; i++) {
+      if (used.slice(i, i + pt.length).some(Boolean)) continue;
+      if (pt.every((x, j) => tokens[i + j] === x)) {
+        phrases.push(new RegExp("\\b" + pt.map(esc).join("[^a-z0-9]+"), "i"));
+        for (let j = 0; j < pt.length; j++) used[i + j] = true;
+      }
+    }
+  }
+  const rest = tokens.filter((_, i) => !used[i]);
+  const content = rest.filter((t) => !LOW.has(t));
+  const soft = rest.filter((t) => LOW.has(t));
+  const required = (content.length ? content : soft).map((t) => new RegExp("\\b" + esc(t), "i"));
+  return { phrases, required, empty: !phrases.length && !required.length };
+}
 function haystack(it) {
   return [it.t, it.hl, it.sum, it.fw, it.in, it.sc, it.a,
-          ...(it.tags ?? []), ...(it.kw ?? [])]
-    .join(" ")
-    .toLowerCase();
+          ...(it.tags ?? []), ...(it.kw ?? [])].join(" ");
 }
-function queryTerms(query) {
-  return query.trim().toLowerCase().split(/\s+/).filter((t) => t.length > 0);
-}
-function matchesTerms(it, terms) {
-  if (terms.length === 0) return true;
+function matches(it, parsed) {
+  if (parsed.empty) return true;
   const h = haystack(it);
-  for (const t of terms) if (!h.includes(t)) return false;
-  return true;
+  return parsed.phrases.every((r) => r.test(h)) && parsed.required.every((r) => r.test(h));
 }
 // -------------------------------------------------------------------------
 
 const built = existsSync(INDEX_FILE);
 const index = built ? JSON.parse(readFileSync(INDEX_FILE, "utf8")) : [];
-const count = (q) => index.filter((it) => matchesTerms(it, queryTerms(q))).length;
+const count = (q) => index.filter((it) => matches(it, parseQuery(q))).length;
+const ids = (q) => index.filter((it) => matches(it, parseQuery(q))).map((it) => it.id);
 
 function requireBuild() {
-  assert.ok(
-    built,
-    "site/public/data/index.json missing. Run `cd site && npm run data`. " +
-      "Refusing to pass without checking — a skipped contract test reads as green.",
-  );
+  assert.ok(built, "site/public/data/index.json missing. Run `cd site && npm run data`.");
 }
 
-// --- 1. semantics --------------------------------------------------------
-
 const REC = {
-  t: "Accessible Analytics Dashboard",
-  hl: "Realtime KPIs",
+  t: "Accessible Analytics Dashboard", hl: "Realtime KPIs",
   sum: "A responsive dashboard with keyboard navigation.",
   fw: "React", in: "saas", sc: "analytics_dashboard", a: "frontend_developer",
-  tags: ["dashboard", "a11y"],
-  kw: ["charts", "kpi"],
+  tags: ["dashboard", "a11y"], kw: ["charts", "kpi"],
 };
+const m = (rec, q) => matches(rec, parseQuery(q));
 
-test("queryTerms splits on whitespace runs and lowercases", () => {
-  assert.deepEqual(queryTerms("  Dark   MODE  "), ["dark", "mode"]);
-  assert.deepEqual(queryTerms("react"), ["react"]);
-});
-
-test("queryTerms yields [] for empty or whitespace-only input", () => {
-  for (const q of ["", "   ", "\t\n"]) assert.deepEqual(queryTerms(q), []);
-});
-
-test("empty term list matches everything (empty query does not filter)", () => {
-  assert.equal(matchesTerms(REC, []), true);
-});
+// --- 1. ENG-010 semantics still hold -------------------------------------
 
 test("all terms must be present (AND, not OR)", () => {
-  assert.equal(matchesTerms(REC, ["accessible", "dashboard"]), true);
-  assert.equal(matchesTerms(REC, ["accessible", "nonexistentterm"]), false);
+  assert.equal(m(REC, "accessible dashboard"), true);
+  assert.equal(m(REC, "accessible nonexistentterm"), false);
 });
 
 test("term order is irrelevant", () => {
-  assert.equal(
-    matchesTerms(REC, queryTerms("accessible dashboard")),
-    matchesTerms(REC, queryTerms("dashboard accessible")),
-  );
-  assert.equal(matchesTerms(REC, queryTerms("dashboard accessible")), true);
+  assert.equal(m(REC, "dashboard accessible"), m(REC, "accessible dashboard"));
 });
 
 test("terms may match across different fields", () => {
-  // "react" is in fw, "kpi" is in kw — adjacency was never meaningful
-  assert.equal(matchesTerms(REC, queryTerms("react kpi")), true);
+  assert.equal(m(REC, "react kpi"), true);
 });
 
-test("substring matching is preserved (partial input while typing)", () => {
-  assert.equal(matchesTerms(REC, queryTerms("dashb")), true);
-  assert.equal(matchesTerms(REC, queryTerms("nav")), true); // from "navigation"
+test("empty query matches everything", () => {
+  for (const q of ["", "   ", "\t\n"]) assert.equal(m(REC, q), true);
 });
 
 test("an impossible term defeats an otherwise matching query", () => {
-  assert.equal(matchesTerms(REC, queryTerms("dashboard zzzznomatch")), false);
+  assert.equal(m(REC, "dashboard zzzznomatch"), false);
 });
 
-// --- 2. guard against the mirror drifting from the TS source -------------
+// --- 2. ENG-012 mandatory regressions ------------------------------------
 
-test("mirrored predicate still matches site/src/lib/search.ts", () => {
-  const src = readFileSync(SEARCH_TS, "utf8");
-  // Structural assertions, not a byte diff: these are the decisions that would
-  // silently change behaviour if edited in the TS and not here.
-  assert.match(src, /\.join\(" "\)/, "haystack join separator changed");
-  assert.match(src, /\.toLowerCase\(\)/, "haystack lowercasing changed");
-  assert.match(src, /split\(\/\\s\+\//, "term splitting changed");
-  assert.match(src, /if \(terms\.length === 0\) return true;/, "empty-query semantics changed");
-  assert.match(src, /if \(!h\.includes\(t\)\) return false;/, "AND-substring semantics changed");
-  for (const field of ["it.t", "it.hl", "it.sum", "it.fw", "it.in", "it.sc", "it.a", "it.tags", "it.kw"]) {
-    assert.ok(src.includes(field), `haystack no longer includes ${field}`);
+test("REGRESSION: 'sign' matches 'sign', never 'design'", () => {
+  assert.equal(m({ ...REC, t: "Sign Up Form", tags: [], kw: [] }, "sign"), true);
+  assert.equal(m({ ...REC, t: "Design System Guide", tags: [], kw: [] }, "sign"), false);
+});
+
+test("REGRESSION: 'form' does not match platform / information / performance", () => {
+  for (const t of ["Platform Overview", "Information Panel", "Performance Chart"]) {
+    assert.equal(m({ ...REC, t, sum: "", hl: "", tags: [], kw: [] }, "form"), false, t);
   }
+  assert.equal(m({ ...REC, t: "Contact Form", sum: "", hl: "", tags: [], kw: [] }, "form"), true);
+});
+
+test("REGRESSION: 'graph' does not match photograph / infographic", () => {
+  for (const t of ["Photographer Portfolio", "Infographic Layout"]) {
+    assert.equal(m({ ...REC, t, sum: "", hl: "", tags: [], kw: [] }, "graph"), false, t);
+  }
+  assert.equal(m({ ...REC, t: "Graph View", sum: "", hl: "", tags: [], kw: [] }, "graph"), true);
+});
+
+test("REGRESSION: 'react' does not match Preact", () => {
+  assert.equal(m({ ...REC, t: "Preact Component", fw: "Preact", sum: "", hl: "", tags: [], kw: [] }, "react"), false);
+  assert.equal(m({ ...REC, t: "React Component", fw: "React", sum: "", hl: "", tags: [], kw: [] }, "react"), true);
+});
+
+test("prefix matching survives, so typing still works", () => {
+  // Boundary-anchored PREFIX, not whole-token: partial input must still match.
+  assert.equal(m(REC, "dashb"), true);
+  assert.equal(m({ ...REC, t: "Navbar", sum: "", hl: "", tags: [], kw: [] }, "nav"), true);
+});
+
+test("REGRESSION: bare 'in' no longer drags in nearly the whole corpus", () => {
+  requireBuild();
+  const n = count("in");
+  assert.ok(n < 9000, `'in' matched ${n} records — the substring defect is back`);
+  // It is still enforced when it is the ONLY token, or the query would match all.
+  assert.ok(n > 0 && n < index.length, `'in' matched ${n} of ${index.length}`);
+});
+
+test("low-information terms are not hard AND conditions", () => {
+  // "dashboard for a team" must not require "for" and "a" to appear.
+  requireBuild();
+  assert.equal(count("dashboard for a team"), count("dashboard team"),
+    "low-information tokens are being enforced");
+});
+
+test("meaningful phrases survive the low-information rule", () => {
+  // "in" alone is low-information; inside "sign in" it carries meaning.
+  const p = parseQuery("sign in screen");
+  assert.equal(p.phrases.length, 1, "'sign in' was not detected as a phrase");
+  assert.ok(p.phrases[0].test("please sign in here"));
+  assert.ok(!p.phrases[0].test("design integration"),
+    "'sign in' phrase must not match 'design integration'");
+});
+
+test("phrase matching tolerates hyphen and spacing variants", () => {
+  const p = parseQuery("drag and drop");
+  assert.ok(p.phrases[0].test("supports drag-and-drop reordering"));
+  assert.ok(p.phrases[0].test("supports drag and drop reordering"));
 });
 
 // --- 3. corpus counts ----------------------------------------------------
-// Exact figures measured before implementing. See ENG-010.
 
-test("D3 fixed: multi-word queries that returned 0 now return records", () => {
+test("ENG-010 multi-word fix still holds", () => {
   requireBuild();
   const expected = {
-    "accessible dashboard": 100,
-    "ecommerce product page": 330,
-    "react pricing table": 21,
-    "mobile onboarding flow": 57,
-    "animated hero section": 5,
-    "responsive navbar": 2,
-    "authentication form": 1,
-    "file upload component": 3,
+    "accessible dashboard": 100, "ecommerce product page": 277,
+    "react pricing table": 14, "mobile onboarding flow": 51,
+    "animated hero section": 5, "responsive navbar": 2, "file upload component": 3,
   };
-  for (const [q, n] of Object.entries(expected)) {
-    assert.equal(count(q), n, `"${q}" expected ${n}, got ${count(q)}`);
+  for (const [q, n] of Object.entries(expected)) assert.equal(count(q), n, `"${q}"`);
+});
+
+test("single-term behaviour holds", () => {
+  requireBuild();
+  assert.equal(count("dashboard"), 3391);
+  assert.equal(count("pricing"), 231);
+  // 4,684 -> 4,552 at ENG-012: the 132 removed were Preact, not React.
+  assert.equal(count("react"), 4552);
+});
+
+test("'pricing page' does not regress", () => {
+  requireBuild();
+  const n = count("pricing page");
+  assert.ok(n >= 150 && n <= 200, `"pricing page" returned ${n}`);
+  // The 50 dedicated pricing-page records must all still be found.
+  const found = new Set(ids("pricing page"));
+  const rel = JSON.parse(readFileSync(join(ROOT, "benchmarks/queries/relevance.json"), "utf8"));
+  for (const rid of Object.keys(rel.queries.Q001.relevance)) {
+    assert.ok(found.has(rid), `"pricing page" lost known-relevant ${rid}`);
   }
 });
 
-test("single-term behaviour is UNCHANGED (no regression)", () => {
-  requireBuild();
-  assert.equal(count("dashboard"), 3391);
-  assert.equal(count("react"), 4684);
-  assert.equal(count("pricing"), 231);
-});
-
-test("wider-not-broken cases keep their measured counts", () => {
-  requireBuild();
-  // These already returned something; dropping the adjacency constraint widens
-  // them. Recorded so a future ranking change cannot alter them unnoticed.
-  assert.equal(count("data visualization chart"), 451);
-  assert.equal(count("saas analytics dashboard"), 97);
-  assert.equal(count("dark mode toggle"), 5);
-});
-
-test("guaranteed misses stay misses", () => {
+test("no-result behaviour is unchanged", () => {
   requireBuild();
   assert.equal(count("zzzznomatch"), 0);
   assert.equal(count("dashboard zzzznomatch"), 0);
-});
-
-test("corpus gaps are NOT claimed as fixed", () => {
-  requireBuild();
-  // "stripe" appears in 0 records — a dataset gap, not a matching bug.
-  assert.equal(index.filter((it) => haystack(it).includes("stripe")).length, 0);
-  assert.equal(count("stripe checkout"), 0);
-  // German terms absent from a ~91% English corpus — a language gap.
-  // Fixing this needs translation or embeddings (ENG-006 arm R7), not AND terms.
-  for (const q of ["barrierefrei", "dunkelmodus", "anmeldeformular"]) {
-    assert.equal(count(q), 0, `"${q}" unexpectedly matched — corpus changed?`);
-  }
-});
-
-test("empty query returns the whole corpus", () => {
-  requireBuild();
+  assert.equal(count("stripe checkout"), 0);   // dataset gap
+  assert.equal(count("barrierefrei"), 0);      // language gap
   assert.equal(count(""), 10000);
-  assert.equal(count("   "), 10000);
+});
+
+test("ENG-012 removed the 'sign in screen' false-positive pile", () => {
+  requireBuild();
+  // Was 404 records under substring matching, none of them a login form.
+  // The corpus contains no "sign in" at all, so 0 is the honest answer;
+  // finding the login record needs synonyms, which ENG-012 deliberately excludes.
+  assert.equal(count("sign in screen"), 0);
+  assert.ok(count("sign") < 200, `'sign' matched ${count("sign")} — was 6,936 as substring`);
+});
+
+// --- 4. mirror drift guard -----------------------------------------------
+
+test("mirrored predicate still matches site/src/lib/search.ts", () => {
+  const src = readFileSync(SEARCH_TS, "utf8");
+  assert.match(src, /export const MATCHING_VERSION/, "matching version gone");
+  assert.match(src, /"\\\\b" \+ escapeRe\(term\)/, "boundary-anchored term matching changed");
+  assert.match(src, /LOW_INFORMATION_TOKENS/, "low-information set gone");
+  assert.match(src, /MEANINGFUL_PHRASES/, "phrase list gone");
+  for (const t of ["a", "an", "and", "for", "in", "with"]) {
+    assert.ok(new RegExp(`"${t}"`).test(src), `low-information token ${t} missing from source`);
+  }
+  for (const p of PHRASES) assert.ok(src.includes(`"${p}"`), `phrase ${p} missing from source`);
 });

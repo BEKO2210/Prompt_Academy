@@ -514,6 +514,41 @@ Completed:
   excluding "pricing page", nDCG@10 over the other four is ~0.06. HOLDOUT NOT MEASURED
   and must stay untouched; the harness refuses it without an explicit final-measurement flag.
 
+  ENG-012 token-boundary matching — DONE 2026-07-30. LEXICAL MATCHING ONLY, no ranking.
+    site/src/lib/search.ts is now the single tested matching module:
+      tokenize() | parseQuery() | matchesParsed() | MATCHING_VERSION 1.0.0
+      LOW_INFORMATION_TOKENS = a an and for in with   (derived by measurement, >=50% of corpus)
+      MEANINGFUL_PHRASES     = sign in, sign up, log in, log out, opt in/out, check out,
+                               drag and drop
+    Boundary-anchored PREFIX matching: kills substring collisions, keeps incremental typing.
+
+    SUBSTRING COLLISIONS REMOVED (measured):
+      sign   6,936 -> 129    (was matching de-SIGN)
+      form   7,679 -> 502    (platform, information, performance)
+      graph  3,617 -> 265    (photograph, infographic)
+      react  4,684 -> 4,552  (the 132 lost were PREACT, a different framework)
+
+    DEV METRICS UNCHANGED: P@1 .400 P@5 .280 R@10 .113 nDCG@10 .248 MRR .467 -- identical to
+    r1. Said plainly: ENG-012 changes WHICH records match; on these six queries the relevant
+    records were not in top-k either way, so P@k and nDCG cannot see it. The gain is candidate
+    quality: dev total returned 643 -> 236 (-63%) with NO relevant record lost.
+    "sign in screen" 404 -> 0 returned.
+
+    LATENCY: keystroke p50 49.8 (baseline 49.9), p95 50.5 (50.6), heap 24.3 (24.4). No cost --
+    regex vs substring is invisible because React re-render dominates (the ENG-011 finding).
+
+    STOPWORD COMPONENT JUSTIFIED SEPARATELY, as required:
+      on DEV alone it is NOT justified -- removes 14 candidates on one query, 6% total.
+      but boundary-only loses 48% of correct records on "dashboard for a team" (200 vs 386)
+      and 15% on "chart for analytics", because it enforces "for" as a hard AND.
+      -> KEPT. Evidence comes from outside the dev set and is labelled as such.
+
+    COULD NOT FIX, and no token work would: the brief required "sign in screen" to find login
+    records. "sign in" appears in ZERO of 10,000 records; the target says "login form with
+    social auth". That needs a synonym map, which this ticket excludes. 404 wrong answers -> 0
+    answers is a better failure, still a failure. Belongs to ENG-006 / arm R7 along with the
+    cross-language zero (Preisseite -> 0 of 22).
+
 In Progress:
   none
 
@@ -579,7 +614,8 @@ Files Changed:
   nothing in the shipped site or build path was modified.
 
 Next Recommended Ticket:
-  ENG-012 (new): word-boundary + stopword matching in site/src/lib/search.ts.
+  ENG-006 (ranking). Baseline to beat: reports/eng-012-token-boundary.md.
+  OLD, now done: ENG-012 word-boundary + stopword matching.
   Smallest change with the largest measured payoff. NOT ranking -- it fixes WHICH records
   match, exactly as ENG-010 did. Re-measure on dev afterwards; the baseline above is the
   number to beat.

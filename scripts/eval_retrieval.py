@@ -60,7 +60,41 @@ def r1_and_terms(query, recs, hays):
     return [r["id"] for r, h in zip(recs, hays) if all(t in h for t in terms)]
 
 
-METHODS = {"r0_substring": r0_substring, "r1_and_terms": r1_and_terms}
+LOW_INFO = {"a", "an", "and", "for", "in", "with"}
+PHRASES = ["sign in", "sign up", "log in", "log out",
+           "opt in", "opt out", "check out", "drag and drop"]
+
+
+def _tok(t):
+    import re as _re
+    return [x for x in _re.split(r"[^a-z0-9]+", t.lower()) if x]
+
+
+def r2_token_boundary(query, recs, hays):
+    """Shipped since ENG-012: boundary-anchored prefix terms, phrase-aware,
+    low-information tokens soft. Mirrors site/src/lib/search.ts."""
+    import re as _re
+    toks = _tok(query)
+    if not toks:
+        return [r["id"] for r in recs]
+    used = [False] * len(toks); phrases = []
+    for p in PHRASES:
+        pt = _tok(p)
+        for i in range(len(toks) - len(pt) + 1):
+            if any(used[i:i + len(pt)]): continue
+            if all(toks[i + j] == pt[j] for j in range(len(pt))):
+                phrases.append(_re.compile(r"\b" + r"[^a-z0-9]+".join(map(_re.escape, pt)), _re.I))
+                for j in range(len(pt)): used[i + j] = True
+    rest = [t for i, t in enumerate(toks) if not used[i]]
+    content = [t for t in rest if t not in LOW_INFO]
+    soft = [t for t in rest if t in LOW_INFO]
+    req = [_re.compile(r"\b" + _re.escape(t), _re.I) for t in (content or soft)]
+    return [r["id"] for r, h in zip(recs, hays)
+            if all(x.search(h) for x in phrases) and all(x.search(h) for x in req)]
+
+
+METHODS = {"r0_substring": r0_substring, "r1_and_terms": r1_and_terms,
+           "r2_token_boundary": r2_token_boundary}
 
 
 # --- metrics --------------------------------------------------------------
