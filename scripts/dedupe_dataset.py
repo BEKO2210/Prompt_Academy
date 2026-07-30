@@ -8,6 +8,7 @@ and overused patterns across the prompt dataset.
 import json
 import hashlib
 import re
+from datetime import datetime, timezone
 from pathlib import Path
 from collections import Counter, defaultdict
 
@@ -224,7 +225,8 @@ def main():
 
     # Write report
     report = {
-        "timestamp": "2026-05-29T00:00:00Z",
+        # Real UTC run time. Previously hardcoded (D5).
+        "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "total_prompts_analyzed": len(all_prompts),
         "exact_fingerprint_duplicates": {
             "count": len(exact_dups),

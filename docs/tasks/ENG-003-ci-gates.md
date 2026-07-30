@@ -2,8 +2,61 @@
 
 **Type:** Infrastructure
 **Milestone:** M1
-**Status:** READY
+**Status:** **DONE** (2026-07-30)
 **Complexity:** M
+
+## Result
+
+`.github/workflows/checks.yml` (reusable) + `deploy.yml` gains `checks → build → deploy`.
+29 tests in `tests/*.test.mjs` on Node's built-in runner — **no test dependency added**.
+
+### Why a reusable workflow rather than a separate one
+
+The original scope said "CI workflow separate from deploy" *and* "make deploy depend on CI passing".
+Those conflict: a separate workflow triggered by `push` runs **in parallel** with deploy and cannot
+block it. Guaranteeing a red build cannot publish requires deploy to `needs:` the checks. So
+`checks.yml` is `workflow_call` + `pull_request`, and `deploy.yml` invokes it — one definition, used
+by both, with no copy to drift.
+
+### Gate proven, not assumed
+
+Seven corruption types injected into a real record, each reverted afterwards. Dataset confirmed
+byte-exact after (`git diff` clean):
+
+| Corruption | validate | tests | hash-check | Result |
+|---|---|---|---|---|
+| invalid enum value | ✗ | ✗ | ✗ | BLOCKED |
+| duplicate id | ✗ | ✗ | ✗ | BLOCKED |
+| missing required field | ✗ | ✗ | ✗ | BLOCKED |
+| malformed JSON line | ✗ | ✗ | ✗ | BLOCKED |
+| prompt too short | ✗ | ✗ | ✗ | BLOCKED |
+| record count wrong | ✗ | ✗ | ✗ | BLOCKED |
+| **new invalid slug** | **passed** | ✗ | **passed** | BLOCKED — *only* by the new tests |
+
+The last row matters: `validate_dataset.py` checks slug **uniqueness only**, never the pattern, so the
+new tests add coverage the existing tooling never had.
+
+### Findings surfaced by doing this
+
+- **10 slugs violate the schema's own pattern** (`&`, `/`, `+`, leading and double hyphens). They pass
+  `validate_dataset.py` because it does not check the pattern — so the committed "Schema valid: YES"
+  claim never covered slugs. Not routed today, so no live breakage. Allowlisted with a staleness test
+  that forces the list to shrink; tracked as **ENG-009**.
+- **5 eslint errors**, all pre-existing app code (4× `react-hooks/set-state-in-effect`,
+  1× `react-refresh/only-export-components`). Downgraded to `warn` in one visible place rather than
+  fixed: fixing means changing effect logic in five files in a repo that had no tests until this
+  ticket. Verified that eslint still **fails on a new error** (probe file → exit 1). Tracked as
+  **ENG-009**.
+- **D5 fixed at the root:** `validate_dataset.py`, `dedupe_dataset.py` and `build_website_index.py`
+  each wrote a *hardcoded* `2026-05-29T00:00:00Z`, so every report looked current no matter when it
+  last ran. Now real UTC.
+- **`website_index.json` is stale relative to its own generator** — re-running produces 2,894 changed
+  lines of tag normalisation (`calm-Swiss-grid` → `calm-swiss-grid`, `navigation_bars` →
+  `navigation-bars`, `velocity.js` → `velocityjs`). **Deliberately not regenerated here:**
+  `velocity.js` → `velocityjs` is arguably a degradation, the file is consumed by nothing (verified),
+  and a 2,894-line content change should not ride along in a CI commit. Recorded for a separate
+  decision.
+- **`__pycache__` was not gitignored.** Added.
 
 ## Problem
 

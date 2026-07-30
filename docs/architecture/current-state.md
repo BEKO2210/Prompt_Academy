@@ -268,16 +268,40 @@ change**; and since the full keystroke cost is ~7x the filter cost, React re-ren
 cards dominates, so optimising the filter alone addresses roughly one seventh of what the user feels.
 There is no debounce on the input.
 
-### D4 — No tests, no CI gates
+### D4 — No tests, no CI gates — **RESOLVED 2026-07-30 (ENG-003)**
 
-The deploy workflow will happily publish a broken dataset. `validate_dataset.py` exists and
-passes (per committed report) but is not enforced. Any dataset change is currently unguarded.
+*Original finding:* the deploy workflow would happily publish a broken dataset.
+`validate_dataset.py` existed and passed but was not enforced. Any dataset change was unguarded.
 
-### D5 — Committed reports are stale-by-design
+**Resolved.** `.github/workflows/checks.yml` is a reusable workflow gating `deploy.yml`
+(`checks → build → deploy`), plus 29 tests in `tests/*.test.mjs` on Node's built-in runner (no test
+dependency added). Proven with seven injected corruption types — invalid enum, duplicate id, missing
+field, malformed JSON, short prompt, wrong record count, invalid slug — all blocked, dataset restored
+byte-exact afterwards.
 
-`reports/*.md` and `reports/*.json` are hand-run snapshots with rounded timestamps. They assert
-`PASS` but cannot be trusted as current state. They should either become CI-generated artifacts
-or be clearly marked as historical.
+Note on the workflow shape: a *separate* push-triggered CI workflow would run in **parallel** with
+deploy and could not block it. Blocking requires deploy to `needs:` the checks, hence `workflow_call`.
+
+**Residual gap:** no React component tests. The suite covers the dataset and build layers only, which
+matters for ENG-009's effect refactors.
+
+### D5 — Committed reports were stale-by-design — **ROOT CAUSE FIXED 2026-07-30 (ENG-003)**
+
+*Original finding:* `reports/*` asserted `PASS` but carried rounded timestamps and could not be
+trusted as current state.
+
+**Root cause found and fixed:** the timestamps were not rounded, they were **hardcoded**.
+`validate_dataset.py:341`, `dedupe_dataset.py:227` and `build_website_index.py:69` each wrote a
+literal `"2026-05-29T00:00:00Z"`, so every report looked current regardless of when it last ran. All
+three now emit real UTC. CI runs the validators for their exit code, so drift surfaces as a red build
+rather than a stale file.
+
+**Related, still open:** `website_index.json` is stale relative to its own generator — re-running
+`build_website_index.py` changes 2,894 lines (tag normalisation: `calm-Swiss-grid` →
+`calm-swiss-grid`, `navigation_bars` → `navigation-bars`, `velocity.js` → `velocityjs`). Deliberately
+not regenerated: the file is consumed by nothing (verified), `velocity.js` → `velocityjs` is arguably
+a degradation, and a 2,894-line content change should be its own reviewed decision rather than a
+side effect of a CI ticket.
 
 ### D6 — Quality scores are self-reported, not validated
 

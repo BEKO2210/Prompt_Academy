@@ -9,6 +9,10 @@ dist/
 # Generated site data (rebuilt from data/*.jsonl by `npm run data`)
 site/public/data/
 
+# Python bytecode
+__pycache__/
+*.pyc
+
 # Logs / env / OS
 *.log
 .DS_Store

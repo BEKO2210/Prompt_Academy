@@ -6,6 +6,7 @@ Creates a flattened index optimized for quick web display and search.
 """
 
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
 DATA_DIR = Path(__file__).parent.parent / "data"
@@ -66,7 +67,8 @@ def main():
         "meta": {
             "version": "1.0.0",
             "total_items": len(items),
-            "generated_at": "2026-05-29T00:00:00Z",
+            # Real UTC run time. Previously hardcoded (D5).
+            "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "source_files": len(jsonl_files)
         },
         "items": items

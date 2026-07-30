@@ -83,9 +83,11 @@ change risks a dataset or site regression that nothing currently catches.
 **Scope:**
 - ~~Measure and record the baselines in current-state §11~~ **DONE (ENG-002, 2026-07-30)** —
   `reports/baseline-2026-07-30.json`, `reports/baseline-method.md`, harness in `scripts/baseline/`.
-- CI: run `validate_dataset.py` + `dedupe_dataset.py` + `tsc` + `eslint` on PR and on push.
-  Fail the build on dataset schema violations. This closes finding D4.
-- Introduce a test runner and the first tests: dataset invariants, `build_site_data.mjs` output shape.
+- ~~CI: validation, typecheck, lint on PR and push; fail on dataset violations~~
+  **DONE (ENG-003, 2026-07-30)** — `.github/workflows/checks.yml` (reusable) gates
+  `deploy.yml` via `checks → build → deploy`. Closes D4; D5 fixed at the root.
+- ~~Introduce a test runner and the first tests~~ **DONE** — 29 tests in `tests/*.test.mjs` on
+  Node's built-in runner, zero new dependencies. Includes size budgets guarding the ENG-002 baseline.
 - Author `schema/capabilities.vocabulary.json` — controlled, versioned vocabulary (schema A1).
 - Author the subcategory → capabilities mapping table (200 rows, hand-reviewed).
 - ~~Add `content_hash` per record~~ **DONE (ENG-004, 2026-07-30)** —
@@ -342,6 +344,20 @@ Completed:
   ALGO_VERSION=1.0.0 -- bump it if normalization changes; --check then reports
   "regenerate all" rather than "10,000 records changed".
 
+  ENG-003 CI gates — DONE 2026-07-30. .github/workflows/checks.yml is REUSABLE
+  (workflow_call + pull_request); deploy.yml now runs checks -> build -> deploy.
+  A separate push-triggered workflow would have run in PARALLEL with deploy and could not
+  block it -- hence the reusable form, one definition used by both, no copy to drift.
+  29 tests in tests/*.test.mjs on Node's BUILT-IN runner (no test dependency added).
+  Includes size budgets (index.json <= 7,000,000 B; public/data <= 32,500,000 B) so the
+  ENG-002 baseline cannot silently regress -- this is ENG-007's CI-ceiling criterion, met early.
+  npm run ci runs the whole gate locally: typecheck && lint && data && test.
+  GATE PROVEN with 7 corruption types, each reverted (data/ byte-exact after):
+    invalid enum | duplicate id | missing field | malformed JSON | short prompt |
+    wrong record count | new invalid slug   -> all BLOCKED
+  The last one was caught ONLY by the new tests: validate_dataset.py checks slug
+  UNIQUENESS but never the slug PATTERN.
+
 In Progress:
   none
 
@@ -362,8 +378,13 @@ Unblocked since last handoff:
   job queue, isolation, distributed workers) -- not on H1 succeeding.
 
 Tests:
-  None exist. Establishing them is M1 scope (finding D4). CI currently publishes an invalid
-  dataset without complaint.
+  29 tests, tests/*.test.mjs, Node built-in runner. Run: `cd site && npm test`
+  (or `npm run ci` for the full local gate). All green.
+  Coverage: dataset invariants (counts, required fields, id/slug/title uniqueness, enums,
+  category-matches-file, prompt/negative_prompt word counts, acceptance_criteria 3-6, tags 5-12,
+  nested key shape, quality score ranges) + build-artifact shape + size budgets.
+  NOT covered: any React component behaviour. That gap matters for ENG-009, which refactors
+  effect logic -- prefer keying components over restructuring state until UI tests exist.
 
 Important Decisions:
   - Reordered the master prompt's M0-M22: falsify the core premise before building on it.
@@ -402,18 +423,18 @@ Files Changed:
   nothing in the shipped site or build path was modified.
 
 Next Recommended Ticket:
-  ENG-003 (CI gates, M) -> ENG-001 (capabilities, M) -> ENG-005 (labelled query set, M).
-  ENG-002 and ENG-004 are done.
+  M1 infrastructure is COMPLETE (ENG-002, ENG-004, ENG-003). Remaining M1 item: ENG-001.
 
-  ENG-003 now has more to wire up than originally scoped: validate_dataset, dedupe_dataset,
-  compute_content_hashes --check AND --self-test, tsc, eslint, plus pinning the Node version
-  (D12: system v18 cannot build this repo, nothing declares the requirement).
+  RECOMMENDED: go to the D3/D3b search fix (ENG-006 territory) BEFORE ENG-001.
+    - D3 is a measured, user-visible defect: "accessible dashboard" -> 0 hits while
+      "dashboard" -> 3,391. That is broken search, not missing ranking.
+    - D3b is a cheap independent win: precompute haystack (~83% of filter cost).
+    - Both pay off REGARDLESS of how H1 turns out, which de-risks the project.
+    - ENG-001 (capabilities) only pays off IF the engine gets built, i.e. it is a bet on H1.
+  The safety net now exists to make that change safely, which is exactly why it was built first.
 
-  Priority note: after ENG-003, consider going STRAIGHT to the D3/D3b search fix rather than
-  finishing all of M1's theory first. D3 is a measured, user-visible defect ("accessible
-  dashboard" -> 0 hits) and D3b is a cheap independent win (precompute haystack). Both deliver
-  value regardless of how H1 turns out, which de-risks the whole project. ENG-001 (capabilities)
-  only pays off if the engine is built.
+  ENG-005 (labelled query set) should accompany ENG-006, not follow it -- ground truth before
+  the thing it judges.
 
 Findings from ENG-002 that changed the plan:
   - D1 WAS MIS-FRAMED. Transfer is 738 KB, not 6.9 MB. The uncompressible costs are parse

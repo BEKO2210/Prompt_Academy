@@ -30,7 +30,16 @@ Confirmed in Phase 0; none of these are derivable from reading the code.
   database, no API, no auth, and no LLM call at build or run time. Anything requiring a
   runtime cannot be added here without ADR-0001 being decided.
 - Build requires **Node >=20.19 or >=22.12** (Vite 8). The system `node` is v18 and **fails**.
-  Nothing pins this — no `.nvmrc`, no `engines`. CI uses Node 22.
+  Pinned in `.nvmrc` and `site/package.json` `engines` — use `.nvmrc`, do not assume `node` on PATH.
+- `cd site && npm run ci` runs the whole local gate: typecheck, lint, data build, tests.
+  Run it before pushing; CI runs the same checks.
+- Two eslint rules are **`warn` not `error`** on purpose — five pre-existing violations, recorded in
+  `site/eslint.config.js` and tracked as ENG-009. Do not add code that trips them, and do not
+  "fix" the config by silencing more rules.
+- Ten slugs violate the schema's own pattern and are allowlisted in `tests/dataset.test.mjs`
+  (`KNOWN_BAD_SLUGS`, ENG-009). The allowlist may only ever **shrink** — a staleness test enforces it.
+- `validate_dataset.py` checks slug **uniqueness only, never the pattern**. Its `PASS` does not mean
+  schema-valid slugs.
 - `vite preview` **cannot serve a production build here**: `vite.config.ts` sets
   `base: '/Prompt_Academy/'` only when `command === 'build'`, so preview serves at `/` and 404s its
   own assets. Use `scripts/baseline/serve_dist.mjs`.
