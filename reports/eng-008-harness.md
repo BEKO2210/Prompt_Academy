@@ -129,3 +129,99 @@ floor · removing function-word filtering.
 cannot hold: a record also carries `id`, `slug`, `quality.*`, `batch`. Resolved by defining an
 injectable set that C and D partition exactly; retrieval keys, provenance and quality scores enter
 no arm. **This narrows arm B relative to a literal reading of the ticket.**
+
+---
+
+# Slice 3 — task set to 50, and two bugs it exposed
+
+**Date:** 2026-07-30 · Still no model call.
+
+## Task set
+
+50 tasks, 17 domains, 24 German / 26 English. ENG-008 §1 targets 100 and permits 50 as an
+**under-powered first pass**; this is that pass and must be reported as under-powered.
+
+## Bug 1 — the shipped search shredded every German word
+
+`tokenize` split on `[^a-z0-9]`, so `ä`, `ö`, `ü` and `ß` were treated as SEPARATORS:
+
+| input | tokens | consequence |
+|---|---|---|
+| `Prüfung` | `pr`, `fung` | — |
+| `Bestellbestätigung` | `bestellbest`, `tigung` | retrieves nothing |
+| `Übersicht` | `bersicht` | 0 records |
+| `größe` | `gr`, `e` | **1,625 records** |
+
+The last row is the damaging shape: not a visibly empty result but a large, confidently wrong one.
+Three vocabulary entries — `übersicht`, `schaltfläche`, `oberfläche` — were also unreachable dead
+code, because tokenisation could never produce their keys.
+
+**Fixed** in `search.ts` and `ranking.ts`: the German letters are word characters, `\b` (ASCII-only
+in JavaScript, so it never matched before an umlaut) is replaced by an explicit start-or-separator
+class, and each umlaut is expanded into an alternation with its transliteration so `Übersicht` and
+`Uebersicht` find the same records. The corpus is **not** normalised — rewriting 10,000 haystacks
+per keystroke is the cost ENG-011 measured and rejected.
+
+Verified in the running app: `Übersicht` 3,396 · `Uebersicht` 3,396 · `größe` 0 (correct) ·
+`dashboard` 3,391 and `pricing page` 162 unchanged. Dev-split retrieval metrics are unchanged
+(r2 0.332, r3 0.429, r4 0.755) — those queries contain no umlauts, so the fix is metric-neutral
+there and matters for German input.
+
+## Bug 2 — the search test suite was testing a copy, not the product
+
+`tests/search.test.mjs` hand-mirrored `search.ts` in JavaScript, because Node could not import a
+`.ts` file when it was written. It can now, and the mirror had drifted: it carried no vocabulary
+expansion, so it asserted `sign in screen -> 0` and `responsive navbar -> 2` while the app returned
+2 and 125. **Those tests were green against behaviour the product no longer had.**
+
+Replaced with a direct import, which deletes the entire class of bug. Three assertions had to be
+corrected to what the app actually does, each with the reason recorded.
+
+## Bug 3 — a task made unpassable by its own evaluation
+
+T002 required `type="password"` **and** forbade the string `password`. Unpassable in every arm, so
+it would have depressed all of them equally — invisible in a cross-arm table, pure noise in the
+headline metric. `validateEvaluationSet` now rejects that shape, and also rejects a forbidden
+string that appears in the user's own request.
+
+## Two self-inflicted errors, recorded
+
+- Fixing `r2_token_boundary` earlier, a `str.replace` matched two functions and left `r2`
+  referencing an undefined name. It raised and printed nothing; I read the empty output as a grep
+  problem and moved on. It was not. All five methods are now verified to run.
+- Adding umlauts to the Python field-scorer, I wrote `before in "äöüß"` — and in Python
+  `"" in "äöüß"` is **True**, so a hit at position 0 stopped counting as a word boundary and
+  ranking degraded (r3 0.429 → 0.357). Python's `isalnum()` is already Unicode-aware; the clause
+  was never needed.
+
+## Measured coverage of the evaluation layer
+
+| | count |
+|---|---|
+| automated checks (regex / contains / forbidden) | 44 |
+| human-judgement assertions and artifact requirements | 193 |
+| **share requiring human judgement** | **81%** |
+| **tasks with ZERO automated checks** | **24 of 50** |
+
+This is the honest limit of the first pass. ENG-008 §Non-goals permits deterministic validators
+only, and with this Layer 2 the automated signal covers 26 of 50 tasks at fewer than two checks
+each. `structuralSuccess` requires zero unresolved checks, so it is 0 for every arm and is not a
+usable headline metric as things stand.
+
+**This must be resolved before H1 is run for real.** Either more deterministic assertions are
+authored alongside the human ones, or the human assertions are actually judged by a human, or the
+experiment reports on the 26-task automated subset and says so. Reporting `structuralSuccess = 0`
+across arms as "no difference between arms" would be the same category of error as the 8-of-8
+retrieval failure: a number that measures the instrument, not the hypothesis.
+
+## Retrieval on the 50-task set
+
+47 of 50 retrieve a record. The three that do not — T017, T021, T027 — are German requests built
+from compounds absent from a ~91% English corpus (`Bestellbestätigungsseite`, `Adresszusatz`,
+`Ziffernfelder`). AGENTS.md records this class explicitly: a German query returning zero is a
+language gap, not a matcher bug, and must not be "fixed" by loosening the matcher. All three are
+excluded from the arm comparison and reported in `unretrieved`.
+
+Note that T017 began failing *because* of the umlaut fix. Before it, `unterstützen` was shredded
+into `unterst` + `tzen` and a fragment matched something by accident. 47 is the honest number; 48
+included a spurious hit.

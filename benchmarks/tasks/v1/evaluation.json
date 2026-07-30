@@ -1,90 +1,1312 @@
 {
-  "version": "task-set-v1-seed",
-  "note": "LAYER 2 — the hidden evaluation ground truth (ENG-008 §2). Authored from each task's own requirements, WITHOUT knowing which dataset record retrieval will select, and never by copying a record's acceptance_criteria or negative_prompt. Identical across arms A-F. Never enters a prompt in any arm, including repair prompts. Frozen and hashed before a run; a mid-run edit without a version bump discards that version's results. Assertions marked kind=human are not deterministically checkable and must be counted separately from automated ones — 'task success' means 'passed the structural checks', and reporting must say so.",
-  "evaluations": {
-    "T001": {
-      "assertions": [
-        { "id": "a1", "kind": "contains", "value": "3" },
-        { "id": "a2", "kind": "regex", "value": "(monthly|annual|month|year|monat|jahr)" },
-        { "id": "a3", "kind": "human", "value": "Exactly one tier is visually distinguished from the other two." },
-        { "id": "a4", "kind": "human", "value": "Switching the billing period changes the displayed prices rather than only a label." }
-      ],
-      "forbidden": ["lorem ipsum"],
-      "required_artifacts": ["a component file"],
-      "notes": "A static three-column layout with no working toggle fails a2 in substance even if the word appears."
+ "version": "task-set-v1",
+ "note": "LAYER 2 — the hidden evaluation ground truth (ENG-008 §2). Authored from each task's own requirements, WITHOUT knowing which dataset record retrieval will select, and never by copying a record's acceptance_criteria or negative_prompt. Identical across arms A-F. Never enters a prompt in any arm, including repair prompts. Frozen and hashed before a run; a mid-run edit without a version bump discards that version's results. Assertions marked kind=human are not deterministically checkable and must be counted separately from automated ones — 'task success' means 'passed the structural checks', and reporting must say so.",
+ "evaluations": {
+  "T001": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "contains",
+     "value": "3"
     },
-    "T002": {
-      "assertions": [
-        { "id": "a1", "kind": "regex", "value": "type=[\"']?password" },
-        { "id": "a2", "kind": "regex", "value": "(type=[\"']?email|inputmode=[\"']?email)" },
-        { "id": "a3", "kind": "human", "value": "An error message is rendered next to or below the field it concerns, not only at the form level." },
-        { "id": "a4", "kind": "human", "value": "A password reset link is present and distinct from the submit action." }
-      ],
-      "forbidden": ["password", "123456"],
-      "required_artifacts": ["a form component"],
-      "notes": "forbidden targets a hardcoded credential in the source, not the word in a label. Checked case-insensitively against string literals only."
+    {
+     "id": "a2",
+     "kind": "regex",
+     "value": "(monthly|annual|month|year|monat|jahr)"
     },
-    "T003": {
-      "assertions": [
-        { "id": "a1", "kind": "human", "value": "Sorting is per column and toggles direction on repeated activation." },
-        { "id": "a2", "kind": "human", "value": "The search filters across all columns, not only the first." },
-        { "id": "a3", "kind": "human", "value": "500 rows are handled without rendering all of them at once, or the tradeoff is stated." }
-      ],
-      "forbidden": [],
-      "required_artifacts": ["a table component"],
-      "notes": "a3 is deliberately satisfiable two ways: virtualise, or say plainly that it does not. An unstated full render fails."
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Exactly one tier is visually distinguished from the other two."
     },
-    "T004": {
-      "assertions": [
-        { "id": "a1", "kind": "regex", "value": "(ondrop|onDrop|dragover|dragOver)" },
-        { "id": "a2", "kind": "regex", "value": "(10 ?\\* ?1024 ?\\* ?1024|10485760|10 ?MB)" },
-        { "id": "a3", "kind": "human", "value": "Progress is shown per file, not as a single aggregate bar." },
-        { "id": "a4", "kind": "human", "value": "An oversized file produces a visible rejection, not a silent drop." }
-      ],
-      "forbidden": [],
-      "required_artifacts": ["an upload component"],
-      "notes": "Drag and drop must be handled, not merely mentioned in a comment."
-    },
-    "T005": {
-      "assertions": [
-        { "id": "a1", "kind": "contains", "value": "4" },
-        { "id": "a2", "kind": "human", "value": "Four distinct metric cards appear above the chart in the layout order." },
-        { "id": "a3", "kind": "human", "value": "The chart covers a 30-day range rather than an unspecified series." }
-      ],
-      "forbidden": ["lorem ipsum"],
-      "required_artifacts": ["a dashboard page"],
-      "notes": "Chart library choice is free. a3 concerns the range, not the library."
-    },
-    "T006": {
-      "assertions": [
-        { "id": "a1", "kind": "human", "value": "Cart line items are shown with quantities and a total." },
-        { "id": "a2", "kind": "human", "value": "A shipping address form is present." },
-        { "id": "a3", "kind": "human", "value": "At least two delivery options are selectable." }
-      ],
-      "forbidden": ["stripe", "paypal", "card number", "cvv"],
-      "required_artifacts": ["a checkout step component"],
-      "notes": "The request explicitly excludes payment. A payment step present is a scope failure, which is what forbidden encodes here."
-    },
-    "T007": {
-      "assertions": [
-        { "id": "a1", "kind": "regex", "value": "role=[\"']?dialog|aria-modal" },
-        { "id": "a2", "kind": "regex", "value": "(Escape|Esc|keyCode ?=== ?27)" },
-        { "id": "a3", "kind": "human", "value": "Focus is moved into the modal on open and restored to the trigger on close." },
-        { "id": "a4", "kind": "human", "value": "Tab cycles within the modal and cannot reach the page behind it." }
-      ],
-      "forbidden": [],
-      "required_artifacts": ["a modal component"],
-      "notes": "a3 and a4 are the substance. a1 and a2 are cheap to satisfy and are not sufficient on their own."
-    },
-    "T008": {
-      "assertions": [
-        { "id": "a1", "kind": "human", "value": "Three distinct sections are present: profile, notifications, danger zone." },
-        { "id": "a2", "kind": "human", "value": "Account deletion requires an explicit confirmation step before it fires." },
-        { "id": "a3", "kind": "human", "value": "The danger zone is visually separated from the ordinary settings." }
-      ],
-      "forbidden": [],
-      "required_artifacts": ["a settings page"],
-      "notes": "A confirm() call satisfies a2. So does a typed-confirmation dialog. A delete button that fires directly does not."
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "Switching the billing period changes the displayed prices rather than only a label."
     }
+   ],
+   "forbidden": [
+    "lorem ipsum"
+   ],
+   "required_artifacts": [
+    "a component file"
+   ],
+   "notes": "A static three-column layout with no working toggle fails a2 in substance even if the word appears."
+  },
+  "T002": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "regex",
+     "value": "type=[\"']?password"
+    },
+    {
+     "id": "a2",
+     "kind": "regex",
+     "value": "(type=[\"']?email|inputmode=[\"']?email)"
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "An error message is rendered next to or below the field it concerns, not only at the form level."
+    },
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "A password reset link is present and distinct from the submit action."
+    }
+   ],
+   "forbidden": [
+    "hunter2",
+    "admin123",
+    "password123"
+   ],
+   "required_artifacts": [
+    "a form component"
+   ],
+   "notes": "forbidden targets a hardcoded example credential left in source. It must NOT be the word 'password': assertion a1 requires type=\"password\", so forbidding the word would make this task unpassable in every arm and depress all of them equally. validateEvaluationSet now rejects that contradiction outright."
+  },
+  "T003": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Sorting is per column and toggles direction on repeated activation."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "The search filters across all columns, not only the first."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "500 rows are handled without rendering all of them at once, or the tradeoff is stated."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a table component"
+   ],
+   "notes": "a3 is deliberately satisfiable two ways: virtualise, or say plainly that it does not. An unstated full render fails."
+  },
+  "T004": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "regex",
+     "value": "(ondrop|onDrop|dragover|dragOver)"
+    },
+    {
+     "id": "a2",
+     "kind": "regex",
+     "value": "(10 ?\\* ?1024 ?\\* ?1024|10485760|10 ?MB)"
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Progress is shown per file, not as a single aggregate bar."
+    },
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "An oversized file produces a visible rejection, not a silent drop."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "an upload component"
+   ],
+   "notes": "Drag and drop must be handled, not merely mentioned in a comment."
+  },
+  "T005": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "contains",
+     "value": "4"
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Four distinct metric cards appear above the chart in the layout order."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The chart covers a 30-day range rather than an unspecified series."
+    }
+   ],
+   "forbidden": [
+    "lorem ipsum"
+   ],
+   "required_artifacts": [
+    "a dashboard page"
+   ],
+   "notes": "Chart library choice is free. a3 concerns the range, not the library."
+  },
+  "T006": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Cart line items are shown with quantities and a total."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "A shipping address form is present."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "At least two delivery options are selectable."
+    }
+   ],
+   "forbidden": [
+    "stripe",
+    "paypal",
+    "card number",
+    "cvv"
+   ],
+   "required_artifacts": [
+    "a checkout step component"
+   ],
+   "notes": "The request explicitly excludes payment. A payment step present is a scope failure, which is what forbidden encodes here."
+  },
+  "T007": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "regex",
+     "value": "role=[\"']?dialog|aria-modal"
+    },
+    {
+     "id": "a2",
+     "kind": "regex",
+     "value": "(Escape|Esc|keyCode ?=== ?27)"
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Focus is moved into the modal on open and restored to the trigger on close."
+    },
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "Tab cycles within the modal and cannot reach the page behind it."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a modal component"
+   ],
+   "notes": "a3 and a4 are the substance. a1 and a2 are cheap to satisfy and are not sufficient on their own."
+  },
+  "T008": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Three distinct sections are present: profile, notifications, danger zone."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Account deletion requires an explicit confirmation step before it fires."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The danger zone is visually separated from the ordinary settings."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a settings page"
+   ],
+   "notes": "A confirm() call satisfies a2. So does a typed-confirmation dialog. A delete button that fires directly does not."
+  },
+  "T009": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "A headline states what the app does, not a generic slogan."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "A single primary call to action points at an app store."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "An image or illustration slot is present rather than assumed."
+    }
+   ],
+   "forbidden": [
+    "lorem ipsum"
+   ],
+   "required_artifacts": [
+    "a landing page"
+   ],
+   "notes": "Two competing primary buttons is a failure: the request asks for one."
+  },
+  "T010": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "A code snippet is shown as code, not as prose."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Exactly two buttons, visually distinguished as primary and secondary."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The value sentence describes the tool rather than the company."
+    }
+   ],
+   "forbidden": [
+    "lorem ipsum"
+   ],
+   "required_artifacts": [
+    "a hero section"
+   ],
+   "notes": "A snippet inside a plain paragraph fails the first assertion."
+  },
+  "T011": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Opening one answer closes any other that was open."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Each question is operable by keyboard, not click-only."
+    },
+    {
+     "id": "a3",
+     "kind": "regex",
+     "value": "(aria-expanded|details|summary)"
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "an accordion component"
+   ],
+   "notes": "Multiple simultaneously open panels is the specific failure this task targets."
+  },
+  "T012": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Choosing an end date before the start is prevented or corrected, not merely styled red."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Both dates are visible at once after selection."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The valid range is communicated before the user picks an invalid date."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a date range picker"
+   ],
+   "notes": "Validation only on submit fails a1: the request says the user cannot pick it."
+  },
+  "T013": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "regex",
+     "value": "(length\\s*(>=|>)\\s*[23]|slice|substring)"
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Suggestions appear only from the third character onward."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Arrow keys move a highlighted suggestion and Enter selects it."
+    },
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "The input is not blocked while suggestions load."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "an autocomplete input"
+   ],
+   "notes": "a1 is weak evidence on its own; a2 is the substance."
+  },
+  "T014": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "regex",
+     "value": "(5000|5 ?\\* ?1000|five seconds)"
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Multiple toasts stack rather than replacing one another."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "A per-toast dismiss control exists and removes only that toast."
+    },
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "The auto-dismiss timer is cleared when a toast is dismissed early."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a toast system"
+   ],
+   "notes": "a4 is the leak this task looks for: dismissing early must not leave a timer running."
+  },
+  "T015": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "regex",
+     "value": "(@media|breakpoint|md:|lg:|sm:)"
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "On a narrow viewport the sidebar is collapsed and openable."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "On a wide viewport it is visible without interaction."
+    },
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "Opening it on mobile does not scroll the page behind it."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a sidebar component"
+   ],
+   "notes": "A single always-visible sidebar with a hidden class fails a2 in substance."
+  },
+  "T016": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Password strength is shown as the user types, not only on submit."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Mismatched confirm-password is reported before submission succeeds."
+    },
+    {
+     "id": "a3",
+     "kind": "regex",
+     "value": "type=[\"']?password"
+    }
+   ],
+   "forbidden": [
+    "password123",
+    "letmein"
+   ],
+   "required_artifacts": [
+    "a registration form"
+   ],
+   "notes": "forbidden targets a hardcoded example credential in source, not label text."
+  },
+  "T017": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Six separate inputs, focus advancing automatically on entry."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Pasting a six-digit code fills all fields, not only the first."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Backspace in an empty field moves focus back."
+    },
+    {
+     "id": "a4",
+     "kind": "regex",
+     "value": "(paste|onPaste|clipboard)"
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a code input component"
+   ],
+   "notes": "a2 is the requirement most implementations miss; a4 alone does not satisfy it."
+  },
+  "T018": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "The message explains that the session expired rather than showing a generic error."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "The destination the user was on is preserved for after sign-in."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "No unsaved work is silently discarded without saying so."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a session expiry screen"
+   ],
+   "notes": "A redirect straight to a bare login page fails a1 and a2 together."
+  },
+  "T019": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Three distinct steps with a visible indication of which is current."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Going back preserves what was already entered."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Forward navigation is blocked while the current step is invalid."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a multi-step form"
+   ],
+   "notes": "State reset on back navigation is the specific failure this task targets."
+  },
+  "T020": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "regex",
+     "value": "(onBlur|blur)"
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Validation fires on blur, not on every keystroke."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The submit control is disabled or busy while a request is in flight."
+    },
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "A failed submission leaves the entered values intact."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a contact form"
+   ],
+   "notes": "Double submission on rapid clicks is what a3 exists to catch."
+  },
+  "T021": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "A postal code field validates a five-digit German format."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "A separate address-supplement field exists alongside street and number."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Field labels are German."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "an address form"
+   ],
+   "notes": "A generic international address form fails a1 and a2."
+  },
+  "T022": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "One date range control governs every chart on the page."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Changing the range updates all charts, not only the first."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The currently selected range is visible without opening the control."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a dashboard page"
+   ],
+   "notes": "Per-chart independent filters is the failure this task targets."
+  },
+  "T023": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Tickets are filterable by status and by assignee."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Filters combine rather than replacing one another."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "An empty filter result says so rather than showing a blank area."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "an admin dashboard"
+   ],
+   "notes": "a2 is the substance: two filters must intersect."
+  },
+  "T024": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "The empty state explains what will appear here once data exists."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "A concrete first action is offered."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "No fake or placeholder data is shown as if it were real."
+    }
+   ],
+   "forbidden": [
+    "lorem ipsum"
+   ],
+   "required_artifacts": [
+    "an empty state"
+   ],
+   "notes": "Sample data presented without labelling it as sample fails a3."
+  },
+  "T025": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "An image gallery with more than one image and a way to change the shown image."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Size and colour are separate selections, not one combined list."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "An unavailable combination is indicated rather than silently addable."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a product detail page"
+   ],
+   "notes": "a3 is the hard part and is expected to fail more often than a1."
+  },
+  "T026": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "The drawer overlays the page rather than replacing it."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Quantity steppers change the line total and the cart total."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Reducing a quantity to zero removes the line or is prevented explicitly."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a cart drawer"
+   ],
+   "notes": "A total that does not react to quantity changes fails a2."
+  },
+  "T027": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "An order number is shown."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "The delivery address and the ordered items are both listed."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "An expected delivery date is present as a date, not as vague text."
+    }
+   ],
+   "forbidden": [
+    "lorem ipsum"
+   ],
+   "required_artifacts": [
+    "an order confirmation page"
+   ],
+   "notes": "\"Soon\" or \"in a few days\" fails a3."
+  },
+  "T028": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "The card number is formatted in groups as the user types."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Expiry and CVC have separate, specific validation messages."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "No card data is logged or echoed anywhere."
+    }
+   ],
+   "forbidden": [
+    "4111111111111111",
+    "console.log(card",
+    "test card"
+   ],
+   "required_artifacts": [
+    "a payment form"
+   ],
+   "notes": "forbidden targets a real-looking test PAN left in source, which is the common leak here."
+  },
+  "T029": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Three payment methods are selectable."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "The IBAN field appears only when direct debit is chosen."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Switching away from direct debit does not leave a stale IBAN requirement."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a payment method selector"
+   ],
+   "notes": "An always-visible IBAN field fails a2."
+  },
+  "T030": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "A crop step happens before the upload is treated as complete."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "The preview shows the cropped result, not the original."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Cancelling the crop does not leave a half-uploaded file."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "an image upload component"
+   ],
+   "notes": "Uploading first and cropping afterwards inverts the requested order and fails a1."
+  },
+  "T031": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "A preview of the first rows is shown before import."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Columns are mapped to fields by the user, not guessed silently."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "A row that cannot be mapped is reported rather than dropped."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a CSV import component"
+   ],
+   "notes": "Silent row skipping is the specific failure a3 targets."
+  },
+  "T032": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "An image grid with more than a single column."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Clicking an image opens a larger view."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The detail view can be closed and returns to the same scroll position."
+    }
+   ],
+   "forbidden": [
+    "lorem ipsum"
+   ],
+   "required_artifacts": [
+    "a portfolio page"
+   ],
+   "notes": "a3 is what separates a usable gallery from a demo."
+  },
+  "T033": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "A short biography is present."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Previous roles appear in a chronological structure."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "External links open without breaking the page."
+    }
+   ],
+   "forbidden": [
+    "lorem ipsum"
+   ],
+   "required_artifacts": [
+    "an about page"
+   ],
+   "notes": "A flat list of jobs with no ordering fails a2."
+  },
+  "T034": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Responses render progressively rather than appearing all at once."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "A stop control interrupts an in-flight response."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "A thinking or loading indication is visible before the first token."
+    },
+    {
+     "id": "a4",
+     "kind": "regex",
+     "value": "(stream|ReadableStream|EventSource|SSE)"
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a chat interface"
+   ],
+   "notes": "a4 alone does not establish a2; stopping must actually abort."
+  },
+  "T035": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "More than one result is shown at the same time for comparison."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Each result is attributable to what produced it."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "A long result does not push the others out of view."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a comparison interface"
+   ],
+   "notes": "Sequential results with a switcher fails a1: the request says side by side."
+  },
+  "T036": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Each course shows progress as a proportion, not only as a label."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "The next lesson is identified per course."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "A completed course is distinguishable from one at 99 percent."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a course overview"
+   ],
+   "notes": "a3 catches progress bars that round to full."
+  },
+  "T037": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "One question is shown at a time."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Feedback appears immediately after answering, before the next question."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "A final score is shown and reflects the answers given."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a quiz component"
+   ],
+   "notes": "All questions on one page fails a1 regardless of how good the scoring is."
+  },
+  "T038": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "regex",
+     "value": "(safe-area|env\\(|safeArea)"
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Four tabs, with the active one clearly distinguished."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The bar stays fixed to the bottom while content scrolls."
+    },
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "Tab labels remain legible at small sizes."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a bottom navigation component"
+   ],
+   "notes": "a1 is cheap; a2 and a3 are the substance."
+  },
+  "T039": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "A left swipe reveals or triggers deletion."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "An undo affordance appears after deletion and restores the item."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The undo window expires and the deletion becomes final."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a swipeable list"
+   ],
+   "notes": "Immediate irreversible deletion fails a2, which is the point of the task."
+  },
+  "T040": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Cards are face down initially and flip on interaction."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "A move counter increments per attempted pair, not per card flip."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The timer stops when the last pair is matched."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a memory game board"
+   ],
+   "notes": "a2 is the detail most implementations get wrong."
+  },
+  "T041": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Entries are ordered by score."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Rank, name and score are all present per row."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The current player's own row is visually distinguished."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a leaderboard component"
+   ],
+   "notes": "An unsorted list with a rank column fails a1."
+  },
+  "T042": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Bars are stacked rather than grouped side by side."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Clicking a legend entry hides and shows that category."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Hiding a category rescales or clearly does not, rather than clipping."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a stacked bar chart"
+   ],
+   "notes": "a3 is deliberately satisfiable either way, provided the behaviour is consistent."
+  },
+  "T043": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "An explicit message replaces the chart area when there is no data."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "The message says which period was empty."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "No axes or gridlines are drawn as if data existed."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a chart component"
+   ],
+   "notes": "An empty axis frame with no message fails a1 and a3."
+  },
+  "T044": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "regex",
+     "value": "(@media|breakpoint|sm:|md:)"
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "On a narrow viewport each row becomes a card with labelled fields."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "No horizontal scrolling is required on a narrow viewport."
+    },
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "Column headers remain associated with their values in card form."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a responsive table"
+   ],
+   "notes": "a4 is what distinguishes a real card layout from a reflowed table."
+  },
+  "T045": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "regex",
+     "value": "(aria-invalid|aria-describedby|role=[\"']?alert)"
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "An error is programmatically associated with the field it belongs to."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Errors are announced when they appear, not only rendered."
+    },
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "Tab order follows the visual order of the fields."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "an accessible form"
+   ],
+   "notes": "a1 is necessary and not sufficient; a2 is the substance."
+  },
+  "T046": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Adding, removing and quantity changes each have at least one test."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "The empty cart case is tested explicitly."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Assertions check resulting state, not merely that a function was called."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a test file"
+   ],
+   "notes": "Tests asserting only on mock call counts fail a3."
+  },
+  "T047": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Valid login, wrong password, locked account and network error each have a test."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "The locked-account case is distinguished from the wrong-password case."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The network error case does not assert a specific error message string."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a test file"
+   ],
+   "notes": "a3 guards against tests that break on copy changes."
+  },
+  "T048": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "regex",
+     "value": "(runs-on|jobs:)"
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Dependency installation, tests and deploy are separate steps."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "Deploy is conditional on the test step succeeding."
+    },
+    {
+     "id": "a4",
+     "kind": "human",
+     "value": "Deploy is restricted to the main branch."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a workflow file"
+   ],
+   "notes": "A deploy job running in parallel with tests fails a3: parallel cannot block."
+  },
+  "T049": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "Two environments are configured with different variable values."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "Secrets are referenced, never written into the file."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "The same build command serves both environments."
+    }
+   ],
+   "forbidden": [
+    "sk_live",
+    "AKIA",
+    "-----BEGIN"
+   ],
+   "required_artifacts": [
+    "a configuration file"
+   ],
+   "notes": "forbidden targets a real secret pattern committed into the config."
+  },
+  "T050": {
+   "assertions": [
+    {
+     "id": "a1",
+     "kind": "human",
+     "value": "A liveness endpoint responds without touching the database."
+    },
+    {
+     "id": "a2",
+     "kind": "human",
+     "value": "A readiness endpoint actually queries the database rather than returning a constant."
+    },
+    {
+     "id": "a3",
+     "kind": "human",
+     "value": "A failing database produces a non-success status from readiness."
+    }
+   ],
+   "forbidden": [],
+   "required_artifacts": [
+    "a health check module"
+   ],
+   "notes": "A readiness check returning a hardcoded ok is the specific failure a2 targets."
   }
+ }
 }

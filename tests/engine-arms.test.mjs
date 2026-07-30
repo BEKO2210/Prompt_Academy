@@ -86,7 +86,11 @@ test("the task file does not contain the evaluation layer", () => {
 });
 
 test("every task is gradeable and no evaluation is orphaned", () => {
-  const problems = validateEvaluationSet(evalSet, taskSet.tasks.map((t) => t.task_id));
+  const problems = validateEvaluationSet(
+    evalSet,
+    taskSet.tasks.map((t) => t.task_id),
+    Object.fromEntries(taskSet.tasks.map((t) => [t.task_id, t.request])),
+  );
   assert.deepEqual(problems, [], problems.join("; "));
 });
 
@@ -296,4 +300,40 @@ test("the stub provider is deterministic and calls nothing", async () => {
   assert.equal(a.text, b.text, "stub output varies — harness tests would be unstable");
   assert.match(a.text, /STUB OUTPUT/, "stub output must be unmistakable for a real run");
   assert.equal(p.callCount, 2);
+});
+
+test("no task is made unpassable by its own evaluation", () => {
+  // Found in the seed set: T002 required type="password" and forbade the string
+  // "password". Unpassable in every arm, so it would have depressed all of them
+  // equally — invisible in a cross-arm table, and pure noise in the headline
+  // metric. The validator now rejects that shape outright; this pins it.
+  const p = validateEvaluationSet(
+    { version: "x", evaluations: { TX: {
+      assertions: [{ id: "a1", kind: "regex", value: 'type="password"' }],
+      forbidden: ["password"], required_artifacts: [], notes: "",
+    } } },
+    ["TX"],
+    { TX: "build a login form" },
+  );
+  assert.ok(p.some((x) => /unpassable/.test(x)), "a self-contradicting evaluation was accepted");
+});
+
+test("the task set reached the size the ticket permits", () => {
+  // §1 targets 100 and permits 50 as an under-powered first pass.
+  assert.ok(taskSet.tasks.length >= 50, `task set is ${taskSet.tasks.length}, below the permitted 50`);
+  const langs = new Set(taskSet.tasks.map((t) => t.language));
+  assert.deepEqual([...langs].sort(), ["de", "en"], "the task set is not bilingual");
+  const de = taskSet.tasks.filter((t) => t.language === "de").length;
+  assert.ok(de >= 15 && de <= 35, `German share is ${de}/50 — the mix has drifted`);
+  assert.ok(new Set(taskSet.tasks.map((t) => t.domain)).size >= 12, "domain coverage is too narrow");
+});
+
+test("no task request was copied from the dataset", () => {
+  // §1: requests must be written as a user would write them. A copied request
+  // would test memorisation of the corpus rather than task performance.
+  const corpusText = readFileSync(join(ROOT, "data/01_landing_pages.jsonl"), "utf8").toLowerCase();
+  for (const t of taskSet.tasks) {
+    const chunk = t.request.toLowerCase().slice(0, 60);
+    assert.ok(!corpusText.includes(chunk), `${t.task_id}: request appears verbatim in the dataset`);
+  }
 });

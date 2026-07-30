@@ -102,7 +102,11 @@ function saturate(hits: number): number {
 function isWordChar(s: string, i: number): boolean {
   if (i < 0 || i >= s.length) return false;
   const c = s.charCodeAt(i);
-  return (c >= 97 && c <= 122) || (c >= 48 && c <= 57); // a-z, 0-9 (already lower-cased)
+  if ((c >= 97 && c <= 122) || (c >= 48 && c <= 57)) return true; // a-z, 0-9
+  // German letters. Omitting them made "größe" look like a boundary after "gr",
+  // so a prefix hit was scored where there was none — the same defect the
+  // tokenizer had (see search.ts).
+  return c === 0xe4 || c === 0xf6 || c === 0xfc || c === 0xdf; // ä ö ü ß
 }
 
 /** `lower` must already be lower-cased — see the note in scoreRecord. */

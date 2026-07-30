@@ -65,17 +65,44 @@ PHRASES = ["sign in", "sign up", "log in", "log out",
            "opt in", "opt out", "check out", "drag and drop"]
 
 
+# Mirrors WORD in site/src/lib/search.ts. Excluding the German letters shredded
+# every word carrying one ("größe" -> "gr","e", then 1,625 wrong matches).
+WORD = "a-z0-9\u00e4\u00f6\u00fc\u00df"
+
+
 def _tok(t):
     import re as _re
-    return [x for x in _re.split(r"[^a-z0-9]+", t.lower()) if x]
+    return [x for x in _re.split(r"[^" + WORD + r"]+", t.lower()) if x]
+
+
+def _umlaut_alts(term):
+    """Mirrors umlautAlternatives() in search.ts: a query spelled either way
+    matches a corpus spelled either way, without rewriting the corpus."""
+    import re as _re
+    pairs = [("\u00e4", "ae"), ("\u00f6", "oe"), ("\u00fc", "ue"), ("\u00df", "ss")]
+    out = []
+    i = 0
+    while i < len(term):
+        ch = term[i]
+        hit = next((p for p in pairs if p[0] == ch), None)
+        if hit:
+            out.append("(?:%s|%s)" % (hit[0], hit[1])); i += 1; continue
+        back = next((p for p in pairs if p[1] == term[i:i + 2]), None)
+        if back:
+            out.append("(?:%s|%s)" % (back[1], back[0])); i += 2; continue
+        out.append(_re.escape(ch)); i += 1
+    return "".join(out)
+
+
+def _bound():
+    """`\b` is ASCII-only, so it never matches before an umlaut."""
+    return r"(?:^|[^" + WORD + r"])"
 
 
 def r2_token_boundary(query, recs, hays):
     """Shipped since ENG-012: boundary-anchored prefix terms, phrase-aware,
     low-information tokens soft. Mirrors site/src/lib/search.ts."""
     import re as _re
-    syn = SYN if vocab else {}
-    psyn = PHRASE_SYN if vocab else {}
     toks = _tok(query)
     if not toks:
         return [r["id"] for r in recs]
@@ -85,12 +112,12 @@ def r2_token_boundary(query, recs, hays):
         for i in range(len(toks) - len(pt) + 1):
             if any(used[i:i + len(pt)]): continue
             if all(toks[i + j] == pt[j] for j in range(len(pt))):
-                phrases.append(_re.compile(r"\b" + r"[^a-z0-9]+".join(map(_re.escape, pt)), _re.I))
+                phrases.append(_re.compile(_bound() + (r"[^" + WORD + r"]+").join(map(_umlaut_alts, pt)), _re.I))
                 for j in range(len(pt)): used[i + j] = True
     rest = [t for i, t in enumerate(toks) if not used[i]]
     content = [t for t in rest if t not in LOW_INFO]
     soft = [t for t in rest if t in LOW_INFO]
-    req = [_re.compile(r"\b" + _re.escape(t), _re.I) for t in (content or soft)]
+    req = [_re.compile(_bound() + _umlaut_alts(t), _re.I) for t in (content or soft)]
     return [r["id"] for r, h in zip(recs, hays)
             if all(x.search(h) for x in phrases) and all(x.search(h) for x in req)]
 
@@ -112,7 +139,7 @@ def _field_score(field, term):
         at = low.find(term, i)
         if at == -1: break
         before = low[at-1] if at else ""
-        if not before.isalnum():
+        if not before.isalnum():  # Unicode-aware: "\u00e4".isalnum() is True
             hits += 1
             after = low[at+len(term):at+len(term)+1]
             if not after or not after.isalnum(): exact = True
@@ -187,7 +214,7 @@ SYNONYM_FACTOR = 0.6
 def _pat(t):
     import re as _re
     parts = _tok(t)
-    return _re.compile(r"\b" + r"[^a-z0-9]+".join(map(_re.escape, parts)), _re.I)
+    return _re.compile(_bound() + (r"[^" + WORD + r"]+").join(map(_umlaut_alts, parts)), _re.I)
 
 
 def _ranked(query, recs, hays, weights=None, vocab=True):
@@ -202,13 +229,13 @@ def _ranked(query, recs, hays, weights=None, vocab=True):
         for i in range(len(toks)-len(pt)+1):
             if any(used[i:i+len(pt)]): continue
             if all(toks[i+j]==pt[j] for j in range(len(pt))):
-                phrases.append([_re.compile(r"\b"+r"[^a-z0-9]+".join(map(_re.escape,pt)),_re.I)]
+                phrases.append([_re.compile(_bound()+(r"[^"+WORD+r"]+").join(map(_umlaut_alts,pt)),_re.I)]
                                + [_pat(v) for v in psyn.get(p,[])])
                 for j in range(len(pt)): used[i+j]=True
     rest=[t for i,t in enumerate(toks) if not used[i]]
     content=[t for t in rest if t not in LOW_INFO]; soft=[t for t in rest if t in LOW_INFO]
     terms = content or soft
-    conds=[( t, syn.get(t,[]), [_re.compile(r"\b"+_re.escape(t),_re.I)]+[_pat(v) for v in syn.get(t,[])]) for t in terms]
+    conds=[( t, syn.get(t,[]), [_re.compile(_bound()+_umlaut_alts(t),_re.I)]+[_pat(v) for v in syn.get(t,[])]) for t in terms]
     hit=[(r,h) for r,h in zip(recs,hays)
          if all(any(y.search(h) for y in x) for x in phrases)
          and all(any(y.search(h) for y in c[2]) for c in conds)]

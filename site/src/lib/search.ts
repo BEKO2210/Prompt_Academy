@@ -24,7 +24,7 @@ import type { IndexItem } from "./data.ts";
 import { expandPhrase, expandToken } from "./vocabulary.ts";
 
 /** Bump when tokenisation, phrases or the low-information set change. */
-export const MATCHING_VERSION = "1.0.0";
+export const MATCHING_VERSION = "1.1.0";
 
 /**
  * Tokens with essentially no discriminative power in THIS corpus.
@@ -58,9 +58,61 @@ export const MEANINGFUL_PHRASES: readonly string[] = [
   "opt in", "opt out", "check out", "drag and drop",
 ];
 
-/** Lowercase and split on anything that is not a letter or digit. */
+/**
+ * Word characters for this corpus: ASCII plus the German letters.
+ *
+ * Excluding umlauts here was a real, shipped bug. `[^a-z0-9]` treats ä as a
+ * SEPARATOR, so every German word carrying one was shredded:
+ *
+ *   Prüfung            -> ["pr", "fung"]
+ *   Bestellbestätigung -> ["bestellbest", "tigung"]
+ *   Übersicht          -> ["bersicht"]
+ *   größe              -> ["gr", "e"]        and then matched 1,625 records
+ *
+ * The last one is the damaging shape: not an empty result a user can see is
+ * wrong, but a large confidently wrong one. Three vocabulary entries
+ * ("übersicht", "schaltfläche", "oberfläche") were also unreachable dead code,
+ * because their keys could never be produced by tokenisation.
+ */
+const WORD = "a-z0-9äöüß";
+
+/** Lowercase and split on anything that is not a word character. */
 export function tokenize(text: string): string[] {
-  return text.toLowerCase().split(/[^a-z0-9]+/).filter((t) => t.length > 0);
+  return text.toLowerCase().split(new RegExp(`[^${WORD}]+`)).filter((t) => t.length > 0);
+}
+
+/**
+ * Umlauts and their transliterations are the same word.
+ *
+ * A user types "Übersicht", "Uebersicht" or "Ubersicht"; the corpus may carry
+ * any of them. Rather than normalising the CORPUS — which would mean rewriting
+ * 10,000 haystacks on every keystroke, the cost ENG-011 measured and rejected —
+ * each form is expanded into an alternation in the PATTERN. The corpus stays
+ * untouched and both spellings match.
+ */
+function umlautAlternatives(term: string): string {
+  const PAIRS: Array<[string, string]> = [
+    ["ä", "ae"], ["ö", "oe"], ["ü", "ue"], ["ß", "ss"],
+  ];
+  let out = "";
+  for (let i = 0; i < term.length; i++) {
+    const ch = term[i]!;
+    const pair = PAIRS.find(([u]) => u === ch);
+    if (pair) {
+      out += `(?:${pair[0]}|${pair[1]})`;
+      continue;
+    }
+    // The transliterated form in the query should also find the umlaut form.
+    const two = term.slice(i, i + 2);
+    const back = PAIRS.find(([, t]) => t === two);
+    if (back) {
+      out += `(?:${back[1]}|${back[0]})`;
+      i++;
+      continue;
+    }
+    out += escapeRe(ch);
+  }
+  return out;
 }
 
 /**
@@ -84,13 +136,17 @@ function escapeRe(s: string): string {
  * "navbar" while the user is mid-word.
  */
 function termPattern(term: string): RegExp {
-  return new RegExp("\\b" + escapeRe(term), "i");
+  // `\b` is ASCII-only in JavaScript, so "\bübersicht" never matches — ü is not
+  // a word character to the engine. An explicit start-or-separator class is used
+  // instead. It consumes the preceding character, which is harmless because
+  // every use is a `.test()` for existence, not a position.
+  return new RegExp(`(?:^|[^${WORD}])` + umlautAlternatives(term), "i");
 }
 
 /** A phrase must appear as adjacent tokens, allowing spaces or hyphens between. */
 function phrasePattern(phrase: string): RegExp {
-  const parts = tokenize(phrase).map(escapeRe);
-  return new RegExp("\\b" + parts.join("[^a-z0-9]+"), "i");
+  const parts = tokenize(phrase).map(umlautAlternatives);
+  return new RegExp(`(?:^|[^${WORD}])` + parts.join(`[^${WORD}]+`), "i");
 }
 
 /**

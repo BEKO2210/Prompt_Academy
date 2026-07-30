@@ -69,8 +69,20 @@ export function evaluationStrings(ev: TaskEvaluation): string[] {
   ].filter((s) => s && s.trim().length > 0);
 }
 
-/** Structural checks. Returns problems rather than throwing. */
-export function validateEvaluationSet(evs: EvaluationSet, taskIds: string[]): string[] {
+/**
+ * Structural checks. Returns problems rather than throwing.
+ *
+ * `requests` is optional and enables the contradiction checks below. They exist
+ * because of a real defect found in the seed set: T002 required
+ * `type="password"` AND forbade the string "password". That task could not pass
+ * in ANY arm, so it would have depressed every arm equally — invisible in a
+ * cross-arm table, and pure noise added to the primary metric.
+ */
+export function validateEvaluationSet(
+  evs: EvaluationSet,
+  taskIds: string[],
+  requests?: Record<string, string>,
+): string[] {
   const problems: string[] = [];
   if (!evs.version) problems.push("evaluation set has no version");
   for (const id of taskIds) {
@@ -82,9 +94,28 @@ export function validateEvaluationSet(evs: EvaluationSet, taskIds: string[]): st
     if (!ev.assertions?.length && !ev.required_artifacts?.length) {
       problems.push(`${id}: evaluation has neither assertions nor required_artifacts`);
     }
+    const seenIds = new Set<string>();
     for (const a of ev.assertions ?? []) {
       if (!a.id) problems.push(`${id}: an assertion has no id`);
+      if (seenIds.has(a.id)) problems.push(`${id}: duplicate assertion id ${a.id}`);
+      seenIds.add(a.id);
       if (!a.value?.trim()) problems.push(`${id}: assertion ${a.id} has an empty value`);
+    }
+
+    // A forbidden string that an assertion also requires makes the task
+    // unpassable in every arm.
+    for (const f of ev.forbidden ?? []) {
+      const fl = f.toLowerCase();
+      for (const a of ev.assertions ?? []) {
+        if (a.value.toLowerCase().includes(fl)) {
+          problems.push(`${id}: forbidden "${f}" is required by assertion ${a.id} — unpassable`);
+        }
+      }
+      // A forbidden string the USER wrote is a scope trap of a different kind:
+      // a faithful answer would echo it and fail.
+      if (requests?.[id]?.toLowerCase().includes(fl)) {
+        problems.push(`${id}: forbidden "${f}" appears in the request itself`);
+      }
     }
   }
   const extra = Object.keys(evs.evaluations).filter((k) => !taskIds.includes(k));

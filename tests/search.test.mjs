@@ -20,43 +20,20 @@ const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const INDEX_FILE = join(ROOT, "site", "public", "data", "index.json");
 const SEARCH_TS = join(ROOT, "site", "src", "lib", "search.ts");
 
-// --- mirror of site/src/lib/search.ts ------------------------------------
-const LOW = new Set(["a", "an", "and", "for", "in", "with"]);
-const PHRASES = ["sign in", "sign up", "log in", "log out",
-                 "opt in", "opt out", "check out", "drag and drop"];
-const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-const tokenize = (t) => t.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+// --- the real module, not a mirror ---------------------------------------
+//
+// This file used to hand-mirror search.ts in JavaScript, because Node could not
+// import a .ts file. It can now, and the mirror had already drifted: it carried
+// no vocabulary expansion, so it asserted `sign in screen -> 0` while the app
+// returned 2. The test was passing on behaviour the product no longer had, which
+// is precisely the failure mode AGENTS.md warns about for mirrors here.
+//
+// Importing the module deletes that entire class of bug. The PHRASES list below
+// is kept only for the source-level guard further down.
+import { matchesParsed, parseQuery, tokenize, MEANINGFUL_PHRASES } from "../site/src/lib/search.ts";
 
-function parseQuery(query) {
-  const tokens = tokenize(query);
-  if (!tokens.length) return { phrases: [], required: [], empty: true };
-  const used = new Array(tokens.length).fill(false);
-  const phrases = [];
-  for (const p of PHRASES) {
-    const pt = tokenize(p);
-    for (let i = 0; i + pt.length <= tokens.length; i++) {
-      if (used.slice(i, i + pt.length).some(Boolean)) continue;
-      if (pt.every((x, j) => tokens[i + j] === x)) {
-        phrases.push(new RegExp("\\b" + pt.map(esc).join("[^a-z0-9]+"), "i"));
-        for (let j = 0; j < pt.length; j++) used[i + j] = true;
-      }
-    }
-  }
-  const rest = tokens.filter((_, i) => !used[i]);
-  const content = rest.filter((t) => !LOW.has(t));
-  const soft = rest.filter((t) => LOW.has(t));
-  const required = (content.length ? content : soft).map((t) => new RegExp("\\b" + esc(t), "i"));
-  return { phrases, required, empty: !phrases.length && !required.length };
-}
-function haystack(it) {
-  return [it.t, it.hl, it.sum, it.fw, it.in, it.sc, it.a,
-          ...(it.tags ?? []), ...(it.kw ?? [])].join(" ");
-}
-function matches(it, parsed) {
-  if (parsed.empty) return true;
-  const h = haystack(it);
-  return parsed.phrases.every((r) => r.test(h)) && parsed.required.every((r) => r.test(h));
-}
+const PHRASES = MEANINGFUL_PHRASES;
+const matches = matchesParsed;
 // -------------------------------------------------------------------------
 
 const built = existsSync(INDEX_FILE);
@@ -150,15 +127,20 @@ test("meaningful phrases survive the low-information rule", () => {
   // "in" alone is low-information; inside "sign in" it carries meaning.
   const p = parseQuery("sign in screen");
   assert.equal(p.phrases.length, 1, "'sign in' was not detected as a phrase");
-  assert.ok(p.phrases[0].test("please sign in here"));
-  assert.ok(!p.phrases[0].test("design integration"),
+  // Since ENG-013 a phrase carries ALTERNATIVES: the phrase itself plus what
+  // the corpus actually calls it ("sign in" -> "login"). Any alternative
+  // satisfies the condition.
+  const anyOf = (alts, text) => alts.some((rx) => rx.test(text));
+  assert.ok(anyOf(p.phrases[0], "please sign in here"));
+  assert.ok(!anyOf(p.phrases[0], "design integration"),
     "'sign in' phrase must not match 'design integration'");
 });
 
 test("phrase matching tolerates hyphen and spacing variants", () => {
   const p = parseQuery("drag and drop");
-  assert.ok(p.phrases[0].test("supports drag-and-drop reordering"));
-  assert.ok(p.phrases[0].test("supports drag and drop reordering"));
+  const anyOf = (alts, text) => alts.some((rx) => rx.test(text));
+  assert.ok(anyOf(p.phrases[0], "supports drag-and-drop reordering"));
+  assert.ok(anyOf(p.phrases[0], "supports drag and drop reordering"));
 });
 
 // --- 3. corpus counts ----------------------------------------------------
@@ -168,7 +150,12 @@ test("ENG-010 multi-word fix still holds", () => {
   const expected = {
     "accessible dashboard": 100, "ecommerce product page": 277,
     "react pricing table": 14, "mobile onboarding flow": 51,
-    "animated hero section": 5, "responsive navbar": 2, "file upload component": 3,
+    "animated hero section": 5, "file upload component": 3,
+    // 2 before ENG-013. The vocabulary expands navbar -> navigation, so the
+    // records the corpus calls "navigation" are now reachable. The old value
+    // survived only because this file mirrored search.ts instead of importing
+    // it, and the mirror had no expansion.
+    "responsive navbar": 125,
   };
   for (const [q, n] of Object.entries(expected)) assert.equal(count(q), n, `"${q}"`);
 });
@@ -197,8 +184,11 @@ test("no-result behaviour is unchanged", () => {
   requireBuild();
   assert.equal(count("zzzznomatch"), 0);
   assert.equal(count("dashboard zzzznomatch"), 0);
-  assert.equal(count("stripe checkout"), 0);   // dataset gap
-  assert.equal(count("barrierefrei"), 0);      // language gap
+  assert.equal(count("stripe checkout"), 0);   // dataset gap: "stripe" is in 0 records
+  // NOT a zero any more. ENG-013 closed the language gap, and this assertion
+  // was only still passing because the file mirrored search.ts instead of
+  // importing it — the mirror had no vocabulary expansion.
+  assert.ok(count("barrierefrei") > 1000, "German query no longer reaches the corpus");
   assert.equal(count(""), 10000);
 });
 
@@ -207,7 +197,9 @@ test("ENG-012 removed the 'sign in screen' false-positive pile", () => {
   // Was 404 records under substring matching, none of them a login form.
   // The corpus contains no "sign in" at all, so 0 is the honest answer;
   // finding the login record needs synonyms, which ENG-012 deliberately excludes.
-  assert.equal(count("sign in screen"), 0);
+  // 0 under ENG-012, which had no synonyms. ENG-013 added them, so the login
+  // records are now reachable — few, but no longer none.
+  assert.equal(count("sign in screen"), 2);
   assert.ok(count("sign") < 200, `'sign' matched ${count("sign")} — was 6,936 as substring`);
 });
 
@@ -216,11 +208,51 @@ test("ENG-012 removed the 'sign in screen' false-positive pile", () => {
 test("mirrored predicate still matches site/src/lib/search.ts", () => {
   const src = readFileSync(SEARCH_TS, "utf8");
   assert.match(src, /export const MATCHING_VERSION/, "matching version gone");
-  assert.match(src, /"\\\\b" \+ escapeRe\(term\)/, "boundary-anchored term matching changed");
+  // `\b` is ASCII-only in JavaScript, so it never matched before an umlaut and
+  // German words were shredded by the tokenizer. The boundary is now an explicit
+  // start-or-separator class over WORD, which includes the German letters.
+  assert.match(src, /const WORD = "a-z0-9äöüß"/, "the word-character class changed");
+  assert.match(src, /\(\?:\^\|\[\^\$\{WORD\}\]\)/, "boundary-anchored term matching changed");
+  assert.match(src, /umlautAlternatives/, "umlaut alternation gone");
   assert.match(src, /LOW_INFORMATION_TOKENS/, "low-information set gone");
   assert.match(src, /MEANINGFUL_PHRASES/, "phrase list gone");
   for (const t of ["a", "an", "and", "for", "in", "with"]) {
     assert.ok(new RegExp(`"${t}"`).test(src), `low-information token ${t} missing from source`);
   }
   for (const p of PHRASES) assert.ok(src.includes(`"${p}"`), `phrase ${p} missing from source`);
+});
+
+// --- 5. German letters ----------------------------------------------------
+
+test("German words survive tokenisation", () => {
+  // Shipped bug: `[^a-z0-9]` treated ä as a separator, so "größe" became
+  // ["gr", "e"] and then matched 1,625 records — a large, confidently wrong
+  // result rather than a visibly empty one. Three vocabulary entries
+  // ("übersicht", "schaltfläche", "oberfläche") were unreachable dead code for
+  // the same reason: tokenisation could never produce their keys.
+  for (const [word, expected] of [
+    ["Prüfung", ["prüfung"]],
+    ["Bestellbestätigung", ["bestellbestätigung"]],
+    ["Übersicht", ["übersicht"]],
+    ["größe", ["größe"]],
+    ["Straße", ["straße"]],
+  ]) {
+    assert.deepEqual(tokenize(word), expected, `${word} was split`);
+  }
+});
+
+test("a query spelled either way finds either spelling", () => {
+  requireBuild();
+  // The corpus is not normalised — rewriting 10,000 haystacks per keystroke is
+  // the cost ENG-011 measured and rejected — so the alternation lives in the
+  // pattern instead.
+  assert.equal(count("Übersicht"), count("Uebersicht"), "ü and ue disagree");
+  assert.ok(count("Übersicht") > 0, "an umlaut query finds nothing");
+});
+
+test("the umlaut fix did not loosen ordinary matching", () => {
+  requireBuild();
+  assert.equal(count("dashboard"), 3391);
+  assert.equal(count("pricing page"), 162);
+  assert.equal(count("sign in screen"), 2);
 });
